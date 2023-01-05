@@ -1,0 +1,38 @@
+---
+permalink: admin/disabling-single-sign-on.html 
+sidebar: sidebar 
+keywords: disable sso, disable single sign on 
+summary: 'Puede deshabilitar el inicio de sesión único \(SSO\) si ya no desea utilizar esta funcionalidad. Debe deshabilitar el inicio de sesión único antes de poder deshabilitar la federación de identidades.' 
+---
+= Desactive el inicio de sesión único
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si ya no desea usar esta funcionalidad, puede deshabilitar el inicio de sesión único (SSO). Debe deshabilitar el inicio de sesión único antes de poder deshabilitar la federación de identidades.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *Control de acceso* > *Single Sign-On*.
++
+Aparece la página Single Sign-On.
+
+. Seleccione la opción *Desactivado*.
+. Seleccione *Guardar*.
++
+Aparece un mensaje de advertencia que indica que los usuarios locales podrán iniciar sesión.
+
++
+image::../media/sso_status_disabled_warning.gif[Advertencia de SSO deshabilitado]
+
+. Seleccione *OK*.
++
+La próxima vez que inicie sesión en StorageGRID, aparecerá la página Inicio de sesión en StorageGRID, donde deberá introducir el nombre de usuario y la contraseña de un usuario de StorageGRID local o federado.
+
+

@@ -1,0 +1,48 @@
+---
+permalink: monitor/managing-alerts.html 
+sidebar: sidebar 
+keywords: alert rules, managing alerts, alerts, alert notifications. edit alert rules 
+summary: Las alertas le permiten supervisar diversos eventos y condiciones dentro de su sistema StorageGRID. Puede gestionar alertas creando alertas personalizadas, editando o deshabilitando las alertas predeterminadas, configurando notificaciones por correo electrónico para alertas y silenciando las notificaciones de alertas. 
+---
+= Gestionar alertas: descripción general
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Las alertas le permiten supervisar diversos eventos y condiciones dentro de su sistema StorageGRID. Puede gestionar alertas creando alertas personalizadas, editando o deshabilitando las alertas predeterminadas, configurando notificaciones por correo electrónico para alertas y silenciando las notificaciones de alertas.
+
+
+
+== Acerca de las alertas de StorageGRID
+
+El sistema de alertas proporciona una interfaz fácil de usar para detectar, evaluar y resolver los problemas que pueden ocurrir durante el funcionamiento de StorageGRID.
+
+* El sistema de alertas se centra en los problemas que pueden llevar a la práctica en el sistema. Se activan alertas para eventos que requieren su atención inmediata, no para eventos que se pueden ignorar de forma segura.
+* La página Alertas actuales proporciona una interfaz sencilla para ver los problemas actuales. Puede ordenar el listado por alertas individuales y grupos de alertas. Por ejemplo, podría ordenar todas las alertas por nodo/sitio para ver qué alertas afectan a un nodo concreto. O bien, se pueden ordenar las alertas de un grupo por tiempo activadas para encontrar la instancia más reciente de una alerta específica.
+* La página Resolved Alerts proporciona información similar a la de la página Current Alerts, pero permite buscar y ver un historial de las alertas que se han resuelto, incluida la hora en la que se activó la alerta y la fecha en que se resolvió.
+* Se agrupan varias alertas del mismo tipo en un correo electrónico para reducir el número de notificaciones. Además, en la página Alertas se muestran varias alertas del mismo tipo como un grupo. Puede expandir y contraer grupos de alertas para mostrar u ocultar las alertas individuales. Por ejemplo, si varios nodos notifican la alerta *no se puede comunicar con el nodo* aproximadamente a la vez, sólo se envía un correo electrónico y la alerta se muestra como un grupo en la página Alertas.
+* Las alertas utilizan nombres y descripciones intuitivos que le ayudan a entender rápidamente el problema. Las notificaciones de alerta incluyen detalles sobre el nodo y el sitio afectado, la gravedad de alerta, la hora en la que se activó la regla de alerta y el valor actual de las métricas relacionadas con la alerta.
+* Las notificaciones por correo electrónico de alertas y los listados de alertas de las páginas actuales de Alertas y Alertas resueltas ofrecen acciones recomendadas para resolver una alerta. Estas acciones recomendadas suelen incluir enlaces directos al centro de documentación de StorageGRID para facilitar la búsqueda y el acceso a procedimientos más detallados para la solución de problemas.
+* Si necesita suprimir temporalmente las notificaciones de una alerta en uno o más niveles de gravedad, puede silenciar fácilmente una regla de alerta específica durante una duración especificada y para todo el grid, un solo sitio o un solo nodo. También puede silenciar todas las reglas de alerta, por ejemplo, durante un procedimiento de mantenimiento planificado, como una actualización de software.
+* Puede editar las reglas de alerta predeterminadas si es necesario. Puede deshabilitar una regla de alerta por completo o cambiar sus condiciones de activación y duración.
+* Puede crear reglas de alerta personalizadas para tener en cuenta las condiciones específicas que son relevantes para su situación y para proporcionar sus propias acciones recomendadas. Para definir las condiciones de una alerta personalizada, debe crear expresiones mediante las métricas Prometheus disponibles en la sección Metrics de la API de gestión de grid.
+
+
+
+
+== Leer más
+
+Para obtener más información, consulte estos vídeos:
+
+* https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2680a74f-070c-41c2-bcd3-acc5013c9cdd["Vídeo: Descripción general de las alertas"^]
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2680a74f-070c-41c2-bcd3-acc5013c9cdd]
+image::../media/video-screenshot-alert-overview.png[Vídeo: Descripción general de las alertas]
+
+* https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b35ac3f2-957b-4e79-b82b-acc5013c98d0["Vídeo: Uso de métricas para crear alertas personalizadas"^]
++
+image::../media/video-screenshot-alert-create-custom.png[enlace-"https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b35ac3f2-957b-4e79-b82b-acc5013c98d0"[] alt="Vídeo: Uso de métricas para crear alertas personalizadas"]
+
+

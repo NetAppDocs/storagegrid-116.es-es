@@ -1,0 +1,88 @@
+---
+permalink: upgrade/docker-image-availability-check-error-messages.html 
+sidebar: sidebar 
+keywords: upgrade, error message, docker image availability 
+summary: Al intentar iniciar el proceso de actualización, puede recibir un mensaje de error que indica que “el conjunto de validación de comprobación de disponibilidad de imagen Docker identificó los siguientes problemas”. Todos los problemas deben resolverse para poder completar la actualización. 
+---
+= Mensajes de error “Docker Image Availability check” (comprobación de disponibilidad de imagen Docker)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Al intentar iniciar el proceso de actualización, puede recibir un mensaje de error que indique ""los siguientes problemas fueron identificados por el paquete de validación de comprobación de disponibilidad de imagen Docker"." Todos los problemas deben resolverse para poder completar la actualización.
+
+Póngase en contacto con el soporte técnico si no está seguro de los cambios necesarios para resolver los problemas identificados.
+
+[cols="1a,1a,1a"]
+|===
+| Mensaje | Causa | Solución 
+
+
+ a| 
+No se puede determinar la versión de actualización. Actualizar el archivo de información de la versión `{file_path}` no coincide con el formato esperado.
+ a| 
+El paquete de actualización está dañado.
+ a| 
+Vuelva a cargar el paquete de actualización e inténtelo de nuevo. Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+Actualizar el archivo de información de la versión `{file_path}` no se ha encontrado. No se puede determinar la versión de actualización.
+ a| 
+El paquete de actualización está dañado.
+ a| 
+Vuelva a cargar el paquete de actualización e inténtelo de nuevo. Si el problema persiste, póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+No se puede determinar la versión instalada actualmente en `{node_name}`.
+ a| 
+Un archivo crítico del nodo está dañado.
+ a| 
+Póngase en contacto con el soporte técnico.
+
+
+
+ a| 
+Error de conexión al intentar mostrar las versiones `{node_name}`
+ a| 
+El nodo está desconectado o la conexión se ha interrumpido.
+ a| 
+Compruebe que todos los nodos estén en línea y sean accesibles desde el nodo administrador principal, y vuelva a intentarlo.
+
+
+
+ a| 
+El host para nodo `{node_name}` No tiene StorageGRID `{upgrade_version}` imagen cargada. Las imágenes y los servicios deben instalarse en el host para poder continuar con la actualización.
+ a| 
+Los paquetes RPM o DEB para la actualización no se han instalado en el host donde se está ejecutando el nodo o las imágenes siguen en proceso de importación.
+
+*Nota:* este error sólo se aplica a los nodos que se ejecutan como contenedores en Linux.
+ a| 
+Compruebe que se hayan instalado los paquetes RPM o DEB en todos los hosts Linux en los que se estén ejecutando los nodos. Asegúrese de que la versión es correcta tanto para el servicio como para el archivo de imágenes. Espere unos minutos e inténtelo de nuevo.
+
+Consulte xref:../upgrade/linux-installing-rpm-or-deb-package-on-all-hosts.adoc[Linux: Instale el paquete RPM o DEB en todos los hosts].
+
+
+
+ a| 
+Error al comprobar el nodo `{node_name}`
+ a| 
+Error inesperado.
+ a| 
+Espere unos minutos e inténtelo de nuevo.
+
+
+
+ a| 
+Error no detectado mientras se ejecutan las comprobaciones previas. `{error_string}`
+ a| 
+Error inesperado.
+ a| 
+Espere unos minutos e inténtelo de nuevo.
+
+|===

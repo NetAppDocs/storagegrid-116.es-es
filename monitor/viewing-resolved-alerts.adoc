@@ -1,0 +1,114 @@
+---
+permalink: monitor/viewing-resolved-alerts.html 
+sidebar: sidebar 
+keywords: how to view resolved alerts 
+summary: Es posible buscar y ver un historial de alertas que se han resuelto. 
+---
+= Ver alertas resueltas
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible buscar y ver un historial de alertas que se han resuelto.
+
+.Lo que necesitará
+* Debe iniciar sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+
+
+.Pasos
+. Para ver las alertas resueltas, realice una de las siguientes acciones:
++
+** En el panel Estado del Panel, haga clic en *Alertas resueltas recientemente*.
++
+El enlace *Alertas resueltas recientemente* aparece sólo si una o más alertas se han activado en la última semana y ahora se han resuelto.
+
+** Seleccione *ALERTS* > *Resolved*. Aparece la página Alertas resueltas. De forma predeterminada, se muestran las alertas resueltas que se activaron durante la última semana, y las alertas activadas más recientemente se muestran primero. Las alertas de esta página se mostraban previamente en la página Alertas actuales o en una notificación por correo electrónico.
++
+image::../media/alerts_resolved_page.png[Página Alertas resueltas]
+
+
+
+. Revise la información de la tabla.
++
+|===
+| Encabezado de columna | Descripción 
+
+
+ a| 
+Nombre
+ a| 
+El nombre de la alerta y su descripción.
+
+
+
+ a| 
+Gravedad
+ a| 
+La gravedad de la alerta.
+
+** *Crítico* image:../media/icon_alert_red_critical.png["Alerta de icono Rojo crítico"]: Existe una condición anormal que ha detenido las operaciones normales de un nodo StorageGRID o servicio. Debe abordar el problema subyacente de inmediato. Se pueden producir interrupciones del servicio y pérdida de datos si no se resuelve el problema.
+** *Mayor* image:../media/icon_alert_orange_major.png["Alerta de icono naranja principal"]: Existe una condición anormal que afecta a las operaciones actuales o se acerca al umbral de una alerta crítica. Debe investigar las alertas principales y solucionar cualquier problema subyacente para garantizar que esta condición no detenga el funcionamiento normal de un nodo o servicio de StorageGRID.
+** *Menor* image:../media/icon_alert_yellow_minor.png["Alerta de icono menor amarilla"]: El sistema funciona normalmente, pero existe una condición anormal que podría afectar la capacidad de funcionamiento del sistema si continúa. Deberá supervisar y resolver las alertas menores que no se despicen por sí mismas para asegurarse de que no provoquen un problema más grave.
+
+
+
+
+ a| 
+Tiempo activado
+ a| 
+¿Cuánto tiempo hace que se activó la alerta?
+
+
+
+ a| 
+Tiempo resuelto
+ a| 
+Hace cuánto tiempo se resolvió la alerta.
+
+
+
+ a| 
+Sitio/nodo
+ a| 
+El nombre del sitio y del nodo donde se produjo la alerta.
+
+
+
+ a| 
+Valores activados
+ a| 
+El valor de la métrica que provocó el activación de la alerta. En el caso de algunas alertas, se muestran valores adicionales que le ayudarán a comprender e investigar la alerta. Por ejemplo, los valores mostrados para una alerta *almacenamiento de datos de objeto bajo* incluyen el porcentaje de espacio en disco utilizado, la cantidad total de espacio en disco y la cantidad de espacio en disco utilizado.
+
+|===
+. Para ordenar la lista completa de alertas resueltas, haga clic en las flechas arriba/abajo image:../media/icon_alert_sort_column.png["Icono de flechas de ordenación"] en cada encabezado de columna.
++
+Por ejemplo, es posible que desee ordenar las alertas resueltas por *Sitio/nodo* para ver las alertas que afectan a un nodo específico.
+
+. Opcionalmente, puede filtrar la lista de alertas resueltas utilizando los menús desplegables de la parte superior de la tabla.
++
+.. Seleccione un período de tiempo en el menú desplegable *cuando se activó* para mostrar alertas resueltas en función de cuánto tiempo se activaron.
++
+Puede buscar alertas que se hayan activado en los siguientes periodos de tiempo:
+
++
+*** Última hora
+*** Último día
+*** Última semana (vista predeterminada)
+*** El mes pasado
+*** Cualquier período de tiempo
+*** Personalizado (permite especificar la fecha de inicio y la fecha de finalización del período de tiempo)
+
+
+.. Seleccione una o más gravedades en el menú desplegable *severidad* para filtrar las alertas resueltas de una gravedad específica.
+.. Seleccione una o más reglas de alerta predeterminadas o personalizadas en el menú desplegable *Regla de alerta* para filtrar las alertas resueltas relacionadas con una regla de alerta específica.
+.. Seleccione uno o más nodos en el menú desplegable *Node* para filtrar las alertas resueltas relacionadas con un nodo específico.
+.. Haga clic en *Buscar*.
+
+
+. Para ver los detalles de una alerta resuelta específica, seleccione la alerta en la tabla.
++
+Se muestra un cuadro de diálogo de la alerta. Consulte xref:viewing-specific-alert.adoc[Ver una alerta específica].
+
+

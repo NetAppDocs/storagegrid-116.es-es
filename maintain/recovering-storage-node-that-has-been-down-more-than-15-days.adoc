@@ -1,0 +1,94 @@
+---
+permalink: maintain/recovering-storage-node-that-has-been-down-more-than-15-days.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, storage node failure 
+summary: Si un solo nodo de almacenamiento ha estado desconectado y no está conectado a otros nodos de almacenamiento durante más de 15 días, debe reconstruir Cassandra en el nodo. 
+---
+= Recupere el nodo de almacenamiento en más de 15 días
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si un solo nodo de almacenamiento ha estado desconectado y no está conectado a otros nodos de almacenamiento durante más de 15 días, debe reconstruir Cassandra en el nodo.
+
+.Lo que necesitará
+* Comprobó que un decomisionado del nodo de almacenamiento no está en curso o que ha pausado el procedimiento para decomisionar el nodo. (En Grid Manager, seleccione *MANTENIMIENTO* > *tareas* > *misión*.)
+* Ha comprobado que una expansión no está en curso. (En Grid Manager, seleccione *MANTENIMIENTO* > *tareas* > *expansión*.)
+
+
+.Acerca de esta tarea
+Los nodos de almacenamiento tienen una base de datos Cassandra que incluye metadatos de objetos. Si un nodo de almacenamiento no pudo comunicarse con otros nodos de almacenamiento durante más de 15 días, StorageGRID asume que la base de datos Cassandra del nodo está obsoleta. El nodo de almacenamiento no puede volver a unirse a la cuadrícula hasta que se reconstruye Cassandra con información de otros nodos de almacenamiento.
+
+Use este procedimiento para reconstruir Cassandra solo si un solo nodo de almacenamiento está inactivo. Póngase en contacto con el soporte técnico si hay más nodos de almacenamiento sin conexión o si Cassandra se ha reconstruido en otro nodo de almacenamiento en los últimos 15 días; por ejemplo, Cassandra se puede haber reconstruido como parte de los procedimientos para recuperar volúmenes de almacenamiento con fallos o para recuperar un nodo de almacenamiento con errores.
+
+
+CAUTION: Si más de un nodo de almacenamiento presenta errores (o está sin conexión), póngase en contacto con el soporte técnico. No realice el siguiente procedimiento de recuperación. Podrían perderse datos.
+
+
+CAUTION: Si este es el segundo fallo del nodo de almacenamiento en menos de 15 días después de un fallo o una recuperación en el nodo de almacenamiento, póngase en contacto con el soporte técnico. No realice el siguiente procedimiento de recuperación. Podrían perderse datos.
+
+
+NOTE: Si se produce un error en más de un nodo de almacenamiento de un sitio, es posible que se requiera un procedimiento de recuperación del sitio. Póngase en contacto con el soporte técnico.
+
+xref:how-site-recovery-is-performed-by-technical-support.adoc[Cómo realiza la recuperación del sitio el soporte técnico]
+
+.Pasos
+. Si es necesario, encienda el nodo de almacenamiento que se debe recuperar.
+. Inicie sesión en el nodo de grid:
++
+.. Introduzca el siguiente comando: `ssh admin@_grid_node_IP_`
+.. Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+.. Introduzca el siguiente comando para cambiar a la raíz: `su -`
+.. Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+
+
++
+Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para `#`.+
+
+
+
+
+NOTE: Si no puede iniciar sesión en el nodo de grid, es posible que el disco del sistema no esté intacto. Vaya al procedimiento para xref:recovering-from-system-drive-failure.adoc[recuperación del fallo de la unidad del sistema].
+
+. Realice las siguientes comprobaciones en el nodo de almacenamiento:
++
+.. Emita este comando: `nodetool status`
++
+La salida debería ser `Connection refused`
+
+.. En Grid Manager, seleccione *SUPPORT* *Tools* *Grid topolog a*.
+.. Seleccione *_Site_* *nodo de almacenamiento* *SSM* *Servicios*. Compruebe que aparece el servicio Cassandra `Not Running`.
+.. Seleccione *nodo de almacenamiento* *SSM* *Recursos*. Compruebe que no haya estado de error en la sección Volumes.
+.. Emita este comando: `grep -i Cassandra /var/local/log/servermanager.log`
++
+Debería ver el siguiente mensaje en el resultado:
+
++
+[listing]
+----
+Cassandra not started because it has been offline for more than 15 day grace period - rebuild Cassandra
+----
+
+
+. Emita este comando y supervise el resultado del script: `check-cassandra-rebuild`
++
+** Si los servicios de almacenamiento se están ejecutando, se le solicitará que los detenga. Introduzca: *Y*
+** Revise las advertencias del script. Si no se aplica ninguno de ellos, confirme que desea reconstruir Cassandra. Introduzca: *Y*
++
+
+NOTE: Algunos procedimientos de recuperación de StorageGRID usan Reaper para gestionar las reparaciones de Cassandra. Las reparaciones se realizan automáticamente tan pronto como se hayan iniciado los servicios relacionados o necesarios. Puede que note un resultado de script que menciona "relativamente" o ""reparación de Cassandra"". Si aparece un mensaje de error que indica que la reparación ha fallado, ejecute el comando indicado en el mensaje de error.
+
+
+
+. Una vez finalizada la reconstrucción, realice las siguientes comprobaciones:
++
+.. En Grid Manager, seleccione *SUPPORT* *Tools* *Grid topolog a*.
+.. Seleccione *_Site_* *nodo de almacenamiento recuperado* *SSM* *Servicios*.
+.. Confirme que todos los servicios están en ejecución.
+.. Seleccione *DDS* *almacén de datos*.
+.. Confirmar que *Estado del almacén de datos* es «'Arriba'» y que *Estado del almacén de datos* es «'normal'».
+
+
+

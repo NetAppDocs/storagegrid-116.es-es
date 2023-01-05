@@ -1,0 +1,18 @@
+---
+permalink: admin/confirming-capacity-of-storagegrid-system.html 
+sidebar: sidebar 
+keywords: data migration, data capacity for migration 
+summary: Antes de migrar grandes cantidades de datos al sistema StorageGRID, confirme que el sistema StorageGRID tiene la capacidad de disco necesaria para gestionar el volumen previsto. 
+---
+= Confirmar la capacidad del sistema StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de migrar grandes cantidades de datos al sistema StorageGRID, confirme que el sistema StorageGRID tiene la capacidad de disco necesaria para gestionar el volumen previsto.
+
+Si el sistema StorageGRID incluye un nodo de archivado y se ha guardado una copia de los objetos migrados en almacenamiento near-line (como la cinta), asegúrese de que el almacenamiento del nodo de archivado dispone de suficiente capacidad para el volumen previsto de datos migrados.
+
+Como parte de la evaluación de la capacidad, observe el perfil de datos de los objetos que tiene pensado migrar y calcule la cantidad de capacidad de disco necesaria. Para obtener información detallada sobre cómo supervisar la capacidad del disco del sistema StorageGRID, consulte xref:managing-storage-nodes.adoc[Gestione nodos de almacenamiento] y.. xref:../monitor/index.adoc[Supervisión y solución de problemas].

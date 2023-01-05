@@ -1,0 +1,125 @@
+---
+permalink: monitor/viewing-dashboard.html 
+sidebar: sidebar 
+keywords: how to view the dashboard 
+summary: Cuando inicie sesión por primera vez en Grid Manager, puede utilizar el panel para supervisar las actividades del sistema de un vistazo. La consola incluye información sobre el estado del sistema, las métricas de uso y los gráficos y tendencias operativas. 
+---
+= Consulte la consola
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cuando inicie sesión por primera vez en Grid Manager, puede utilizar el panel para supervisar las actividades del sistema de un vistazo. La consola incluye información sobre el estado del sistema, las métricas de uso y los gráficos y tendencias operativas.
+
+image::../media/grid_manager_dashboard.png[Consola de Grid Manager]
+
+
+
+== Campo de búsqueda
+
+El campo *Buscar* de la barra de encabezado le permite navegar rápidamente a una página específica o entrada de barra lateral dentro de Grid Manager. Por ejemplo, puede introducir *key* para acceder a la página del servidor de gestión de claves.
+
+
+
+== Panel de estado
+
+|===
+| Descripción | Ver detalles adicionales | Leer más 
+
+
+ a| 
+Resume el estado del sistema. Una Marca de verificación verde significa que no hay alertas actuales y que todos los nodos de grid están conectados. Cualquier otro icono significa que hay al menos un nodo de alerta actual o desconectado.
+ a| 
+Puede que vea uno o varios de los siguientes enlaces:
+
+* *Detalles de la cuadrícula*: Aparece si alguno de los nodos está desconectado (estado de conexión desconocido o administrativamente abajo). Haga clic en el enlace o haga clic en el icono azul o gris para determinar qué nodo o nodos están afectados.
+* *Alertas actuales*: Aparece si hay alguna alerta activa. Haga clic en el enlace o haga clic en *crítico*, *mayor* o *menor* para ver los detalles en la página *ALERTAS* > *actual*.
+* *Alertas resueltas recientemente*: Aparece si se han resuelto las alertas activadas en la última semana. Haga clic en el enlace para ver los detalles en la página *ALERTS* > *Resolved*.
+* *Alarmas heredadas*: Aparece si alguna alarma (sistema heredado) está activa actualmente. Haga clic en el enlace para ver los detalles en la página *SUPPORT* > *Alarms (Legacy)* > *Current Alarms*.
+* *Licencia*: Aparece si hay un problema con la licencia de software para este sistema StorageGRID. Haga clic en el enlace para ver los detalles en la página *MANTENIMIENTO* > *sistema* > *Licencia*.
+
+ a| 
+* xref:monitoring-node-connection-states.adoc[Supervise los estados de conexión de los nodos]
+* xref:viewing-current-alerts.adoc[Ver las alertas actuales]
+* xref:viewing-resolved-alerts.adoc[Ver alertas resueltas]
+* xref:viewing-legacy-alarms.adoc[Ver alarmas heredadas]
+* xref:../admin/index.adoc[Administre StorageGRID]
+
+
+|===
+
+
+== Panel almacenamiento disponible
+
+|===
+| Descripción | Ver detalles adicionales | Leer más 
+
+
+ a| 
+Muestra la capacidad de almacenamiento disponible y utilizada en toda la cuadrícula, sin incluir los medios de archivado.
+
+El gráfico general presenta los totales de toda la cuadrícula. Si se trata de una cuadrícula de varios sitios, aparecerán gráficos adicionales para cada sitio del centro de datos.
+
+Esta información se puede usar para comparar el almacenamiento usado con el almacenamiento disponible. Si tiene una cuadrícula de varios sitios, puede determinar qué sitio consume más almacenamiento.
+ a| 
+* Para ver la capacidad, coloque el cursor sobre las secciones de capacidad disponible y utilizada del gráfico.
+* Para ver las tendencias de capacidad sobre un rango de fechas, haga clic en el icono del gráfico image:../media/icon_chart_new_for_11_5.png["Icono de gráfico"] para la grid general o para el sitio de un centro de datos.
+* Para ver los detalles, seleccione *NODES*. A continuación, vea la pestaña almacenamiento de toda la cuadrícula, un sitio entero o un único nodo de almacenamiento.
+
+ a| 
+* xref:viewing-storage-tab.adoc[Consulte la pestaña almacenamiento]
+* xref:monitoring-storage-capacity.adoc[Supervise la capacidad de almacenamiento]
+
+
+|===
+
+
+== Panel Information Lifecycle Management (ILM)
+
+|===
+| Descripción | Ver detalles adicionales | Leer más 
+
+
+ a| 
+Muestra las operaciones de ILM y las colas de ILM actuales del sistema. Puede utilizar esta información para supervisar la carga de trabajo del sistema.
+
+* *Esperando - Cliente*: El número total de objetos que esperan la evaluación de ILM de las operaciones cliente (por ejemplo, ingesta).
+* *Esperando - tasa de evaluación*: La velocidad actual a la que se evalúan los objetos en comparación con la política de ILM de la red.
+* *Período de exploración - estimado*: El tiempo estimado para completar una exploración completa de ILM de todos los objetos. *Nota:* una exploración completa no garantiza que ILM se haya aplicado a todos los objetos.
+
+ a| 
+* Para ver los detalles, seleccione *NODES*. A continuación, vea la pestaña ILM de toda la cuadrícula, un sitio entero o un nodo de almacenamiento único.
+* Para ver las reglas de ILM existentes, seleccione *ILM* > *Reglas*.
+* Para ver las directivas de ILM existentes, seleccione *ILM* > *Directivas*.
+
+ a| 
+* xref:viewing-ilm-tab.adoc[Vea la pestaña ILM]
+* xref:../admin/index.adoc[Administre StorageGRID].
+
+
+|===
+
+
+== Panel de operaciones de protocolo
+
+|===
+| Descripción | Ver detalles adicionales | Leer más 
+
+
+ a| 
+Muestra la cantidad de operaciones específicas de protocolos (S3 y Swift) que realiza el sistema.
+
+Puede utilizar esta información para supervisar las cargas de trabajo y las eficiencias del sistema. La media de las tasas de protocolo se hace durante los últimos dos minutos.
+ a| 
+* Para ver los detalles, seleccione *NODES*. A continuación, visualice la ficha objetos de toda la cuadrícula, de todo un sitio o de un único nodo de almacenamiento.
+* Para ver las tendencias en un intervalo de fechas, haga clic en el icono del gráfico image:../media/icon_chart_new_for_11_5.png["Icono de gráfico"] A la derecha de la tasa del protocolo S3 o Swift.
+
+ a| 
+* xref:viewing-objects-tab.adoc[Abra la pestaña objetos]
+* xref:../s3/index.adoc[Use S3]
+* xref:../swift/index.adoc[Use Swift]
+
+
+|===

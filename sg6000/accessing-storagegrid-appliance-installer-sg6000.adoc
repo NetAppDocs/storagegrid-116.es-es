@@ -1,0 +1,89 @@
+---
+permalink: sg6000/accessing-storagegrid-appliance-installer-sg6000.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, appliance installer, installer, access, accessing, start, starting 
+summary: 'Debe acceder al instalador de dispositivos de StorageGRID para comprobar la versión del instalador y configurar las conexiones entre el dispositivo y las tres redes StorageGRID: La red de grid, la red de administración \(opcional\) y la red de cliente \(opcional\).' 
+---
+= Acceda al instalador de dispositivos de StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe acceder al instalador de dispositivos de StorageGRID para verificar la versión del instalador y configurar las conexiones entre el dispositivo y las tres redes StorageGRID: La red de grid, la red de administración (opcional) y la red de cliente (opcional).
+
+.Lo que necesitará
+* Está utilizando cualquier cliente de gestión que pueda conectarse a la red de administración de StorageGRID o que tenga un portátil de servicio.
+* El cliente o el portátil de servicio tienen un navegador web compatible.
+* El controlador SG6000-CN está conectado a todas las redes StorageGRID que se van a utilizar.
+* Conoce la dirección IP, la puerta de enlace y la subred del controlador SG6000-CN en estas redes.
+* Configuró los switches de red que planea utilizar.
+
+
+.Acerca de esta tarea
+Para acceder inicialmente al instalador de dispositivos de StorageGRID, puede utilizar la dirección IP asignada por DHCP para el puerto de red de administración en el controlador SG6000-CN (si el controlador está conectado a la red de administración) o puede conectar un portátil de servicio directamente al controlador SG6000-CN.
+
+.Pasos
+. Si es posible, utilice la dirección DHCP del puerto de red de administración del controlador SG6000-CN para acceder al instalador de dispositivos de StorageGRID.
++
+image::../media/sg6000_cn_admin_network_port.gif[Puerto de red de administración en el controlador SG6000-CN]
+
++
+.. Busque la etiqueta de dirección MAC en la parte frontal del controlador SG6000-CN y determine la dirección MAC del puerto de red de administración.
++
+La etiqueta de dirección MAC incluye la dirección MAC para el puerto de gestión del BMC.
+
++
+Para determinar la dirección MAC del puerto de red de administración, debe agregar *2* al número hexadecimal de la etiqueta. Por ejemplo, si la dirección MAC de la etiqueta termina en *09*, la dirección MAC del puerto de administración finalizará en *0B*. Si la dirección MAC de la etiqueta termina en *(_y_)FF*, la dirección MAC del puerto de administración finalizará en *(_y_+1)01*. Puede realizar este cálculo fácilmente abriendo Calculadora en Windows, establecerlo en modo Programador, seleccionando hex, escribiendo la dirección MAC y, a continuación, escribiendo *+ 2 =*.
+
+.. Proporcione la dirección MAC al administrador de red, de modo que puedan buscar la dirección DHCP del dispositivo en la red de administración.
+.. Desde el cliente, introduzca esta URL para el instalador de dispositivos StorageGRID: +
+`*https://_Appliance_Controller_IP_:8443*`
++
+Para `_SG6000-CN_Controller_IP_`, Utilice la dirección DHCP.
+
+.. Si se le solicita una alerta de seguridad, vea e instale el certificado con el asistente de instalación del explorador.
++
+La alerta no aparecerá la próxima vez que acceda a esta URL.
+
++
+Aparece la página de inicio del instalador de dispositivos de StorageGRID. La información y los mensajes que se muestran cuando accede por primera vez a esta página dependen de cómo el dispositivo está conectado actualmente a redes StorageGRID. Pueden aparecer mensajes de error que se resolverán en pasos posteriores.
+
++
+image::../media/appliance_installer_home_5700_5600.png[Captura de pantalla de la parte superior de la página de inicio de StorageGRID Webscale Appliance Installer]
+
+
+
+. Si no puede obtener una dirección IP mediante DHCP, puede usar una conexión de enlace local.
++
+.. Conecte un portátil de servicio directamente al puerto RJ-45 más derecho del controlador SG6000-CN mediante un cable Ethernet.
++
+image::../media/sg6000_cn_link_local_port.gif[Ubicación del puerto de gestión para SG6000-CN]
+
+.. Abra un explorador Web en el portátil de servicios.
+.. Introduzca esta URL para el instalador del dispositivo StorageGRID: +
+`*\https://169.254.0.1:8443*`
++
+Aparece la página de inicio del instalador de dispositivos de StorageGRID. La información y los mensajes que se muestran al acceder por primera vez a esta página dependen de cómo esté conectado el dispositivo actualmente.
+
++
+
+NOTE: Si no puede acceder a la página de inicio a través de una conexión local de enlace, configure la dirección IP del portátil de servicio como `169.254.0.2`y vuelva a intentarlo.
+
+
+
+
+
+.Después de terminar
+Tras acceder al instalador de dispositivos de StorageGRID:
+
+* Compruebe que la versión de instalador de dispositivos StorageGRID del dispositivo coincide con la versión de software instalada en el sistema StorageGRID. Si es necesario, actualice el instalador de dispositivos StorageGRID.
++
+xref:verifying-and-upgrading-storagegrid-appliance-installer-version.adoc[Comprobar y actualizar la versión de StorageGRID Appliance Installer]
+
+* Revise los mensajes que se muestran en la página principal del instalador de dispositivos de StorageGRID y configure la configuración del enlace y la configuración IP, según sea necesario.
+
+
+.Información relacionada
+xref:../admin/web-browser-requirements.adoc[Requisitos del navegador web]

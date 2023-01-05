@@ -1,0 +1,95 @@
+---
+permalink: s3/get-bucket-consistency-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, GET bucket consistency request 
+summary: La solicitud DE consistencia DE GET Bucket permite determinar el nivel de consistencia que se aplica a un bloque determinado. 
+---
+= OBTENGA la solicitud de consistencia de bloque
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La solicitud DE consistencia DE GET Bucket permite determinar el nivel de consistencia que se aplica a un bloque determinado.
+
+Los controles de consistencia predeterminados se establecen para garantizar la lectura tras escritura de los objetos recién creados.
+
+Tiene el permiso s3:GetBucketConsistency, o bien sea raíz de la cuenta, para completar esta operación.
+
+
+
+== Ejemplo de solicitud
+
+[source, subs="specialcharacters,quotes"]
+----
+GET /bucket?x-ntap-sg-consistency HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+
+
+== Respuesta
+
+En la respuesta XML, `<Consistency>` devolverá uno de los siguientes valores:
+
+|===
+| Control de consistencia | Descripción 
+
+
+ a| 
+todo
+ a| 
+Todos los nodos reciben los datos inmediatamente o se produce un error en la solicitud.
+
+
+
+ a| 
+fuerte en todo el mundo
+ a| 
+Garantiza la coherencia de lectura tras escritura para todas las solicitudes del cliente en todos los sitios.
+
+
+
+ a| 
+sitio seguro
+ a| 
+Garantiza la coherencia de lectura tras escritura para todas las solicitudes del cliente dentro de un sitio.
+
+
+
+ a| 
+lectura-después-nueva-escritura
+ a| 
+(Predeterminado) proporciona coherencia de lectura tras escritura para los nuevos objetos y coherencia final para las actualizaciones de objetos. Ofrece garantías de alta disponibilidad y protección de datos. La mayoría concuerda estrechamente con las garantías de coherencia de Amazon S3.
+
+*Nota:* Si su aplicación utiliza PETICIONES HEAD en objetos que no existen, puede recibir un número elevado de 500 errores de Internal Server si uno o más nodos de almacenamiento no están disponibles. Para evitar estos errores, establezca el control de coherencia en "'Available'" a menos que necesite garantías de coherencia similares a las de Amazon S3.
+
+
+
+ a| 
+Disponible (coherencia eventual para operaciones DE CABEZAL)
+ a| 
+Se comporta del mismo modo que el nivel de consistencia "read-after-new-write", pero sólo proporciona consistencia eventual para las operaciones DE CABEZA. Ofrece una mayor disponibilidad para las OPERACIONES DE CABEZAL que una «escritura tras otra» si los nodos de almacenamiento no están disponibles. Se diferencia de las garantías de coherencia de Amazon S3 solo para operaciones HEAD.
+
+|===
+
+
+== Ejemplo de respuesta
+
+[listing]
+----
+HTTP/1.1 200 OK
+Date: Fri, 18 Sep 2020 01:02:18 GMT
+Connection: CLOSE
+Server: StorageGRID/11.5.0
+x-amz-request-id: 12345
+Content-Length: 127
+Content-Type: application/xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Consistency xmlns="http://s3.storagegrid.com/doc/2015-02-01/">read-after-new-write</Consistency>
+----
+.Información relacionada
+xref:consistency-controls.adoc[Controles de consistencia]

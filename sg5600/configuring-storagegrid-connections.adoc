@@ -1,0 +1,14 @@
+---
+permalink: sg5600/configuring-storagegrid-connections.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, storagegrid connections, connections, configure, setup, set up 
+summary: 'Para poder implementar un dispositivo StorageGRID como nodo de almacenamiento en un grid StorageGRID, debe configurar las conexiones entre el dispositivo y las redes que tiene pensado utilizar. Puede configurar las redes examinando el instalador de dispositivos StorageGRID, que está incluido en la controladora E5600SG \(la controladora de computación del dispositivo\).' 
+---
+= Configurar conexiones StorageGRID (SG5600)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para poder implementar un dispositivo StorageGRID como nodo de almacenamiento en un grid StorageGRID, debe configurar las conexiones entre el dispositivo y las redes que tiene pensado utilizar. Puede configurar las redes visitando el instalador de dispositivos de StorageGRID, incluido en la controladora E5600SG (la controladora de computación del dispositivo).

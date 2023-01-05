@@ -1,0 +1,31 @@
+---
+permalink: sg5700/upgrading-santricity-os-on-storage-controller.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5700, storage node, storage appliance, controller, storage controller, upgrade, upgrading, SANtricity OS, SANtricity 
+summary: 'Para garantizar el funcionamiento óptimo de la controladora de almacenamiento, debe actualizarse a la versión de mantenimiento más reciente del sistema operativo SANtricity que esté cualificado para su dispositivo StorageGRID. Consulte la herramienta de matriz de interoperabilidad de NetApp \(IMT\) para determinar qué versión debe utilizar. Si necesita ayuda, póngase en contacto con el soporte técnico.' 
+---
+= Actualizar el sistema operativo SANtricity en la controladora de almacenamiento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para garantizar el funcionamiento óptimo de la controladora de almacenamiento, debe actualizarse a la versión de mantenimiento más reciente del sistema operativo SANtricity que esté cualificado para su dispositivo StorageGRID. Consulte la herramienta de matriz de interoperabilidad de NetApp (IMT) para determinar qué versión debe utilizar. Si necesita ayuda, póngase en contacto con el soporte técnico.
+
+* Si la controladora de almacenamiento utiliza el sistema operativo SANtricity 08.42.20.00 (11.42) o una versión posterior, use Grid Manager para llevar a cabo la actualización.
++
+xref:upgrading-santricity-os-on-storage-controllers-using-grid-manager-sg5700.adoc[Actualizar el sistema operativo SANtricity en controladoras de almacenamiento mediante Grid Manager]
+
+* Si la controladora de almacenamiento utiliza una versión de sistema operativo SANtricity anterior a 08.42.20.00 (11.42), use el modo de mantenimiento para realizar la actualización.
++
+xref:upgrading-santricity-os-on-e2800-controller-using-maintenance-mode.adoc[Actualice el sistema operativo SANtricity en la controladora E2800 mediante modo de mantenimiento]
+
+
+
+.Información relacionada
+https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^]
+
+https://mysupport.netapp.com/site/products/all/details/storagegrid-appliance/downloads-tab["Descargas de NetApp: Dispositivo de StorageGRID"^]
+
+xref:../monitor/index.adoc[Supervisión y solución de problemas]

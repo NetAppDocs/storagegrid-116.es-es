@@ -1,0 +1,67 @@
+---
+permalink: sg5700/installing-appliance-in-cabinet-or-rack-sg5700.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5700, storage node, storage appliance, install, installing, installation, cabinet, rack, rail, rails 
+summary: Debe instalar rieles en su armario o rack y, a continuación, deslizar el dispositivo sobre los rieles. Si tiene un SG5760, debe instalar las unidades después de instalar el dispositivo. 
+---
+= Instale el dispositivo en armario o rack (SG5700)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe instalar rieles en su armario o rack y, a continuación, deslizar el dispositivo sobre los rieles. Si tiene un SG5760, debe instalar las unidades después de instalar el dispositivo.
+
+.Lo que necesitará
+* Ha revisado el documento de avisos de seguridad que se incluye en la caja y comprende las precauciones para mover e instalar el hardware.
+* Tiene las instrucciones incluidas en el kit de raíl.
+* Dispone de las _instrucciones de instalación y configuración_ del aparato.
+
+
+
+CAUTION: Instale el hardware desde la parte inferior del rack, armario o rack hasta para evitar que el equipo vuelque.
+
+
+CAUTION: El SG5712 pesa aproximadamente 29 kg (64 lb) cuando está totalmente cargado con unidades. Se requiere que dos personas o un ascensor mecanizado muevan de forma segura el SG5712.
+
+
+CAUTION: El SG5760 pesa aproximadamente 60 kg (132 lb) sin unidades instaladas. Se requiere que cuatro personas o un ascensor mecanizado muevan de forma segura un SG5760 vacío.
+
+
+CAUTION: Para evitar que se dañe el hardware, no mueva nunca un SG5760 si hay unidades instaladas. Debe quitar todas las unidades antes de mover la bandeja.
+
+.Pasos
+. Siga con cuidado las instrucciones del kit de raíl para instalar los rieles en su armario o rack.
+. Si tiene un SG5760, siga estos pasos para preparar el traslado del aparato.
++
+.. Retire la caja de embalaje exterior. A continuación, pliegue las solapas de la caja interior.
+.. Si va a levantar el SG5760 manualmente, fije las cuatro asas a los lados del chasis.
++
+Retire estas asas mientras desliza el aparato sobre los rieles.
+
+
+
+. Consulte las _instrucciones de instalación y configuración_ y deslice el aparato en el armario o bastidor.
+. Consulte las _instrucciones de instalación y configuración_ y fije el aparato al armario o bastidor.
++
+Si tiene un SG5760, utilice los soportes posteriores para fijar el aparato a la parte posterior del rack o armario. Utilice las tuercas de jaula si el bastidor o el armario tiene orificios cuadrados.
+
+. Si tiene un SG5760, instale 12 unidades en cada uno de los cajones de 5 unidades.
++
+Debe instalar las 60 unidades para garantizar que su funcionamiento es correcto.
+
++
+.. Coloque la muñequera ESD y retire los accionamientos de su embalaje.
+.. Suelte las palancas del cajón de mando superior y deslice el cajón hacia fuera con las palancas.
+.. Levante el asa de la unidad a la posición vertical y alinee los botones de la unidad con las muescas del cajón.
++
+image::../media/appliance_drive_insertion.gif[Instale la unidad en el dispositivo de 60 unidades]
+
+.. Al presionar suavemente en la parte superior de la unidad, gire la palanca de mando hacia abajo hasta que la unidad encaje en su lugar.
+.. Después de instalar los primeros 12 mandos, deslice el cajón hacia atrás presionando el centro y cerrando ambas palancas con cuidado.
+.. Repita estos pasos para los otros cuatro cajones.
+
+
+. Conecte el panel frontal.
+

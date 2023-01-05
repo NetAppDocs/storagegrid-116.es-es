@@ -1,0 +1,41 @@
+---
+permalink: maintain/checking-systems-condition-before-applying-hotfix.html 
+sidebar: sidebar 
+keywords: storagegrid, hotfix 
+summary: Debe comprobar que el sistema esté listo para acomodar la revisión. 
+---
+= Compruebe el estado del sistema antes de aplicar la revisión
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe comprobar que el sistema esté listo para acomodar la revisión.
+
+. Inicie sesión en Grid Manager mediante una xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+. Si es posible, asegúrese de que el sistema funciona con normalidad y de que todos los nodos de grid están conectados a la cuadrícula.
++
+Los nodos conectados tienen marcas de comprobación de color verde image:../media/icon_alert_green_checkmark.png["marca de verificación verde de alerta de icono"] En la página Nodes.
+
+. Compruebe y resuelva las alertas actuales si es posible.
++
+Para obtener información sobre alertas específicas, consulte las instrucciones de supervisión y solución de problemas de StorageGRID.
+
+. Asegúrese de que no hay otros procedimientos de mantenimiento en curso, como un procedimiento de actualización, recuperación, ampliación o retirada.
++
+Debe esperar a que se complete cualquier procedimiento de mantenimiento activo antes de aplicar una revisión.
+
++
+No puede aplicar una revisión StorageGRID cuando se ejecuta otro procedimiento de mantenimiento. Por ejemplo, no puede aplicar una revisión mientras se está ejecutando un procedimiento de retirada, expansión o recuperación.
+
++
+
+NOTE: Si un procedimiento de retirada de nodo o sitio está en pausa, puede aplicar una revisión de forma segura. Además, puede ser capaz de aplicar una revisión durante las fases finales de un procedimiento de actualización de StorageGRID. Consulte las instrucciones para actualizar el software StorageGRID para obtener detalles.
+
+
+
+.Información relacionada
+xref:../monitor/index.adoc[Supervisión y solución de problemas]
+
+xref:pausing-and-resuming-decommission-process-for-storage-nodes.adoc[Pausar y reanudar el proceso de retirada de los nodos de almacenamiento]

@@ -1,0 +1,45 @@
+---
+permalink: tenant/viewing-your-s3-access-keys.html 
+sidebar: sidebar 
+keywords: how to view your s3 access key 
+summary: Si usa un inquilino de S3 y tiene el permiso correspondiente, puede ver una lista de sus claves de acceso S3. Puede ordenar la lista por tiempo de caducidad, de modo que puede determinar qué claves caducarán pronto. Según sea necesario, puede crear nuevas claves o eliminar claves que ya no utilice. 
+---
+= Consulte las claves de acceso de S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si usa un inquilino de S3 y tiene el permiso correspondiente, puede ver una lista de sus claves de acceso S3. Puede ordenar la lista por tiempo de caducidad, de modo que puede determinar qué claves caducarán pronto. Según sea necesario, puede crear nuevas claves o eliminar claves que ya no utilice.
+
+.Lo que necesitará
+* Debe iniciar sesión en el administrador de inquilinos mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Debe tener el permiso gestionar sus propias credenciales de S3.
+
+
+
+IMPORTANT: Puede acceder a los bloques y los objetos de S3 que pertenecen a su cuenta mediante el ID de clave de acceso y la clave de acceso secreta que se muestra para su cuenta en el Administrador de inquilinos. Por este motivo, proteja las claves de acceso como lo haría con una contraseña. Gire las claves de acceso de forma regular, elimine las claves que no utilice de su cuenta y nunca las comparta con otros usuarios.
+
+.Pasos
+. Seleccione *ALMACENAMIENTO (S3)* > *Mis claves de acceso*.
++
+Aparecerá la página Mis claves de acceso y mostrará una lista de las claves de acceso existentes.
+
++
+image::../media/access_keys_view_list.png[Lista de claves de acceso]
+
+. Ordene las teclas por *tiempo de caducidad* o *ID de clave de acceso*.
+. Según sea necesario, cree nuevas claves y elimine manualmente las claves que ya no utilice.
++
+Si crea claves nuevas antes de que caduquen las claves existentes, puede empezar a utilizar las nuevas claves sin perder temporalmente el acceso a los objetos de la cuenta.
+
++
+Las claves caducadas se eliminan automáticamente.
+
+
+
+.Información relacionada
+xref:creating-your-own-s3-access-keys.adoc[Cree sus propias claves de acceso S3]
+
+xref:deleting-your-own-s3-access-keys.adoc[Elimine sus propias claves de acceso de S3]

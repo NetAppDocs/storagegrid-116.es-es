@@ -1,0 +1,120 @@
+---
+permalink: sg100-1000/viewing-status-indicators-on-sg100-and-sg1000-appliances.html 
+sidebar: sidebar 
+keywords: storagegrid, sg100, sg1000, service appliance, services appliance, gateway Node, admin node, status, indicators, lights, leds, light, led, switch , button, power, reset, identify, alarm, ssd, indicator, boot codes, boot, code, start, startup, start up, start-up, progress 
+summary: El dispositivo incluye indicadores que ayudan a determinar el estado de la controladora del dispositivo y los dos SSD. 
+---
+= Ver los indicadores de estado de los aparatos SG100 y SG1000
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El dispositivo incluye indicadores que ayudan a determinar el estado de la controladora del dispositivo y los dos SSD.
+
+
+
+== Botones e indicadores del aparato
+
+image::../media/sg6000_cn_front_indicators.gif[Indicadores delanteros - SG1000]
+
+|===
+|  | Mostrar | Estado 
+
+
+ a| 
+1
+ a| 
+Botón de encendido
+ a| 
+* Azul: El aparato está encendido.
+* Apagado: El aparato está apagado.
+
+
+
+
+ a| 
+2
+ a| 
+Botón de reinicio
+ a| 
+Utilice este botón para realizar un restablecimiento completo del controlador.
+
+
+
+ a| 
+3
+ a| 
+Botón identificar
+ a| 
+Este botón se puede establecer en enlace, encendido (sólido) o Apagado.
+
+* Azul, parpadeando: Identifica el dispositivo en el armario o rack.
+* Azul, sólido: Identifica el dispositivo en el armario o rack.
+* Desactivado: El aparato no se puede identificar visualmente en el armario o bastidor.
+
+
+
+
+ a| 
+4
+ a| 
+LED de alarma
+ a| 
+* Ámbar, sólido: Se ha producido un error.
++
+*Nota:* para ver los códigos de arranque y error, debe acceder a la interfaz del BMC.
+
+* Desactivado: No hay errores.
+
+
+|===
+
+
+== códigos generales de arranque
+
+Durante el arranque o después de un reinicio duro del aparato, ocurre lo siguiente:
+
+. El controlador de administración de la placa base (BMC) registra los códigos de la secuencia de arranque, incluidos los errores que se produzcan.
+. El botón de encendido se ilumina.
+. Si se produce algún error durante el arranque, el LED de alarma se enciende.
++
+Para ver los códigos de arranque y error, debe acceder a la interfaz del BMC.
+
+
+
+
+
+== Indicadores de SSD
+
+image::../media/ssd_indicators.png[Indicadores SSD]
+
+|===
+| LED | Mostrar | Estado 
+
+
+ a| 
+1
+ a| 
+Estado/fallo de la unidad
+ a| 
+* Azul (sólido): La unidad está en línea
+* Ámbar (parpadea): Fallo de la unidad
+* Desactivado: La ranura está vacía
+
+
+
+
+ a| 
+2
+ a| 
+Unidad activa
+ a| 
+Azul (parpadeante): Se está accediendo a la unidad
+
+|===
+.Información relacionada
+xref:troubleshooting-hardware-installation-sg100-and-sg1000.adoc[Solucionar problemas de instalación de hardware (SG100 y SG1000)]
+
+xref:configuring-bmc-interface-sg1000.adoc[Configurar la interfaz BMC (SG100 y SG1000)]

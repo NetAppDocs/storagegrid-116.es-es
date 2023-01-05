@@ -1,0 +1,41 @@
+---
+permalink: admin/deleting-traffic-classification-policy.html 
+sidebar: sidebar 
+keywords: delete traffic classification policy 
+summary: Si ya no necesita una directiva de clasificación del tráfico, puede eliminarla. 
+---
+= Eliminar una directiva de clasificación de tráfico
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si ya no necesita una directiva de clasificación del tráfico, puede eliminarla.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene el permiso acceso raíz.
+
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *Red* > *Clasificación de tráfico*.
++
+Aparece la página Directivas de clasificación del tráfico y las directivas existentes se muestran en la tabla.
+
++
+image::../media/traffic_classification_policies_main_screen_w_examples.png[Ejemplos de directivas de clasificación de tráfico]
+
+. Seleccione el botón de opción situado a la izquierda de la directiva que desea eliminar.
+. Seleccione *Quitar*.
++
+Aparecerá un cuadro de diálogo Advertencia.
+
++
+image::../media/traffic_classification_policy_delete.png[Eliminar directiva de clasificación de tráfico]
+
+. Seleccione *Aceptar* para confirmar que desea eliminar la directiva.
++
+La directiva se elimina.
+
+

@@ -1,0 +1,68 @@
+---
+permalink: sg6000/removing-fibre-channel-hba.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, sg6000-cn, hba, host bus adapter, fibre channel, fiber channel, remove, removing, removal 
+summary: 'Es posible que deba sustituir el adaptador de bus de host de Fibre Channel \(HBA\) en el controlador SG6000-CN si no funciona de forma óptima o si ha fallado.' 
+---
+= Quite el HBA Fibre Channel
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible que deba sustituir el adaptador de bus de host (HBA) Fibre Channel en el controlador SG6000-CN si no funciona de forma óptima o si ha fallado.
+
+.Lo que necesitará
+* Tiene el adaptador de bus de host de Fibre Channel de sustitución correcto.
+* Ha determinado qué controlador SG6000-CN contiene el HBA Fibre Channel que se debe sustituir.
++
+xref:verifying-fibre-channel-hba-to-replace.adoc[Verifique el adaptador de bus de host de Fibre Channel que desea sustituir]
+
+* Ha localizado físicamente el controlador SG6000-CN en el que va a sustituir el HBA Fibre Channel en el centro de datos.
++
+xref:locating-controller-in-data-center.adoc[Ubique la controladora en el centro de datos]
+
+* Quitó la cubierta de la controladora.
++
+xref:removing-sg6000-cn-controller-cover.adoc[Retire la cubierta del controlador SG6000-CN]
+
+
+
+.Acerca de esta tarea
+Para evitar interrupciones del servicio, confirme que todos los demás nodos de almacenamiento están conectados al grid antes de iniciar la sustitución de un HBA Fibre Channel o sustituya el adaptador durante un periodo de mantenimiento programado cuando normalmente se esperan periodos de interrupción del servicio. Consulte la información sobre cómo determinar estados de conexión de nodos en las instrucciones para gestionar objetos con la gestión del ciclo de vida de la información.
+
+
+IMPORTANT: Si alguna vez ha utilizado una regla de ILM que crea solamente una copia de un objeto, debe reemplazar el HBA de Fibre Channel durante una ventana de mantenimiento programada. De lo contrario, es posible que pierda temporalmente el acceso a esos objetos durante este procedimiento. + Consulte información sobre la administración de objetos con administración del ciclo de vida de la información.
+
+.Pasos
+. Envuelva el extremo de la correa de la muñequera ESD alrededor de su muñeca y fije el extremo de la pinza a una masa metálica para evitar descargas estáticas.
+. Localice el conjunto de la tarjeta vertical situado en la parte posterior de la controladora que contiene el HBA Fibre Channel.
++
+image::../media/sg6060_riser_assembly_location.jpg[Ubicación del conjunto de la tarjeta vertical SG6060]
+
+. Sujete el conjunto del elevador a través de los orificios marcados en azul y levántelo con cuidado hacia arriba. Mueva el conjunto de la tarjeta vertical hacia la parte frontal del chasis a medida que lo levante para permitir que los conectores externos de sus adaptadores instalados se retiren del chasis.
+. Coloque la tarjeta vertical sobre una superficie antiestática plana con el lado del marco metálico hacia abajo para acceder a los adaptadores.
++
+image::../media/sg6060_fc_hba_location.jpg[SG6060 HBA Fibre Channel en el conjunto de tarjeta «riser»]
+
++
+El conjunto de tarjeta vertical tiene dos adaptadores: Un HBA Fibre Channel y un adaptador de red Ethernet. El adaptador de bus de host de Fibre Channel se indica en la ilustración.
+
+. Abra el pestillo azul del adaptador (en un círculo) y retire con cuidado el HBA Fibre Channel del conjunto de la tarjeta vertical. Rote ligeramente el adaptador para ayudar a extraer el adaptador de su conector. No utilice una fuerza excesiva.
+. Coloque el adaptador sobre una superficie plana antiestática.
+
+
+.Después de terminar
+Instale el HBA Fibre Channel de repuesto.
+
+xref:reinstalling-fibre-channel-hba.adoc[Vuelva a instalar el HBA Fibre Channel]
+
+.Información relacionada
+xref:reinstalling-fibre-channel-hba.adoc[Vuelva a instalar el HBA Fibre Channel]
+
+xref:../admin/index.adoc[Administre StorageGRID]
+
+xref:../monitor/index.adoc[Supervisión y solución de problemas]
+
+xref:../ilm/index.adoc[Gestión de objetos con ILM]

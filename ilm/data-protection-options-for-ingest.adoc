@@ -1,0 +1,69 @@
+---
+permalink: ilm/data-protection-options-for-ingest.html 
+sidebar: sidebar 
+keywords: ingest options, balanced ingest, strict ingest, dual-commit ingest 
+summary: 'Al crear una regla de ILM, debe especificar una de estas tres opciones para proteger los objetos durante la ingesta: Registro doble, equilibrado o estricto. Según elija, StorageGRID realiza copias provisionales y pone en cola los objetos para la evaluación de ILM más tarde, o utiliza una ubicación síncrona y realiza copias inmediatamente para cumplir los requisitos de ILM.' 
+---
+= Opciones de protección de datos para consumo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Al crear una regla de ILM, debe especificar una de estas tres opciones para proteger los objetos durante la ingesta: Registro doble, equilibrado o estricto. Según elija, StorageGRID realiza copias provisionales y pone en cola los objetos para la evaluación de ILM más tarde, o utiliza una ubicación síncrona y realiza copias inmediatamente para cumplir los requisitos de ILM.
+
+
+
+== Diagrama de flujo de tres opciones de ingesta
+
+El diagrama de flujo muestra lo que ocurre cuando una regla de ILM se equipara con objetos que utiliza cada una de las tres opciones de ingesta.
+
+image::../media/ingest_object_lifecycle.png[Un diagrama que muestra cómo se produce el procesamiento de objetos en cada opción de protección de datos]
+
+
+
+== Registro doble
+
+Al seleccionar la opción de confirmación doble, StorageGRID realiza inmediatamente copias provisionales de objetos en dos nodos de almacenamiento diferentes y devuelve un mensaje «'ingesta correcta'» al cliente. El objeto se pone en cola para la evaluación de ILM, y se realicen copias que cumplan con las instrucciones de ubicación de la regla más adelante.
+
+
+
+=== Cuándo utilizar la opción Dual COMMIT
+
+Utilice la opción Dual Commit en uno de los siguientes casos:
+
+* Está usando reglas de la ILM de varios sitios y la latencia de procesamiento de clientes es su principal consideración. Al usar el registro doble, debe asegurarse de que su grid puede realizar el trabajo adicional de crear y eliminar las copias de registro doble si no satisfacen el ILM. Específicamente:
++
+** La carga en la cuadrícula debe ser lo suficientemente baja para evitar que se produzca una acumulación de ILM.
+** El grid debe tener un exceso de recursos de hardware (IOPS, CPU, memoria, ancho de banda de red, etc.).
+
+
+* Utiliza reglas de ILM de varios sitios y la conexión WAN entre los sitios suele tener una alta latencia o un ancho de banda limitado. En este escenario, el uso de la opción Dual commit puede ayudar a evitar los tiempos de espera de los clientes. Antes de elegir la opción Dual commit, debe probar la aplicación cliente con cargas de trabajo realistas.
+
+
+
+
+== Estricto
+
+Al seleccionar la opción estricta, StorageGRID utiliza una ubicación síncrona al procesar y crea inmediatamente todas las copias de los objetos especificadas en las instrucciones de ubicación de la regla. Error al procesar si StorageGRID no puede crear todas las copias, por ejemplo, porque una ubicación de almacenamiento necesaria no está disponible temporalmente. El cliente debe volver a intentar la operación.
+
+
+
+=== Cuándo usar la opción estricta
+
+Utilice la opción estricta si tiene un requisito operativo y de normativa para almacenar inmediatamente objetos solo en las ubicaciones descritas en la regla de ILM. Por ejemplo, para satisfacer un requisito normativo, es posible que tenga que utilizar la opción estricta y un filtro avanzado de restricción de ubicación para garantizar que los objetos no se almacenen nunca en un centro de datos determinado.
+
+xref:example-5-ilm-rules-and-policy-for-strict-ingest-behavior.adoc[Ejemplo 5: Reglas de ILM y política para el comportamiento de consumo estricto]
+
+
+
+== Equilibrado
+
+Cuando selecciona la opción equilibrada, StorageGRID también utiliza la ubicación síncrona durante la ingesta y hace inmediatamente todas las copias especificadas en las instrucciones de ubicación de la regla. A diferencia de la opción estricta, si StorageGRID no puede realizar todas las copias inmediatamente, utiliza la confirmación doble.
+
+
+
+=== Cuándo utilizar la opción de equilibrio
+
+Utilice la opción equilibrada para lograr la mejor combinación de protección de datos, rendimiento de grid y éxito de procesamiento. Balance es la opción predeterminada en el asistente de reglas de ILM.

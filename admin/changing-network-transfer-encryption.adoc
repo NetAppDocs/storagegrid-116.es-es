@@ -1,0 +1,31 @@
+---
+permalink: admin/changing-network-transfer-encryption.html 
+sidebar: sidebar 
+keywords: network transfer encryption, TLS algorithm 
+summary: 'El sistema StorageGRID utiliza Seguridad de la capa de transporte \(TLS\) para proteger el tráfico de control interno entre los nodos de la cuadrícula. La opción Network Transfer Encryption (cifrado de transferencia de red) establece el algoritmo utilizado por TLS para cifrar el tráfico de control entre los nodos de la cuadrícula. Esta configuración no afecta al cifrado de datos.' 
+---
+= Cambie el cifrado de transferencia de red
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El sistema StorageGRID utiliza Seguridad de la capa de transporte (TLS) para proteger el tráfico de control interno entre los nodos de la cuadrícula. La opción Network Transfer Encryption (cifrado de transferencia de red) establece el algoritmo utilizado por TLS para cifrar el tráfico de control entre los nodos de la cuadrícula. Esta configuración no afecta al cifrado de datos.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+
+
+.Acerca de esta tarea
+De forma predeterminada, el cifrado de transferencia de red utiliza el algoritmo AES256-SHA. El tráfico de control también se puede cifrar utilizando el algoritmo AES128-SHA.
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *sistema* > *Opciones de cuadrícula*.
+. En la sección Opciones de red, cambie el cifrado de transferencia de red a *AES128-SHA* o *AES256-SHA* (predeterminado).
++
+image::../media/network_transfer_encryption.png[Cifrado de red de configuración de grid]
+
+. Seleccione *Guardar*.
+

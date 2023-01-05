@@ -1,0 +1,165 @@
+---
+permalink: monitor/viewing-specific-alert.html 
+sidebar: sidebar 
+keywords: how to view a specific alert 
+summary: Puede ver información detallada sobre una alerta que afecta actualmente al sistema StorageGRID o una alerta que se ha resuelto. Los detalles incluyen acciones correctivas recomendadas, la hora en que se activó la alerta y el valor actual de las métricas relacionadas con esta alerta. 
+---
+= Ver una alerta específica
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede ver información detallada sobre una alerta que afecta actualmente al sistema StorageGRID o una alerta que se ha resuelto. Los detalles incluyen acciones correctivas recomendadas, la hora en que se activó la alerta y el valor actual de las métricas relacionadas con esta alerta.
+
+Opcionalmente, puede hacerlo xref:silencing-alert-notifications.adoc[silenciar una alerta actual] o. xref:editing-alert-rules.adoc[actualice la regla de alerta].
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+
+
+.Pasos
+. Realice una de las siguientes acciones, según si desea ver una alerta actual o resuelta:
++
+[cols="1a,2a"]
+|===
+| Encabezado de columna | Descripción 
+
+
+ a| 
+Alerta actual
+ a| 
+** En el panel Estado del Panel, haga clic en el enlace *Alertas actuales*. Este enlace aparece solo si al menos una alerta está activa en ese momento. Este enlace se oculta si no hay alertas actuales o si se han silenciado todas las alertas actuales.
+** Seleccione *ALERTS* > *Current*.
+** En la página *NODES*, seleccione la ficha *Overview* para un nodo que tenga un icono de alerta. A continuación, en la sección Alertas, haga clic en el nombre de alerta.
+
+
+
+
+ a| 
+Alerta resuelta
+ a| 
+** En el panel Estado del Panel, haga clic en el enlace *Alertas resueltas recientemente*. (Este enlace aparece solo si se han activado una o varias alertas de la última semana y ahora se han resuelto. Este enlace está oculto si no se ha activado ninguna alerta ni se ha resuelto en la última semana.)
+** Seleccione *ALERTS* > *Resolved*.
+
+
+|===
+. Según sea necesario, expanda un grupo de alertas y seleccione la alerta que desee ver.
++
+
+NOTE: Seleccione la alerta, no el encabezado de un grupo de alertas.
+
++
+image::../media/alerts_page_select_alert.png[Alerta de selección de página de alertas]
+
++
+Se muestra un cuadro de diálogo con los detalles de la alerta seleccionada.
+
++
+image::../media/alerts_page_details_modal.png[Detalles de la página Alertas modal]
+
+. Revise los detalles de la alerta.
++
+[cols="1a,2a"]
+|===
+| Información | Descripción 
+
+
+ a| 
+_title_
+ a| 
+El nombre de la alerta.
+
+
+
+ a| 
+_primer párrafo_
+ a| 
+La descripción de la alerta.
+
+
+
+ a| 
+Acciones recomendadas
+ a| 
+Las acciones recomendadas para esta alerta.
+
+
+
+ a| 
+Tiempo activado
+ a| 
+Fecha y hora en la que se activó la alerta en la hora local y en UTC.
+
+
+
+ a| 
+Tiempo resuelto
+ a| 
+Solo para alertas resueltas, la fecha y la hora en que se resolvió la alerta en la hora local y en UTC.
+
+
+
+ a| 
+Estado
+ a| 
+El estado de la alerta: Activo, silenciado o resuelto.
+
+
+
+ a| 
+Sitio/nodo
+ a| 
+El nombre del sitio y el nodo afectados por la alerta.
+
+
+
+ a| 
+Gravedad
+ a| 
+La gravedad de la alerta.
+
+** *Crítico* image:../media/icon_alert_red_critical.png["Alerta de icono Rojo crítico"]: Existe una condición anormal que ha detenido las operaciones normales de un nodo StorageGRID o servicio. Debe abordar el problema subyacente de inmediato. Se pueden producir interrupciones del servicio y pérdida de datos si no se resuelve el problema.
+** *Mayor* image:../media/icon_alert_orange_major.png["Alerta de icono naranja principal"]: Existe una condición anormal que afecta a las operaciones actuales o se acerca al umbral de una alerta crítica. Debe investigar las alertas principales y solucionar cualquier problema subyacente para garantizar que esta condición no detenga el funcionamiento normal de un nodo o servicio de StorageGRID.
+** *Menor* image:../media/icon_alert_yellow_minor.png["Alerta de icono menor amarilla"]: El sistema funciona normalmente, pero existe una condición anormal que podría afectar la capacidad de funcionamiento del sistema si continúa. Deberá supervisar y resolver las alertas menores que no se despicen por sí mismas para asegurarse de que no provoquen un problema más grave.
+
+
+
+
+ a| 
+_valores de datos_
+ a| 
+El valor actual de la métrica de esta alerta. En el caso de algunas alertas, se muestran valores adicionales que le ayudarán a comprender e investigar la alerta. Por ejemplo, los valores mostrados para una alerta *almacenamiento de metadatos bajo* incluyen el porcentaje de espacio en disco utilizado, la cantidad total de espacio en disco y la cantidad de espacio en disco utilizado.
+
+|===
+. De forma opcional, haga clic en *silenciar esta alerta* para silenciar la regla de alerta que provocó la activación de esta alerta.
++
+Para silenciar una regla de alerta, debe tener el permiso Administrar alertas o acceso raíz.
+
++
+
+IMPORTANT: Tenga cuidado al decidir silenciar una regla de alerta. Si se silencia una regla de alerta, es posible que no detecte un problema subyacente hasta que impida que se complete una operación crítica.
+
+. Para ver las condiciones actuales de la regla de alerta:
++
+.. En los detalles de la alerta, haga clic en *Ver condiciones*.
++
+Aparece una ventana emergente que muestra la expresión Prometheus de cada gravedad definida.
+
++
+image::../media/alerts_page_details_modal_view_condition.png[Alertas Detalles de página condición Vista modal]
+
+.. Para cerrar la ventana emergente, haga clic en cualquier lugar fuera de la ventana emergente.
+
+
+. De forma opcional, haga clic en *Editar regla* para editar la regla de alerta que provocó la activación de esta alerta:
++
+Para editar una regla de alerta, debe tener el permiso Administrar alertas o acceso raíz.
+
++
+
+IMPORTANT: Tenga cuidado al decidir editar una regla de alerta. Si cambia los valores de activación, es posible que no detecte un problema subyacente hasta que no se complete una operación crucial.
+
+. Para cerrar los detalles de la alerta, haga clic en *Cerrar*.
+

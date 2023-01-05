@@ -1,0 +1,332 @@
+---
+permalink: s3/configuring-tenant-accounts-and-connections.html 
+sidebar: sidebar 
+keywords: configuring, tenant, connections 
+summary: Para configurar StorageGRID para aceptar conexiones desde aplicaciones cliente, es necesario crear una o más cuentas de inquilino y configurar las conexiones. 
+---
+= Configure las conexiones y las cuentas de inquilino
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para configurar StorageGRID para aceptar conexiones desde aplicaciones cliente, es necesario crear una o más cuentas de inquilino y configurar las conexiones.
+
+
+
+== Cree y configure cuentas de inquilino de S3
+
+Se requiere una cuenta de inquilino de S3 para que los clientes de la API de S3 puedan almacenar y recuperar objetos en StorageGRID. Cada cuenta de inquilino tiene su propio ID de cuenta, grupos y usuarios, y contenedores y objetos.
+
+Las cuentas de inquilino S3 las crea un administrador de grid de StorageGRID mediante Grid Manager o la API de gestión de grid. Al crear una cuenta de inquilino de S3, el administrador de grid especifica la siguiente información:
+
+* Nombre para mostrar del arrendatario (el ID de cuenta del arrendatario se asigna automáticamente y no se puede modificar).
+* Si la cuenta de inquilino tiene permiso para utilizar los servicios de plataforma. Si se permite el uso de servicios de plataforma, la cuadrícula debe configurarse para que admita su uso.
+* Opcionalmente, una cuota de almacenamiento para la cuenta de inquilino: El número máximo de gigabytes, terabytes o petabytes disponibles para los objetos del inquilino. La cuota de almacenamiento de un inquilino representa una cantidad lógica (tamaño de objeto), no una cantidad física (tamaño en disco).
+* Si está habilitada la federación de identidades para el sistema StorageGRID, el grupo federado tiene permiso de acceso raíz para configurar la cuenta de inquilino.
+* Si el sistema StorageGRID no utiliza el inicio de sesión único (SSO), tanto si la cuenta de inquilino usará su propio origen de identidad como si comparte el origen de identidad de la cuadrícula, así como la contraseña inicial del usuario raíz local del inquilino.
+
+
+Una vez creada una cuenta de inquilino de S3, los usuarios de inquilinos pueden acceder al administrador de inquilinos para realizar tareas como las siguientes:
+
+* Configure la federación de identidades (a menos que el origen de identidades se comparta con la cuadrícula) y cree grupos y usuarios locales
+* Gestión de claves de acceso de S3
+* Cree y gestione bloques de S3, incluidos los bloques con el bloqueo de objetos S3 habilitado
+* Utilizar servicios de plataforma (si están habilitados)
+* Supervise el uso del almacenamiento
+
+
+
+IMPORTANT: Los usuarios inquilinos S3 pueden crear y gestionar bloques de S3 con el administrador de inquilinos, pero deben tener claves de acceso S3 y usar la API REST de S3 para procesar y gestionar objetos.
+
+.Información relacionada
+xref:../admin/index.adoc[Administre StorageGRID]
+
+xref:../tenant/index.adoc[Usar cuenta de inquilino]
+
+
+
+== Cómo se pueden configurar las conexiones de clientes
+
+Un administrador de grid toma opciones de configuración que afectan a la forma en que los clientes S3 se conectan a StorageGRID para almacenar y recuperar datos. La información específica que necesita para realizar una conexión depende de la configuración elegida.
+
+Las aplicaciones cliente pueden almacenar o recuperar objetos conectándose a cualquiera de los siguientes elementos:
+
+* El servicio Load Balancer en los nodos de administrador o de puerta de enlace, o bien, de forma opcional, la dirección IP virtual de un grupo de alta disponibilidad (ha) de nodos de administración o nodos de puerta de enlace
+* El servicio CLB en los nodos de puerta de enlace o, opcionalmente, la dirección IP virtual de un grupo de nodos de puerta de enlace de alta disponibilidad
++
+
+NOTE: El servicio CLB está obsoleto. Los clientes configurados antes de la versión StorageGRID 11.3 pueden seguir utilizando el servicio CLB en los nodos de puerta de enlace. El resto de aplicaciones cliente que dependen de StorageGRID para proporcionar equilibrio de carga se deben conectar mediante el servicio Load Balancer.
+
+* Nodos de almacenamiento, con o sin un equilibrador de carga externo
+
+
+Al configurar StorageGRID, un administrador de grid puede utilizar Grid Manager o la API de gestión de grid para realizar los siguientes pasos, todos ellos opcionales:
+
+. Configure los extremos para el servicio Load Balancer.
++
+Debe configurar los extremos para usar el servicio Load Balancer. El servicio Load Balancer en los nodos de administrador o de puerta de enlace distribuye conexiones de red entrantes desde aplicaciones cliente hasta los nodos de almacenamiento. Al crear un extremo de equilibrio de carga, el administrador de StorageGRID especifica un número de puerto, tanto si el extremo acepta conexiones HTTP o HTTPS, como el tipo de cliente (S3 o Swift) que utilizará el extremo y el certificado que se utilizará para las conexiones HTTPS (si procede).
+
+. Configure redes de cliente no fiables.
++
+Si un administrador de StorageGRID configura la red cliente de un nodo para que no sea de confianza, el nodo sólo acepta conexiones entrantes en la red cliente en puertos que se configuran explícitamente como extremos equilibradores de carga.
+
+. Configuración de grupos de alta disponibilidad.
++
+Si un administrador crea un grupo de alta disponibilidad, las interfaces de red de varios nodos de administrador o nodos de puerta de enlace se colocan en una configuración de backup activo. Las conexiones de clientes se realizan mediante la dirección IP virtual del grupo de alta disponibilidad.
+
+
+
+Para obtener más información acerca de cada opción, consulte las instrucciones para administrar StorageGRID.
+
+.Información relacionada
+xref:../admin/index.adoc[Administre StorageGRID]
+
+
+
+=== Resumen: Direcciones IP y puertos para conexiones cliente
+
+Las aplicaciones cliente se conectan a StorageGRID mediante la dirección IP de un nodo de grid y el número de puerto de un servicio en ese nodo. Si se configuran los grupos de alta disponibilidad, las aplicaciones cliente se pueden conectar mediante la dirección IP virtual del grupo de alta disponibilidad.
+
+
+
+==== Información necesaria para realizar conexiones de cliente
+
+La tabla resume las distintas maneras en que los clientes pueden conectarse a StorageGRID y las direcciones IP y los puertos que se utilizan para cada tipo de conexión. Póngase en contacto con el administrador de StorageGRID para obtener más información o consulte las instrucciones para administrar StorageGRID para obtener una descripción de cómo encontrar esta información en el administrador de grid.
+
+|===
+| Dónde se realiza la conexión | Servicio al que se conecta el cliente | Dirección IP | Puerto 
+
+
+ a| 
+Grupo de ALTA DISPONIBILIDAD
+ a| 
+Equilibrador de carga
+ a| 
+La dirección IP virtual de un grupo de alta disponibilidad
+ a| 
+* Puerto de punto final del equilibrador de carga
+
+
+
+
+ a| 
+Grupo de ALTA DISPONIBILIDAD
+ a| 
+CLB
+
+**Nota:** el servicio CLB está en desuso.
+ a| 
+La dirección IP virtual de un grupo de alta disponibilidad
+ a| 
+Puertos S3 predeterminados:
+
+* HTTPS: 8082
+* HTTP: 8084
+
+
+
+
+ a| 
+Nodo de administración
+ a| 
+Equilibrador de carga
+ a| 
+La dirección IP del nodo de administrador
+ a| 
+* Puerto de punto final del equilibrador de carga
+
+
+
+
+ a| 
+Nodo de puerta de enlace
+ a| 
+Equilibrador de carga
+ a| 
+La dirección IP del nodo de puerta de enlace
+ a| 
+* Puerto de punto final del equilibrador de carga
+
+
+
+
+ a| 
+Nodo de puerta de enlace
+ a| 
+CLB
+
+**Nota:** el servicio CLB está en desuso.
+ a| 
+La dirección IP del nodo de puerta de enlace
+
+**Nota:** de forma predeterminada, los puertos HTTP para CLB y LDR no están habilitados.
+ a| 
+Puertos S3 predeterminados:
+
+* HTTPS: 8082
+* HTTP: 8084
+
+
+
+
+ a| 
+Nodo de almacenamiento
+ a| 
+LDR
+ a| 
+La dirección IP del nodo de almacenamiento
+ a| 
+Puertos S3 predeterminados:
+
+* HTTPS: 18082
+* HTTP: 18084
+
+
+|===
+
+
+==== Ejemplo
+
+Para conectar un cliente S3 al extremo de equilibrio de carga de un grupo ha de nodos de puerta de enlace, utilice una URL estructurada como se muestra a continuación:
+
+* `https://_VIP-of-HA-group_:_LB-endpoint-port_`
+
+
+Por ejemplo, si la dirección IP virtual del grupo de alta disponibilidad es 192.0.2.5 y el número de puerto de un extremo de equilibrio de carga de S3 es 10443, un cliente de S3 puede usar la siguiente URL para conectarse a StorageGRID:
+
+* `https://192.0.2.5:10443`
+
+
+Es posible configurar un nombre DNS para la dirección IP que utilizan los clientes para conectarse a StorageGRID. Póngase en contacto con el administrador de red local.
+
+.Información relacionada
+xref:../admin/index.adoc[Administre StorageGRID]
+
+
+
+=== Decidir usar conexiones HTTPS o HTTP
+
+Cuando se realizan conexiones de cliente mediante un extremo de equilibrio de carga, es necesario realizar conexiones mediante el protocolo (HTTP o HTTPS) especificado para ese extremo. Para utilizar HTTP para las conexiones de clientes a nodos de almacenamiento o al servicio CLB en nodos de puerta de enlace, debe habilitar su uso.
+
+De forma predeterminada, cuando las aplicaciones cliente se conectan a nodos de almacenamiento o al servicio CLB en nodos de puerta de enlace, deben utilizar HTTPS cifrado para todas las conexiones. Opcionalmente, puede habilitar conexiones HTTP menos seguras seleccionando la opción de cuadrícula *Activar conexión HTTP* en el Administrador de grid. Por ejemplo, una aplicación cliente puede utilizar HTTP al probar la conexión a un nodo de almacenamiento en un entorno no de producción.
+
+
+IMPORTANT: Tenga cuidado al habilitar HTTP para una cuadrícula de producción, ya que las solicitudes se enviarán sin cifrar.
+
+
+NOTE: El servicio CLB está obsoleto.
+
+Si se selecciona la opción *Activar conexión HTTP*, los clientes deben utilizar puertos diferentes para HTTP que los que utilizan para HTTPS. Consulte las instrucciones para administrar StorageGRID.
+
+.Información relacionada
+xref:../admin/index.adoc[Administre StorageGRID]
+
+xref:benefits-of-active-idle-and-concurrent-http-connections.adoc[Ventajas de las conexiones HTTP activas, inactivas y simultáneas]
+
+
+
+== Nombres de dominio extremo para solicitudes de S3
+
+Para poder utilizar los nombres de dominio S3 para las solicitudes de cliente, un administrador de StorageGRID debe configurar el sistema para aceptar conexiones que usen nombres de dominio S3 en solicitudes de estilo de ruta de acceso S3 y de estilo virtual alojado S3.
+
+.Acerca de esta tarea
+Para permitir utilizar solicitudes de estilo alojadas virtuales de S3, un administrador de grid debe realizar las siguientes tareas:
+
+* Use Grid Manager para añadir los nombres de dominio de extremo S3 al sistema StorageGRID.
+* Asegúrese de que el certificado que utiliza el cliente para las conexiones HTTPS a StorageGRID esté firmado para todos los nombres de dominio que el cliente necesita.
++
+Por ejemplo, si el extremo es `s3.company.com`, El administrador de grid debe asegurarse de que el certificado utilizado para las conexiones HTTPS incluye `s3.company.com` Nombre alternativo (SAN) del asunto comodín del extremo y del extremo: `*.s3.company.com`.
+
+* Configure el servidor DNS utilizado por el cliente para incluir registros DNS que coincidan con los nombres de dominio de extremo, incluidos los registros comodín necesarios.
+
+
+Si el cliente se conecta mediante el servicio Load Balancer, el certificado que el administrador de grid configura es el certificado para el extremo de equilibrio de carga que utiliza el cliente.
+
+
+NOTE: Cada extremo de equilibrador de carga tiene su propio certificado y cada extremo se puede configurar para reconocer diferentes nombres de dominio de extremo.
+
+Si el cliente se conecta a nodos de almacenamiento o al servicio CLB en nodos de puerta de enlace, el certificado que el administrador de grid configura es el único certificado de servidor personalizado utilizado para la cuadrícula.
+
+
+NOTE: El servicio CLB está obsoleto.
+
+Consulte las instrucciones para administrar StorageGRID si desea obtener más información.
+
+Una vez completados estos pasos, puede utilizar solicitudes virtuales de estilo hospedado (por ejemplo, `bucket.s3.company.com`).
+
+.Información relacionada
+xref:../admin/index.adoc[Administre StorageGRID]
+
+xref:configuring-security-for-rest-api.adoc[Configure la seguridad de la API DE REST]
+
+
+
+== Probar configuración de la API DE REST de S3
+
+Puede utilizar la interfaz de línea de comandos (CLI de AWS) de Amazon Web Services para probar la conexión al sistema y verificar que puede leer y escribir objetos en el sistema.
+
+.Lo que necesitará
+* Ha descargado e instalado la CLI de AWS desde https://aws.amazon.com/cli["aws.amazon.com/cli"^].
+* Creó una cuenta de inquilino de S3 en el sistema StorageGRID.
+
+
+.Pasos
+. Configure los ajustes de Amazon Web Services para que utilicen la cuenta que creó en el sistema StorageGRID:
++
+.. Entrar al modo de configuración: `aws configure`
+.. Introduzca el ID de clave de acceso de AWS para la cuenta que creó.
+.. Introduzca la clave de acceso secreto de AWS para la cuenta que ha creado.
+.. Introduzca la región predeterminada que desea utilizar, por ejemplo, US-East-1.
+.. Introduzca el formato de salida predeterminado que se va a utilizar o pulse *Intro* para seleccionar JSON.
+
+
+. Crear un bucket.
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443
+--no-verify-ssl create-bucket --bucket testbucket
+----
++
+Si el bloque se crea correctamente, se devuelve la ubicación del bloque, como se puede ver en el ejemplo siguiente:
+
+
+
+[listing]
+----
+"Location": "/testbucket"
+----
+. Cargue un objeto.
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443 --no-verify-ssl
+put-object --bucket testbucket --key s3.pdf --body C:\s3-test\upload\s3.pdf
+----
++
+Si el objeto se carga correctamente, se devuelve un ETag que es un hash de los datos del objeto.
+
+. Enumere el contenido del cucharón para verificar que el objeto se ha cargado.
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443 --no-verify-ssl
+list-objects --bucket testbucket
+----
+. Elimine el objeto.
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443 --no-verify-ssl
+delete-object --bucket testbucket --key s3.pdf
+----
+. Eliminar el bloque.
++
+[listing]
+----
+aws s3api --endpoint-url https://10.96.101.17:10443 --no-verify-ssl
+delete-bucket --bucket testbucket
+----
+

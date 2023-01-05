@@ -1,0 +1,40 @@
+---
+permalink: monitor/monitoring-node-level-resources.html 
+sidebar: sidebar 
+keywords: monitoring, monitoring node-level resources, grid nodes 
+summary: Se deben supervisar los nodos de grid individuales para comprobar sus niveles de utilización de recursos. 
+---
+= Supervise los recursos a nivel de nodo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se deben supervisar los nodos de grid individuales para comprobar sus niveles de utilización de recursos.
+
+.Lo que necesitará
+* Debe iniciar sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+
+
+.Acerca de esta tarea
+Si los nodos están sobrecargados de forma continua, es posible que se necesiten más nodos para realizar operaciones eficientes.
+
+.Pasos
+. Para ver información sobre el uso de hardware de un nodo de grid:
++
+.. En la página *NODES*, seleccione el nodo.
+.. Seleccione la ficha *hardware* para visualizar gráficos de utilización de CPU y uso de memoria.
++
+image::../media/nodes_page_hardware_tab_graphs.png[Página Nodes pestaña hardware]
+
+.. Para mostrar un intervalo de tiempo diferente, seleccione uno de los controles situados encima del gráfico o gráfico. Puede visualizar la información disponible para intervalos de 1 hora, 1 día, 1 semana o 1 mes. También puede establecer un intervalo personalizado, que le permite especificar intervalos de fecha y hora.
+.. Si el nodo está alojado en un dispositivo de almacenamiento o un dispositivo de servicios, desplácese hacia abajo para ver las tablas de los componentes. El estado de todos los componentes debe ser "'nominal'". Investigue los componentes que tengan cualquier otro estado.
+
+
+
+
+.Información relacionada
+xref:viewing-hardware-tab.adoc#view-information-about-appliance-storage-nodes[Ver información sobre los nodos de almacenamiento de dispositivos]
+
+xref:viewing-hardware-tab.adoc#view-information-about-appliance-admin-nodes-and-gateway-nodes[Consulte información sobre los nodos de administración del dispositivo y los nodos de puerta de enlace]

@@ -1,0 +1,46 @@
+---
+permalink: sg5600/optional-remapping-network-ports-for-appliance-sg5600-and-sg5700.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, remapping, remap, map, mapping, network, ports 
+summary: Es posible que deba reasignar los puertos internos del nodo de almacenamiento del dispositivo a diferentes puertos externos. Por ejemplo, es posible que tenga que reasignar puertos debido a un problema de firewall. 
+---
+= Opcional: Reasignar puertos de red para el dispositivo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible que deba reasignar los puertos internos del nodo de almacenamiento del dispositivo a diferentes puertos externos. Por ejemplo, es posible que tenga que reasignar puertos debido a un problema de firewall.
+
+.Lo que necesitará
+* Ya ha accedido anteriormente al instalador de dispositivos de StorageGRID.
+* No ha configurado y no planea configurar los extremos del equilibrador de carga.
++
+
+IMPORTANT: Si se reasigna algún puerto, no se pueden utilizar los mismos puertos para configurar los puntos finales del equilibrador de carga. Si desea configurar puntos finales del equilibrador de carga y ya tiene puertos reasignados, siga los pasos de xref:../maintain/removing-port-remaps.adoc[Eliminar reasignaciones de puertos].
+
+
+
+.Pasos
+. En la barra de menús del instalador del dispositivo StorageGRID, haga clic en *Configurar redes* > *puertos de reasignación*.
++
+Aparecerá la página Remap Port.
+
+. En el cuadro desplegable *Red*, seleccione la red para el puerto que desea reasignar: Grid, Admin o Client.
+. En el cuadro desplegable *Protocolo*, seleccione el protocolo IP: TCP o UDP.
+. En el cuadro desplegable *Dirección de salida*, seleccione la dirección de tráfico que desea reasignar para este puerto: Entrante, saliente o bidireccional.
+. Para *Puerto original*, introduzca el número del puerto que desea reasignar.
+. En *Puerto asignado a*, introduzca el número del puerto que desea utilizar en su lugar.
+. Haga clic en *Agregar regla*.
++
+La nueva asignación de puertos se agrega a la tabla y la reasignación tiene efecto inmediatamente.
+
++
+image::../media/remap_ports.gif[Captura de pantalla que muestra la opción puertos de reasignación en el instalador de dispositivos StorageGRID Webscale]
+
+. Para eliminar una asignación de puertos, seleccione el botón de opción de la regla que desea quitar y haga clic en *Eliminar regla seleccionada*.
+
+
+.Información relacionada
+xref:../maintain/index.adoc[Recuperación y mantenimiento]

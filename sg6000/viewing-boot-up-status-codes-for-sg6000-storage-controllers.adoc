@@ -1,0 +1,39 @@
+---
+permalink: sg6000/viewing-boot-up-status-codes-for-sg6000-storage-controllers.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, boot codes, boot-up codes, start codes, codes, boot, start, storage controller, controller, storage 
+summary: Cada controladora de almacenamiento tiene una pantalla de siete segmentos que proporciona códigos de estado cuando se enciende la controladora. Los códigos de estado son los mismos para la controladora E2800 y la controladora EF570. 
+---
+= Ver los códigos de estado de arranque para los controladores de almacenamiento SG6000
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cada controladora de almacenamiento tiene una pantalla de siete segmentos que proporciona códigos de estado cuando se enciende la controladora. Los códigos de estado son los mismos para la controladora E2800 y la controladora EF570.
+
+.Acerca de esta tarea
+Para obtener descripciones de estos códigos, consulte la información de supervisión del sistema E-Series para usted sobre el tipo de controladora de almacenamiento.
+
+.Pasos
+. Durante el arranque, supervise el progreso visualizando los códigos que se muestran en la pantalla de siete segmentos de cada controladora de almacenamiento.
++
+La pantalla de siete segmentos de cada controlador de almacenamiento muestra la secuencia de repetición *OS*, *SD*, `*_blank_*` indica que la controladora está ejecutando el procesamiento de inicio del día.
+
+. Una vez arrancados las controladoras, confirme que cada controladora de almacenamiento muestra 99, que es el ID predeterminado de una bandeja de controladoras E-Series.
++
+Asegúrese de que este valor se muestre en ambas controladoras de almacenamiento, como se muestra en este ejemplo de controladora E2800.
+
++
+image::../media/seven_segment_display_codes_for_e2800.gif[Códigos de visualización de siete segmentos para E2800]
+
+. Si una o ambas controladoras muestran otros valores, consulte xref:troubleshooting-hardware-installation.adoc[Solución de problemas de instalación de hardware (SG6000)] y confirme que ha completado los pasos de la instalación correctamente. Si no puede resolver el problema, póngase en contacto con el soporte técnico.
+
+
+.Información relacionada
+https://library.netapp.com/ecmdocs/ECMLP2588751/html/frameset.html["Guía de supervisión del sistema E5700 y E2800"^]
+
+https://mysupport.netapp.com/site/global/dashboard["Soporte de NetApp"^]
+
+xref:powering-on-sg6000-cn-controller-and-verifying-operation.adoc[Encienda el controlador SG6000-CN y compruebe el funcionamiento]

@@ -1,0 +1,34 @@
+---
+permalink: sg100-1000/reviewing-appliance-network-connections-sg100-and-sg1000.html 
+sidebar: sidebar 
+keywords: storagegrid, sg100, sg1000, service appliance, services appliance, gateway Node, admin node, network connections, network connection, network, connection, grid, admin, client, bmc, management 
+summary: Antes de instalar el dispositivo StorageGRID, debe saber qué redes se pueden conectar al dispositivo. 
+---
+= Revisar las conexiones de red de los dispositivos (SG100 y SG1000)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de instalar el dispositivo StorageGRID, debe saber qué redes se pueden conectar al dispositivo.
+
+Cuando implementa un dispositivo StorageGRID como nodo en un sistema StorageGRID, puede conectarlo a las siguientes redes:
+
+* *Red de Grid para StorageGRID*: La red de red se utiliza para todo el tráfico interno de StorageGRID. Proporciona conectividad entre todos los nodos de la cuadrícula, en todos los sitios y subredes. Se requiere la red de red.
+* *Red de administración para StorageGRID*: La Red de administración es una red cerrada que se utiliza para la administración y el mantenimiento del sistema. La red de administración suele ser una red privada y no es necesario que se pueda enrutar entre sitios. La red administrativa es opcional.
+* *Red de clientes para StorageGRID:* la red de clientes es una red abierta que se utiliza para proporcionar acceso a las aplicaciones cliente, incluidos S3 y Swift. La red de cliente proporciona acceso de protocolo de cliente a la cuadrícula, de modo que la red de red de red pueda aislarse y protegerse. Puede configurar la red de cliente de modo que se pueda acceder al dispositivo a través de esta red utilizando sólo los puertos que elija abrir. La red cliente es opcional.
+* *Red de administración de BMC para el dispositivo de servicios* (opcional): Esta red proporciona acceso al controlador de administración de la placa base en los sistemas SG100 y SG1000, lo que le permite supervisar y administrar los componentes de hardware del dispositivo. Esta red de gestión puede ser la misma que la Red de administración para StorageGRID, o bien puede ser una red de gestión independiente.
++
+Si la red de administración opcional de BMC no está conectada, será más difícil realizar algunos procedimientos de soporte y mantenimiento. Puede dejar la red de gestión de BMC sin conexión excepto cuando sea necesario para fines de soporte.
+
+
+
+.Información relacionada
+xref:gathering-installation-information-sg100-and-sg1000.adoc[Recopilar información de instalación (SG100 y SG1000)]
+
+xref:cabling-appliance-sg100-and-sg1000.adoc[Aparatos de cable SG100 y SG1000]
+
+xref:../network/index.adoc[Directrices sobre redes]
+
+xref:../primer/index.adoc[Imprimador de rejilla]

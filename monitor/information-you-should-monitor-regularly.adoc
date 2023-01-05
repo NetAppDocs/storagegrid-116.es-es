@@ -1,0 +1,84 @@
+---
+permalink: monitor/information-you-should-monitor-regularly.html 
+sidebar: sidebar 
+keywords: monitor, monitoring, StorageGRID, 
+summary: StorageGRID es un sistema de almacenamiento distribuido con tolerancia a fallos que está diseñado para continuar funcionando incluso cuando se producen errores, o cuando nodos o sitios no están disponibles. Debe supervisar de forma proactiva el estado del sistema, las cargas de trabajo y las estadísticas de uso para que pueda tomar medidas para abordar problemas potenciales antes de que afecten a la eficiencia o disponibilidad de la red. 
+---
+= Información que debe supervisar con regularidad
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID es un sistema de almacenamiento distribuido con tolerancia a fallos que está diseñado para continuar funcionando incluso cuando se producen errores, o cuando nodos o sitios no están disponibles. Debe supervisar de forma proactiva el estado del sistema, las cargas de trabajo y las estadísticas de uso para que pueda tomar medidas para abordar posibles problemas antes de que afecten a la eficiencia o la disponibilidad del grid.
+
+Un sistema ocupado genera grandes cantidades de información. Esta sección proporciona orientación sobre la información más importante que se debe supervisar de forma continua.
+
+[cols="2a,1a"]
+|===
+| Qué supervisar | Frecuencia 
+
+
+ a| 
+La xref:monitoring-system-health.adoc[datos de estado del sistema] Se muestra en el Panel de Grid Manager. Tenga en cuenta que cualquier cosa ha cambiado con respecto al día anterior.
+ a| 
+Todos los días
+
+
+
+ a| 
+Velocidad a la que xref:monitoring-storage-capacity.adoc[Capacidad de metadatos y objetos de Storage Node] se está consumiendo
+ a| 
+Semanal
+
+
+
+ a| 
+xref:monitoring-information-lifecycle-management.adoc[Operaciones de gestión del ciclo de vida de la información]
+ a| 
+Semanal
+
+
+
+ a| 
+xref:monitoring-network-connections-and-performance.adoc[Rendimiento y conexiones de red]
+ a| 
+Semanal
+
+
+
+ a| 
+xref:monitoring-node-level-resources.adoc[Recursos en el nivel de nodo]
+ a| 
+Semanal
+
+
+
+ a| 
+xref:monitoring-tenant-activity.adoc[Actividad de inquilino]
+ a| 
+Semanal
+
+
+
+ a| 
+xref:monitoring-archival-capacity.adoc[Capacidad del sistema de almacenamiento de archivos externo]
+ a| 
+Semanal
+
+
+
+ a| 
+xref:monitoring-load-balancing-operations.adoc[Operaciones de equilibrio de carga]
+ a| 
+Tras la configuración inicial y tras cualquier cambio en la configuración
+
+
+
+ a| 
+xref:applying-hotfixes-or-upgrading-software-if-necessary.adoc[Disponibilidad de revisiones de software y actualizaciones de software]
+ a| 
+Mensual
+
+|===

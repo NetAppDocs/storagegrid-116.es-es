@@ -1,0 +1,112 @@
+---
+permalink: s3/custom-operations-on-buckets.html 
+sidebar: sidebar 
+keywords: operations, buckets, custom, custom operations on buckets 
+summary: El sistema StorageGRID admite operaciones de bloques personalizadas que se añaden a la API DE REST de S3 y son específicas del sistema. 
+---
+= Operaciones personalizadas en bloques
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El sistema StorageGRID admite operaciones de bloques personalizadas que se añaden a la API DE REST de S3 y son específicas del sistema.
+
+En la siguiente tabla, se enumeran las operaciones de bloque personalizadas que admite StorageGRID.
+
+|===
+| Funcionamiento | Descripción | Si quiere más información 
+
+
+ a| 
+OBTENGA coherencia de bloques
+ a| 
+Devuelve el nivel de coherencia que se aplica a un bloque determinado.
+ a| 
+xref:get-bucket-consistency-request.adoc[OBTENGA la solicitud de consistencia de bloque]
+
+
+
+ a| 
+PONGA la consistencia del cucharón
+ a| 
+Establece el nivel de consistencia aplicado a un bloque determinado.
+ a| 
+xref:put-bucket-consistency-request.adoc[PONER solicitud de consistencia de bloque]
+
+
+
+ a| 
+HORA de último acceso al bloque DE GET
+ a| 
+Devuelve si las actualizaciones del último tiempo de acceso están habilitadas o deshabilitadas para un bloque en particular.
+ a| 
+xref:get-bucket-last-access-time-request.adoc[GET Bucket última solicitud de tiempo de acceso]
+
+
+
+ a| 
+PUT Bucket última hora de acceso
+ a| 
+Permite habilitar o deshabilitar las actualizaciones del último tiempo de acceso para un bloque en particular.
+ a| 
+xref:put-bucket-last-access-time-request.adoc[PUT Bucket última solicitud de tiempo de acceso]
+
+
+
+ a| 
+DELETE bucket metadata notification Configuration
+ a| 
+Elimina el XML de configuración de notificación de metadatos asociado a un bloque en particular.
+ a| 
+xref:delete-bucket-metadata-notification-configuration-request.adoc[DELETE bucket metadata notification Configuration]
+
+
+
+ a| 
+OBTENGA la configuración de notificación de metadatos del bloque de datos
+ a| 
+Devuelve el XML de configuración de notificación de metadatos asociado a un bloque determinado.
+ a| 
+xref:get-bucket-metadata-notification-configuration-request.adoc[OBTENGA la solicitud de configuración de notificación de metadatos del bloque]
+
+
+
+ a| 
+PUT bucket metadata notification Configuration
+ a| 
+Configura el servicio de notificación de metadatos para un bloque.
+ a| 
+xref:put-bucket-metadata-notification-configuration-request.adoc[PUT bucket metadata notification Configuration]
+
+
+
+ a| 
+COLOQUE el cucharón con la configuración de cumplimiento
+ a| 
+Obsoleto y no compatible: Ya no puede crear nuevos bloques con el cumplimiento de normativas habilitado.
+ a| 
+xref:deprecated-put-bucket-request-modifications-for-compliance.adoc[Obsoleto: COLOQUE el cucharón con la configuración de cumplimiento]
+
+
+
+ a| 
+Obtenga el cumplimiento de normativas de Bucket
+ a| 
+Obsoleto pero compatible: Devuelve la configuración de cumplimiento vigente para un bloque compatible existente.
+ a| 
+xref:deprecated-get-bucket-compliance-request.adoc[Obsoleto: GET Bucket Compliance Request]
+
+
+
+ a| 
+CUMPLIR con la normativa de los bloques
+ a| 
+Obsoleto pero compatible: Permite modificar la configuración de cumplimiento de un bloque compatible heredado.
+ a| 
+xref:deprecated-put-bucket-compliance-request.adoc[Obsoleto: PUT Bucket Compliance Request]
+
+|===
+.Información relacionada
+xref:s3-operations-tracked-in-audit-logs.adoc[Se realizó un seguimiento de las operaciones de S3 en los registros de auditoría]

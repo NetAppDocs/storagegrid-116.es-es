@@ -1,0 +1,44 @@
+---
+permalink: admin/enabling-http-for-client-communications.html 
+sidebar: sidebar 
+keywords: enable http, clb connections, storage node connections 
+summary: De forma predeterminada, las aplicaciones cliente utilizan el protocolo de red HTTPS para todas las conexiones a nodos de almacenamiento o al servicio CLB obsoleto en nodos de puerta de enlace. Puede habilitar HTTP opcionalmente para estas conexiones, por ejemplo, al probar una cuadrícula que no sea de producción. 
+---
+= Habilite HTTP para las comunicaciones del cliente
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+De forma predeterminada, las aplicaciones cliente utilizan el protocolo de red HTTPS para todas las conexiones a nodos de almacenamiento o al servicio CLB obsoleto en nodos de puerta de enlace. Puede habilitar HTTP opcionalmente para estas conexiones, por ejemplo, al probar una cuadrícula que no sea de producción.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+
+
+.Acerca de esta tarea
+Complete esta tarea solo si los clientes S3 y Swift necesitan realizar conexiones HTTP directamente a los nodos de almacenamiento o al servicio CLB obsoleto en los nodos de puerta de enlace.
+
+No es necesario completar esta tarea para clientes que solo utilizan conexiones HTTPS o para clientes que se conectan al servicio Load Balancer (ya que puede configurar cada extremo de Load Balancer para usar HTTP o HTTPS). Consulte la información sobre la configuración de puntos finales del equilibrador de carga para obtener más información.
+
+Consulte xref:summary-ip-addresses-and-ports-for-client-connections.adoc[Resumen: Direcciones IP y puertos para conexiones cliente] Para conocer los puertos que utilizan los clientes S3 y Swift al conectarse a los nodos de almacenamiento o al servicio CLB obsoleto a través de HTTP o HTTPS
+
+
+IMPORTANT: Tenga cuidado al habilitar HTTP para una cuadrícula de producción porque las solicitudes se enviarán sin cifrar.
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *sistema* > *Opciones de cuadrícula*.
+. En la sección Opciones de red , active la casilla de verificación *Activar conexión HTTP* .
++
+image::../media/http_enabled.png[Habilite la conexión HTTP]
+
+. Seleccione *Guardar*.
+
+
+.Información relacionada
+* xref:configuring-load-balancer-endpoints.adoc[Configurar puntos finales del equilibrador de carga]
+* xref:../s3/index.adoc[Use S3]
+* xref:../swift/index.adoc[Use Swift]
+

@@ -1,0 +1,71 @@
+---
+permalink: ilm/guidelines-for-creating-storage-pools.html 
+sidebar: sidebar 
+keywords: storage pool guidelines 
+summary: Al configurar y usar pools de almacenamiento, siga estas directrices. 
+---
+= Directrices para crear pools de almacenamiento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Al configurar y usar pools de almacenamiento, siga estas directrices.
+
+
+
+== Directrices para todos los pools de almacenamiento
+
+* StorageGRID incluye un pool de almacenamiento predeterminado, todos los nodos de almacenamiento, que utiliza el sitio predeterminado, todos los sitios y el nivel de almacenamiento predeterminado, todos los nodos de almacenamiento. El pool de almacenamiento de todos los nodos de almacenamiento se actualiza automáticamente cada vez que se añaden nuevos sitios de centro de datos.
++
+
+NOTE: No se recomienda utilizar el grupo de almacenamiento todos los nodos de almacenamiento o el sitio todos los sitios porque estos elementos se actualizan automáticamente para incluir los sitios nuevos que agregue en una expansión, lo que podría no ser el comportamiento que desea. Antes de usar el pool de almacenamiento todos los nodos de almacenamiento o el sitio predeterminado, revise con cuidado las directrices para las copias replicadas y codificadas de borrado.
+
+* Mantenga las configuraciones del pool de almacenamiento de la forma más sencilla posible. No cree más pools de almacenamiento de los necesarios.
+* Cree pools de almacenamiento con tantos nodos como sea posible. Cada pool de almacenamiento debe contener dos o más nodos. Un pool de almacenamiento con nodos insuficientes puede provocar registros de gestión del ciclo de vida de la información si un nodo deja de estar disponible.
+* Evite crear o usar pools de almacenamiento que se solapen (contienen uno o varios de los mismos nodos). Si los pools de almacenamiento se solapan, es posible que se guarden más de una copia de datos de objetos en el mismo nodo.
+
+
+
+
+== Directrices para los pools de almacenamiento utilizados para copias replicadas
+
+* Cree una agrupación de almacenamiento diferente para cada sitio. A continuación, especifique uno o varios grupos de almacenamiento específicos del sitio en las instrucciones de colocación de cada regla. El uso de un pool de almacenamiento para cada sitio garantiza que las copias de objetos replicados se coloquen exactamente donde se espere (por ejemplo, una copia de cada objeto en cada sitio para la protección frente a pérdida de sitio).
+* Si agrega un sitio en una expansión, cree un nuevo grupo de almacenamiento para el sitio nuevo. A continuación, actualice las reglas de ILM para controlar qué objetos están almacenados en el nuevo sitio.
+* En general, no utilice el pool de almacenamiento predeterminado, todos los nodos de almacenamiento ni ningún pool de almacenamiento que incluya el sitio predeterminado, todos los sitios.
+
+
+
+
+== Directrices para los pools de almacenamiento utilizados para las copias con código de borrado
+
+* No se pueden usar nodos de archivado para los datos codificados mediante borrado.
+* El número de nodos de almacenamiento y sitios que contiene el pool de almacenamiento determina qué esquemas de codificación de borrado están disponibles.
+* Si un pool de almacenamiento incluye solo dos sitios, no podrá utilizar dicho pool de almacenamiento para codificar el borrado. No hay esquemas de codificación de borrado disponibles para un pool de almacenamiento que tenga dos ubicaciones.
+* En general, no utilice el pool de almacenamiento predeterminado, todos los nodos de almacenamiento ni ningún pool de almacenamiento que incluya el sitio predeterminado, todos los sitios en ningún perfil de código de borrado.
++
+
+NOTE: Si el grid incluye un solo sitio, no se podrá utilizar el pool de almacenamiento todos los nodos de almacenamiento ni el sitio predeterminado todos los sitios en un perfil de código de borrado. Este comportamiento impide que el perfil de código de borrado no sea válido si se agrega un segundo sitio.
+
+* Si tiene requisitos de alto rendimiento, no se recomienda crear un pool de almacenamiento que incluya varios sitios si la latencia de red entre los sitios es superior a 100 ms. A medida que aumenta la latencia, la velocidad a la que StorageGRID puede crear, colocar y recuperar fragmentos de objetos disminuye considerablemente debido al descenso del rendimiento de la red TCP. La disminución del rendimiento afecta a las tasas máximas que se pueden lograr para la ingesta y la recuperación de objetos (cuando se seleccionan valores estrictos o equilibrados como comportamiento de procesamiento) o que podrían provocar retrasos en la cola de ILM (cuando se selecciona el Dual Commit como comportamiento de procesamiento).
+* Si es posible, un pool de almacenamiento debe incluir más de la cantidad mínima de nodos de almacenamiento necesarios para el esquema de codificación de borrado que seleccione. Por ejemplo, si utiliza un esquema de codificación de borrado 6+3, debe contar con al menos nueve nodos de almacenamiento. Sin embargo, se recomienda tener al menos un nodo de almacenamiento adicional por sitio.
+* Distribuya nodos de almacenamiento en todos los sitios de la forma más equitativa posible. Por ejemplo, para admitir un esquema de codificación de borrado 6+3, configure un pool de almacenamiento que incluya al menos tres nodos de almacenamiento en tres sitios.
+
+
+
+
+== Directrices para los pools de almacenamiento utilizados para copias archivadas
+
+* No es posible crear un pool de almacenamiento que incluya nodos de almacenamiento y Archivo. Las copias archivadas requieren un pool de almacenamiento que sólo incluya nodos de archivado.
+* Cuando se utiliza un pool de almacenamiento que incluye nodos de archivado, también se debe mantener al menos una copia replicada o con código de borrado en un pool de almacenamiento que incluya nodos de almacenamiento.
+* Si la configuración global de bloqueo de objetos de S3 está habilitada y se crea una regla de ILM compatible, no se puede usar un pool de almacenamiento que incluya los nodos de archivado. Consulte las instrucciones para gestionar objetos con el bloqueo de objetos de S3.
+* Si el tipo de destino de un nodo de archivado es Cloud Tiering - simple Storage Service (S3), el nodo de archivado debe estar en su propio pool de almacenamiento. Consulte xref:../admin/index.adoc[Administre StorageGRID].
+
+
+.Información relacionada
+* xref:what-replication-is.adoc[Qué es la replicación]
+* xref:what-erasure-coding-is.adoc[Qué es la codificación de borrado]
+* xref:what-erasure-coding-schemes-are.adoc[Qué son los esquemas de codificación de borrado]
+* xref:using-multiple-storage-pools-for-cross-site-replication.adoc[Utilice varios pools de almacenamiento para la replicación entre sitios]
+

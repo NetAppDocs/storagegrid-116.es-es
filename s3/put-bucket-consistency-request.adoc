@@ -1,0 +1,80 @@
+---
+permalink: s3/put-bucket-consistency-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, PUT bucket consistency request 
+summary: La solicitud PUT Bucket Consistency permite especificar el nivel de coherencia que se va a aplicar a las operaciones realizadas en un bloque. 
+---
+= PONER solicitud de consistencia de bloque
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La solicitud PUT Bucket Consistency permite especificar el nivel de coherencia que se va a aplicar a las operaciones realizadas en un bloque.
+
+Los controles de consistencia predeterminados se establecen para garantizar la lectura tras escritura de los objetos recién creados.
+
+Tiene el permiso s3:PutBucketConsistency, o bien sea raíz de la cuenta, para completar esta operación.
+
+
+
+== Solicitud
+
+La `x-ntap-sg-consistency` el parámetro debe contener uno de los siguientes valores:
+
+|===
+| Control de consistencia | Descripción 
+
+
+ a| 
+todo
+ a| 
+Todos los nodos reciben los datos inmediatamente o se produce un error en la solicitud.
+
+
+
+ a| 
+fuerte en todo el mundo
+ a| 
+Garantiza la coherencia de lectura tras escritura para todas las solicitudes del cliente en todos los sitios.
+
+
+
+ a| 
+sitio seguro
+ a| 
+Garantiza la coherencia de lectura tras escritura para todas las solicitudes del cliente dentro de un sitio.
+
+
+
+ a| 
+lectura-después-nueva-escritura
+ a| 
+(Predeterminado) proporciona coherencia de lectura tras escritura para los nuevos objetos y coherencia final para las actualizaciones de objetos. Ofrece garantías de alta disponibilidad y protección de datos. La mayoría concuerda estrechamente con las garantías de coherencia de Amazon S3.
+
+*Nota:* Si su aplicación utiliza PETICIONES HEAD en objetos que no existen, puede recibir un número elevado de 500 errores de Internal Server si uno o más nodos de almacenamiento no están disponibles. Para evitar estos errores, establezca el control de coherencia en "'Available'" a menos que necesite garantías de coherencia similares a las de Amazon S3.
+
+
+
+ a| 
+Disponible (coherencia eventual para operaciones DE CABEZAL)
+ a| 
+Se comporta del mismo modo que el nivel de consistencia "read-after-new-write", pero sólo proporciona consistencia eventual para las operaciones DE CABEZA. Ofrece una mayor disponibilidad para las OPERACIONES DE CABEZAL que una «escritura tras otra» si los nodos de almacenamiento no están disponibles. Se diferencia de las garantías de coherencia de Amazon S3 solo para operaciones HEAD.
+
+|===
+*Nota:* en general, se debe utilizar el valor de control de la coherencia "read-after-new-write". Si las solicitudes no funcionan correctamente, cambie el comportamiento del cliente de la aplicación, si es posible. O bien, configure el cliente para especificar el control de consistencia de cada solicitud API. Establecer el control de consistencia a nivel de cucharón únicamente como último recurso.
+
+
+
+== Ejemplo de solicitud
+
+[source, subs="specialcharacters,quotes"]
+----
+PUT /bucket?x-ntap-sg-consistency=strong-global HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+.Información relacionada
+xref:consistency-controls.adoc[Controles de consistencia]

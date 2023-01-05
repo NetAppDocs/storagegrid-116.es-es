@@ -1,0 +1,133 @@
+---
+permalink: sg6000/unpacking-boxes-sg6000.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, install, installation, unpack, unbox, prepare, inventory, components, contents 
+summary: Antes de instalar el aparato StorageGRID, desembale todas las cajas y compare el contenido con los artículos del recibo de embalaje. 
+---
+= Cajas de desembalaje (SG6000)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de instalar el aparato StorageGRID, desembale todas las cajas y compare el contenido con los artículos del recibo de embalaje.
+
+
+
+== SG6060 y SG6060X
+
+* *Controlador SG6000-CN*
++
+image::../media/sg6000_cn_front_without_bezel.gif[Controlador SG6000-CN]
+
+* *Bandeja de controladoras E2860 sin unidades instaladas*
++
+image::../media/de460c_table_size.gif[Dispositivo SG5760 4U]
+
+* *Dos biseles delanteros*
++
+image::../media/sg6000_front_bezels_for_table.gif[Bezeles delanteros]
+
+* *Dos kits de rieles con instrucciones*
++
+image::../media/rail_kit.gif[Kit de rieles]
+
+* *60 unidades (2 SSD y 58 NL-SAS)*
++
+image::../media/sg5760_drive.gif[Unidad]
+
+* *Cuatro asas*
++
+image::../media/handles.gif[SG5760 gestiona]
+
+* *Soportes de fondo y tuercas de jaula para la instalación en bastidor de orificio cuadrado*
++
+image::../media/back_brackets_table_size.gif[Soportes y tuercas de jaula para SG5760]
+
+
+
+
+
+== SG6060 y estante de expansión SG6060X
+
+* *Bandeja de expansión sin unidades instaladas*
++
+image::../media/de460c_table_size.gif[Dispositivo SG5760 4U]
+
+* *Bisel frontal*
++
+image::../media/front_bezel_for_table_de460c.gif[Frontal Bezel DE460C]
+
+* *60 unidades NL-SAS*
++
+image::../media/sg5760_drive.gif[Unidad]
+
+* *Un kit de rieles con instrucciones*
++
+image::../media/rail_kit.gif[Kit de rieles]
+
+* *Cuatro asas*
++
+image::../media/handles.gif[SG5760 gestiona]
+
+* *Soportes de fondo y tuercas de jaula para la instalación en bastidor de orificio cuadrado*
++
+image::../media/back_brackets_table_size.gif[Soportes y tuercas de jaula para SG5760]
+
+
+
+
+
+== SGF6024
+
+* *Controlador SG6000-CN*
++
+image::../media/sg6000_cn_front_without_bezel.gif[Controlador SG6000-CN]
+
+* *Matriz flash EF570 con 24 unidades de estado sólido (flash) instaladas*
++
+image::../media/de224c_with_drives.gif[Bandeja de controladoras EF570]
+
+* *Dos biseles delanteros*
++
+image::../media/sgf6024_front_bezels_for_table.png[Molduras frontales SG6024]
+
+* *Dos kits de rieles con instrucciones*
++
+image::../media/rail_kit.gif[Kit de rieles]
+
+* *Tapas de estante*
++
+image::../media/endcaps.png[Tapas]
+
+
+
+
+
+== Cables y conectores
+
+El envío del dispositivo StorageGRID incluye los siguientes cables y conectores:
+
+* *Cuatro cables de alimentación para su país*
++
+image::../media/power_cords.gif[Cables de alimentación]
+
++
+Es posible que el armario tenga cables de alimentación especiales que utilice en lugar de los cables de alimentación que se suministran con el aparato.
+
+* *Cables ópticos y transceptores SFP*
++
+image::../media/fc_cable_and_sfp.gif[Cables ópticos y SFP]
+
++
+Cuatro cables ópticos para los puertos de interconexión FC
+
++
+Cuatro transceptores SFP+, que admiten FC de 16 GB/s.
+
+* *Opcional: Dos cables SAS para conectar cada estante de expansión SG6060 o SG6060X*
++
+image::../media/sas_cable.gif[Cables SAS]
+
+

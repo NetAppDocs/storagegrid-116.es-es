@@ -1,0 +1,41 @@
+---
+permalink: tenant/deleting-your-own-s3-access-keys.html 
+sidebar: sidebar 
+keywords: how to delete S3 access key 
+summary: Si usa un inquilino de S3 y tiene el permiso correspondiente, puede eliminar sus propias claves de acceso S3. Cuando se elimina una clave de acceso, ya no se puede utilizar para acceder a los objetos y los bloques de la cuenta de inquilino. 
+---
+= Elimine sus propias claves de acceso de S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si usa un inquilino de S3 y tiene el permiso correspondiente, puede eliminar sus propias claves de acceso S3. Cuando se elimina una clave de acceso, ya no se puede utilizar para acceder a los objetos y los bloques de la cuenta de inquilino.
+
+.Lo que necesitará
+* Debe iniciar sesión en el administrador de inquilinos mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Debe tener el permiso gestionar sus propias credenciales de S3. Consulte xref:tenant-management-permissions.adoc[Permisos de gestión de inquilinos].
+
+
+
+IMPORTANT: Puede acceder a los bloques y los objetos de S3 que pertenecen a su cuenta mediante el ID de clave de acceso y la clave de acceso secreta que se muestra para su cuenta en el Administrador de inquilinos. Por este motivo, proteja las claves de acceso como lo haría con una contraseña. Gire las claves de acceso de forma regular, elimine las claves que no utilice de su cuenta y nunca las comparta con otros usuarios.
+
+.Pasos
+. Seleccione *ALMACENAMIENTO (S3)* > *Mis claves de acceso*.
++
+Aparecerá la página Mis claves de acceso y mostrará una lista de las claves de acceso existentes.
+
+. Seleccione la casilla de comprobación de cada clave de acceso que desea quitar.
+. Seleccione *tecla Eliminar*.
++
+Se muestra un cuadro de diálogo de confirmación.
+
++
+image::../media/access_key_confirm_delete.png[Clave de acceso: Confirme la eliminación]
+
+. Seleccione *tecla Eliminar*.
++
+Aparecerá un mensaje de confirmación en la esquina superior derecha de la página. Los cambios pueden tardar hasta 15 minutos en surtir efecto debido al almacenamiento en caché.
+
+

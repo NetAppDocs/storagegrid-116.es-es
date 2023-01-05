@@ -1,0 +1,81 @@
+---
+permalink: sg5600/replacing-e5600sg-controller.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, hardware, Replacing, replace, E5600sg, controller, remove, removing, removal, install, installing, installation 
+summary: Es posible que deba sustituir la controladora E5600SG. 
+---
+= Sustituya la controladora E5600SG
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible que deba sustituir la controladora E5600SG.
+
+.Lo que necesitará
+Debe tener acceso a los siguientes recursos:
+
+* Información para la sustitución del hardware E-Series en el sitio de soporte de NetApp en +http://mysupport.netapp.com/["mysupport.netapp.com"^]
+* Documentación de E5600 en el sitio de soporte
+* El aparato se ha estado xref:placing-appliance-into-maintenance-mode.adoc[se colocó en modo de mantenimiento].
+
+
+.Acerca de esta tarea
+Si ambas controladoras funcionan lo suficiente como para permitir un apagado controlado, puede apagar la controladora E5600SG primero para interrumpir la conectividad con la controladora E2700.
+
+
+NOTE: Si va a sustituir la controladora antes de instalar el software StorageGRID, es posible que no pueda acceder al instalador de dispositivos de StorageGRID inmediatamente después de completar este procedimiento. Aunque puede acceder al instalador del dispositivo StorageGRID desde otros hosts de la misma subred que el dispositivo, no puede acceder al mismo desde hosts de otras subredes. Esta condición debe resolverse dentro de los 15 minutos (cuando se agota cualquier entrada de caché ARP para el tiempo de espera original de la controladora); asimismo, puede borrar la condición de inmediato mediante la purga manual de todas las entradas antiguas de la caché ARP desde el enrutador o la puerta de enlace local.
+
+.Pasos
+. Use protección antiestática.
+. Etiquete cada cable conectado a la controladora E5600SG, de modo que pueda volver a conectar los cables correctamente.
++
+
+IMPORTANT: Para evitar un rendimiento degradado, no gire, pliegue, pellizque ni pellizque los cables. No doble los cables más apretados que un radio de 5 cm (2 pulg).
+
+. Una vez colocado el dispositivo en modo de mantenimiento, apague el controlador E5600SG.
++
+.. Inicie sesión en el nodo de grid:
++
+... Introduzca el siguiente comando: `ssh admin@_grid_node_IP_`
+... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+... Introduzca el siguiente comando para cambiar a la raíz: `su -`
+... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
++
+Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para `#`.
+
+
+
+.. Apague el controlador E5600SG: +
+`*shutdown -h now*`
+
+
+. Apague el compartimento y espere a que se hayan detenido todos los LED y la actividad de visualización de siete segmentos de la parte posterior del controlador.
+. Quite los cables.
+. Quite la controladora, como se describe en la documentación de la controladora E5600SG.
+. Inserte la nueva controladora, como se describe en la documentación de la controladora E5600SG.
+. Sustituya todos los cables.
+. Vuelva a encender el compartimento.
+. Supervise los códigos de siete segmentos.
++
+** Controladora E2700:
++
+El estado del LED final es `99`.
+
+** Controladora E5600SG:
++
+El estado del LED final es `HA`.
+
+
+
+. Supervise el estado del nodo de almacenamiento del dispositivo en Grid Manager.
++
+Compruebe que los nodos de almacenamiento del dispositivo vuelven al estado esperado.
+
+
+
+.Información relacionada
+https://mysupport.netapp.com/info/web/ECMP11751516.html["Procedimientos para reemplazar hardware E-Series y EF-Series de NetApp"^]
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61893["Documentación de NetApp: Serie E5600"^]

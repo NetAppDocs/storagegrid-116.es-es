@@ -1,0 +1,14 @@
+---
+permalink: sg5700/installing-hardware.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5700, storage node, storage appliance, hardware, install, installing 
+summary: La instalación del hardware implica la instalación del dispositivo en un armario o rack, la conexión de los cables y la alimentación. 
+---
+= Instalar el hardware (SG5700)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La instalación del hardware implica la instalación del dispositivo en un armario o rack, la conexión de los cables y la alimentación.

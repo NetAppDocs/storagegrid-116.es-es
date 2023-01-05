@@ -1,0 +1,199 @@
+---
+permalink: admin/summary-ip-addresses-and-ports-for-client-connections.html 
+sidebar: sidebar 
+keywords: ip addresses for client, how to connect to storagegrid, ports, vip 
+summary: 'Las aplicaciones cliente pueden conectarse a StorageGRID utilizando la dirección IP de un nodo de grid y el número de puerto de un servicio en ese nodo. Si se configuran los grupos de alta disponibilidad \(ha\), las aplicaciones cliente se pueden conectar mediante la dirección IP virtual del grupo de alta disponibilidad.' 
+---
+= Resumen: Direcciones IP y puertos para conexiones cliente
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Las aplicaciones cliente pueden conectarse a StorageGRID utilizando la dirección IP de un nodo de grid y el número de puerto de un servicio en ese nodo. Si se configuran los grupos de alta disponibilidad, las aplicaciones cliente se pueden conectar mediante la dirección IP virtual del grupo de alta disponibilidad.
+
+.Acerca de esta tarea
+Esta tabla resume las distintas formas en que los clientes pueden conectarse a StorageGRID y las direcciones IP y los puertos que se utilizan para cada tipo de conexión. En las instrucciones se describe cómo encontrar esta información en Grid Manager si ya se han configurado puntos finales de equilibrador de carga y grupos de alta disponibilidad (ha).
+
+[cols="1a,1a,1a,1a"]
+|===
+| Dónde se realiza la conexión | Servicio al que se conecta el cliente | Dirección IP | Puerto 
+
+
+ a| 
+Grupo de ALTA DISPONIBILIDAD
+ a| 
+Equilibrador de carga
+ a| 
+La dirección IP virtual de un grupo de alta disponibilidad
+ a| 
+* Puerto de punto final del equilibrador de carga
+
+
+
+
+ a| 
+Grupo de ALTA DISPONIBILIDAD
+ a| 
+CLB
+
+*Nota:* el servicio CLB está en desuso.
+ a| 
+La dirección IP virtual de un grupo de alta disponibilidad
+ a| 
+Puertos S3 predeterminados:
+
+* HTTPS: 8082
+* HTTP: 8084
+
+
+Puertos Swift predeterminados:
+
+* HTTPS:8083
+* HTTP: 8085
+
+
+
+
+ a| 
+Nodo de administración
+ a| 
+Equilibrador de carga
+ a| 
+La dirección IP del nodo de administrador
+ a| 
+* Puerto de punto final del equilibrador de carga
+
+
+
+
+ a| 
+Nodo de puerta de enlace
+ a| 
+Equilibrador de carga
+ a| 
+La dirección IP del nodo de puerta de enlace
+ a| 
+* Puerto de punto final del equilibrador de carga
+
+
+
+
+ a| 
+Nodo de puerta de enlace
+ a| 
+CLB
+
+*Nota:* el servicio CLB está en desuso.
+ a| 
+La dirección IP del nodo de puerta de enlace
+
+*Nota:* de forma predeterminada, los puertos HTTP para CLB y LDR no están habilitados.
+ a| 
+Puertos S3 predeterminados:
+
+* HTTPS: 8082
+* HTTP: 8084
+
+
+Puertos Swift predeterminados:
+
+* HTTPS:8083
+* HTTP: 8085
+
+
+
+
+ a| 
+Nodo de almacenamiento
+ a| 
+LDR
+ a| 
+La dirección IP del nodo de almacenamiento
+ a| 
+Puertos S3 predeterminados:
+
+* HTTPS: 18082
+* HTTP: 18084
+
+
+Puertos Swift predeterminados:
+
+* HTTPS: 18083
+* HTTP: 18085
+
+
+|===
+.Ejemplos
+Para conectar un cliente S3 al extremo de equilibrio de carga de un grupo ha de nodos de puerta de enlace, utilice una URL estructurada como se muestra a continuación:
+
+* `https://_VIP-of-HA-group:LB-endpoint-port_`
+
+
+Por ejemplo, si la dirección IP virtual del grupo de alta disponibilidad es 192.0.2.5 y el número de puerto de un extremo de equilibrio de carga de S3 es 10443, un cliente de S3 puede usar la siguiente URL para conectarse a StorageGRID:
+
+* `\https://192.0.2.5:10443`
+
+
+Para conectar un cliente Swift al extremo Load Balancer de un grupo de ha de nodos de Gateway, utilice una URL estructurada como se muestra a continuación:
+
+* `https://_VIP-of-HA-group:LB-endpoint-port_`
+
+
+Por ejemplo, si la dirección IP virtual del grupo de alta disponibilidad es 192.0.2.6 y el número de puerto de un extremo de equilibrio de carga de Swift es 10444, un cliente de Swift puede usar la siguiente URL para conectarse a StorageGRID:
+
+* `\https://192.0.2.6:10444`
+
+
+Es posible configurar un nombre DNS para la dirección IP que utilizan los clientes para conectarse a StorageGRID. Póngase en contacto con el administrador de red local.
+
+.Pasos
+. Inicie sesión en Grid Manager mediante una xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+. Para encontrar la dirección IP de un nodo de grid:
++
+.. Seleccione *NODES*.
+.. Seleccione el nodo de administrador, Gateway Node o Storage Node al que desea conectarse.
+.. Seleccione la ficha *Descripción general*.
+.. En la sección Node Information, tenga en cuenta las direcciones IP del nodo.
+.. Seleccione *Mostrar más* para ver las direcciones IPv6 y las asignaciones de interfaz.
++
+Puede establecer conexiones desde aplicaciones cliente a cualquiera de las direcciones IP de la lista:
+
++
+*** *Eth0:* Red Grid
+*** *Eth1:* Red de administración (opcional)
+*** *Eth2:* Red cliente (opcional)
++
+
+NOTE: Si va a ver un nodo de administrador o un nodo de puerta de enlace y es el nodo activo de un grupo de alta disponibilidad, en eth2 se muestra la dirección IP virtual del grupo de alta disponibilidad.
+
+
+
+
+
+. Para buscar la dirección IP virtual de un grupo de alta disponibilidad:
++
+.. Seleccione *CONFIGURACIÓN* > *Red* > *grupos de alta disponibilidad*.
+.. En la tabla, tenga en cuenta la dirección IP virtual del grupo ha.
+
+
+. Para buscar el número de puerto de un extremo Load Balancer:
++
+.. Seleccione *CONFIGURACIÓN* > *Red* > *terminales de equilibrador de carga*.
++
+Aparece la página Load Balancer Endpoints, donde se muestra la lista de puntos finales que ya se han configurado.
+
+.. Seleccione un punto final y seleccione *Editar punto final*.
++
+Se abre la ventana Edit Endpoint y se muestran detalles adicionales sobre el extremo.
+
+.. Confirme que el extremo que ha seleccionado está configurado para su uso con el protocolo correcto (S3 o Swift) y, a continuación, seleccione *Cancelar*.
+.. Tenga en cuenta el número de puerto del extremo que desea utilizar para una conexión de cliente.
++
+
+NOTE: Si el número de puerto es 80 o 443, el extremo se configura únicamente en los nodos de puerta de enlace, ya que esos puertos están reservados en los nodos de administración. Todos los demás puertos están configurados tanto en los nodos de puerta de enlace como en los de administración.
+
+
+
+

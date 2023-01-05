@@ -1,0 +1,118 @@
+---
+permalink: harden/hardening-guidelines-for-storagegrid-nodes.html 
+sidebar: sidebar 
+keywords: hardening guidelines, nodes, security 
+summary: Los nodos StorageGRID se pueden implementar en máquinas virtuales de VMware, en un motor de contenedores en hosts Linux o como dispositivos de hardware dedicados. Cada tipo de plataforma y cada tipo de nodo tiene su propio conjunto de prácticas recomendadas de endurecimiento. 
+---
+= Directrices de refuerzo para nodos de StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Los nodos StorageGRID se pueden implementar en máquinas virtuales de VMware, en un motor de contenedores en hosts Linux o como dispositivos de hardware dedicados. Cada tipo de plataforma y cada tipo de nodo tiene su propio conjunto de prácticas recomendadas de endurecimiento.
+
+
+
+== Configuración del firewall
+
+Como parte del proceso de endurecimiento del sistema, debe revisar las configuraciones de firewall externo y modificarlas para que el tráfico se acepte solo de las direcciones IP y en los puertos de los que se necesite estrictamente.
+
+StorageGRID utiliza un firewall interno que se gestiona automáticamente. Aunque este firewall interno proporciona una capa adicional de protección contra algunas amenazas comunes, no elimina la necesidad de un firewall externo.
+
+Para obtener una lista de todos los puertos internos y externos utilizados por StorageGRID, consulte la guía de instalación de su plataforma.
+
+
+
+== Virtualización, contenedores y hardware compartido
+
+Para todos los nodos de StorageGRID, evite ejecutar StorageGRID en el mismo hardware físico que el software que no es de confianza. No asuma que las protecciones del hipervisor impedirán que el malware acceda a los datos protegidos con StorageGRID si tanto StorageGRID como el malware existen en el mismo hardware físico. Por ejemplo, los ataques Meltdown y Spectre aprovechan vulnerabilidades críticas en los procesadores modernos y permiten a los programas robar datos en memoria en el mismo equipo.
+
+
+
+== Desactive los servicios no utilizados
+
+Para todos los nodos StorageGRID, debe deshabilitar o bloquear el acceso a los servicios que no se utilizan. Por ejemplo, si no tiene pensado configurar el acceso de cliente a los recursos compartidos de auditoría de CIFS o NFS, bloquee o deshabilite el acceso a estos servicios.
+
+
+
+== Proteja los nodos durante la instalación
+
+No permita que los usuarios que no son de confianza accedan a los nodos de StorageGRID a través de la red cuando los nodos se están instalando. Los nodos no son totalmente seguros hasta que se han Unido a la cuadrícula.
+
+
+
+== Directrices para los nodos de administrador
+
+Los nodos de administración, que proporcionan servicios de gestión como configuración, supervisión y registro del sistema. Cuando inicia sesión en el administrador de grid o en el administrador de inquilinos, se conecta a un nodo de administración.
+
+Siga estas directrices para proteger los nodos de administrador en el sistema StorageGRID:
+
+* Proteja todos los nodos de administrador de clientes que no son de confianza, como los que están en Internet abierto. Asegúrese de que ningún cliente que no sea de confianza puede acceder a un nodo de administración en la red de grid, la red de administración o la red de cliente.
+* Los grupos StorageGRID controlan el acceso a las funciones de administrador de grid y administrador de inquilinos. Otorgue a cada grupo de usuarios los permisos mínimos necesarios para su función y utilice el modo de acceso de sólo lectura para evitar que los usuarios cambien la configuración.
+* Cuando se utilizan extremos de equilibrador de carga de StorageGRID, use nodos de puerta de enlace en lugar de nodos de administrador para el tráfico de cliente que no es de confianza.
+* Si tiene inquilinos que no son de confianza, no les permita tener acceso directo al administrador de inquilinos o a la API de gestión de inquilinos. En su lugar, para que los inquilinos que no son de confianza utilicen un portal de inquilinos o un sistema de gestión de inquilinos externo, que interactúa con la API de gestión de inquilinos.
+* De manera opcional, use un proxy de administrador para obtener más control sobre la comunicación de AutoSupport desde los nodos de administrador al soporte de NetApp. Consulte los pasos para crear un proxy de administrador en las instrucciones para administrar StorageGRID.
+* Opcionalmente, utilice los puertos restringidos 8443 y 9443 para separar las comunicaciones de Grid Manager y de arrendatario Manager. Bloquee el puerto compartido 443 y limite las solicitudes de inquilinos al puerto 9443 para obtener una protección adicional.
+* De manera opcional, utilice nodos de administrador separados para los administradores de grid y los usuarios inquilinos.
+
+
+Para obtener más información, consulte las instrucciones para administrar StorageGRID.
+
+
+
+== Directrices para nodos de almacenamiento
+
+Los nodos de almacenamiento gestionan y almacenan metadatos y datos de objetos. Siga estas directrices para proteger los nodos de almacenamiento en el sistema StorageGRID.
+
+* No permita que clientes que no son de confianza se conecten directamente a los nodos de almacenamiento. Utilice un extremo de equilibrio de carga servido por un nodo de puerta de enlace o un equilibrador de carga de terceros.
+* No habilite los servicios de salida para inquilinos que no sean de confianza. Por ejemplo, al crear la cuenta para un arrendatario que no sea de confianza, no permita que el arrendatario utilice su propio origen de identidad y no permita el uso de servicios de plataforma. Consulte los pasos para crear una cuenta de inquilino en las instrucciones para administrar StorageGRID.
+* Utilice un equilibrador de carga de terceros para el tráfico de clientes que no sea de confianza. El equilibrio de carga de terceros ofrece más control y niveles adicionales de protección frente a ataques.
+* Opcionalmente, utilice un proxy de almacenamiento para obtener más control sobre los pools de almacenamiento en cloud y la comunicación de servicios de plataforma de los nodos de almacenamiento a los servicios externos. Consulte los pasos para crear un proxy de almacenamiento en las instrucciones para administrar StorageGRID.
+* Opcionalmente, conéctese a servicios externos mediante la red cliente. A continuación, seleccione *CONFIGURACIÓN* > *Red* > *redes de cliente no fiables* e indique que la red de clientes del nodo de almacenamiento no es de confianza. El nodo de almacenamiento ya no acepta tráfico entrante en la red cliente, pero sigue permitiendo solicitudes salientes para los servicios de plataforma.
+
+
+
+
+== Directrices para los nodos de puerta de enlace
+
+Los nodos de puerta de enlace proporcionan una interfaz opcional de equilibrio de carga que las aplicaciones cliente pueden utilizar para conectarse a StorageGRID. Siga estas directrices para proteger cualquier nodo de puerta de enlace en el sistema StorageGRID:
+
+* Configure y utilice puntos finales del equilibrador de carga en lugar de utilizar el servicio CLB en nodos de puerta de enlace. Consulte los pasos para gestionar el equilibrio de carga en las instrucciones para administrar StorageGRID.
++
+
+NOTE: El servicio CLB está obsoleto.
+
+* Utilice un equilibrador de carga de terceros entre el cliente y los nodos de puerta de enlace o de almacenamiento para buscar tráfico de cliente que no sea de confianza. El equilibrio de carga de terceros ofrece más control y niveles adicionales de protección frente a ataques. Si utiliza un equilibrador de carga de terceros, se puede configurar opcionalmente el tráfico de red para que pase por un extremo de equilibrador de carga interno o se envíe directamente a nodos de almacenamiento.
+* Si utiliza puntos finales de equilibrador de carga, haga que los clientes se conecten a través de la red de cliente de forma opcional. A continuación, seleccione *CONFIGURACIÓN* > *Red* > *redes de cliente no fiables* e indique que la red de cliente del nodo de puerta de enlace no es de confianza. El nodo Gateway sólo acepta tráfico entrante en los puertos configurados explícitamente como extremos equilibradores de carga.
+
+
+
+
+== Directrices para los nodos de dispositivos de hardware
+
+Los dispositivos de hardware StorageGRID están especialmente diseñados para su uso en un sistema StorageGRID. Algunos dispositivos se pueden usar como nodos de almacenamiento. Otros dispositivos se pueden usar como nodos de administrador o nodos de puerta de enlace. Puede combinar nodos de dispositivos con nodos basados en software o poner en marcha grids totalmente diseñados para todos los dispositivos.
+
+Siga estas directrices para proteger cualquier nodo de dispositivo de hardware en el sistema StorageGRID:
+
+* Si el dispositivo utiliza System Manager de SANtricity para la gestión de la controladora de almacenamiento, evite que los clientes que no son de confianza accedan a System Manager de SANtricity a través de la red.
+* Si el dispositivo tiene un controlador de administración de placa base (BMC), tenga en cuenta que el puerto de administración del BMC permite un acceso bajo al hardware. Conecte el puerto de gestión de BMC sólo a una red de gestión interna segura y de confianza. Si no existe dicha red disponible, deje el puerto de administración del BMC desconectado o bloqueado, a menos que el soporte técnico solicite una conexión al BMC.
+* Si el dispositivo admite la administración remota del hardware de la controladora a través de Ethernet mediante el estándar de interfaz de gestión de plataforma inteligente (IPMI), bloquee el tráfico que no sea de confianza en el puerto 623.
+* Si la controladora de almacenamiento del dispositivo incluye unidades FDE o FIPS y la función Drive Security está habilitada, use SANtricity para configurar las claves de seguridad de unidades.
+* Para dispositivos sin unidades FDE o FIPS, habilite el cifrado de nodos con un servidor de gestión de claves (KMS).
+
+
+Consulte las instrucciones de instalación y mantenimiento de su dispositivo de hardware de StorageGRID.
+
+.Información relacionada
+* xref:../rhel/index.adoc[Instale Red Hat Enterprise Linux o CentOS]
+* xref:../ubuntu/index.adoc[Instalar Ubuntu o Debian]
+* xref:../vmware/index.adoc[Instale VMware]
+* xref:../admin/index.adoc[Administre StorageGRID]
+* xref:../tenant/index.adoc[Usar una cuenta de inquilino]
+* xref:../sg100-1000/index.adoc[Servicios de aplicaciones SG100 y SG1000]
+* xref:../sg5600/index.adoc[Dispositivos de almacenamiento SG5600]
+* xref:../sg5700/index.adoc[Dispositivos de almacenamiento SG5700]
+* xref:../sg6000/index.adoc[Dispositivos de almacenamiento SG6000]
+

@@ -1,0 +1,525 @@
+---
+permalink: monitor/alarms-that-generate-snmp-notifications.html 
+sidebar: sidebar 
+keywords: alarms, monitor alarms, snmp notification, snmp 
+summary: En la siguiente tabla se enumeran las alarmas heredadas que generan notificaciones SNMP. A diferencia de las alertas, no todas las alarmas generan notificaciones SNMP. Sólo las alarmas mostradas generan notificaciones SNMP y sólo con la gravedad o superior indicadas. 
+---
+= Alarmas que generan notificaciones SNMP (sistema heredado)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En la siguiente tabla se enumeran las alarmas heredadas que generan notificaciones SNMP. A diferencia de las alertas, no todas las alarmas generan notificaciones SNMP. Sólo las alarmas mostradas generan notificaciones SNMP y sólo con la gravedad o superior indicadas.
+
+
+NOTE: Aunque el sistema de alarma heredado sigue siendo compatible, el sistema de alerta ofrece importantes ventajas y es más fácil de usar.
+
+[cols="1a,2a,1a"]
+|===
+| Codificación | Nombre | Gravedad 
+
+
+ a| 
+ACMS
+ a| 
+Servicios de metadatos disponibles
+ a| 
+Crítico
+
+
+
+ a| 
+AITE
+ a| 
+Recuperar estado
+ a| 
+Menor
+
+
+
+ a| 
+UIT
+ a| 
+Recuperar estado
+ a| 
+Importante
+
+
+
+ a| 
+AQS
+ a| 
+Mensajes de auditoría en cola
+ a| 
+Aviso
+
+
+
+ a| 
+AOTE
+ a| 
+Estado de la tienda
+ a| 
+Menor
+
+
+
+ a| 
+UOT
+ a| 
+Estado de la tienda
+ a| 
+Importante
+
+
+
+ a| 
+ROQ
+ a| 
+Objetos en cola
+ a| 
+Menor
+
+
+
+ a| 
+ARRF
+ a| 
+Fallos de solicitudes
+ a| 
+Importante
+
+
+
+ a| 
+ARRV
+ a| 
+Errores de verificación
+ a| 
+Importante
+
+
+
+ a| 
+ARVF
+ a| 
+Errores de almacenamiento
+ a| 
+Importante
+
+
+
+ a| 
+ASXP
+ a| 
+Acciones de auditoría
+ a| 
+Menor
+
+
+
+ a| 
+AUMA
+ a| 
+Estado de AMS
+ a| 
+Menor
+
+
+
+ a| 
+AUXS
+ a| 
+Estado de exportación de auditoría
+ a| 
+Menor
+
+
+
+ a| 
+BTOF
+ a| 
+Desviación
+ a| 
+Aviso
+
+
+
+ a| 
+CAHP
+ a| 
+Porcentaje de uso de Java Heap
+ a| 
+Importante
+
+
+
+ a| 
+CAQH
+ a| 
+Número de destinos disponibles
+ a| 
+Aviso
+
+
+
+ a| 
+CASA
+ a| 
+Estado del almacén de datos
+ a| 
+Importante
+
+
+
+ a| 
+CDLP
+ a| 
+Espacio usado de metadatos (porcentaje)
+ a| 
+Importante
+
+
+
+ a| 
+CLBE
+ a| 
+Estado CLB
+ a| 
+Crítico
+
+
+
+ a| 
+DNST
+ a| 
+Estado de DNS
+ a| 
+Crítico
+
+
+
+ a| 
+ECST
+ a| 
+Estado de verificación
+ a| 
+Importante
+
+
+
+ a| 
+HSTE
+ a| 
+Estado HTTP
+ a| 
+Importante
+
+
+
+ a| 
+HTA
+ a| 
+HTTP de inicio automático
+ a| 
+Aviso
+
+
+
+ a| 
+PERDIDO
+ a| 
+Objetos perdidos
+ a| 
+Importante
+
+
+
+ a| 
+MINQ
+ a| 
+Notificaciones de correo electrónico en cola
+ a| 
+Aviso
+
+
+
+ a| 
+MIN
+ a| 
+Estado de las notificaciones por correo electrónico
+ a| 
+Menor
+
+
+
+ a| 
+NANG
+ a| 
+Configuración de negociación automática de red
+ a| 
+Aviso
+
+
+
+ a| 
+NDUP
+ a| 
+Configuración dúplex de red
+ a| 
+Menor
+
+
+
+ a| 
+NLNK
+ a| 
+Detección de enlace de red
+ a| 
+Menor
+
+
+
+ a| 
+NRER
+ a| 
+Recibir errores
+ a| 
+Aviso
+
+
+
+ a| 
+NSPD
+ a| 
+Velocidad
+ a| 
+Aviso
+
+
+
+ a| 
+NTER
+ a| 
+Errores de transmisión
+ a| 
+Aviso
+
+
+
+ a| 
+NTFQ
+ a| 
+Compensación de frecuencia NTP
+ a| 
+Menor
+
+
+
+ a| 
+NTLK
+ a| 
+Bloqueo NTP
+ a| 
+Menor
+
+
+
+ a| 
+NOTF
+ a| 
+Ajuste de tiempo NTP
+ a| 
+Menor
+
+
+
+ a| 
+NTSJ
+ a| 
+Variación de origen de tiempo seleccionada
+ a| 
+Menor
+
+
+
+ a| 
+NTSU
+ a| 
+Estado de NTP
+ a| 
+Importante
+
+
+
+ a| 
+OPST
+ a| 
+Estado general de la alimentación
+ a| 
+Importante
+
+
+
+ a| 
+ORSU
+ a| 
+Estado de replicación saliente
+ a| 
+Aviso
+
+
+
+ a| 
+PSA
+ a| 
+Estado del suministro de alimentación de
+ a| 
+Importante
+
+
+
+ a| 
+PSBS
+ a| 
+Estado de la fuente de alimentación B
+ a| 
+Importante
+
+
+
+ a| 
+RDTE
+ a| 
+Estado de Tivoli Storage Manager
+ a| 
+Aviso
+
+
+
+ a| 
+RDTU
+ a| 
+Estado de Tivoli Storage Manager
+ a| 
+Importante
+
+
+
+ a| 
+VICEPRESIDENTE
+ a| 
+Espacio útil total (porcentaje)
+ a| 
+Aviso
+
+
+
+ a| 
+SHLH
+ a| 
+Salud
+ a| 
+Aviso
+
+
+
+ a| 
+SLSA
+ a| 
+Promedio de carga de CPU
+ a| 
+Aviso
+
+
+
+ a| 
+SMTT
+ a| 
+Total de eventos
+ a| 
+Aviso
+
+
+
+ a| 
+SNST
+ a| 
+Estado
+ a| 
+
+
+
+ a| 
+SEDA
+ a| 
+Estado del sistema operativo de almacenamiento
+ a| 
+Aviso
+
+
+
+ a| 
+SST
+ a| 
+Estado del almacenamiento
+ a| 
+Aviso
+
+
+
+ a| 
+VST DE NETAPP
+ a| 
+Estado
+ a| 
+Aviso
+
+
+
+ a| 
+TMEM
+ a| 
+Memoria instalada
+ a| 
+Menor
+
+
+
+ a| 
+UMEM
+ a| 
+Memoria disponible
+ a| 
+Menor
+
+
+
+ a| 
+VMST
+ a| 
+Estado
+ a| 
+Menor
+
+
+
+ a| 
+VPRI
+ a| 
+Prioridad de verificación
+ a| 
+Aviso
+
+
+
+ a| 
+VSTU
+ a| 
+Estado de verificación de objetos
+ a| 
+Aviso
+
+|===

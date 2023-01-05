@@ -1,0 +1,231 @@
+---
+permalink: primer/exploring-grid-manager.html 
+sidebar: sidebar 
+keywords: what is the grid manager, grid manager dashboard 
+summary: Grid Manager es una interfaz gráfica basada en navegador que permite configurar, administrar y supervisar el sistema StorageGRID. 
+---
+= Explore Grid Manager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Grid Manager es una interfaz gráfica basada en navegador que permite configurar, administrar y supervisar el sistema StorageGRID.
+
+Cuando inicia sesión en Grid Manager, se conecta a un nodo de administración. Cada sistema StorageGRID incluye un nodo de administrador primario y cualquier número de nodos de administrador que no son primarios. Puede conectarse a cualquier nodo de administrador y cada nodo de administrador muestra una vista similar del sistema StorageGRID.
+
+Puede acceder a Grid Manager mediante una xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+
+
+
+== Consola de Grid Manager
+
+Cuando inicie sesión por primera vez en Grid Manager, puede utilizar el panel para supervisar las actividades del sistema de un vistazo.
+
+La consola incluye información resumida sobre el estado del sistema, el uso del almacenamiento, los procesos del ILM y las operaciones de S3 y Swift.
+
+image::../media/grid_manager_dashboard.png[De Grid Manager]
+
+Para obtener una explicación de la información de cada panel, haga clic en el icono de ayuda image:../media/icon_nms_question.png["icono de signo de interrogación"] para ese panel.
+
+.Leer más
+* xref:../monitor/index.adoc[Supervisión y solución de problemas]
+
+
+
+
+== Campo de búsqueda
+
+El campo *Buscar* de la barra de encabezado permite navegar rápidamente a una página específica dentro de Grid Manager. Por ejemplo, puede introducir *km* para acceder a la página del servidor de administración de claves (KMS). Puede utilizar *Buscar* para buscar entradas en la barra lateral del Gestor de cuadrícula y en los menús Configuración, Mantenimiento y Soporte.
+
+
+
+== Menú Alertas
+
+El menú Alertas proporciona una interfaz fácil de usar para detectar, evaluar y resolver problemas que pueden producirse durante el funcionamiento de StorageGRID.
+
+image::../media/alerts_menu.png[Menú Alertas]
+
+Desde el menú Alertas, puede hacer lo siguiente:
+
+* Revisar las alertas actuales
+* Revisar las alertas resueltas
+* Configure silencios para suprimir notificaciones de alerta
+* Defina reglas de alerta para condiciones que activen alertas
+* Configure el servidor de correo electrónico para las notificaciones de alertas
+
+
+.Leer más
+* xref:monitoring-and-managing-alerts.adoc[Supervisar y gestionar alertas]
+* xref:../monitor/index.adoc[Supervisión y solución de problemas]
+
+
+
+
+== Nodos
+
+La página nodos muestra información sobre la cuadrícula completa, cada sitio de la cuadrícula y cada nodo de un sitio.
+
+La página de inicio de los nodos muestra métricas combinadas para toda la cuadrícula. Para ver la información de un sitio o nodo en particular, seleccione el sitio o el nodo.
+
+image::../media/nodes_menu.png[página principal de nodos]
+
+.Leer más
+* xref:viewing-nodes-page.adoc[Vea la página Nodes]
+* xref:../monitor/index.adoc[Supervisión y solución de problemas]
+
+
+
+
+== Inquilinos
+
+La página Tenants permite crear y supervisar las cuentas de inquilinos de almacenamiento para el sistema StorageGRID. Debe crear al menos una cuenta de inquilino para especificar quién puede almacenar y recuperar objetos y qué funcionalidad está disponible para ellos.
+
+La página Tenants también proporciona detalles de uso para cada cliente, incluyendo la cantidad de almacenamiento usado y el número de objetos. Si establece una cuota cuando creó el arrendatario, puede ver la cantidad de esa cuota que se ha utilizado.
+
+image::../media/tenants_menu_and_page.png[Menú y página de arrendatarios]
+
+.Leer más
+* xref:managing-tenants-and-client-connections.adoc[Gestione inquilinos y conexiones de clientes]
+* xref:../admin/index.adoc[Administre StorageGRID]
+* xref:../tenant/index.adoc[Usar una cuenta de inquilino]
+
+
+
+
+== Menú ILM
+
+El menú ILM permite configurar las reglas y las políticas de gestión del ciclo de vida de la información (ILM) que rigen la durabilidad y la disponibilidad de los datos. También puede introducir un identificador de objeto para ver los metadatos de ese objeto.
+
+image::../media/ilm_menu_and_page.png[Menú y página de ILM]
+
+.Leer más
+* xref:using-information-lifecycle-management.adoc[Utilizar la gestión del ciclo de vida de la información]
+* xref:../ilm/index.adoc[Gestión de objetos con ILM]
+
+
+
+
+== Menú de configuración
+
+El menú Configuración le permite especificar los ajustes de red, la configuración de seguridad, la configuración del sistema, las opciones de supervisión y las opciones de control de acceso.
+
+image::../media/configuration_menu.png[Menú de configuración]
+
+.Leer más
+* xref:configuring-network-settings.adoc[Configure los ajustes de red]
+* xref:managing-tenants-and-client-connections.adoc[Gestione inquilinos y conexiones de clientes]
+* xref:reviewing-audit-messages.adoc[Revisar los mensajes de auditoría]
+* xref:controlling-storagegrid-access.adoc[Control del acceso a StorageGRID]
+* xref:../admin/index.adoc[Administre StorageGRID]
+* xref:../monitor/index.adoc[Supervisión y solución de problemas]
+* xref:../audit/index.adoc[Revisar los registros de auditoría]
+
+
+
+
+== Menú de mantenimiento
+
+El menú Mantenimiento le permite realizar tareas de mantenimiento, mantenimiento del sistema y mantenimiento de la red.
+
+image::../media/maintenance_menu.png[Menú y página de mantenimiento]
+
+
+
+=== Tareas
+
+Las tareas de mantenimiento incluyen:
+
+* Retirada de operaciones para eliminar sitios y nodos de grid no utilizados.
+* Operaciones de ampliación para añadir nuevos sitios y nodos de grid.
+* Operaciones de recuperación para reemplazar un nodo con fallos y restaurar datos.
+* Comprobación de la existencia del objeto para verificar la existencia (aunque no la corrección) de los datos del objeto.
+
+
+
+
+=== Sistema
+
+Algunas de las tareas de mantenimiento del sistema que se pueden realizar son:
+
+* Consulta de detalles de la licencia de StorageGRID actual o carga de una nueva licencia.
+* Generación de un paquete de recuperación.
+* Realizar actualizaciones del software StorageGRID, incluidas actualizaciones de software, correcciones urgentes y actualizaciones del software de sistema operativo SANtricity en dispositivos seleccionados.
+
+
+
+
+=== Red
+
+Algunas de las tareas de mantenimiento de red que puede realizar son:
+
+* Edición de información sobre servidores DNS.
+* Configurar las subredes utilizadas en la red de cuadrícula.
+* Editar información sobre los servidores NTP.
+
+
+.Leer más
+* xref:performing-maintenance-procedures.adoc[Realizar el mantenimiento]
+* xref:downloading-recovery-package.adoc[Descargue el paquete de recuperación]
+* xref:../expand/index.adoc[Amplíe su grid]
+* xref:../upgrade/index.adoc[Actualizar el software de]
+* xref:../maintain/index.adoc[Recuperación y mantenimiento]
+* xref:../sg6000/index.adoc[Dispositivos de almacenamiento SG6000]
+* xref:../sg5700/index.adoc[Dispositivos de almacenamiento SG5700]
+* xref:../sg5600/index.adoc[Dispositivos de almacenamiento SG5600]
+
+
+
+
+== Menú de soporte
+
+El menú Soporte ofrece opciones que ayudan al soporte técnico a analizar y solucionar problemas del sistema. Hay dos partes en el menú Soporte: Herramientas y alarmas (heredadas).
+
+image::../media/support_menu.png[Menú de soporte]
+
+
+
+=== Herramientas
+
+En la sección Herramientas del menú Soporte, puede:
+
+* Habilite AutoSupport.
+* Realice un conjunto de comprobaciones de diagnóstico en el estado actual de la cuadrícula.
+* Acceda al árbol de topología de la cuadrícula para ver información detallada sobre los nodos de la cuadrícula, los servicios y los atributos.
+* Recuperar los archivos de registro y los datos del sistema.
+* Revise las métricas y los gráficos detallados.
++
+
+IMPORTANT: Las herramientas disponibles en la opción * Metrics* están diseñadas para su uso por el soporte técnico. Algunas funciones y elementos de menú de estas herramientas no son intencionalmente funcionales.
+
+
+
+
+
+=== Alarmas (heredadas)
+
+En la sección Alarmas (heredadas) del menú Soporte, puede revisar las alarmas actuales, históricas y globales, configurar eventos personalizados y configurar notificaciones por correo electrónico para alarmas heredadas y AutoSupport.
+
+
+NOTE: Aunque el sistema de alarma heredado sigue siendo compatible, el sistema de alerta ofrece importantes ventajas y es más fácil de usar.
+
+.Leer más
+* xref:storagegrid-architecture-and-network-topology.adoc[Arquitectura de StorageGRID y topología de red]
+* xref:viewing-nodes-page.adoc[Atributos de la StorageGRID]
+* xref:using-storagegrid-support-options.adoc[Use las opciones de soporte de StorageGRID]
+* xref:../admin/index.adoc[Administre StorageGRID]
+* xref:../monitor/index.adoc[Supervisión y solución de problemas]
+
+
+
+
+== Menú de ayuda
+
+La opción Ayuda proporciona acceso al centro de documentación de StorageGRID para la versión actual y a la documentación de API. También puede determinar qué versión de StorageGRID está instalada actualmente.
+
+image::../media/help_menu.png[Menú Ayuda]
+
+.Leer más
+* xref:../admin/index.adoc[Administre StorageGRID]
+

@@ -1,0 +1,103 @@
+---
+permalink: sg5600/replacing-e2700-controller.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, hardware, Replacing, replace, E2700, controller, remove, removing, removal, install, installing, installation 
+summary: Tal vez deba sustituir la controladora E2700 si no funciona de forma óptima o ha fallado. 
+---
+= Sustituya la controladora E2700
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tal vez deba sustituir la controladora E2700 si no funciona de forma óptima o ha fallado.
+
+.Lo que necesitará
+* Tiene una controladora de sustitución con el mismo número de pieza que la controladora que desea sustituir.
+* Tiene etiquetas para identificar cada cable conectado a la controladora.
+* Tiene protección antiestática.
+* Debe tener los permisos de mantenimiento o acceso raíz. Para obtener más detalles, consulte las instrucciones para administrar StorageGRID.
+
+
+.Acerca de esta tarea
+Puede determinar si tiene un controlador que ha fallado comprobando el LED ámbar de acción de servicio requerida en el controlador (se muestra como 1 en la ilustración). Si este LED está encendido, se debe sustituir el controlador.
+
+image::../media/e2700_controller_sar_led.gif[LED de acción de servicio requerida en la controladora E2700]
+
+No se podrá acceder al nodo de almacenamiento del dispositivo cuando se sustituye la controladora. Si la controladora E2700 funciona lo suficiente, puede colocar la controladora E5600SG en modo de mantenimiento.
+
+Al sustituir una controladora, debe quitar la batería de la controladora original e instalarla en la controladora de reemplazo.
+
+.Pasos
+. Prepárese para quitar el controlador.
++
+El administrador del almacenamiento de SANtricity se utiliza para realizar estos pasos.
+
++
+.. Anote en qué versión del software de sistema operativo SANtricity está instalada actualmente en la controladora.
+.. Anote en qué versión de NVSRAM está instalada actualmente.
+.. Si la función Drive Security está habilitada, asegúrese de que existe una clave guardada y de que conoce la frase de contraseña necesaria para instalarla.
++
+
+IMPORTANT: *Posible pérdida de acceso a datos y#8212;* Si todas las unidades del dispositivo tienen la seguridad habilitada, el nuevo controlador no podrá acceder al dispositivo hasta que desbloquee las unidades seguras mediante la ventana de administración empresarial de SANtricity Storage Manager.
+
+.. Realice un backup de la base de datos de configuración.
++
+Si se produce un problema al quitar una controladora, puede usar el archivo guardado para restaurar la configuración.
+
+.. Recopile datos de soporte del dispositivo.
++
+
+NOTE: La recogida de datos de soporte antes y después de reemplazar un componente garantiza que se pueda enviar un conjunto completo de registros al soporte técnico en caso de que el reemplazo no resuelva el problema.
+
+
+
+. Si el dispositivo StorageGRID se ejecuta en un sistema StorageGRID, xref:placing-appliance-into-maintenance-mode.adoc[Coloque la controladora E5600SG en modo de mantenimiento].
+. Si la controladora E2700 funciona lo suficiente para permitir un apagado controlado, confirme que todas las operaciones se han completado.
++
+.. En la barra de título de Array Management Window, seleccione *Monitor* > *Informes* > *Operaciones en curso*.
+.. Confirmar que se han completado todas las operaciones.
+
+
+. Siga las instrucciones del procedimiento de sustitución para una controladora E2700 simple a fin de completar los siguientes pasos:
++
+.. Etiquete los cables y desconecte los cables.
++
+
+IMPORTANT: Para evitar un rendimiento degradado, no gire, pliegue, pellizque ni pellizque los cables.
+
+.. Retire el controlador que ha fallado del dispositivo.
+.. Retire la cubierta del controlador.
+.. Desenrosque el tornillo de ajuste manual y retire la batería del controlador que ha fallado.
+.. Instale la batería en el controlador de repuesto y vuelva a colocar la cubierta del controlador.
+.. Instale el controlador de repuesto en el aparato.
+.. Sustituya los cables.
+.. Espere a que se reinicie la controladora E2700. Compruebe que la pantalla de siete segmentos muestra el estado de `99`.
+
+
+. Si el dispositivo utiliza unidades seguras, importe la clave de seguridad de la unidad.
+. Vuelva a poner el aparato en modo de funcionamiento normal. En el instalador del dispositivo StorageGRID, seleccione *Avanzado* > *Reiniciar controlador* y, a continuación, seleccione *Reiniciar en StorageGRID*.
++
+image::../media/reboot_controller_from_maintenance_mode.png[Reinicie la controladora en modo de mantenimiento]
+
++
+Durante el reinicio, aparece la siguiente pantalla:
+
++
+image::../media/reboot_controller_in_progress.png[Reinicio en curso]
+
++
+El dispositivo se reinicia y vuelve a unir la cuadrícula. Este proceso puede llevar hasta 20 minutos.
+
+. Confirme que el reinicio ha finalizado y que el nodo se ha vuelto a unir a la cuadrícula. En Grid Manager, compruebe que la página Nodes muestra un estado normal (sin iconos a la izquierda del nombre del nodo) del nodo de dispositivo, lo que indica que no hay alertas activas y que el nodo está conectado a la cuadrícula.
++
+image::../media/node_rejoin_grid_confirmation.png[El nodo del dispositivo se ha vuelto a unir a la cuadrícula]
+
+. En SANtricity Storage Manager, confirme que el estado de la nueva controladora es óptimo y recoja datos de soporte.
+
+
+.Información relacionada
+https://mysupport.netapp.com/info/web/ECMP11751516.html["Procedimientos para reemplazar hardware E-Series y EF-Series de NetApp"^]
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61765["Documentación de NetApp: Serie E2700"^]

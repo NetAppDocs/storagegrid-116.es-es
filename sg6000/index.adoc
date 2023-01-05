@@ -1,0 +1,35 @@
+---
+permalink: sg6000/index.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, overview, models, features 
+summary: 'Los dispositivos SG6000 de StorageGRID son plataformas informáticas y de almacenamiento integradas que funcionan como nodos de almacenamiento en un sistema StorageGRID. Estos dispositivos se pueden utilizar en un entorno de grid híbrido que combina nodos de almacenamiento de dispositivos y nodos de almacenamiento virtuales \(basados en software\).' 
+---
+= Dispositivos SG6000: Descripción general
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Los dispositivos SG6000 de StorageGRID son plataformas informáticas y de almacenamiento integradas que funcionan como nodos de almacenamiento en un sistema StorageGRID. Estos dispositivos se pueden utilizar en un entorno de grid híbrido que combina nodos de almacenamiento de dispositivos y nodos de almacenamiento virtuales (basados en software).
+
+Los dispositivos SG6000 ofrecen las siguientes características:
+
+* Disponible en tres modelos:
++
+** SG6060, que incluye 60 unidades, admite bandejas de expansión y utiliza controladoras E2800A.
+** SG606060X, que incluye 60 unidades, admite bandejas de expansión y utiliza controladoras E2800B.
++
+
+NOTE: El SG6060 y SG606060X tienen las mismas especificaciones y funciones, a excepción de la ubicación de los puertos de interconexión en las controladoras de almacenamiento.
+
+** SGF6024, que ofrece 24 unidades de estado sólido (SSD).
+
+
+* Integre los elementos de computación y almacenamiento para un nodo de almacenamiento de StorageGRID.
+* Incluya el instalador de dispositivos StorageGRID para simplificar la puesta en marcha y la configuración del nodo de almacenamiento.
+* Incluir System Manager de SANtricity para gestionar y supervisar las controladoras de almacenamiento y las unidades.
+* Incluya una controladora de gestión en placa base (BMC) para supervisar y diagnosticar el hardware en la controladora de computación.
+* Admite hasta cuatro conexiones de 10 GbE o 25 GbE a la red Grid y a la red cliente de StorageGRID.
+* Admite unidades de estándar de procesamiento de información federal (FIPS). Cuando estas unidades se usan con la función Drive Security en SANtricity System Manager, se evita el acceso no autorizado a los datos.
+

@@ -1,0 +1,66 @@
+---
+permalink: sg5600/configuring-autosupport.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, configure, configuring, set up, setup, autosupport, auto support 
+summary: La herramienta AutoSupport recoge datos en un bundle de soporte al cliente desde el dispositivo y envía automáticamente los datos al soporte técnico. La configuración de AutoSupport ayuda al soporte técnico con la solución de problemas y el análisis de problemas de forma remota. 
+---
+= Configure AutoSupport
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La herramienta AutoSupport recoge datos en un bundle de soporte al cliente desde el dispositivo y envía automáticamente los datos al soporte técnico. La configuración de AutoSupport ayuda al soporte técnico con la solución de problemas y el análisis de problemas de forma remota.
+
+.Lo que necesitará
+* La función AutoSupport debe estar activada y activada en el dispositivo.
++
+La función AutoSupport se activa y desactiva globalmente en una estación de administración del almacenamiento.
+
+* El Monitor de eventos de Storage Manager debe ejecutarse en al menos una máquina con acceso al dispositivo y, preferiblemente, en un equipo como máximo.
+
+
+.Acerca de esta tarea
+Todos los datos se comprimen en un formato de archivo comprimido simple (.7z) en la ubicación especificada.
+
+AutoSupport ofrece los siguientes tipos de mensajes:
+
+|===
+| Tipos de mensaje | Descripción 
+
+
+ a| 
+Mensajes de eventos
+ a| 
+* Se envían cuando ocurre un evento de soporte en el dispositivo gestionado
+* Incluir información de diagnóstico y configuración del sistema
+
+
+
+
+ a| 
+Mensajes diarios
+ a| 
+* Se envía una vez al día durante un intervalo de tiempo configurable por el usuario en la hora local del dispositivo
+* Incluyen los registros de eventos del sistema y los datos de rendimiento actuales
+
+
+
+
+ a| 
+Mensajes semanales
+ a| 
+* Se envía una vez cada semana durante un intervalo de tiempo que el usuario puede configurar en la hora local del aparato
+* Incluir información de estado del sistema y la configuración
+
+
+|===
+.Pasos
+. En la ventana de administración de empresa del Administrador de almacenamiento de SANtricity, seleccione la ficha *dispositivos* y, a continuación, seleccione *matrices de almacenamiento detectadas*.
+. Seleccione *Herramientas* > *AutoSupport* > *Configuración*.
+. Si es necesario, utilice la ayuda en línea de SANtricity Storage Manager para completar la tarea.
+
+
+.Información relacionada
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61197["Documentación de NetApp: SANtricity Storage Manager"^]

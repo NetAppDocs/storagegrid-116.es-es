@@ -1,0 +1,43 @@
+---
+permalink: maintain/fixing-missing-block-device-errors.html 
+sidebar: sidebar 
+keywords: storagegrid, missing block device, block device error 
+summary: 'El sistema comprueba que cada nodo recuperado se asigna a un archivo especial de dispositivo de bloque válido o a un archivo especial de dispositivo de bloque válido. Si StorageGRID encuentra una asignación no válida en `/etc/storagegrid/nodes/_node-name_.conf` archivo, aparece un error de dispositivo de bloque ausente.' 
+---
+= Solucione los errores de dispositivo de bloque que faltan
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El sistema comprueba que cada nodo recuperado se asigna a un archivo especial de dispositivo de bloque válido o a un archivo especial de dispositivo de bloque válido. Si StorageGRID encuentra una asignación no válida en `/etc/storagegrid/nodes/_node-name_.conf` archivo, aparece un error de dispositivo de bloque ausente.
+
+Si observa un error que coincide con este patrón:
+
+`Checking configuration file /etc/storagegrid/nodes/_node-name_.conf for node _node-name_...`
+`ERROR: _node-name_: BLOCK_DEVICE_PURPOSE = _path-name_`' _node-name_: _path-name_ no existe'
+
+Significa eso `/etc/storagegrid/nodes/_node-name_.conf` Asigna el dispositivo de bloque utilizado por _node-name_ CON EL PROPÓSITO del nombre de ruta de acceso dado en el sistema de archivos Linux, pero no hay un archivo especial de dispositivo de bloque válido o softlink a un archivo especial de dispositivo de bloque, en esa ubicación.
+
+Compruebe que ha completado los pasos de la xref:deploying-new-linux-hosts.adoc[Implemente nuevos hosts Linux]. Utilice los mismos nombres de dispositivo persistentes para todos los dispositivos de bloque que se usaron en el host original.
+
+Si no puede restaurar o volver a crear el archivo especial del dispositivo de bloque que falta, puede asignar un nuevo dispositivo de bloque del tamaño y categoría de almacenamiento adecuados y editar el archivo de configuración del nodo para cambiar el valor de BLOCK_DEVICE_PURPOSE para que apunte al nuevo archivo especial del dispositivo de bloque.
+
+Determine el tamaño y la categoría de almacenamiento adecuados de las tablas de la sección «requisitos de almacenamiento» de las instrucciones de instalación del sistema operativo Linux. Revise las recomendaciones que se indican en «"Configuración del almacenamiento host"» antes de proceder con la sustitución del dispositivo de bloque.
+
+
+IMPORTANT: Si debe proporcionar un nuevo dispositivo de almacenamiento en bloques para cualquiera de las variables del archivo de configuración que comiencen con `BLOCK_DEVICE_` debido a que el dispositivo de bloque original se perdió con el host con error, asegúrese de que el nuevo dispositivo de bloque no tiene formato antes de intentar realizar más procedimientos de recuperación. El nuevo dispositivo de bloques no formateará si utiliza almacenamiento compartido y ha creado un volumen nuevo. Si no está seguro, ejecute el siguiente comando en cualquier archivo especial nuevo del dispositivo de almacenamiento en bloques.
+
+PRECAUCIÓN:
+
+Ejecute el siguiente comando solo para nuevos dispositivos de almacenamiento en bloques. No ejecute este comando si cree que el almacenamiento en bloque sigue contiene datos válidos para el nodo que se va a recuperar, ya que se perderán todos los datos del dispositivo.
+
+[listing]
+----
+sudo dd if=/dev/zero of=/dev/mapper/my-block-device-name bs=1G count=1
+----
+.Información relacionada
+xref:../rhel/index.adoc[Instale Red Hat Enterprise Linux o CentOS]
+
+xref:../ubuntu/index.adoc[Instalar Ubuntu o Debian]

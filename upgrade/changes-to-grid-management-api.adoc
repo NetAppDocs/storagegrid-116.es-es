@@ -1,0 +1,88 @@
+---
+permalink: upgrade/changes-to-grid-management-api.html 
+sidebar: sidebar 
+keywords: grid management api, api, api version, swagger, rest api 
+summary: StorageGRID 11.6 utiliza la versión 3 de la API de administración de grid. La versión 3 deja obsoleto la versión 2; sin embargo, la versión 1 y la versión 2 siguen siendo compatibles. 
+---
+= Cambios en la API de gestión de grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 11.6 utiliza la versión 3 de la API de administración de grid. La versión 3 deja obsoleto la versión 2; sin embargo, la versión 1 y la versión 2 siguen siendo compatibles.
+
+
+IMPORTANT: Puede continuar utilizando la versión 1 y versión 2 de la API de gestión con StorageGRID 11.6; sin embargo, la compatibilidad con estas versiones de la API se eliminará en una versión futura de StorageGRID. Después de actualizar a StorageGRID 11.6, las API v1 y v2 obsoletas se pueden desactivar mediante la `PUT /grid/config/management` API.
+
+Para obtener más información, visite xref:../admin/using-grid-management-api.adoc[Utilice la API de gestión de grid].
+
+
+
+== Puede acceder a los documentos de Swagger para operaciones de API privadas
+
+Ahora puede acceder a los documentos de Swagger para la API privada desde Grid Manager. Para ver las operaciones disponibles, seleccione el icono de ayuda de Grid Manager y seleccione *Documentación de API*. A continuación, seleccione *Ir a documentación privada de API* en la página API de administración de StorageGRID.
+
+Las API privadas de StorageGRID están sujetas a cambios sin previo aviso. Los extremos privados de StorageGRID también ignoran la versión de API de la solicitud.
+
+
+
+== API basadas en alarmas obsoletas
+
+La versión 11.6 deja obsoleto todas las API basadas en alarmas. Este cambio afecta a las siguientes API:
+
+* `GET /grid/alarms`: Totalmente obsoleto
+* `GET /grid/health/topology`: Totalmente obsoleto
+* `GET /grid/health`: La `alarm-counts` la sección de la respuesta está obsoleta
+
+
+
+
+== Puede importar claves de acceso de S3
+
+Ahora puede usar la API de gestión de grid para importar claves de acceso S3 para usuarios inquilinos. Por ejemplo, es posible migrar claves de acceso de otro proveedor S3 a StorageGRID o usar esta función para mantener las credenciales de usuario iguales entre grids.
+
+
+IMPORTANT: Cuando esta función está habilitada, cualquier usuario de Grid Manager con permiso Cambiar contraseña raíz de inquilino tiene acceso completo a los datos de arrendatario. Deshabilite esta función inmediatamente después del uso para proteger los datos de inquilino.
+
+
+
+== Operaciones de cuenta nueva
+
+Tres nuevos `grid/account` Se añadieron operaciones de API:
+
+* `POST /grid​/account-enable-s3-key-import`: Esta solicitud habilita la función Importar credenciales S3. Debe tener el permiso acceso raíz para habilitar esta función.
+* `POST /grid​/accounts​/{id}​/users​/{user_id}​/s3-access-keys`: Esta solicitud importa credenciales S3 para un usuario determinado en una cuenta de arrendatario. Debe tener el permiso acceso raíz o Cambiar contraseña raíz de inquilino y debe conocer el ID de usuario y el ID de cuenta de inquilino.
+* `POST /grid​/account-disable-s3-key-import`: Esta solicitud deshabilita la función Importar credenciales S3. Debe tener el permiso acceso raíz para deshabilitar esta función.
+
+
+
+
+== Método DE PARCHE obsoleto
+
+El método DE REVISIÓN ha quedado obsoleto y se eliminará en una versión futura. Según sea necesario, realice una operación PUT para reemplazar un recurso en lugar de utilizar una operación DE REVISIÓN para modificar el recurso.
+
+
+
+== Adiciones a. `grid/logs/collect` extremo
+
+Se han añadido cuatro valores booleanos al `grid/logs/collect` extremo:
+
+* `applicationLogs`: Registros específicos de la aplicación que el soporte técnico utiliza con mayor frecuencia para la solución de problemas. Los registros recopilados son un subconjunto de los registros de aplicación disponibles. El valor predeterminado es `true`.
+* `auditLogs`: Registros que contienen los mensajes de auditoría generados durante el funcionamiento normal del sistema. El valor predeterminado es `true`.
+* `networkTrace`: Registros utilizados para la depuración de red. El valor predeterminado es `false`.
+* `prometheusDatabase`: Métricas de series temporales de los servicios en todos los nodos. El valor predeterminado es `false`.
+
+
+
+
+== Nuevo `​node-details /grid​/service-ids` extremo
+
+Lo nuevo `​/grid​/service-ids` El extremo proporciona una asignación de UUID de nodo a los nombres de nodo, identificadores de servicio y tipos de servicio asociados.
+
+
+
+== Puede recuperar las contraseñas de la consola de los nodos de grid
+
+Ahora puede utilizar `POST ​/grid​/node-console-passwords` para recuperar la lista de nodos de grid y sus contraseñas de la consola asociadas.

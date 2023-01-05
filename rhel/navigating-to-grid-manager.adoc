@@ -1,0 +1,45 @@
+---
+permalink: rhel/navigating-to-grid-manager.html 
+sidebar: sidebar 
+keywords: how to navigate to grid manager 
+summary: El Gestor de cuadrícula se utiliza para definir toda la información necesaria para configurar el sistema StorageGRID. 
+---
+= Desplácese hasta Grid Manager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El Gestor de cuadrícula se utiliza para definir toda la información necesaria para configurar el sistema StorageGRID.
+
+.Lo que necesitará
+El nodo de administración principal debe estar implementado y haber completado la secuencia de inicio inicial.
+
+.Pasos
+. Abra el explorador web y desplácese hasta una de las siguientes direcciones:
+
+
+[listing]
+----
+https://primary_admin_node_ip
+
+client_network_ip
+----
+También puede acceder a Grid Manager en el puerto 8443:
+
+[listing]
+----
+https://primary_admin_node_ip:8443
+----
+
+NOTE: Puede usar la dirección IP para la IP del nodo de administración principal en la red de grid o en la red de administración, según corresponda a su configuración de red.
+
+. Haga clic en *instalar un sistema StorageGRID*.
++
+Se muestra la página que se utiliza para configurar un sistema StorageGRID.
+
++
+image::../media/gmi_installer_first_screen.gif[Esta imagen se explica por el texto circundante.]
+
+

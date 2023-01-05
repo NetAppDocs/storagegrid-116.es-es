@@ -1,0 +1,27 @@
+---
+permalink: maintain/recovering-nodes-that-fail-to-start-normally.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, node did not start, node fail to start 
+summary: Si un nodo StorageGRID no vuelve a unirse a la cuadrícula con normalidad y no se muestra como recuperable, puede dañarse. Puede forzar el nodo en el modo de recuperación. 
+---
+= Recupere los nodos que no se inician normalmente
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si un nodo StorageGRID no vuelve a unirse a la cuadrícula con normalidad y no se muestra como recuperable, puede dañarse. Puede forzar el nodo en el modo de recuperación.
+
+Para forzar el nodo en el modo de recuperación:
+
+`sudo storagegrid node force-recovery _node-name_`
+
+
+TIP: Antes de emitir este comando, confirme que la configuración de red del nodo es correcta; es posible que no haya podido volver a unirse a la cuadrícula debido a asignaciones de interfaz de red incorrectas o a una dirección IP o puerta de enlace de red de red incorrecta.
+
+
+IMPORTANT: Después de emitir el `storagegrid node force-recovery _node-name_` debe realizar pasos de recuperación adicionales para _node-name_.
+
+.Información relacionada
+xref:whats-next-performing-additional-recovery-steps-if-required.adoc[Lo siguiente: Si es necesario, realice pasos adicionales de recuperación]

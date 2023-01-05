@@ -1,0 +1,41 @@
+---
+permalink: sg6000/network-bond-modes-for-1-gbe-management-ports.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, Network bond, Network bonding, Network bond mode, Network-bond mode, independent, active-backup, active backup, 1-gbe, 1 gbe, sg6000-cn 
+summary: Para los dos puertos de gestión de 1 GbE del controlador SG6000-CN, puede elegir el modo de enlace de red independiente o el modo de enlace de red Active-Backup para conectarse a la red de administración opcional. 
+---
+= Modos de enlace de red para puertos de gestión de 1 GbE
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para los dos puertos de gestión de 1 GbE del controlador SG6000-CN, puede elegir el modo de enlace de red independiente o el modo de enlace de red Active-Backup para conectarse a la red de administración opcional.
+
+En modo independiente, solo el puerto de gestión de la izquierda está conectado a la red del administrador. Este modo no proporciona una ruta de acceso redundante. El puerto de gestión de la derecha no está conectado y está disponible para conexiones locales temporales (utiliza la dirección IP 169.254.0.1)
+
+En el modo Active-Backup, ambos puertos de gestión están conectados a la red Admin. Solo hay un puerto activo a la vez. Si se produce un error en el puerto activo, su puerto de backup proporciona automáticamente una conexión de conmutación por error. La vinculación de estos dos puertos físicos en un puerto de gestión lógica proporciona una ruta redundante a la red de administración.
+
+
+NOTE: Si necesita realizar una conexión local temporal al controlador SG6000-CN cuando los puertos de gestión de 1 GbE están configurados para el modo Active-Backup, retire los cables de ambos puertos de gestión, conecte el cable temporal al puerto de gestión de la derecha y acceda al dispositivo con la dirección IP 169.254.0.1.
+
+image::../media/sg6000_cn_bonded_managemente_ports.gif[Puertos de 1 GbE]
+
+|===
+| Llamada | Modo de enlace de red 
+
+
+ a| 
+A.
+ a| 
+Ambos puertos de gestión están Unidos en un puerto de gestión lógico conectado a la red administrativa.
+
+
+
+ a| 
+YO
+ a| 
+El puerto de la izquierda está conectado a la red de administración. El puerto de la derecha está disponible para conexiones locales temporales (dirección IP 169.254.0.1).
+
+|===

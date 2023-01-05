@@ -1,0 +1,31 @@
+---
+section: fabricpool
+title: Configure FabricPool
+entries:
+- title: Descripción general
+  pdf-filename: Configure StorageGRID para FabricPool
+  url: "/fabricpool/index.html"
+- title: Adjuntar StorageGRID como nivel de cloud
+  entries:
+  - title: Información necesaria para adjuntar StorageGRID como nivel de cloud
+    url: "/fabricpool/information-needed-to-attach-storagegrid-as-cloud-tier.html"
+  - title: Prácticas recomendadas para el equilibrio de carga
+    url: "/fabricpool/best-practices-for-load-balancing.html"
+  - title: Prácticas recomendadas para grupos de alta disponibilidad
+    url: "/fabricpool/best-practices-for-high-availability-groups.html"
+  - title: Configure el servidor DNS
+    url: "/fabricpool/configuring-dns-for-storagegrid-ip-addresses.html"
+  - title: Crear grupo de alta disponibilidad
+    url: "/fabricpool/creating-ha-group-for-fabricpool.html"
+  - title: Crear punto final de equilibrador de carga
+    url: "/fabricpool/creating-load-balancer-endpoint-for-fabricpool.html"
+  - title: Cree una cuenta de inquilino
+    url: "/fabricpool/creating-tenant-account-for-fabricpool.html"
+  - title: Cree un bloque de S3 y obtenga una clave de acceso
+    url: "/fabricpool/creating-s3-bucket-and-access-key.html"
+- title: Use ILM con los datos de FabricPool
+  url: "/fabricpool/using-storagegrid-ilm-with-fabricpool-data.html"
+- title: Crear directiva de clasificación de tráfico
+  url: "/fabricpool/creating-traffic-classification-policy-for-fabricpool.html"
+- title: Otras prácticas recomendadas
+  url: "/fabricpool/other-best-practices-for-storagegrid-and-fabricpool.html"

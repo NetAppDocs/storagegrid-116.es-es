@@ -1,0 +1,290 @@
+---
+permalink: sg5700/status-indicators-on-e5700sg-controller.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5700, storage node, storage appliance, status, indicators, lights, leds, light, led, attention, link, port, ethernet, activity, indicator, boot codes, boot, code, start, startup, start up, start-up, progress, e5700sg, HI, PP, HP, RB, FP, HE, HC, HO, HA, 22, 23, 2A, 2B, 40, 41, 42, 51, 92, 93, 94, 95, 96, A0, A1, A2, A3, AB, AE, EA, E8, EU, EP 
+summary: La pantalla de siete segmentos y los LED del controlador E5700SG muestran el estado y los códigos de error mientras el dispositivo se enciende y mientras el hardware se está inicializando. Estas pantallas se pueden utilizar para determinar el estado y la solución de errores. 
+---
+= Indicadores de estado del controlador E5700SG
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La pantalla de siete segmentos y los LED del controlador E5700SG muestran el estado y los códigos de error mientras el dispositivo se enciende y mientras el hardware se está inicializando. Estas pantallas se pueden utilizar para determinar el estado y la solución de errores.
+
+Una vez iniciado el instalador de dispositivos StorageGRID, es necesario revisar periódicamente los indicadores de estado de la controladora E5700SG.
+
+image::../media/e5700sg_leds.gif[Indicadores de estado del controlador E5700SG]
+
+|===
+|  | Mostrar | Descripción 
+
+
+ a| 
+1
+ a| 
+LED de atención
+ a| 
+Ámbar: El controlador está defectuoso y requiere atención del operador, o no se ha encontrado la secuencia de comandos de instalación.
+
+OFF: La controladora funciona con normalidad.
+
+
+
+ a| 
+2
+ a| 
+Pantalla de siete segmentos
+ a| 
+Muestra un código de diagnóstico
+
+Las secuencias de visualización de siete segmentos le permiten comprender los errores y el estado de funcionamiento del dispositivo.
+
+
+
+ a| 
+3
+ a| 
+Indicadores LED de atención del puerto de expansión
+ a| 
+Ámbar: Estos LED siempre son ámbar (no se ha establecido ningún enlace) porque el aparato no utiliza los puertos de expansión.
+
+
+
+ a| 
+4
+ a| 
+Indicadores LED de estado del enlace de puerto de host
+ a| 
+Verde: El enlace está activo.
+
+Desactivado: El enlace está inactivo.
+
+
+
+ a| 
+5
+ a| 
+LED de estado de conexión Ethernet
+ a| 
+Verde: Se ha establecido un enlace.
+
+Desactivado: No se ha establecido ningún enlace.
+
+
+
+ a| 
+6
+ a| 
+Indicadores LED de actividad Ethernet
+ a| 
+Verde: El enlace entre el puerto de gestión y el dispositivo al que está conectado (como un switch Ethernet) está activo.
+
+Desactivado: No hay ningún enlace entre la controladora y el dispositivo conectado.
+
+Verde parpadeante: Hay actividad Ethernet.
+
+|===
+
+
+== códigos generales de arranque
+
+Durante el arranque o después de un reinicio duro del aparato, ocurre lo siguiente:
+
+. La visualización de siete segmentos en el controlador E5700SG muestra una secuencia general de códigos que no es específica para la controladora. La secuencia general termina con los códigos AA y FF.
+. Aparecen códigos de arranque específicos del controlador E5700SG.
+
+
+
+
+== códigos de arranque del controlador E5700SG
+
+Durante un arranque normal del dispositivo, la pantalla de siete segmentos del controlador E5700SG muestra los siguientes códigos en el orden indicado:
+
+|===
+| Codificación | Lo que indica 
+
+
+ a| 
+HOLA
+ a| 
+Se ha iniciado la secuencia de comandos de inicio maestra.
+
+
+
+ a| 
+PP
+ a| 
+El sistema comprueba si es necesario actualizar la FPGA.
+
+
+
+ a| 
+HP
+ a| 
+El sistema comprueba si el firmware de la controladora de 10/25-GbE debe actualizarse.
+
+
+
+ a| 
+RB
+ a| 
+El sistema se reinicia después de aplicar las actualizaciones de firmware.
+
+
+
+ a| 
+P F
+ a| 
+Se completaron las comprobaciones de actualización del firmware del subsistema de hardware. Se están iniciando los servicios de comunicación entre controladoras.
+
+
+
+ a| 
+ÉL
+ a| 
+El sistema está esperando conectividad con la controladora E2800 y sincronizando con el sistema operativo SANtricity.
+
+*Nota:* Si este procedimiento de arranque no avanza más allá de esta fase, compruebe las conexiones entre los dos controladores.
+
+
+
+ a| 
+HC
+ a| 
+El sistema comprueba si hay datos de instalación de StorageGRID existentes.
+
+
+
+ a| 
+HO
+ a| 
+El instalador de dispositivos de StorageGRID se está ejecutando.
+
+
+
+ a| 
+HA
+ a| 
+StorageGRID está ejecutando.
+
+|===
+
+
+== códigos de error de la controladora E5700SG
+
+Estos códigos representan condiciones de error que pueden mostrarse en el controlador E5700SG a medida que el dispositivo se arranca. se muestran códigos hexadecimales adicionales de dos dígitos si se producen errores específicos de hardware de bajo nivel. Si alguno de estos códigos persiste durante más de un segundo o dos, o si no puede resolver el error siguiendo uno de los procedimientos de solución de problemas prescritos, póngase en contacto con el soporte técnico.
+
+|===
+| Codificación | Lo que indica 
+
+
+ a| 
+22
+ a| 
+No se ha encontrado ningún registro de arranque maestro en ningún dispositivo de arranque.
+
+
+
+ a| 
+23
+ a| 
+El disco flash interno no está conectado.
+
+
+
+ a| 
+2A, 2B
+ a| 
+Bus atascado, no se pueden leer los datos del SPD del DIMM.
+
+
+
+ a| 
+40
+ a| 
+DIMM no válidos.
+
+
+
+ a| 
+41
+ a| 
+DIMM no válidos.
+
+
+
+ a| 
+42
+ a| 
+Error en la prueba de memoria.
+
+
+
+ a| 
+51
+ a| 
+Fallo de lectura del SPD.
+
+
+
+ a| 
+92 a 96
+ a| 
+Inicialización del bus PCI.
+
+
+
+ a| 
+A0 a A3
+ a| 
+Inicialización de la unidad SATA.
+
+
+
+ a| 
+AB
+ a| 
+Código de inicio alternativo.
+
+
+
+ a| 
+AE
+ a| 
+So de arranque.
+
+
+
+ a| 
+EA
+ a| 
+El entrenamiento de DDR4 falló.
+
+
+
+ a| 
+E8
+ a| 
+No hay memoria instalada.
+
+
+
+ a| 
+UE
+ a| 
+No se ha encontrado la secuencia de comandos de instalación.
+
+
+
+ a| 
+EP
+ a| 
+Se produjo un error en la instalación o la comunicación con la controladora E2800.
+
+|===
+.Información relacionada
+xref:troubleshooting-hardware-installation.adoc[Solucionar problemas de instalación de hardware (SG5700)]
+
+https://mysupport.netapp.com/site/global/dashboard["Soporte de NetApp"^]

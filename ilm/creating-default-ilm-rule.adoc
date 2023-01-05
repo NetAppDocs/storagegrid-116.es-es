@@ -1,0 +1,99 @@
+---
+permalink: ilm/creating-default-ilm-rule.html 
+sidebar: sidebar 
+keywords: create default ilm rule 
+summary: Antes de crear una política de ILM, debe crear una regla predeterminada para colocar los objetos que no coincidan con otra regla en la política. La regla predeterminada no puede usar ningún filtro. Debe aplicarse a todos los inquilinos, todos los grupos y todas las versiones del objeto. 
+---
+= Cree una regla de ILM predeterminada
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de crear una política de ILM, debe crear una regla predeterminada para colocar los objetos que no coincidan con otra regla en la política. La regla predeterminada no puede utilizar ningún filtro. Debe aplicarse a todos los inquilinos, todos los grupos y todas las versiones del objeto.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+
+
+.Acerca de esta tarea
+La regla predeterminada es la última regla que se evalúa en una política de ILM, por lo que no puede usar ningún filtro ni el tiempo de referencia no actual. Las instrucciones de colocación de la regla predeterminada se aplican a cualquier objeto que no coincida con otra regla de la directiva.
+
+En esta política de ejemplo, la primera regla se aplica sólo a los objetos que pertenecen al arrendatario A. La regla predeterminada, que es última, se aplica a los objetos que pertenecen a todas las demás cuentas de arrendatario.
+
+image::../media/ilm_policies_page_default_rule.png[Regla predeterminada de la página de políticas de ILM]
+
+Al crear la regla predeterminada, tenga en cuenta estos requisitos:
+
+* La regla predeterminada se coloca automáticamente como última regla en la directiva.
+* La regla predeterminada no puede utilizar ningún filtro básico o avanzado.
+* La regla predeterminada debe aplicarse a todas las versiones de objeto, por lo que no puede utilizar la hora de referencia no corriente.
+* La regla predeterminada debe crear copias replicadas.
++
+
+IMPORTANT: No utilice una regla que cree copias con código de borrado como regla predeterminada para una política. Las reglas de codificación de borrado deberían utilizar un filtro avanzado para evitar que los objetos más pequeños se codificen con el borrado.
+
+* En general, la regla predeterminada debería retener objetos para siempre.
+* Si está utilizando (o tiene previsto habilitar) la configuración de bloqueo de objetos global S3, la regla predeterminada para la directiva activa o propuesta debe ser compatible.
+
+
+.Pasos
+. Seleccione *ILM* > *Reglas*.
++
+Aparece la página ILM Rules.
+
+. Seleccione *Crear*.
++
+Aparece el paso 1 (definir datos básicos) del asistente Crear regla de ILM.
+
+. Introduzca un nombre único para la regla en el campo *Nombre*.
+. Si lo desea, introduzca una breve descripción de la regla en el campo *Descripción*.
+. Deje el campo *Cuentas de inquilino* en blanco.
++
+La regla predeterminada debe aplicarse a todas las cuentas de arrendatario.
+
+. Deje en blanco el campo *Nombre de bloque*.
++
+La regla predeterminada debe aplicarse a todos los bloques de S3 y contenedores Swift.
+
+. No seleccione *filtrado avanzado*
++
+La regla predeterminada no puede especificar ningún filtro.
+
+. Seleccione *Siguiente*.
++
+Aparece el paso 2 (definir ubicaciones).
+
+. Para tiempo de referencia, seleccione cualquier opción excepto *tiempo no corriente*.
++
+La regla predeterminada debe aplicar todas las versiones del objeto.
+
+. Especifique las instrucciones de colocación para la regla predeterminada.
++
+** La regla predeterminada debería retener objetos para siempre. Aparece una advertencia cuando activa una nueva directiva si la regla predeterminada no conserva objetos para siempre. Debe confirmar que éste es el comportamiento que espera.
+** La regla predeterminada debe crear copias replicadas.
++
+
+IMPORTANT: No utilice una regla que cree copias con código de borrado como regla predeterminada para una política. Las reglas de codificación de borrado deben incluir el filtro *Tamaño de objeto (MB) superior al 0.2* avanzado para evitar que los objetos más pequeños se codificen con el borrado.
+
+** Si está utilizando (o tiene previsto habilitar) la configuración global de bloqueo de objetos S3, la regla predeterminada debe ser compatible:
++
+*** Debe crear al menos dos copias de objetos replicados o una copia con código de borrado.
+*** Estas copias deben existir en los nodos de almacenamiento durante todo el tiempo que dure cada línea en las instrucciones de colocación.
+*** Las copias de objetos no se pueden guardar en un pool de almacenamiento en cloud.
+*** Las copias de objetos no se pueden guardar en los nodos de archivado.
+*** Al menos una línea de las instrucciones de colocación debe comenzar en el día 0, utilizando el tiempo de procesamiento como tiempo de referencia.
+*** Al menos una línea de las instrucciones de colocación deberá ser «'para siempre».
+
+
+
+
+. Seleccione *Actualizar* para actualizar el Diagrama de retención y confirmar las instrucciones de colocación.
+. Seleccione *Siguiente*.
++
+Aparece el paso 3 (definir comportamiento de procesamiento).
+
+. Seleccione la opción de protección de datos que se va a utilizar cuando se ingieren objetos y seleccione *Guardar*.
+

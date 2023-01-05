@@ -1,0 +1,63 @@
+---
+permalink: audit/vlst-user-initiated-volume-lost.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, VLST, User Initiated Volume Lost 
+summary: Este mensaje se emite siempre que se ejecuta el comando /proc/CMSI/Volume_Lost . 
+---
+= VLST: Volumen iniciado por el usuario perdido
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Este mensaje se emite siempre que la `/proc/CMSI/Volume_Lost` se ejecuta el comando.
+
+|===
+| Codificación | Campo | Descripción 
+
+
+ a| 
+VOLL
+ a| 
+Identificador de volumen inferior
+ a| 
+El extremo inferior del rango de volumen afectado o un único volumen.
+
+
+
+ a| 
+VOLU
+ a| 
+Identificador del volumen superior
+ a| 
+El extremo superior del rango de volumen afectado. Igual A VOLL si se trata de un volumen único.
+
+
+
+ a| 
+NOID
+ a| 
+ID del nodo de origen
+ a| 
+El ID de nodo en el que se han perdido las ubicaciones.
+
+
+
+ a| 
+LLEYP
+ a| 
+Tipo de ubicación
+ a| 
+'CLDI' (en línea) o 'CLNL' (Nearline). Si no se especifica, el valor predeterminado es 'CLDI'.
+
+
+
+ a| 
+TRANSFORMACIÓN DIGITAL
+ a| 
+Resultado
+ a| 
+Siempre 'NINGUNO'. RSLT es un campo de mensaje obligatorio, pero no es relevante para este mensaje. 'NINGUNO' se utiliza en lugar de 'UCS' para que este mensaje no se filtre.
+
+|===

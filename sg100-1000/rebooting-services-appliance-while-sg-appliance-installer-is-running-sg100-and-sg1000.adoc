@@ -1,0 +1,36 @@
+---
+permalink: sg100-1000/rebooting-services-appliance-while-sg-appliance-installer-is-running-sg100-and-sg1000.html 
+sidebar: sidebar 
+keywords: storagegrid, sg100, sg1000, service appliance, services appliance, gateway Node, admin node, reboot, restart 
+summary: Es posible que tenga que reiniciar el dispositivo de servicios mientras el instalador de dispositivos de StorageGRID está en ejecución. Por ejemplo, es posible que deba reiniciar el dispositivo de servicios si la instalación falla. 
+---
+= Reinicie el dispositivo de servicios mientras se está ejecutando el instalador de dispositivos de StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible que tenga que reiniciar el dispositivo de servicios mientras el instalador de dispositivos de StorageGRID está en ejecución. Por ejemplo, es posible que deba reiniciar el dispositivo de servicios si la instalación falla.
+
+.Acerca de esta tarea
+Este procedimiento sólo se aplica cuando el dispositivo de servicios ejecuta el instalador de dispositivos StorageGRID. Una vez finalizada la instalación, este paso ya no funciona porque el instalador de dispositivos StorageGRID ya no está disponible.
+
+.Pasos
+. En la barra de menús del instalador del dispositivo StorageGRID, haga clic en *Avanzado* *Reiniciar controlador*.
++
+Se muestra la página Reiniciar controladora.
+
+. En el instalador del dispositivo StorageGRID, haga clic en *Avanzado* > *Reiniciar controlador* y, a continuación, seleccione una de estas opciones:
++
+** Seleccione *Reiniciar en StorageGRID* para reiniciar el controlador con el nodo que vuelve a unir la cuadrícula. Seleccione esta opción si hizo trabajo en modo de mantenimiento y está listo para devolver el nodo a su funcionamiento normal.
+** Seleccione *Reiniciar en el modo de mantenimiento* para reiniciar el controlador con el nodo restante en modo de mantenimiento. (Esta opción solo está disponible si la controladora se encuentra en modo de mantenimiento). Seleccione esta opción si hay otras operaciones de mantenimiento que debe realizar en el nodo antes de volver a unir la cuadrícula.
++
+image::../media/reboot_controller_from_maintenance_mode.png[Reinicie la controladora en modo de mantenimiento]
+
++
+El dispositivo de servicios se reinicia.
+
+
+
+

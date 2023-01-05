@@ -1,0 +1,31 @@
+---
+permalink: monitor/snmp-alert-notifications.html 
+sidebar: sidebar 
+keywords: how to use snmp notifications for alerts 
+summary: Si desea que StorageGRID envíe notificaciones SNMP cuando se produzca una alerta, debe habilitar el agente SNMP de StorageGRID y configurar uno o más destinos de capturas. 
+---
+= Configure las notificaciones SNMP para las alertas
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si desea que StorageGRID envíe notificaciones SNMP cuando se produzca una alerta, debe habilitar el agente SNMP de StorageGRID y configurar uno o más destinos de capturas.
+
+Puede utilizar la opción *CONFIGURACIÓN* > *Supervisión* > *agente SNMP* en el Administrador de grid o los puntos finales SNMP de la API de administración de grid para activar y configurar el agente SNMP de StorageGRID. El agente SNMP admite las tres versiones del protocolo SNMP.
+
+Para aprender a configurar el agente SNMP, consulte xref:using-snmp-monitoring.adoc[Usar supervisión de SNMP].
+
+Después de configurar el agente SNMP de StorageGRID, se pueden enviar dos tipos de notificaciones condicionadas por eventos:
+
+* Los solapamientos son notificaciones enviadas por el agente SNMP que no requieren confirmación por parte del sistema de administración. Los traps sirven para notificar al sistema de gestión que algo ha sucedido dentro de StorageGRID, por ejemplo, que se activa una alerta. Las tres versiones de SNMP admiten capturas.
+* Las informes son similares a las capturas, pero requieren el reconocimiento del sistema de gestión. Si el agente SNMP no recibe un acuse de recibo en un periodo de tiempo determinado, vuelve a enviar el informe hasta que se reciba un acuse de recibo o se haya alcanzado el valor de reintento máximo. Las informa son compatibles con SNMPv2c y SNMPv3.
+
+
+Las notificaciones Trap e inform se envían cuando se activa una alerta predeterminada o personalizada en cualquier nivel de gravedad. Para suprimir las notificaciones SNMP de una alerta, debe configurar un silencio para la alerta. Consulte xref:silencing-alert-notifications.adoc[Silenciar notificaciones de alerta].
+
+Las notificaciones de alerta se envían mediante el nodo de administrador que esté configurado para que sea el remitente preferido. De manera predeterminada, se selecciona el nodo de administración principal. Consulte xref:../admin/index.adoc[Instrucciones para administrar StorageGRID].
+
+
+NOTE: Las notificaciones Trap e inform también se envían cuando determinadas alarmas (sistema heredado) se activan en niveles de gravedad especificados o superiores; sin embargo, las notificaciones SNMP no se envían para cada alarma o para cada gravedad de alarma. Consulte xref:alarms-that-generate-snmp-notifications.adoc[Alarmas que generan notificaciones SNMP (sistema heredado)].

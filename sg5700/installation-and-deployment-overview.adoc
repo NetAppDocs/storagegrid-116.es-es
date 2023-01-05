@@ -1,0 +1,91 @@
+---
+permalink: sg5700/installation-and-deployment-overview.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5700, storage node, storage appliance, Installation, deployment, Install, deploy, Installing, deploying 
+summary: Puede instalar uno o varios dispositivos StorageGRID cuando implemente StorageGRID por primera vez, o bien puede añadir nodos de almacenamiento del dispositivo más adelante como parte de una ampliación. Es posible que también se deba instalar un nodo de almacenamiento del dispositivo como parte de una operación de recuperación. 
+---
+= Información general sobre la instalación y la implementación
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede instalar uno o varios dispositivos StorageGRID cuando implemente StorageGRID por primera vez, o bien puede añadir nodos de almacenamiento del dispositivo más adelante como parte de una ampliación. Es posible que también se deba instalar un nodo de almacenamiento del dispositivo como parte de una operación de recuperación.
+
+Añadir un dispositivo de almacenamiento StorageGRID a un sistema StorageGRID incluye cuatro pasos principales:
+
+. Preparación de la instalación:
++
+** Preparación del sitio de instalación
+** Desembalaje de las cajas y comprobación del contenido
+** Obtención de equipos y herramientas adicionales
+** Recopilación de direcciones IP e información de red
+** Opcional: Configurar un servidor de gestión de claves (KMS) externo si planea cifrar todos los datos del dispositivo. Consulte detalles sobre la gestión de claves externas en las instrucciones para administrar StorageGRID.
+
+
+. Instalar el hardware:
++
+** Registrar el hardware
+** Instalación del dispositivo en un armario o rack
+** Instalación de las unidades (solo SG5760)
+** Cableado del aparato
+** Conexión de los cables de alimentación y alimentación
+** Ver los códigos de estado de inicio
+
+
+. Configurar el hardware:
++
+** Acceder a SANtricity System Manager, configurar una dirección IP estática para el puerto de gestión 1 en la controladora E2800 y configurar los ajustes de SANtricity System Manager
+** Acceder al instalador de dispositivos de StorageGRID y configurar los ajustes de enlace e IP de red necesarios para conectarse a redes StorageGRID
+** Opcional: Habilitar el cifrado de nodos si tiene previsto utilizar un KMS externo para cifrar los datos del dispositivo.
+** Opcional: Cambiar el modo RAID.
+
+
+. Poner en marcha el dispositivo como nodo de almacenamiento:
+
+
+|===
+| Tarea | Instrucciones 
+
+
+ a| 
+Poner en marcha un nodo de almacenamiento del dispositivo en un nuevo sistema StorageGRID
+ a| 
+xref:deploying-appliance-storage-node.adoc[Ponga en marcha el nodo de almacenamiento del dispositivo]
+
+
+
+ a| 
+Añadir un nodo de almacenamiento del dispositivo a un sistema StorageGRID existente
+ a| 
+Instrucciones para ampliar un sistema StorageGRID
+
+
+
+ a| 
+Poner en marcha un nodo de almacenamiento del dispositivo como parte de una operación de recuperación de nodo de almacenamiento
+ a| 
+Instrucciones para recuperación y mantenimiento
+
+|===
+.Información relacionada
+xref:preparing-for-installation.adoc[Preparación de la instalación (SG5700)]
+
+xref:installing-hardware.adoc[Instale el hardware]
+
+xref:configuring-hardware-sg5712-60.adoc[Configurar hardware (SG5700)]
+
+xref:../vmware/index.adoc[Instale VMware]
+
+xref:../rhel/index.adoc[Instale Red Hat Enterprise Linux o CentOS]
+
+xref:../ubuntu/index.adoc[Instalar Ubuntu o Debian]
+
+xref:../sg100-1000/index.adoc[Servicios de aplicaciones SG100 y SG1000]
+
+xref:../expand/index.adoc[Amplíe su grid]
+
+xref:../maintain/index.adoc[Recuperación y mantenimiento]
+
+xref:../admin/index.adoc[Administre StorageGRID]

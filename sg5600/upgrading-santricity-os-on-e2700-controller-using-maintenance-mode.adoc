@@ -1,0 +1,63 @@
+---
+permalink: sg5600/upgrading-santricity-os-on-e2700-controller-using-maintenance-mode.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, controller, e2700, storage controller, upgrade, upgrading, SANtricity OS, SANtricity, maintenance mode 
+summary: Si no puede actualizar el software del sistema operativo SANtricity mediante el administrador de grid, utilice el procedimiento del modo de mantenimiento para aplicar la actualización. 
+---
+= Actualice el sistema operativo SANtricity en la controladora E2700 mediante modo de mantenimiento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si no puede actualizar el software del sistema operativo SANtricity mediante el administrador de grid, utilice el procedimiento del modo de mantenimiento para aplicar la actualización.
+
+.Lo que necesitará
+* Ha consultado con la herramienta de matriz de interoperabilidad (IMT) de NetApp para confirmar que la versión del sistema operativo SANtricity que utiliza para la actualización es compatible con su dispositivo.
+* Debe colocar la controladora E5600 en xref:placing-appliance-into-maintenance-mode.adoc[modo de mantenimiento] Si no está utilizando Grid Manager. Si una controladora se coloca en modo de mantenimiento, se interrumpe la conexión con la controladora E2700.
++
+
+NOTE: En raras ocasiones, una vez que se coloca un dispositivo StorageGRID en modo de mantenimiento puede hacer que el dispositivo no esté disponible para el acceso remoto.
+
+
+
+.Acerca de esta tarea
+No actualice el sistema operativo SANtricity ni NVSRAM en la controladora E-Series en más de un dispositivo StorageGRID a la vez.
+
+
+IMPORTANT: Actualizar más de un dispositivo StorageGRID a la vez puede provocar la falta de disponibilidad de los datos, según el modelo de puesta en marcha y las políticas de ILM.
+
+.Pasos
+. Confirme que el aparato está en xref:placing-appliance-into-maintenance-mode.adoc[modo de mantenimiento].
+. Desde un portátil de servicio, acceda a Storage Manager de SANtricity e inicie sesión.
+. Descargue el nuevo archivo de NVSRAM y de software de sistema operativo SANtricity en el cliente de gestión.
++
+
+IMPORTANT: La NVSRAM es específica del dispositivo StorageGRID. No use la descarga estándar de NVSRAM.
+
+. Siga las instrucciones de actualización de software y firmware de SANtricity _E2700 y E5600_ o de la ayuda en línea de Administrador de almacenamiento de SANtricity, y actualice el firmware de la controladora E2700, NVSRAM o ambos.
++
+
+IMPORTANT: Si necesita actualizar NVSRAM en la controladora E2700, debe confirmar que el archivo del sistema operativo SANtricity que descargó se ha designado como compatible con los dispositivos StorageGRID.
+
++
+
+NOTE: Active los archivos de actualización inmediatamente. No aplace la activación.
+
+. Si este procedimiento se completó correctamente y tiene procedimientos adicionales que realizar mientras el nodo se encuentra en modo de mantenimiento, realice ahora. Cuando haya terminado, o si ha experimentado algún fallo y desea volver a empezar, seleccione *Avanzado* > *Reiniciar controlador* y, a continuación, seleccione una de estas opciones:
++
+** Seleccione *Reiniciar en StorageGRID*
+** Seleccione *Reiniciar en el modo de mantenimiento* para reiniciar el controlador con el nodo restante en modo de mantenimiento. Seleccione esta opción si ha experimentado algún error durante el procedimiento y desea volver a empezar. Cuando el nodo termine de reiniciarse en el modo de mantenimiento, reinicie desde el paso adecuado del procedimiento en que falló.
++
+image::../media/reboot_controller_from_maintenance_mode.png[Reinicie la controladora en modo de mantenimiento]
+
++
+El dispositivo puede tardar hasta 20 minutos en reiniciarse y volver a unirse a la cuadrícula. Para confirmar que el reinicio ha finalizado y que el nodo ha vuelto a unirse a la cuadrícula, vuelva a Grid Manager. La página nodos debe mostrar el estado normal (no hay iconos a la izquierda del nombre del nodo) para el nodo de dispositivo, lo que indica que no hay alertas activas y que el nodo está conectado a la cuadrícula.
+
++
+image::../media/node_rejoin_grid_confirmation.png[El nodo del dispositivo se ha vuelto a unir a la cuadrícula]
+
+
+
+

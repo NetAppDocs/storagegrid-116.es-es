@@ -1,0 +1,34 @@
+---
+permalink: sg6000/hardware-setup-appears-to-hang.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, troubleshoot, troubleshooting, hardware, setup, hang, hangs, fails, failure, stop, terminate, terminates, stuck 
+summary: Es posible que el instalador de dispositivos de StorageGRID no esté disponible si los errores de hardware o de cableado impiden que los controladores de almacenamiento o el controlador SG6000-CN completen su procesamiento de arranque. 
+---
+= Parece que la configuración del hardware se bloquea (SG6000)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible que el instalador de dispositivos de StorageGRID no esté disponible si los errores de hardware o de cableado impiden que los controladores de almacenamiento o el controlador SG6000-CN completen su procesamiento de arranque.
+
+.Pasos
+. Para las controladoras de almacenamiento, vea los códigos de las pantallas de siete segmentos.
++
+Mientras el hardware se está inicializando durante el encendido, las dos pantallas de siete segmentos muestran una secuencia de códigos. Cuando el hardware se inicia correctamente, se muestran las dos pantallas de siete segmentos `99`.
+
+. Revise los LED del controlador SG6000-CN y los códigos de inicio y error que aparecen en el BMC.
+. Si necesita ayuda para resolver un problema, póngase en contacto con el soporte técnico.
+
+
+.Información relacionada
+xref:viewing-boot-up-status-codes-for-sg6000-storage-controllers.adoc[Ver los códigos de estado de arranque para los controladores de almacenamiento SG6000]
+
+https://library.netapp.com/ecmdocs/ECMLP2588751/html/frameset.html["Guía de supervisión del sistema E5700 y E2800"^]
+
+xref:viewing-status-indicators-and-buttons-on-sg6000-cn-controller.adoc[Ver los indicadores de estado y los botones del controlador SG6000-CN]
+
+xref:viewing-boot-up-codes-for-sg6000-cn-controller.adoc[Ver los códigos de arranque del controlador SG6000-CN]
+
+xref:viewing-error-codes-for-sg6000-cn-controller.adoc[Ver códigos de error para el controlador SG6000-CN]

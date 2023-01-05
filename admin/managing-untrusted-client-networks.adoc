@@ -1,0 +1,41 @@
+---
+permalink: admin/managing-untrusted-client-networks.html 
+sidebar: sidebar 
+keywords: untrusted client network 
+summary: Si está utilizando una red de cliente, puede ayudar a proteger StorageGRID de ataques hostiles aceptando tráfico de cliente entrante sólo en puntos finales configurados explícitamente. 
+---
+= Administrar redes de clientes que no son de confianza: Descripción general
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si está utilizando una red de cliente, puede ayudar a proteger StorageGRID de ataques hostiles aceptando tráfico de cliente entrante sólo en puntos finales configurados explícitamente.
+
+De forma predeterminada, la red de cliente de cada nodo de cuadrícula es _Trusted_. Es decir, de forma predeterminada, StorageGRID confía en las conexiones entrantes a cada nodo de cuadrícula en todos los puertos externos disponibles (consulte la información acerca de las comunicaciones externas en xref:../network/index.adoc[Directrices sobre redes]).
+
+Puede reducir la amenaza de ataques hostiles en su sistema StorageGRID especificando que la red cliente de cada nodo sea _no confiable_. Si la red de cliente de un nodo no es de confianza, el nodo sólo acepta conexiones entrantes en los puertos configurados explícitamente como puntos finales de equilibrador de carga. Consulte xref:configuring-load-balancer-endpoints.adoc[Configurar puntos finales del equilibrador de carga].
+
+
+
+== Ejemplo 1: Gateway Node solo acepta solicitudes HTTPS S3
+
+Supongamos que desea que un nodo de puerta de enlace rechace todo el tráfico entrante en la red cliente excepto las solicitudes HTTPS S3. Debe realizar estos pasos generales:
+
+. En la página Load Balancer Endpoints, configure un extremo de equilibrador de carga para S3 a través de HTTPS en el puerto 443.
+. En la página redes de cliente no fiables, especifique que la red de cliente del nodo de puerta de enlace no sea de confianza.
+
+
+Después de guardar la configuración, se descarta todo el tráfico entrante en la red cliente del nodo de puerta de enlace, excepto las solicitudes HTTPS S3 en el puerto 443 y las solicitudes ICMP echo (ping).
+
+
+
+== Ejemplo 2: El nodo de almacenamiento envía solicitudes de servicios de plataforma S3
+
+Supongamos que desea habilitar el tráfico saliente del servicio de la plataforma S3 desde un nodo de almacenamiento, pero desea impedir las conexiones entrantes a ese nodo de almacenamiento en la red cliente. Debe realizar este paso general:
+
+* En la página redes de cliente no fiables, indique que la red de clientes del nodo de almacenamiento no es de confianza.
+
+
+Después de guardar la configuración, el nodo de almacenamiento ya no acepta ningún tráfico entrante en la red cliente, pero continúa permitiendo solicitudes salientes a Amazon Web Services.

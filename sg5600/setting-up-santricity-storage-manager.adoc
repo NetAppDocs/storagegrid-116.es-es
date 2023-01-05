@@ -1,0 +1,14 @@
+---
+permalink: sg5600/setting-up-santricity-storage-manager.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, SANtricity Storage Manager, SANtricity, Storage Manager, configure, configuring, setup, set up, setting up 
+summary: Después de acceder a Storage Manager de SANtricity, puede utilizarlo para configurar los ajustes de hardware. Normalmente, esta configuración se debe configurar antes de poner en marcha el dispositivo como nodo de almacenamiento en un sistema StorageGRID. 
+---
+= Configure el Administrador del almacenamiento de SANtricity
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de acceder a Storage Manager de SANtricity, puede utilizarlo para configurar los ajustes de hardware. Normalmente, esta configuración se debe configurar antes de poner en marcha el dispositivo como nodo de almacenamiento en un sistema StorageGRID.

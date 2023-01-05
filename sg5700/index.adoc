@@ -1,0 +1,267 @@
+---
+permalink: sg5700/index.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5700, storage node, storage appliance, overview, models, features 
+summary: 'El dispositivo SG5700 StorageGRID es una plataforma informática y de almacenamiento integrada que funciona como nodo de almacenamiento en un grid StorageGRID. El dispositivo se puede utilizar en un entorno de grid híbrido que combina los nodos de almacenamiento del dispositivo y los nodos de almacenamiento virtuales \(basados en software\).' 
+---
+= Información general del dispositivo SG5700 de StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El dispositivo SG5700 StorageGRID es una plataforma informática y de almacenamiento integrada que funciona como nodo de almacenamiento en un grid StorageGRID. El dispositivo se puede utilizar en un entorno de grid híbrido que combina los nodos de almacenamiento del dispositivo y los nodos de almacenamiento virtuales (basados en software).
+
+El dispositivo de la serie SG5700 de StorageGRID proporciona las siguientes funciones:
+
+* Integre los elementos de computación y almacenamiento para un nodo de almacenamiento de StorageGRID.
+* Incluya el instalador de dispositivos StorageGRID para simplificar la puesta en marcha y la configuración del nodo de almacenamiento.
+* Incluye System Manager de la serie E-Series SANtricity para la gestión y supervisión del hardware.
+* Admite hasta cuatro conexiones de 10 GbE o 25 GbE a la red Grid y a la red cliente de StorageGRID.
+* Admitir unidades de cifrado de disco completo (FDE) o unidades de estándar de procesamiento de información federal (FIPS). Cuando estas unidades se usan con la función Drive Security en SANtricity System Manager, se evita el acceso no autorizado a los datos.
+
+
+El dispositivo SG5700 está disponible en cuatro modelos: SG5712 y SG5712X, así como SG5760 y SG5760X. No existen diferencias de especificación o funcionamiento entre el SG5712 y el SG5712X, excepto la ubicación de los puertos de interconexión de la controladora de almacenamiento. De igual modo, no existen diferencias de especificación ni funcionamiento entre el SG5712 y el SG5712X, excepto la ubicación de los puertos de interconexión del controlador de almacenamiento.
+
+Los modelos incluyen los siguientes componentes:
+
+[cols="1a,2a,3a,4a,5a"]
+|===
+| Componente | SG5712 | SG5712X | SG5760 | SG5760X 
+
+
+ a| 
+Controladora de computación
+ a| 
+Controladora E5700SG
+ a| 
+Controladora E5700SG
+ a| 
+Controladora E5700SG
+ a| 
+Controladora E5700SG
+
+
+
+ a| 
+Controladora de almacenamiento
+ a| 
+Controladora E2800A
+ a| 
+Controladora E2800B
+ a| 
+Controladora E2800A
+ a| 
+Controladora E2800B
+
+
+
+ a| 
+Chasis
+ a| 
+E-Series DE212C, un compartimento de dos unidades rack (2U)
+ a| 
+E-Series DE212C, un compartimento de dos unidades rack (2U)
+ a| 
+Compartimento DE460C E-Series, un compartimento de cuatro unidades de rack (4U)
+ a| 
+Compartimento DE460C E-Series, un compartimento de cuatro unidades de rack (4U)
+
+
+
+ a| 
+Unidades
+ a| 
+12 unidades NL-SAS (3.5 pulgadas)
+ a| 
+12 unidades NL-SAS (3.5 pulgadas)
+ a| 
+60 unidades NL-SAS (3.5 pulgadas)
+ a| 
+60 unidades NL-SAS (3.5 pulgadas)
+
+
+
+ a| 
+Sistemas de alimentación y ventiladores redundantes
+ a| 
+Dos contenedores de alimentación/ventilador
+ a| 
+Dos contenedores de alimentación/ventilador
+ a| 
+Dos contenedores de alimentación y dos contenedores de ventilador
+ a| 
+Dos contenedores de alimentación y dos contenedores de ventilador
+
+|===
+El almacenamiento bruto máximo disponible en el dispositivo StorageGRID es fijo, en función del número de unidades de cada compartimento. No se puede expandir el almacenamiento disponible si se añade una bandeja con unidades adicionales.
+
+
+
+== Modelos SG5712 y 5712X
+
+Las cifras muestran el frente y la parte posterior del modelo SG5712 y SG5712X, un compartimento de 2U con 12 unidades.
+
+*Vista frontal y trasera SG5712*
+
+image::../media/sg5712_front_and_back_views.gif[La parte frontal y posterior del dispositivo SG5712]
+
+El SG5712 incluye dos controladoras y dos contenedores de alimentación/ventilador.
+
+*Componentes SG5712*
+
+image::../media/sg5712_with_callouts.gif[Controladoras y contenedores de alimentación/ventilador en el dispositivo SG5712]
+
+[cols="1a,2a"]
+|===
+| Llamada | Descripción 
+
+
+ a| 
+1
+ a| 
+Controladora E2800A (controladora de almacenamiento)
+
+
+
+ a| 
+2
+ a| 
+Controladora E5700SG (controladora de computación)
+
+
+
+ a| 
+3
+ a| 
+Contenedores de alimentación/ventilador
+
+|===
+*Vista frontal y trasera SG5712X*
+
+image::../media/sg5712x_front_and_back_views.gif[La parte frontal y posterior del aparato SG5712X]
+
+El SG5712X incluye dos controladoras y dos contenedores de alimentación/ventilador.
+
+*Componentes SG5712X*
+
+image::../media/sg5712x_with_callouts.gif[Las controladoras y los contenedores de alimentación/ventilador del dispositivo SG5712X]
+
+[cols="1a,2a"]
+|===
+| Llamada | Descripción 
+
+
+ a| 
+1
+ a| 
+Controladora E2800B (controladora de almacenamiento)
+
+
+
+ a| 
+2
+ a| 
+Controladora E5700SG (controladora de computación)
+
+
+
+ a| 
+3
+ a| 
+Contenedores de alimentación/ventilador
+
+|===
+
+
+== Los modelos SG5760 y SG5760X
+
+Las cifras muestran el frente y la parte posterior de los modelos SG5760 y SG5760X, un compartimento de 4U que tiene 60 unidades en 5 cajones de unidades.
+
+*Vista frontal y trasera SG5760*
+
+image::../media/sg5760_front_and_back_views.gif[Parte delantera y trasera del dispositivo SG5760]
+
+El SG5760 incluye dos controladoras, dos contenedores de ventilador y dos contenedores de alimentación.
+
+*Componentes SG5760*
+
+image::../media/sg5760_with_callouts.gif[Controladoras,fan canisters,and power canisters in SG5760 appliance]
+
+[cols="1a,2a"]
+|===
+| Llamada | Descripción 
+
+
+ a| 
+1
+ a| 
+Controladora E2800A (controladora de almacenamiento)
+
+
+
+ a| 
+2
+ a| 
+Controladora E5700SG (controladora de computación)
+
+
+
+ a| 
+3
+ a| 
+Contenedor de ventilador (1 de 2)
+
+
+
+ a| 
+4
+ a| 
+Contenedor de alimentación (1 de 2)
+
+|===
+*Vista frontal y trasera de SG5760X*
+
+image::../media/sg5760x_front_and_back_views.gif[Parte delantera y trasera del dispositivo SG5760X]
+
+El SG5760S incluye dos controladoras, dos contenedores de ventilador y dos contenedores de alimentación.
+
+*Componentes SG5760X*
+
+image::../media/sg5760x_with_callouts.gif[Controladoras,fan canisters,and power canisters in SG5760X appliance]
+
+[cols="1a,2a"]
+|===
+| Llamada | Descripción 
+
+
+ a| 
+1
+ a| 
+Controladora E2800B (controladora de almacenamiento)
+
+
+
+ a| 
+2
+ a| 
+Controladora E5700SG (controladora de computación)
+
+
+
+ a| 
+3
+ a| 
+Contenedor de ventilador (1 de 2)
+
+
+
+ a| 
+4
+ a| 
+Contenedor de alimentación (1 de 2)
+
+|===
+.Información relacionada
+http://mysupport.netapp.com/info/web/ECMP1658252.html["Sitio de documentación para sistemas E-Series y EF-Series de NetApp"^]

@@ -1,0 +1,67 @@
+---
+permalink: monitor/monitoring-node-connection-states.html 
+sidebar: sidebar 
+keywords: monitor, monitoring node connection states, node connection states 
+summary: Si uno o más nodos están desconectados de la cuadrícula, es posible que se vean afectadas las operaciones críticas de StorageGRID. Debe supervisar los estados de conexión de los nodos y solucionar los problemas inmediatamente. 
+---
+= Supervise los estados de conexión de los nodos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si uno o más nodos están desconectados de la cuadrícula, es posible que se vean afectadas las operaciones críticas de StorageGRID. Debe supervisar los estados de conexión de los nodos y solucionar los problemas inmediatamente.
+
+.Lo que necesitará
+* Debe iniciar sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+
+
+.Acerca de esta tarea
+Los nodos pueden tener uno de los tres estados de conexión:
+
+* *No conectado - Desconocido* image:../media/icon_alarm_blue_unknown.png["icono de signo de interrogación azul"]: El nodo no está conectado a la cuadrícula por una razón desconocida. Por ejemplo, se ha perdido la conexión de red entre los nodos o se ha apagado el suministro eléctrico. La alerta *no se puede comunicar con el nodo* también puede activarse. Es posible que otras alertas estén activas también. Esta situación requiere atención inmediata.
++
+
+NOTE: Es posible que un nodo aparezca como desconocido durante las operaciones de apagado gestionadas. Puede ignorar el estado Desconocido en estos casos.
+
+* *No conectado - administrativamente abajo* image:../media/icon_alarm_gray_administratively_down.png["icono de questionmark gris"]: El nodo no está conectado a la cuadrícula por un motivo esperado. Por ejemplo, el nodo o los servicios del nodo se han apagado correctamente, el nodo se está reiniciando o se está actualizando el software. Una o más alertas también pueden estar activas.
+* *Conectado* image:../media/icon_alert_green_checkmark.png["marca de verificación verde de alerta de icono"]: El nodo está conectado a la cuadrícula.
+
+
+.Pasos
+. Si aparece un icono azul o gris en el panel Estado del Panel de control, haga clic en el icono o haga clic en *Detalles de la cuadrícula*. (Los iconos azul o gris y el vínculo *Detalles de la cuadrícula* sólo aparecen si al menos un nodo está desconectado de la cuadrícula.)
++
+Aparece la página Descripción general del primer nodo azul del árbol de nodos. Si no hay nodos azules, aparece la página Descripción general del primer nodo gris del árbol.
+
++
+En el ejemplo, el nodo de almacenamiento llamado DC1-S3 tiene un icono azul. *Estado de conexión* en el panel Información del nodo es *Desconocido* y la alerta *no se puede comunicar con el nodo* está activa. La alerta indica que uno o varios servicios no responden o que no se puede acceder al nodo.
+
++
+image::../media/node_connection_state_blue.png[Estado de conexión del nodo Azul]
+
+. Si un nodo tiene un icono azul, siga estos pasos:
++
+.. Seleccione cada alerta de la tabla y siga las acciones recomendadas.
++
+Por ejemplo, es posible que deba reiniciar un servicio que haya detenido o reiniciar el host del nodo.
+
+.. Si no puede volver a conectar el nodo, póngase en contacto con el soporte técnico.
+
+
+. Si un nodo tiene un icono de color gris, siga estos pasos:
++
+Los nodos grises se esperan durante procedimientos de mantenimiento y podrían estar asociados a una o más alertas. Basándose en el problema subyacente, estos nodos «administrativamente inactivos» a menudo vuelven a estar online sin intervención.
+
++
+.. Revise la sección Alertas y determine si alguna alerta afecta a este nodo.
+.. Si una o más alertas están activas, seleccione cada alerta de la tabla y siga las acciones recomendadas.
+.. Si no puede volver a conectar el nodo, póngase en contacto con el soporte técnico.
+
+
+
+
+.Información relacionada
+xref:alerts-reference.adoc[Referencia de alertas]
+
+xref:../maintain/index.adoc[Recuperación y mantenimiento]

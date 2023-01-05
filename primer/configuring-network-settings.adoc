@@ -1,0 +1,71 @@
+---
+permalink: primer/configuring-network-settings.html 
+sidebar: sidebar 
+keywords: network settings, configure, configuring, configuration, domain name, virtual hosted-style requests 
+summary: Puede configurar varios ajustes de red desde el Gestor de cuadrícula para ajustar el funcionamiento del sistema StorageGRID. 
+---
+= Configure los ajustes de red
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede configurar varios ajustes de red desde el Gestor de cuadrícula para ajustar el funcionamiento del sistema StorageGRID.
+
+
+
+== Nombres de dominio
+
+Si piensa admitir solicitudes virtuales de estilo alojado en S3, debe configurar la lista de nombres de dominio de extremo a los que se conectan los clientes S3. Los ejemplos incluyen `s3.example.com`, `s3.example.co.uk`, y. `s3-east.example.com`.
+
+Los certificados de servidor configurados deben coincidir con los nombres de dominio de extremo.
+
+
+
+== Grupos de alta disponibilidad
+
+Puede usar grupos de alta disponibilidad para proporcionar conexiones de datos de alta disponibilidad para clientes S3 y Swift o proporcionar conexiones de alta disponibilidad a Grid Manager y Tenant Manager.
+
+Cuando se crea un grupo de alta disponibilidad, se selecciona una interfaz de red para uno o varios nodos. Cada grupo de alta disponibilidad proporciona acceso a los servicios compartidos en los nodos seleccionados.
+
+* Los grupos de ALTA DISPONIBILIDAD que incluyen interfaces en nodos de puerta de enlace, nodos de administrador o en ambos proporcionan conexiones de datos de alta disponibilidad para clientes S3 y Swift.
+* Los grupos DE ALTA DISPONIBILIDAD que incluyen interfaces en los nodos de administración sólo proporcionan conexiones de alta disponibilidad con el administrador de grid y el administrador de inquilinos.
+
+
+Las interfaces pueden pertenecer a la red de cuadrícula (eth0), a la red de cliente (eth2) o a una red VLAN.
+
+Puede asignar hasta 10 direcciones IP virtuales (VIP) a cada grupo de alta disponibilidad. Se especifica una interfaz para que sea la interfaz principal y se clasifican las demás interfaces en orden de prioridad. La interfaz Primary es la interfaz activa a menos que se produzca un fallo. Si la interfaz activa falla, las direcciones VIP se mueven a la primera interfaz de respaldo en el orden de prioridad. Si falla esa interfaz, las direcciones VIP pasan a la siguiente interfaz de respaldo, etc.
+
+
+
+== Enlazar costes
+
+Puede ajustar los costes de enlace para reflejar la latencia entre los sitios. Cuando existen dos o más centros de datos, los costes de enlace priorizan qué sitio del centro de datos debe proporcionar un servicio solicitado.
+
+
+
+== Puntos finales del equilibrador de carga
+
+Puede utilizar un equilibrio de carga para gestionar cargas de trabajo de procesamiento y recuperación de clientes S3 y Swift. El equilibrio de carga maximiza la velocidad y la capacidad de conexión distribuyendo las cargas de trabajo y las conexiones entre varios nodos de almacenamiento.
+
+Si desea utilizar el servicio de equilibrador de carga StorageGRID, que se incluye en los nodos de administración y de puerta de enlace, debe configurar uno o más puntos finales de equilibrador de carga. Cada extremo define un puerto de nodo de puerta de enlace o nodo de administrador para solicitudes S3 y Swift a nodos de almacenamiento.
+
+
+
+== Clasificación de tráfico
+
+Puede crear políticas de clasificación de tráfico para identificar y manejar diferentes tipos de tráfico de red, incluido el tráfico relacionado con bloques específicos, inquilinos, subredes de clientes o extremos de equilibrador de carga. Estas políticas pueden ayudar a limitar y supervisar el tráfico.
+
+
+
+== Interfaces VLAN
+
+Puede crear interfaces de LAN virtual (VLAN) para aislar y dividir el tráfico para obtener seguridad, flexibilidad y rendimiento. Cada interfaz de VLAN está asociada con una o varias interfaces principales en los nodos de administración y de puerta de enlace. Puede utilizar interfaces VLAN en grupos de alta disponibilidad y en extremos de equilibrador de carga para segregar el tráfico cliente o administrador por aplicación o inquilino.
+
+Por ejemplo, la red puede utilizar VLAN 100 para el tráfico FabricPool y VLAN 200 para una aplicación de archivado.
+
+.Información relacionada
+* xref:../admin/index.adoc[Administre StorageGRID]
+* xref:managing-tenants-and-client-connections.adoc[Gestione inquilinos y conexiones de clientes]
+

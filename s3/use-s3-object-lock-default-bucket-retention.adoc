@@ -1,0 +1,113 @@
+---
+permalink: s3/use-s3-object-lock-default-bucket-retention.html 
+sidebar: sidebar 
+keywords: s3 object lock, default bucket retention 
+summary: Si un bloque tiene habilitado el bloqueo de objetos S3, puede especificar un modo de retención predeterminado y el período de retención predeterminado que se aplicará a cada objeto que se agregue al bloque. 
+---
+= Use la retención de bloque predeterminada de Object Lock de S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si un bloque tiene habilitado el bloqueo de objetos S3, puede especificar un modo de retención predeterminado y el período de retención predeterminado que se aplicará a cada objeto que se agregue al bloque.
+
+* El bloqueo de objetos de S3 se puede habilitar o deshabilitar para un bloque durante la creación de bloques.
+* Si se habilita el bloqueo de objetos S3 para un bloque, puede configurar la retención predeterminada para el bloque.
+* La configuración de retención predeterminada especifica:
++
+** Modo de retención predeterminado: StorageGRID sólo admite el modo de “CUMPLIMIENTO”.
+** Período de retención predeterminado en días o años.
+
+
+
+
+
+
+== OBTENER configuración de bloqueo de objeto
+
+La solicitud GET Object Lock Configuration (OBTENER configuración de bloqueo de objeto) permite determinar si el bloqueo de objeto está habilitado para un bloque y, si está habilitado, ver si hay un modo de retención predeterminado y un período de retención configurado para el segmento.
+
+Cuando se ingieren nuevas versiones de objetos en el bloque, se aplica el modo de retención predeterminado si `x-amz-object-lock-mode` no se ha especificado. El período de retención predeterminado se utiliza para calcular el valor de retener hasta la fecha if `x-amz-object-lock-retain-until-date` no se ha especificado.
+
+Para completar esta operación, debe tener el permiso s3:GetBucketObjectLockConfiguration o ser la raíz de la cuenta.
+
+
+
+=== Ejemplo de solicitud
+
+[listing, subs="specialcharacters,quotes"]
+----
+GET /bucket?object-lock HTTP/1.1
+Host: _host_
+Accept-Encoding: identity
+User-Agent: aws-cli/1.18.106 Python/3.8.2 Linux/4.4.0-18362-Microsoft botocore/1.17.29
+x-amz-date: _date_
+x-amz-content-sha256: _authorization string_
+Authorization: _authorization string_
+----
+
+
+=== Ejemplo de respuesta
+
+[listing]
+----
+HTTP/1.1 200 OK
+x-amz-id-2: iVmcB7OXXJRkRH1FiVq1151/T24gRfpwpuZrEG11Bb9ImOMAAe98oxSpXlknabA0LTvBYJpSIXk=
+x-amz-request-id: B34E94CACB2CEF6D
+Date: Fri, 04 Sep 2020 22:47:09 GMT
+Transfer-Encoding: chunked
+Server: AmazonS3
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ObjectLockConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <ObjectLockEnabled>Enabled</ObjectLockEnabled>
+    <Rule>
+        <DefaultRetention>
+            <Mode>COMPLIANCE</Mode>
+            <Years>6</Years>
+        </DefaultRetention>
+    </Rule>
+</ObjectLockConfiguration>
+----
+
+
+== PONER configuración de bloqueo de objeto
+
+La solicitud DE CONFIGURACIÓN DE PUT Object Lock permite modificar el modo de retención predeterminado y el período de retención predeterminado para un bloque que tiene el bloqueo de objetos activado. También es posible eliminar los ajustes de retención predeterminados previamente configurados.
+
+Cuando se ingieren nuevas versiones de objetos en el bloque, se aplica el modo de retención predeterminado si `x-amz-object-lock-mode` no se ha especificado. El período de retención predeterminado se utiliza para calcular el valor de retener hasta la fecha if `x-amz-object-lock-retain-until-date` no se ha especificado.
+
+Si el período de retención predeterminado se modifica tras recibir una versión de objeto, la fecha de retención hasta la de la versión del objeto sigue siendo la misma y no se vuelve a calcular con el nuevo período de retención predeterminado.
+
+Debe tener el permiso s3:PutBucketObjectLockConfiguration o ser la raíz de la cuenta para completar esta operación.
+
+La `Content-MD5` La cabecera de la solicitud se debe especificar en la solicitud PUT.
+
+
+
+=== Ejemplo de solicitud
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /bucket?object-lock HTTP/1.1
+Accept-Encoding: identity
+Content-Length: 308
+Host: _host_
+Content-MD5: _request header_
+User-Agent: s3sign/1.0.0 requests/2.24.0 python/3.8.2
+X-Amz-Date: _date_
+X-Amz-Content-SHA256: _authorization string_
+Authorization: _authorization string_
+
+<ObjectLockConfiguration>
+    <ObjectLockEnabled>Enabled</ObjectLockEnabled>
+    <Rule>
+        <DefaultRetention>
+            <Mode>COMPLIANCE</Mode>
+            <Years>6</Years>
+        </DefaultRetention>
+    </Rule>
+</ObjectLockConfiguration>
+----

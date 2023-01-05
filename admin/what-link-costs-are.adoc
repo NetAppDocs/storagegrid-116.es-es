@@ -1,0 +1,58 @@
+---
+permalink: admin/what-link-costs-are.html 
+sidebar: sidebar 
+keywords: what are link costs, site latency 
+summary: Los costes de enlace le permiten priorizar qué sitio de centro de datos proporciona un servicio solicitado cuando existen dos o más centros de datos. Puede ajustar los costes de vínculo para reflejar la latencia entre los sitios. 
+---
+= ¿Cuáles son los costes de enlace
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Los costes de enlace le permiten priorizar qué sitio de centro de datos proporciona un servicio solicitado cuando existen dos o más centros de datos. Puede ajustar los costes de vínculo para reflejar la latencia entre los sitios.
+
+* Los costes de enlace se utilizan para priorizar qué copia de objetos se utiliza para llevar a cabo las recuperaciones de objetos.
+* Los costes de enlace los utiliza la API de gestión de grid y la API de gestión de inquilinos para determinar qué servicios StorageGRID internos utilizar.
+* Los costes de enlace se utilizan en el servicio de equilibrador de carga de conexión (CLB) obsoleto de los nodos de puerta de enlace para dirigir las conexiones de cliente. Consulte xref:how-load-balancing-works-clb-service.adoc[Cómo funciona el equilibrio de carga: Servicio CLB].
+
+
+El diagrama muestra una cuadrícula de tres sitios con costes de enlace configurados entre sitios:
+
+image::../media/link_costs.gif[Diagrama conceptual para vincular costes entre centros de datos]
+
+* El servicio CLB de los nodos Gateway distribuye igualmente las conexiones de cliente a todos los nodos de almacenamiento del mismo sitio del centro de datos y a cualquier sitio del centro de datos con un coste de enlace de 0.
++
+En el ejemplo, un nodo de puerta de enlace en el sitio del centro de datos 1 (DC1) distribuye igualmente conexiones de cliente a nodos de almacenamiento en DC1 y a nodos de almacenamiento en DC2. Un nodo de puerta de enlace en DC3 envía conexiones de cliente sólo a los nodos de almacenamiento en DC3.
+
+* Al recuperar un objeto que existe como varias copias replicadas, StorageGRID recupera la copia en el centro de datos que tiene el coste de enlace más bajo.
++
+En el ejemplo, si una aplicación cliente en DC2 recupera un objeto almacenado en DC1 y DC3, el objeto se recupera de DC1, ya que el coste del vínculo de DC1 a D2 es 0, que es inferior al coste del vínculo de DC3 a DC2 (25).
+
+
+
+Los costes de enlace son números relativos arbitrarios sin unidad de medida específica. Por ejemplo, un costo de enlace de 50 se utiliza de forma menos preferente que un costo de enlace de 25. En la tabla se muestran los costes de los enlaces más utilizados.
+
+[cols="1a,1a,2a"]
+|===
+| Enlace | Coste del enlace | Notas 
+
+
+ a| 
+Entre sitios físicos del centro de datos
+ a| 
+25 (predeterminado)
+ a| 
+Centros de datos conectados por un enlace WAN.
+
+
+
+ a| 
+Entre las ubicaciones lógicas del centro de datos en la misma ubicación física
+ a| 
+0
+ a| 
+Centros de datos lógicos en el mismo edificio físico o campus conectados por una LAN.
+
+|===

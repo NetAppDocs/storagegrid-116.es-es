@@ -1,0 +1,59 @@
+---
+permalink: sg6000/reviewing-hardware-status-in-santricity-system-manager.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, SANtricity System Manager, SANtricity, System Manager, hardware, status, diagnostic, environment drives, drive, temperature 
+summary: Puede usar System Manager de SANtricity para supervisar y gestionar componentes de hardware individuales de la bandeja de controladoras de almacenamiento y para revisar la información medioambiental y los diagnósticos de hardware, como la temperatura de los componentes, así como los problemas relacionados con las unidades. 
+---
+= Revisar el estado del hardware en System Manager de SANtricity
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede usar System Manager de SANtricity para supervisar y gestionar componentes de hardware individuales de la bandeja de controladoras de almacenamiento y para revisar la información medioambiental y los diagnósticos de hardware, como la temperatura de los componentes, así como los problemas relacionados con las unidades.
+
+.Lo que necesitará
+* Está utilizando un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Para acceder a System Manager de SANtricity a través de Grid Manager, debe contar con permisos de administrador de dispositivos de almacenamiento o de acceso raíz.
+* Para acceder a System Manager de SANtricity mediante el instalador de dispositivos de StorageGRID, debe tener el nombre de usuario y la contraseña de administrador de SANtricity System Manager.
+* Para acceder a SANtricity System Manager directamente mediante un explorador web, debe tener el nombre de usuario y la contraseña de administrador de SANtricity System Manager.
+
+
+
+NOTE: Debe tener el firmware 8.70 (11.70) de SANtricity o superior para acceder a System Manager de SANtricity mediante Grid Manager o el instalador de dispositivos de StorageGRID.
+
+
+IMPORTANT: Acceder a SANtricity System Manager desde Grid Manager o desde el instalador de dispositivos generalmente se realiza solo para supervisar el hardware y configurar E-Series AutoSupport. Muchas funciones y operaciones en SANtricity System Manager, como la actualización de firmware, no se aplican a la supervisión del dispositivo StorageGRID. Para evitar problemas, siga siempre las instrucciones de instalación y mantenimiento del hardware del dispositivo.
+
+.Pasos
+. xref:setting-up-and-accessing-santricity-system-manager.adoc[Acceda a SANtricity System Manager].
+. Introduzca el nombre de usuario y la contraseña del administrador si es necesario.
+. Haga clic en *Cancelar* para cerrar el asistente de configuración y mostrar la página de inicio del Administrador del sistema de SANtricity.
++
+Se mostrará la página de inicio de SANtricity System Manager. En SANtricity System Manager, la bandeja de controladoras se denomina cabina de almacenamiento.
+
++
+image::../media/sam_home_page.gif[Captura de pantalla de la página de inicio de SANtricity System Manager]
+
+. Revise la información mostrada para el hardware del dispositivo y confirme que todos los componentes de hardware tienen un estado óptimo.
++
+.. Haga clic en la ficha *hardware*.
+.. Haga clic en *Mostrar parte posterior de la bandeja*.
++
+image::../media/sam_hardware_controllers_a_and_b.gif[Pestaña de estado de hardware en SANtricity System Manager]
+
++
+Desde la parte posterior de la bandeja, puede ver ambas controladoras de almacenamiento, la batería de cada controladora de almacenamiento, los dos contenedores de alimentación, los dos compartimentos de ventiladores y las bandejas de expansión (si los hubiera). También puede ver las temperaturas de los componentes.
+
+.. Para ver los ajustes de cada controlador de almacenamiento, seleccione el controlador y seleccione *Ver ajustes* en el menú contextual.
+.. Para ver la configuración de otros componentes de la parte posterior de la bandeja, seleccione el componente que desea ver.
+.. Haga clic en *Mostrar frente de la bandeja* y seleccione el componente que desea ver.
++
+Desde el frente de la bandeja, es posible ver las unidades y los cajones de unidades de la bandeja de controladoras de almacenamiento o las bandejas de expansión (si las hubiera).
+
+
+
+
+
+Si el estado de cualquier componente es necesita atención, siga los pasos de Recovery Guru para resolver el problema o póngase en contacto con el soporte técnico.

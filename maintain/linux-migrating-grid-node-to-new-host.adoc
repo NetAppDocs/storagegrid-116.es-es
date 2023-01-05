@@ -1,0 +1,39 @@
+---
+permalink: maintain/linux-migrating-grid-node-to-new-host.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, linux, migrate node, migrating node, new host for node 
+summary: 'Puede migrar nodos StorageGRID de un host Linux a otro para realizar el mantenimiento del host \(como revisión del SO y reinicio\) sin afectar a la funcionalidad o disponibilidad del grid.' 
+---
+= Linux: Migre el nodo de grid a un nuevo host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede migrar nodos StorageGRID de un host Linux a otro para realizar tareas de mantenimiento del host (como parches y reinicio del SO) sin afectar a la funcionalidad o disponibilidad del grid.
+
+Se migran uno o más nodos de un host Linux (el «host de origen») a otro host Linux (el «host objetivo»). El host de destino debe haber sido preparado previamente para el uso de StorageGRID.
+
+
+IMPORTANT: Puede utilizar este procedimiento solo si ha planificado la implementación de StorageGRID para incluir soporte de migración.
+
+Para migrar un nodo de cuadrícula a un host nuevo, se deben cumplir ambas condiciones:
+
+* El almacenamiento compartido se utiliza para todos los volúmenes de almacenamiento por nodo
+* Las interfaces de red tienen nombres consistentes entre los hosts
+
+
+
+NOTE: En una puesta en marcha de producción, no ejecute más de un nodo de almacenamiento en un único host. El uso de un host dedicado para cada nodo de almacenamiento proporciona un dominio de fallo aislado.
+
+Existen otros tipos de nodos, como los nodos de administrador o los nodos de pasarela, que se pueden implementar en el mismo host. Sin embargo, si tiene varios nodos del mismo tipo (por ejemplo, dos nodos de puerta de enlace), no instale todas las instancias en el mismo host.
+
+Para obtener más información, consulte «"requisitos de migración de nodos" en las instrucciones de instalación de StorageGRID del sistema operativo Linux.
+
+.Información relacionada
+xref:deploying-new-linux-hosts.adoc[Implemente nuevos hosts Linux]
+
+xref:../rhel/index.adoc[Instale Red Hat Enterprise Linux o CentOS]
+
+xref:../ubuntu/index.adoc[Instalar Ubuntu o Debian]

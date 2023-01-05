@@ -1,0 +1,60 @@
+---
+permalink: ilm/what-ilm-policy-is.html 
+sidebar: sidebar 
+keywords: what is information lifecycle management policy, ilm policy 
+summary: 'Una política de gestión de ciclo de vida de la información \(ILM\) es un conjunto ordenado de reglas de ILM que determina cómo gestiona el sistema StorageGRID los datos de objetos con el tiempo.' 
+---
+= Qué es una política de ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Una política de gestión de ciclo de vida de la información (ILM) es un conjunto ordenado de reglas de ILM que determinan el modo en que el sistema StorageGRID gestiona los datos de objetos a lo largo del tiempo.
+
+
+
+== ¿Cómo evalúa objetos una política de ILM?
+
+La política activa de ILM para su sistema StorageGRID controla la ubicación, la duración y la protección de datos de todos los objetos.
+
+Cuando los clientes guardan objetos en StorageGRID, los objetos se evalúan según el conjunto ordenado de reglas de ILM en la política activa, de la siguiente manera:
+
+. Si los filtros de la primera regla de la política coinciden con un objeto, el objeto se procesa según el comportamiento de procesamiento de esa regla y se almacena según las instrucciones de ubicación de esa regla.
+. Si los filtros de la primera regla no coinciden con el objeto, el objeto se evalúa en función de cada regla posterior de la política hasta que se realice una coincidencia.
+. Si ninguna regla coincide con un objeto, se aplican las instrucciones de comportamiento de procesamiento y colocación de la regla predeterminada de la directiva. La regla predeterminada es la última regla de una directiva. La regla predeterminada debe aplicarse a todos los inquilinos, todos los bloques y todas las versiones del objeto, y no puede utilizar ningún filtro avanzado.
+
+
+
+
+== Ejemplo de política de ILM
+
+Este ejemplo de política de ILM usa tres reglas de ILM.
+
+image::../media/policy_for_two_tenants.png[Ejemplo de directiva para dos inquilinos]
+
+En este ejemplo, la regla 1 coincide con todos los objetos que pertenecen al arrendatario A. Estos objetos se almacenan como tres copias replicadas en tres sitios. Los objetos pertenecientes a otros arrendatarios no coinciden con la Regla 1, por lo que se evalúan en función de la Regla 2.
+
+La regla 2 coincide con todos los objetos de otros arrendatarios, pero sólo si son superiores a 1 MB. Estos objetos de mayor tamaño se almacenan mediante codificación de borrado 6+3 en tres instalaciones. La regla 2 no coincide con los objetos de 1 MB o menos, por lo que estos objetos se evalúan en función de la regla 3.
+
+La regla 3 es la última regla y la regla predeterminada de la política y no utiliza filtros. La regla 3 realiza dos copias replicadas de todos los objetos que no coinciden en la regla 1 o la regla 2 (objetos que no pertenecen al arrendatario A que son de 1 MB o menos).
+
+image::../media/ilm_policy_and_rules.png[Política y reglas de ILM]
+
+
+
+== ¿Qué son las políticas propuestas, activas e históricas?
+
+Todos los sistemas StorageGRID deben tener una política de ILM activa. Un sistema StorageGRID también puede tener una política de ILM propuesta y cualquier número de políticas históricas.
+
+Cuando se crea por primera vez una política de ILM, se crea una política propuesta seleccionando una o varias reglas de ILM y ordenándolas en un orden específico. Después de simular la política propuesta para confirmar su comportamiento, la activa para crear la política activa.
+
+Cuando se activa una nueva política de ILM, StorageGRID utiliza esa política para gestionar todos los objetos, incluidos los objetos existentes y los objetos recién procesados. Es posible que los objetos existentes se muevan a nuevas ubicaciones cuando se implementen las reglas de ILM en la nueva política.
+
+La activación de la directiva propuesta hace que la directiva previamente activa se convierta en una directiva histórica. No se pueden eliminar las políticas históricas de ILM.
+
+image::../media/ilm_policies_proposed_active_historical.png[Imagen conceptual para las políticas de ILM]
+
+.Información relacionada
+xref:creating-ilm-policy.adoc[Cree una política de ILM]

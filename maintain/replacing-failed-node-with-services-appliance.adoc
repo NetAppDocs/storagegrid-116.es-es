@@ -1,0 +1,38 @@
+---
+permalink: maintain/replacing-failed-node-with-services-appliance.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, replace failed node, services appliance 
+summary: Puede utilizar un dispositivo de servicios SG100 o SG1000 para recuperar un nodo de puerta de enlace fallido, un nodo de administración no primario fallido o un nodo de administración principal fallido alojado en VMware, un host Linux o un dispositivo de servicios. Este procedimiento es un paso del procedimiento de recuperación de nodos de cuadrícula. 
+---
+= Sustituya el nodo con fallos por el dispositivo de servicios
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede utilizar un dispositivo de servicios SG100 o SG1000 para recuperar un nodo de puerta de enlace fallido, un nodo de administración no primario fallido o un nodo de administración principal fallido alojado en VMware, un host Linux o un dispositivo de servicios. Este procedimiento es un paso del procedimiento de recuperación de nodos de cuadrícula.
+
+.Lo que necesitará
+* Debe haber determinado que una de las siguientes situaciones es verdadera:
++
+** No se puede restaurar la máquina virtual que aloja el nodo.
+** El host Linux físico o virtual del nodo de grid ha dado error y es necesario reemplazarlo.
+** Se debe sustituir el dispositivo de servicios que aloja el nodo Grid.
+
+
+* Debe asegurarse de que la versión de instalador de dispositivos de StorageGRID en el dispositivo de servicios coincida con la versión de software del sistema StorageGRID, como se describe en instalación y mantenimiento de hardware para verificar y actualizar la versión de instalador de dispositivos de StorageGRID.
++
+xref:../sg100-1000/index.adoc[Servicios de aplicaciones SG100 y SG1000]
+
+
+
+
+IMPORTANT: No instale un SG100 ni un dispositivo de servicio SG1000 en el mismo sitio. El rendimiento puede ser impredecible.
+
+.Acerca de esta tarea
+Puede utilizar un dispositivo de servicios SG100 o SG1000 para recuperar un nodo de red fallido en los casos siguientes:
+
+* El nodo que ha fallado se hospedó en VMware o Linux (cambio de plataforma).
+* El nodo con errores se hospedó en un dispositivo de servicios (reemplazo de plataforma)
+

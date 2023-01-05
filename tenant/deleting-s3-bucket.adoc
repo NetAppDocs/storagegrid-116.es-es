@@ -1,0 +1,50 @@
+---
+permalink: tenant/deleting-s3-bucket.html 
+sidebar: sidebar 
+keywords: how to delete S3 bucket 
+summary: Puede usar el administrador de inquilinos para eliminar un bloque de S3 que esté vacío. 
+---
+= Eliminar bloque de S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede usar el administrador de inquilinos para eliminar uno o varios bloques de S3 vacíos.
+
+.Lo que necesitará
+* Debe iniciar sesión en el administrador de inquilinos mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Debe pertenecer a un grupo de usuarios que tenga el permiso Administrar todos los cucharones o acceso raíz. Estos permisos anulan la configuración de los permisos en las políticas de grupo o bloque. Consulte xref:tenant-management-permissions.adoc[Permisos de gestión de inquilinos].
+* Los cucharones que desea eliminar están vacíos.
+
+
+.Acerca de esta tarea
+Estas instrucciones describen cómo eliminar un bloque de S3 mediante el administrador de inquilinos. También se pueden eliminar bloques de S3 con el xref:understanding-tenant-management-api.adoc[API de gestión de inquilinos] o la xref:../s3/s3-rest-api-supported-operations-and-limitations.adoc[API REST DE S3].
+
+No puede eliminar un bloque de S3 si contiene objetos o versiones de objetos no actuales. Para obtener información sobre cómo se eliminan los objetos con versiones S3, consulte xref:../ilm/index.adoc[instrucciones para gestionar objetos con la gestión del ciclo de vida de la información].
+
+.Pasos
+. Seleccione *ALMACENAMIENTO (S3)* > *Cuchos*.
++
+Aparece la página Buckets y muestra todos los bloques S3 existentes.
+
++
+image::../media/buckets_table.png[Mesa de cucharones]
+
+. Seleccione la casilla de verificación para el segmento vacío que desea eliminar. Puede seleccionar más de un bloque a la vez.
++
+El menú acciones está activado.
+
+. En el menú acciones, seleccione *Eliminar cubo* (o *Eliminar cubos* si ha elegido más de uno).
++
+image::../media/delete_bucket_button.png[Botón Eliminar cucharones]
+
+. Cuando aparezca el cuadro de diálogo de confirmación, seleccione *Sí* para eliminar todos los segmentos que haya elegido.
++
+StorageGRID confirma que cada cucharón está vacío y, a continuación, elimina cada cucharón. Esta operación puede llevar algunos minutos.
+
++
+Si un segmento no está vacío, aparece un mensaje de error. Debe eliminar todos los objetos antes de poder eliminar un bloque.
+
+

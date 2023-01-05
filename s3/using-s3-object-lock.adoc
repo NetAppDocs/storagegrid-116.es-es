@@ -1,0 +1,113 @@
+---
+permalink: s3/using-s3-object-lock.html 
+sidebar: sidebar 
+keywords: using S3 object lock, object lock, S3 object 
+summary: Si la opción de configuración global de bloqueo de objetos S3 se encuentra habilitada para el sistema StorageGRID, puede crear bloques con el bloqueo de objetos S3 habilitado y, a continuación, especificar la configuración de retención legal y hasta la fecha para cada versión de objeto que añada a ese bloque. 
+---
+= Utilice el bloqueo de objetos de S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si la opción de configuración global de bloqueo de objetos S3 se encuentra habilitada para el sistema StorageGRID, puede crear bloques con la función S3 Object Lock habilitada y, a continuación, especificar los periodos de retención predeterminados para cada bloque o la configuración específica de retención hasta la fecha y la conservación legal para cada versión de objeto que añada a ese bloque.
+
+El bloqueo de objetos S3 permite especificar configuraciones a nivel de objeto para evitar que los objetos se eliminen o se sobrescriban por un tiempo fijo o por tiempo indefinido.
+
+La función de bloqueo de objetos StorageGRID S3 ofrece un único modo de retención equivalente al modo de cumplimiento de normativas Amazon S3. De forma predeterminada, cualquier usuario no puede sobrescribir ni eliminar una versión de objeto protegido. La función de bloqueo de objetos StorageGRID S3 no es compatible con un modo de gobierno y no permite a los usuarios con permisos especiales omitir la configuración de retención o eliminar objetos protegidos.
+
+
+
+== Habilite S3 Object Lock para bloque
+
+Si la opción de configuración global de bloqueo de objetos S3 se encuentra habilitada para el sistema StorageGRID, también puede habilitar el bloqueo de objetos S3 al crear cada bloque. Es posible usar cualquiera de estos métodos:
+
+* Cree el bloque con el Administrador de arrendatarios.
++
+xref:../tenant/index.adoc[Usar cuenta de inquilino]
+
+* Cree el segmento mediante una solicitud PUT Bucket con el `x-amz-bucket-object-lock-enabled` solicite el encabezado.
++
+xref:operations-on-buckets.adoc[Operaciones en bloques]
+
+
+
+No se puede añadir o deshabilitar el bloqueo de objetos de S3 después de crear el bloque. S3 Object Lock requiere el control de versiones de bloques, que se habilita automáticamente al crear el bloque.
+
+Un bloque con S3 Object Lock habilitado puede contener una combinación de objetos con y sin la configuración de S3 Object Lock. StorageGRID admite períodos de retención predeterminados para los objetos en bloques de bloqueo de objetos de S3 y admite la operación DE bloque de configuración PUT Object Lock. La `s3:object-lock-remaining-retention-days` la clave de condición de política establece los períodos de retención mínimos y máximos permitidos para los objetos.
+
+
+
+== Determinar si se habilitó el bloqueo de objetos S3 para el bloque
+
+Para determinar si la opción S3 Object Lock está habilitada, use xref:../s3/use-s3-object-lock-default-bucket-retention.adoc#get-object-lock-configuration[OBTENER configuración de bloqueo de objeto] solicitud.
+
+
+
+== Crear objeto con la configuración de Object Lock de S3
+
+Para especificar la configuración de S3 Object Lock (bloqueo de objetos S3) al agregar una versión de objeto a un bloque que tenga habilitado el bloqueo de objetos S3, emita un objeto PUT, PUT Object - Copy o inicie una solicitud de carga de varias partes. Utilice los siguientes encabezados de solicitud.
+
+
+NOTE: Debe habilitar S3 Object Lock cuando se crea un bloque. No se puede añadir o deshabilitar el bloqueo de objetos de S3 después de crear un bloque.
+
+* `x-amz-object-lock-mode`, Que debe ser DE CUMPLIMIENTO (distingue entre mayúsculas y minúsculas).
++
+
+NOTE: Si especifica `x-amz-object-lock-mode`, también debe especificar `x-amz-object-lock-retain-until-date`.
+
+* `x-amz-object-lock-retain-until-date`
++
+** El valor retener hasta la fecha debe tener el formato `2020-08-10T21:46:00Z`. Se permiten segundos fraccionarios, pero sólo se conservan 3 dígitos decimales (precisión de milisegundos). No se admiten otros formatos ISO 8601.
+** La fecha de retención debe ser futura.
+
+
+* `x-amz-object-lock-legal-hold`
++
+Si la conservación legal está ACTIVADA (distingue entre mayúsculas y minúsculas), el objeto se colocará bajo una retención legal. Si se HA DESACTIVADO la retención legal, no se ha colocado ningún tipo de retención legal. Cualquier otro valor produce un error 400 Bad Request (InvalidArgument).
+
+
+
+Si utiliza alguno de estos encabezados de solicitud, tenga en cuenta estas restricciones:
+
+* La `Content-MD5` la cabecera de la solicitud es necesaria si la hay `x-amz-object-lock-*` El encabezado de la solicitud está presente en LA solicitud PUT Object. `Content-MD5` No es necesario PARA PONER objeto: Copiar o iniciar carga de varias partes.
+* Si el bloque no tiene habilitado el bloqueo de objetos S3 y un `x-amz-object-lock-*` El encabezado de la solicitud está presente, se devuelve un error de solicitud incorrecta 400 (InvalidRequest).
+* La solicitud PUT Object admite el uso de `x-amz-storage-class: REDUCED_REDUNDANCY` Para igualar el comportamiento de AWS. Sin embargo, cuando un objeto se procesa en un bucket con el bloqueo de objetos S3 habilitado, StorageGRID siempre ejecuta un procesamiento de compromiso doble.
+* Una respuesta posterior A LA versión GET o HEAD Object incluirá los encabezados `x-amz-object-lock-mode`, `x-amz-object-lock-retain-until-date`, y. `x-amz-object-lock-legal-hold`, si está configurado y si el remitente de la solicitud tiene el correcto `s3:Get*` permisos.
+* Una solicitud de ELIMINACIÓN de versión de objeto o ELIMINACIÓN de objetos no se realizará correctamente si se encuentra antes de la fecha de retención o si la retención legal está activada.
+
+
+
+
+== Actualice la configuración de bloqueo de objetos S3
+
+Si necesita actualizar la configuración de retención legal o retención para una versión de objeto existente, puede realizar las siguientes operaciones de subrecursos de objeto:
+
+* `PUT Object legal-hold`
++
+Si el nuevo valor de retención legal está ACTIVADO, el objeto se colocará bajo una retención legal. Si el valor de la retención legal está DESACTIVADO, se levanta la retención legal.
+
+* `PUT Object retention`
++
+** El valor del modo debe ser DE CUMPLIMIENTO (distingue entre mayúsculas y minúsculas).
+** El valor retener hasta la fecha debe tener el formato `2020-08-10T21:46:00Z`. Se permiten segundos fraccionarios, pero sólo se conservan 3 dígitos decimales (precisión de milisegundos). No se admiten otros formatos ISO 8601.
+** Si una versión de objeto tiene una fecha de retención existente, sólo puede aumentarla. El nuevo valor debe ser el futuro.
+
+
+
+
+.Información relacionada
+xref:../ilm/index.adoc[Gestión de objetos con ILM]
+
+xref:../tenant/index.adoc[Usar cuenta de inquilino]
+
+xref:put-object.adoc[OBJETO PUT]
+
+xref:put-object-copy.adoc[PONER objeto: Copiar]
+
+xref:initiate-multipart-upload.adoc[Inicie la carga de varias partes]
+
+xref:object-versioning.adoc[Control de versiones de objetos]
+
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html["Guía del usuario de Amazon simple Storage Service: Uso del bloqueo de objetos de S3"^]

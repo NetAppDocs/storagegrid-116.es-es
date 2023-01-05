@@ -1,0 +1,50 @@
+---
+permalink: sg100-1000/turning-controller-identify-led-on-and-off.html 
+sidebar: sidebar 
+keywords: storagegrid, sg100, sg1000, service appliance, services appliance, gateway Node, admin node, locate, find, locating, finding, identify, blue led, blue light 
+summary: El LED de identificación azul de la parte frontal y trasera de la controladora se puede encender para ayudar a localizar el dispositivo en un centro de datos. 
+---
+= Encender y apagar el LED de identificación de la controladora
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El LED de identificación azul de la parte frontal y trasera de la controladora se puede encender para ayudar a localizar el dispositivo en un centro de datos.
+
+.Lo que necesitará
+Debe tener la dirección IP del BMC del controlador que desea identificar.
+
+.Pasos
+. Acceda a la interfaz del BMC del controlador.
+. Seleccione *Server Identify*.
+. Seleccione *ON* y, a continuación, seleccione *realizar acción*.
++
+image::../media/sg6060_service_identify_turn_on.jpg[Active el controlador identifique el LED de BMC]
+
+
+
+.Resultado
+Los LED de identificación azules se iluminan en la parte frontal (mostrada) y en la parte posterior del controlador.
+
+image::../media/sg6060_front_panel_service_led_on.jpg[LED de identificación frontal: Encendido]
+
+
+NOTE: Si hay un panel frontal instalado en la controladora, es posible que le resulte difícil ver el LED de identificación frontal.
+
+.Después de terminar
+Para apagar el controlador Identify LED:
+
+* Pulse el interruptor Identify LED del panel frontal del controlador.
+* En la interfaz del controlador BMC, seleccione *Server Identify*, seleccione *OFF* y, a continuación, seleccione *realizar acción*.
+
+
+Los LED azules de identificación de la parte frontal y trasera del controlador se apagan.
+
+image::../media/sg6060_front_panel_service_led_off.jpg[LED de identificación frontal: Apagado]
+
+.Información relacionada
+xref:locating-controller-in-data-center.adoc[Ubique la controladora en el centro de datos]
+
+xref:accessing-bmc-interface-sg1000.adoc[Acceda a la interfaz de BMC]

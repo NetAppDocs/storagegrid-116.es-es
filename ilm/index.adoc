@@ -1,0 +1,46 @@
+---
+permalink: ilm/index.html 
+sidebar: sidebar 
+keywords: information lifecycle management overview, about information lifecycle management, ilm overview, about ilm 
+summary: 'Para administrar los objetos de un sistema StorageGRID, configure las reglas y políticas de gestión de ciclo de vida de la información (ILM). Las reglas y políticas de ILM indican a StorageGRID cómo crear y distribuir copias de datos de objetos y cómo gestionarlos a lo largo del tiempo.' 
+---
+= Gestión de objetos con ILM: Información general
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para administrar los objetos de un sistema StorageGRID, configure las reglas y políticas de gestión de ciclo de vida de la información (ILM). Las reglas y políticas de ILM indican a StorageGRID cómo crear y distribuir copias de datos de objetos y cómo gestionarlos a lo largo del tiempo.
+
+
+
+== Acerca de estas instrucciones
+
+El diseño e implementación de reglas de ILM y la política de ILM requiere una planificación cuidadosa. Debe comprender los requisitos operativos, la topología del sistema StorageGRID, las necesidades de protección de objetos y los tipos de almacenamiento disponibles. A continuación, debe determinar cómo desea copiar, distribuir y almacenar diferentes tipos de objetos.
+
+Utilice estas instrucciones para:
+
+* Obtenga más información sobre ILM de StorageGRID, incluida la manera en que ILM funciona durante la vida de un objeto, así como sobre qué reglas y políticas de ILM son.
+* Aprenda a configurar pools de almacenamiento, perfiles de código de borrado y reglas de ILM.
+* Aprenda a crear y activar una política de ILM que protegerá los datos de objetos en uno o más sitios.
+* Aprenda a gestionar objetos con el bloqueo de objetos de S3, que ayuda a garantizar que los objetos de bloques de S3 no se eliminen ni se sobrescriban por un periodo de tiempo específico.
+
+
+
+
+== Leer más
+
+Para obtener más información, consulte estos vídeos:
+
+* https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=beffbe9b-e95e-4a90-9560-acc5013c93d8["Vídeo: Reglas de ILM para StorageGRID: Introducción"^]
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=beffbe9b-e95e-4a90-9560-acc5013c93d8]
+image::../media/video-screenshot-ilm-rules.png[Vídeo: Reglas de ILM para StorageGRID: Introducción]
+
+* https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c929e94e-353a-4375-b112-acc5013c81c7["Vídeo: Políticas de ILM de StorageGRID"^]
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c929e94e-353a-4375-b112-acc5013c81c7]
+image::../media/video-screenshot-ilm-policies.png[Vídeo: Políticas de ILM de StorageGRID]
+
+

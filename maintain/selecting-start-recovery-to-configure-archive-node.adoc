@@ -1,0 +1,50 @@
+---
+permalink: maintain/selecting-start-recovery-to-configure-archive-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, archive node 
+summary: Después de reemplazar un nodo de archivado, debe seleccionar Iniciar recuperación en el administrador de grid para configurar el nuevo nodo como reemplazo del nodo con error. 
+---
+= Seleccione Start Recovery para configurar Archive Node
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de reemplazar un nodo de archivado, debe seleccionar Iniciar recuperación en el administrador de grid para configurar el nuevo nodo como reemplazo del nodo con error.
+
+.Lo que necesitará
+* Debe iniciar sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Debe tener los permisos de mantenimiento o acceso raíz.
+* Debe tener la clave de acceso de aprovisionamiento.
+* Debe haber puesto en marcha y configurado el nodo de sustitución.
+
+
+.Pasos
+. En Grid Manager, seleccione *MANTENIMIENTO* > *tareas* > *recuperación*.
+. Seleccione el nodo de cuadrícula que desea recuperar en la lista Pending Nodes.
++
+Los nodos aparecen en la lista después de que fallan, pero no podrá seleccionar un nodo hasta que se haya vuelto a instalar y esté listo para la recuperación.
+
+. Introduzca la *frase de paso de aprovisionamiento*.
+. Haga clic en *Iniciar recuperación*.
++
+image::../media/4b_select_recovery_node.png[Captura de pantalla que muestra la página Mantenimiento > recuperación]
+
+. Supervise el progreso de la recuperación en la tabla recuperando Grid Node.
++
+
+NOTE: Mientras se está ejecutando el procedimiento de recuperación, puede hacer clic en *Restablecer* para iniciar una nueva recuperación. Aparece un cuadro de diálogo Información, que indica que el nodo se quedará en estado indeterminado si restablece el procedimiento.
+
++
+image::../media/recovery_reset_warning.gif[captura de pantalla que muestra el cuadro de diálogo de advertencia de restablecimiento de recuperación]
+
++
+Si desea volver a intentar la recuperación después de restablecer el procedimiento, debe restaurar el nodo a un estado preinstalado, de la manera siguiente:
+
++
+** *VMware*: Elimine el nodo de la cuadrícula virtual desplegada. A continuación, una vez que esté listo para reiniciar la recuperación, vuelva a poner el nodo en marcha.
+** *Linux*: Reinicie el nodo ejecutando este comando en el host Linux: `storagegrid node force-recovery _node-name_`
+
+
+

@@ -1,0 +1,49 @@
+---
+permalink: sg5600/troubleshooting-connection-issues.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, troubleshoot, troubleshooting, connection 
+summary: Si tiene problemas de conexión durante la instalación del dispositivo StorageGRID, debe ejecutar los pasos de acción correctiva indicados. 
+---
+= Solucionar problemas de conexión (SG5600)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si tiene problemas de conexión durante la instalación del dispositivo StorageGRID, debe ejecutar los pasos de acción correctiva indicados.
+
+
+
+== No se puede conectar con el dispositivo StorageGRID a través de la red
+
+Si no puede conectarse al dispositivo, puede haber un problema de red o es posible que la instalación del hardware no se haya completado correctamente.
+
+* *Edición*
++
+No puede conectar al aparato.
+
+* *Causa*
++
+Esto podría ocurrir si hay un problema de red o la instalación del hardware no se completó correctamente.
+
+* *Acción Correctiva*
++
+.. Ping en el aparato: +
+`*ping _E5600_controller_IP_*`
+.. Abra un explorador e introduzca lo siguiente para acceder al instalador de dispositivos de StorageGRID: +
+`*https://_Management_Port_IP_:8443*`
++
+Para Management_Port_IP, introduzca la dirección IP para el puerto de gestión 1 en la controladora E5600SG (aprovisionada durante la instalación física).
+
+.. Haga clic en *Configurar red de administración* y compruebe la dirección IP.
+.. Si recibe una respuesta del ping, compruebe que el puerto 8443 está abierto en los firewalls.
+.. Reinicie el dispositivo.
+.. Actualice la página web de instalación.
+.. Si esto no resuelve el problema de conexión, póngase en contacto con el soporte técnico del sitio de soporte de NetApp en http://mysupport.netapp.com/["mysupport.netapp.com"^].
+
+
+
+
+.Información relacionada
+xref:e5600sg-controller-seven-segment-display-codes.adoc[códigos de visualización de siete segmentos de la controladora E5600SG]

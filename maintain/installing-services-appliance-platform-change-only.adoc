@@ -1,0 +1,29 @@
+---
+permalink: maintain/installing-services-appliance-platform-change-only.html 
+sidebar: sidebar 
+keywords: storagegrid, recover services appliance, recover appliance, recovering appliance, recovering services appliance, install services appliance, installing services appliance, services appliance 
+summary: Cuando recupere un nodo de red fallido alojado en VMware o un host Linux y utilice un dispositivo de servicios SG100 o SG1000 para el nodo de sustitución, primero debe instalar el hardware de la nueva aplicación con el mismo nombre de nodo que el nodo fallido. 
+---
+= Instalar el dispositivo de servicios (sólo cambio de plataforma)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cuando recupere un nodo de red fallido alojado en VMware o un host Linux y utilice un dispositivo de servicios SG100 o SG1000 para el nodo de sustitución, primero debe instalar el hardware de la nueva aplicación con el mismo nombre de nodo que el nodo fallido.
+
+Debe tener la siguiente información sobre el nodo con errores:
+
+* *Nombre de nodo*: Debe instalar el dispositivo de servicios con el mismo nombre de nodo que el nodo que ha fallado.
+* *Direcciones IP*: Puede asignar el dispositivo de servicios las mismas direcciones IP que el nodo que ha fallado, que es la opción preferida, o puede seleccionar una nueva dirección IP no utilizada en cada red.
+
+
+Realice este procedimiento solo si va a recuperar un nodo con errores alojado en VMware o Linux y lo va a reemplazar por un nodo alojado en un dispositivo de servicios.
+
+. Siga las instrucciones para instalar un nuevo dispositivo de servicios SG100 o SG1000.
+. Cuando se le solicite el nombre de un nodo, utilice el nombre del nodo con errores.
+
+
+.Información relacionada
+xref:../sg100-1000/index.adoc[Servicios de aplicaciones SG100 y SG1000]

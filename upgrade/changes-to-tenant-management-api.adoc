@@ -1,0 +1,25 @@
+---
+permalink: upgrade/changes-to-tenant-management-api.html 
+sidebar: sidebar 
+keywords: tenant management api, api, api version, swagger, rest api 
+summary: StorageGRID 11.6 utiliza la versión 3 de la API de gestión de inquilinos. La versión 3 deja obsoleto la versión 2; sin embargo, la versión 1 y la versión 2 siguen siendo compatibles. 
+---
+= Cambios en la API de gestión de inquilinos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 11.6 utiliza la versión 3 de la API de gestión de inquilinos. La versión 3 deja obsoleto la versión 2; sin embargo, la versión 1 y la versión 2 siguen siendo compatibles.
+
+
+IMPORTANT: Puede continuar utilizando la versión 1 y versión 2 de la API de gestión con StorageGRID 11.6; sin embargo, la compatibilidad con estas versiones de la API se eliminará en una versión futura de StorageGRID. Después de actualizar a StorageGRID 11.6, las API v1 y v2 obsoletas se pueden desactivar mediante la `PUT /grid/config/management` API.
+
+Para obtener más información, visite xref:../tenant/understanding-tenant-management-api.adoc[Conozca la API de gestión de inquilinos].
+
+
+
+== Método DE PARCHE obsoleto
+
+El método DE REVISIÓN ha quedado obsoleto y se eliminará en una versión futura. Según sea necesario, realice una operación PUT para reemplazar un recurso en lugar de utilizar una operación DE REVISIÓN para modificar el recurso.

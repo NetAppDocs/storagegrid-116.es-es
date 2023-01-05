@@ -1,0 +1,31 @@
+---
+permalink: sg100-1000/automating-appliance-installation-and-configuration.html 
+sidebar: sidebar 
+keywords: storagegrid, sg100, sg1000, service appliance, services appliance, gateway Node, admin node, automate, automating, automation, automatic, install, installation, configuration, configure 
+summary: Puede automatizar la instalación y configuración de sus dispositivos y la configuración de todo el sistema StorageGRID. 
+---
+= Automatización de la instalación y configuración de dispositivos (SG100 y SG1000)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede automatizar la instalación y configuración de sus dispositivos y la configuración de todo el sistema StorageGRID.
+
+.Acerca de esta tarea
+Automatizar la instalación y la configuración puede ser útil para poner en marcha varias instancias de StorageGRID o una instancia de StorageGRID grande y compleja.
+
+Para automatizar la instalación y configuración, utilice una o varias de las siguientes opciones:
+
+* Cree un archivo JSON que especifique las opciones de configuración para los dispositivos. Cargue el archivo JSON con el instalador de dispositivos StorageGRID.
++
+
+NOTE: Puede usar el mismo archivo para configurar más de un dispositivo.
+
+* Utilice la StorageGRID``configure-sga.py`` Script Python para automatizar la configuración de sus dispositivos.
+* Utilice scripts Python adicionales para configurar otros componentes de todo el sistema StorageGRID (la "cuadrícula").
+
+
+
+NOTE: Puede utilizar directamente los scripts Python de automatización de StorageGRID o bien puede usarlos como ejemplos de cómo utilizar la API DE REST de instalación de StorageGRID en las herramientas de puesta en marcha de grid y de configuración que desarrolla usted mismo. Consulte las instrucciones para xref:../maintain/downloading-and-extracting-storagegrid-installation-files.adoc[Descarga y extracción de los archivos de instalación de StorageGRID].

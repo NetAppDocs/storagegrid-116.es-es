@@ -1,0 +1,50 @@
+---
+permalink: ilm/removing-cloud-storage-pool.html 
+sidebar: sidebar 
+keywords: remove cloud storage pool 
+summary: Puede quitar un pool de almacenamiento en cloud que no se utilice en una regla de ILM y que no contenga datos de objetos. 
+---
+= Quitar un pool de almacenamiento en el cloud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede quitar un pool de almacenamiento en cloud que no se utilice en una regla de ILM y que no contenga datos de objetos.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+* Ha confirmado que el bloque de S3 o el contenedor de Azure no contienen ningún objeto. Se produce un error si intenta quitar un Pool de almacenamiento en cloud si contiene objetos. Consulte xref:troubleshooting-cloud-storage-pools.adoc[Solucione problemas de Cloud Storage Pools].
++
+
+NOTE: Cuando se crea un pool de almacenamiento en el cloud, StorageGRID escribe un archivo marcador en el bloque o contenedor para identificarlo como un pool de almacenamiento en el cloud. No elimine este archivo, que se denomina `x-ntap-sgws-cloud-pool-uuid`.
+
+* Ya ha quitado todas las reglas de ILM que pueden haber usado el pool.
+
+
+.Pasos
+. Seleccione *ILM* > *agrupaciones de almacenamiento*.
++
+Aparece la página Storage Pools.
+
+. Seleccione el botón de opción de un pool de almacenamiento en cloud que no se utilice actualmente en una regla de ILM.
++
+No puede quitar un pool de almacenamiento en cloud si se utiliza en una regla de ILM. El botón *Quitar* está desactivado.
+
++
+image::../media/cloud_storage_pool_used_in_ilm_rule.png[El pool de almacenamiento en cloud utilizado en la regla de ILM]
+
+. Seleccione *Quitar*.
++
+Aparecerá una advertencia de confirmación.
+
++
+image::../media/cloud_storage_pool_remove.gif[Eliminación del pool de almacenamiento en cloud]
+
+. Seleccione *OK*.
++
+El pool de almacenamiento en cloud se elimina.
+
+

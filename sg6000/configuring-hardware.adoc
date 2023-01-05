@@ -1,0 +1,14 @@
+---
+permalink: sg6000/configuring-hardware.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, hardware, configure, configuration, set up, setup, network, networking 
+summary: Después de aplicar la alimentación al dispositivo, debe configurar las conexiones de red que utilizará StorageGRID. Es necesario configurar SANtricity System Manager, que es el software que se utilizará para supervisar las controladoras de almacenamiento y otro hardware en la bandeja de controladoras. También debe asegurarse de que puede acceder a la interfaz de BMC para el controlador SG6000-CN. 
+---
+= Configuración del hardware (SG6000)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de aplicar la alimentación al dispositivo, debe configurar las conexiones de red que utilizará StorageGRID. Es necesario configurar SANtricity System Manager, que es el software que se utilizará para supervisar las controladoras de almacenamiento y otro hardware en la bandeja de controladoras. También debe asegurarse de que puede acceder a la interfaz de BMC para el controlador SG6000-CN.

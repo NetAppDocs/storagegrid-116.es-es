@@ -1,0 +1,35 @@
+---
+permalink: tenant/deleting-group.html 
+sidebar: sidebar 
+keywords: how to delete tenant group 
+summary: Puede eliminar un grupo del sistema. Cualquier usuario que sólo pertenezca a ese grupo ya no podrá iniciar sesión en el Administrador de inquilinos ni utilizar la cuenta de arrendatario. 
+---
+= Eliminar grupo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede eliminar un grupo del sistema. Cualquier usuario que sólo pertenezca a ese grupo ya no podrá iniciar sesión en el Administrador de inquilinos ni utilizar la cuenta de arrendatario.
+
+.Lo que necesitará
+* Debe iniciar sesión en el administrador de inquilinos mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Debe pertenecer a un grupo de usuarios que tenga el permiso acceso raíz. Consulte xref:tenant-management-permissions.adoc[Permisos de gestión de inquilinos].
+
+
+.Pasos
+. Seleccione *ADMINISTRACIÓN de ACCESO* > *grupos*.
++
+image::../media/tenant_add_groups_example.png[Captura de pantalla de la página Control de acceso > grupos]
+
+. Seleccione las casillas de verificación de los grupos que desea eliminar.
+. Seleccione *acciones* > *Eliminar grupo*.
++
+Aparecerá un mensaje de confirmación.
+
+. Seleccione *Eliminar grupo* para confirmar que desea eliminar los grupos indicados en el mensaje de confirmación.
++
+Aparecerá un mensaje de confirmación en la esquina superior derecha de la página. Los cambios pueden tardar hasta 15 minutos en surtir efecto debido al almacenamiento en caché.
+
+

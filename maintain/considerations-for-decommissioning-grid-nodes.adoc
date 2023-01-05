@@ -1,0 +1,31 @@
+---
+permalink: maintain/considerations-for-decommissioning-grid-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission 
+summary: Antes de iniciar este procedimiento para retirar uno o más nodos, debe comprender las implicaciones que tendría la eliminación de cada tipo de nodo. Una vez que el decomisionado correcto de un nodo, sus servicios se deshabilitarán y el nodo se apagará automáticamente. 
+---
+= Consideraciones para la retirada del nodo de grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de iniciar este procedimiento para retirar uno o más nodos, debe comprender las implicaciones que tendría la eliminación de cada tipo de nodo. Una vez que el decomisionado correcto de un nodo, sus servicios se deshabilitarán y el nodo se apagará automáticamente.
+
+No puede retirar un nodo si lo hace dejará a StorageGRID en estado no válido. Se aplican las siguientes reglas:
+
+* No se puede retirar el nodo de administrador principal.
+* No se pueden retirar nodos de archivado.
+* No puede retirar un nodo de administrador ni un nodo de puerta de enlace si una de sus interfaces de red forma parte de un grupo de alta disponibilidad (ha).
+* No puede retirar un nodo de almacenamiento si su eliminación afectaría al quórum de ADC.
+* No puede retirar un nodo de almacenamiento si se requiere para la política de ILM activa.
+* No debe retirar más de 10 nodos de almacenamiento en un único procedimiento de nodo de retirada.
+* No puede decomisionar un nodo conectado si el grid incluye nodos desconectados (nodos cuyo estado es desconocido o inactivo administrativamente). Primero, debe decomisionar o recuperar los nodos desconectados.
+* Si la cuadrícula contiene varios nodos desconectados, el software requiere que los retire todos al mismo tiempo, lo que aumenta la posibilidad de obtener resultados inesperados.
+* Si no se puede quitar un nodo desconectado (por ejemplo, un nodo de almacenamiento necesario para el quórum de ADC), no se puede quitar ningún otro nodo desconectado.
+* Si desea sustituir un aparato antiguo por otro más nuevo, tenga en cuenta xref:appliance-node-cloning.adoc[clonar el nodo del dispositivo] en lugar de retirar el nodo antiguo y añadir el nuevo nodo en una ampliación.
+
+
+
+IMPORTANT: No quite la máquina virtual de un nodo de grid ni otros recursos hasta que se le indique hacerlo en procedimientos de retirada.

@@ -1,0 +1,43 @@
+---
+permalink: sg100-1000/unpacking-boxes-sg100-and-sg1000.html 
+sidebar: sidebar 
+keywords: storagegrid, sg100, sg1000, service appliance, services appliance, gateway Node, admin node, install, installation, unpack, unbox, prepare, inventory, components, contents 
+summary: Antes de instalar el aparato StorageGRID, desembale todas las cajas y compare el contenido con los artículos del recibo de embalaje. 
+---
+= Desempaquetado (SG100 y SG1000)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de instalar el aparato StorageGRID, desembale todas las cajas y compare el contenido con los artículos del recibo de embalaje.
+
+
+
+== Hardware de los dispositivos
+
+* *SG100 o SG1000*
++
+image::../media/sg6000_cn_front_without_bezel.gif[Unidades frontales SG 100 o dispositivo de servicios SG1000]
+
+* *Kit de guías con instrucciones*
++
+image::../media/rail_kit.gif[Kit de rieles]
+
+
+
+
+
+== Cables de alimentación
+
+El envío del dispositivo StorageGRID incluye los siguientes cables de alimentación:
+
+* *Dos cables de alimentación para su país*
++
+image::../media/power_cords.gif[Cables de alimentación]
+
++
+Es posible que el armario tenga cables de alimentación especiales que utilice en lugar de los cables de alimentación que se suministran con el aparato.
+
+

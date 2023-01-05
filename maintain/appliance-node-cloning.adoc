@@ -1,0 +1,14 @@
+---
+permalink: maintain/appliance-node-cloning.html 
+sidebar: sidebar 
+keywords: node cloning, clone node 
+summary: Puede clonar un nodo de dispositivo en StorageGRID para usar un dispositivo de diseño más reciente o más capacidades. La clonación transfiere toda la información del nodo existente al nuevo dispositivo, ofrece un proceso de actualización de hardware que es fácil de realizar y ofrece una alternativa al decomisionado y expansión para sustituir dispositivos. 
+---
+= Clonado de nodos de dispositivos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede clonar un nodo de dispositivo en StorageGRID para usar un dispositivo de diseño más reciente o más capacidades. La clonación transfiere toda la información del nodo existente al nuevo dispositivo, ofrece un proceso de actualización de hardware que es fácil de realizar y ofrece una alternativa al decomisionado y expansión para sustituir dispositivos.

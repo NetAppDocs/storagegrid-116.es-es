@@ -1,0 +1,44 @@
+---
+permalink: tenant/use-s3-console.html 
+sidebar: sidebar 
+keywords: how to use s3 console 
+summary: Puede usar la consola de S3 para ver los objetos de un bloque de S3. 
+---
+= Utilice la consola Experimental S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede usar la consola de S3 para ver los objetos de un bloque de S3.
+
+También puede usar la consola de S3 para hacer lo siguiente:
+
+* Agregar y eliminar objetos, versiones de objetos y carpetas
+* Cambie el nombre de los objetos
+* Mueva y copie objetos entre bloques y carpetas
+* Administrar etiquetas de objetos
+* Ver los metadatos de objetos
+* Descargar objetos
+
+
+
+NOTE: La consola de S3 no se ha probado completamente y se Marca como “experimental”. No está diseñado para la gestión masiva de objetos ni para su uso en un entorno de producción. Los inquilinos solo deben usar S3 Console cuando se realicen funciones para un pequeño número de objetos, como cuando se cargan objetos para simular una nueva política de ILM, solución de problemas de ingesta, o bien mediante grids de prueba de concepto o no de producción.
+
+.Lo que necesitará
+* Ha iniciado sesión en el administrador de inquilinos mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene el permiso gestionar sus propias credenciales de S3.
+* Ha creado un bucket.
+* Conoce el ID de clave de acceso del usuario y la clave de acceso secreta. Opcionalmente, usted tiene un `.csv` archivo que contiene esta información. Consulte xref:creating-your-own-s3-access-keys.adoc[instrucciones para crear claves de acceso].
+
+
+.Pasos
+. Seleccione *Cuchos*.
+. Seleccione image:../media/s3_console_link.png["Enlace de la consola de S3"]. También puede acceder a este enlace desde la página de detalles de la cuchara.
+. En la página de inicio de sesión de Experimental S3 Console, pegue el ID de clave de acceso y la clave de acceso secreta en los campos. De lo contrario, seleccione *cargar teclas de acceso* y seleccione el `.csv` archivo.
+. Seleccione *Iniciar sesión*.
+. Gestione los objetos que sea necesario.
+
+
+image::../media/s3_console_example.png[Ejemplo de consola de S3]

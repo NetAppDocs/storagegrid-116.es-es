@@ -1,0 +1,37 @@
+---
+permalink: vmware/specifying-domain-name-system-server-information.html 
+sidebar: sidebar 
+keywords: how to specify Domain Name System server information 
+summary: 'Debe especificar la información del sistema de nombres de dominio \(DNS\) para el sistema StorageGRID, de modo que pueda acceder a servidores externos utilizando nombres de host en lugar de direcciones IP.' 
+---
+= Especifique la información del servidor del sistema de nombres de dominio
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe especificar la información del sistema de nombres de dominio (DNS) para el sistema StorageGRID, de modo que pueda acceder a servidores externos con nombres de host en lugar de direcciones IP.
+
+.Acerca de esta tarea
+Al especificar la información del servidor DNS, se pueden utilizar nombres de host de nombre de dominio completo (FQDN) en lugar de direcciones IP para las notificaciones de correo electrónico y AutoSupport. Se recomienda especificar al menos dos servidores DNS.
+
+
+IMPORTANT: Proporcione de dos a seis direcciones IPv4 para los servidores DNS. Debe seleccionar los servidores DNS a los que puede acceder cada sitio localmente en el caso de que la red sea de destino. Esto es para asegurar que un sitio de Ilanded siga teniendo acceso al servicio DNS. Después de configurar la lista de servidores DNS para toda la cuadrícula, puede personalizar aún más la lista de servidores DNS para cada nodo. Para obtener detalles, consulte la información sobre cómo modificar la configuración de DNS en las instrucciones de recuperación y mantenimiento.
+
+Si se omite o se configura incorrectamente la información del servidor DNS, se activa una alarma DNST en el servicio SSM de cada nodo de cuadrícula. La alarma se borra cuando DNS está configurado correctamente y la nueva información del servidor ha llegado a todos los nodos de la cuadrícula.
+
+.Pasos
+. Especifique la dirección IPv4 para al menos un servidor DNS en el cuadro de texto *servidor 1*.
+. Si es necesario, seleccione el signo más junto a la última entrada para agregar entradas adicionales del servidor.
++
+image::../media/9_gmi_installer_dns_page.gif[Esta imagen se explica por el texto circundante.]
+
++
+La práctica recomendada es especificar al menos dos servidores DNS. Puede especificar hasta seis servidores DNS.
+
+. Seleccione *Siguiente*.
+
+
+.Información relacionada
+xref:../maintain/index.adoc[Recuperación y mantenimiento]

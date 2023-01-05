@@ -1,0 +1,83 @@
+---
+permalink: expand/configuring-expanded-storagegrid-system.html 
+sidebar: sidebar 
+keywords: expansion, configuration 
+summary: Tras completar una ampliación, debe ejecutar los pasos de configuración e integración adicionales. 
+---
+= Pasos de configuración tras la ampliación
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tras completar una ampliación, debe ejecutar los pasos de configuración e integración adicionales.
+
+.Acerca de esta tarea
+Debe completar las tareas de configuración que se enumeran a continuación para los nodos de grid que va a añadir en la ampliación. Algunas tareas pueden ser opcionales, en función de las opciones seleccionadas al instalar y administrar el sistema, y de cómo se desean configurar los nodos de cuadrícula agregados durante la expansión.
+
+.Pasos
+. Si añadió un nodo de almacenamiento, complete las siguientes tareas de configuración:
++
+.. Revise los pools de almacenamiento utilizados en las reglas de ILM para garantizar que se utilizará el nuevo almacenamiento. Consulte xref:../ilm/index.adoc[Gestión de objetos con ILM].
++
+*** Si agregó un sitio, cree un pool de almacenamiento para el sitio y actualice las reglas de ILM para usar el nuevo pool de almacenamiento.
+*** Si ha añadido un nodo de almacenamiento a un sitio existente, confirme que el nodo nuevo utiliza el grado de almacenamiento correcto.
++
+
+NOTE: De forma predeterminada, se asigna un nuevo nodo de almacenamiento al grado de almacenamiento todos los nodos de almacenamiento y se añade a los pools de almacenamiento que utilizan ese grado para el sitio. Si desea que un nodo nuevo utilice un grado de almacenamiento personalizado, debe asignarlo manualmente al grado personalizado (*ILM* > *grados de almacenamiento*).
+
+
+
+.. Compruebe que el nodo de almacenamiento ingiere objetos. Consulte xref:verifying-storage-node-is-active.adoc[Compruebe que el nodo de almacenamiento esté activo].
+.. Reequilibre los datos con código de borrado (solo si no pudo añadir el número recomendado de nodos de almacenamiento). Consultexref:rebalancing-erasure-coded-data-after-adding-storage-nodes.adoc[Reequilibre los datos con código de borrado tras añadir nodos de almacenamiento].
+
+
+. Si agregó un nodo de puerta de enlace, complete la siguiente tarea de configuración:
++
+** Si se utilizan grupos de alta disponibilidad para las conexiones de cliente, lo opcional es agregar el nodo de puerta de enlace a un grupo de alta disponibilidad. Seleccione *CONFIGURACIÓN* > *Red* > *grupos de alta disponibilidad* para revisar la lista de grupos ha existentes y agregar el nuevo nodo. Consulte xref:../admin/index.adoc[Administre StorageGRID].
+
+
+. Si añadió un nodo de administrador, complete las siguientes tareas de configuración:
++
+.. Si está habilitado el inicio de sesión único (SSO) para el sistema StorageGRID, cree una confianza de parte que confíe en el nuevo nodo de administración. No puede iniciar sesión en el nodo hasta que cree la confianza de la parte de confianza. Consultexref:../admin/configuring-sso.adoc[Configurar el inicio de sesión único].
+.. Si planea utilizar el servicio Load Balancer en los nodos de administración, de manera opcional, añada el nuevo nodo de administración a un grupo de alta disponibilidad. Seleccione *CONFIGURACIÓN* > *Red* > *grupos de alta disponibilidad* para revisar la lista de grupos ha existentes y agregar el nuevo nodo. Consulte xref:../admin/index.adoc[Administre StorageGRID].
+.. De manera opcional, copie la base de datos del nodo de administración desde el nodo de administración principal al nodo de administración de expansión si desea mantener la información de auditoría y atributo consistente en cada nodo de administración. Consulte xref:copying-admin-node-database.adoc[Copie la base de datos del nodo de administración].
+.. Opcionalmente, copie la base de datos Prometheus del nodo de administración principal al nodo de administración de ampliación si desea mantener la coherencia de las métricas históricas en cada nodo de administración. Consulte xref:copying-prometheus-metrics.adoc[Copiar métricas de Prometheus].
+.. De manera opcional, copie los registros de auditoría existentes del nodo de administración principal al nodo de administración de ampliación si desea mantener la información del registro histórico consistente en cada nodo de administración. Consulte xref:copying-audit-logs.adoc[Copiar registros de auditoría].
+.. De manera opcional, configure el acceso al sistema para realizar auditorías a través de un recurso compartido de archivos NFS o CIFS. Consulte xref:../admin/index.adoc[Administre StorageGRID].
++
+
+NOTE: La exportación de auditorías por CIFS/Samba ha sido obsoleta y se eliminará en una futura versión de StorageGRID.
+
+.. Si lo desea, puede cambiar el remitente preferido para las notificaciones. Puede hacer que el nodo de administración de expansión sea el remitente preferido. De lo contrario, un nodo de administrador existente configurado como remitente preferido sigue enviando notificaciones, incluidos los mensajes de AutoSupport, las notificaciones SNMP, los correos electrónicos de alerta y los correos electrónicos de alarma (sistema heredado). Consulte xref:../admin/index.adoc[Administre StorageGRID].
+
+
+. Si agregó un nodo de archivado, complete las siguientes tareas de configuración.
++
+.. Configure la conexión del nodo de archivado al sistema de almacenamiento de archivado externo de destino. Cuando complete la expansión, los nodos de archivo estarán en estado de alarma hasta que configure la información de conexión a través del componente *ARC* > *Target*. Consulte xref:../admin/index.adoc[Administre StorageGRID].
+.. Actualice la política de ILM para archivar datos de objetos mediante el nuevo nodo de archivado. Consulte xref:../ilm/index.adoc[Gestión de objetos con ILM].
+.. Configurar alarmas personalizadas para los atributos que se utilizan para supervisar la velocidad y eficacia de la recuperación de datos de objetos desde los nodos de archivo. Consulte xref:../admin/index.adoc[Administre StorageGRID].
+
+
+. Para comprobar si se han agregado nodos de expansión con una red cliente no confiable o si para cambiar si la red cliente de un nodo no es de confianza o no es de confianza, vaya a *CONFIGURACIÓN* > *Red* > *Red cliente no confiable*.
++
+Si la red de cliente del nodo de expansión no es de confianza, las conexiones al nodo de la red de cliente se deben realizar mediante un extremo de equilibrador de carga. Consulte xref:../admin/index.adoc[Administre StorageGRID].
+
+. Configure el sistema de nombres de dominio (DNS).
++
+Si ha especificar la configuración de DNS por separado para cada nodo de grid, debe añadir una configuración de DNS personalizada por nodo para los nuevos nodos. Consulte xref:../maintain/modifying-dns-configuration-for-single-grid-node.adoc[Modifique la configuración de DNS para un solo nodo de grid].
+
++
+La práctica recomendada es que la lista de servidores DNS de toda la cuadrícula contenga algunos servidores DNS a los que se puede acceder localmente desde cada sitio. Si acaba de agregar un sitio nuevo, agregue nuevos servidores DNS para el sitio a la configuración DNS de toda la cuadrícula.
+
++
+
+IMPORTANT: Proporcione de dos a seis direcciones IPv4 para los servidores DNS. Debe seleccionar los servidores DNS a los que puede acceder cada sitio localmente en el caso de que la red sea de destino. Esto es para asegurar que un sitio de Ilanded siga teniendo acceso al servicio DNS. Después de configurar la lista de servidores DNS para toda la cuadrícula, puede personalizar aún más la lista de servidores DNS para cada nodo. Para obtener más información, consulte xref:../maintain/modifying-dns-configuration-for-single-grid-node.adoc[Modifique la configuración de DNS para un solo nodo de grid]..
+
+. Si ha agregado un sitio nuevo, confirme que se puede acceder a los servidores de protocolo de tiempo de redes (NTP) desde ese sitio. Consulte xref:../maintain/configuring-ntp-servers.adoc[Configure los servidores NTP].
++
+
+IMPORTANT: Asegúrese de que al menos dos nodos de cada sitio puedan acceder a al menos cuatro fuentes de NTP externas. Si solo un nodo de un sitio puede acceder a los orígenes NTP, se producirán problemas de tiempo si ese nodo falla. Además, designar dos nodos por sitio como orígenes NTP primarios garantiza una sincronización precisa si un sitio está aislado del resto de la cuadrícula.
+
+

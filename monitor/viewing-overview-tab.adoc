@@ -1,0 +1,66 @@
+---
+permalink: monitor/viewing-overview-tab.html 
+sidebar: sidebar 
+keywords: overview tab 
+summary: La pestaña Overview proporciona información básica sobre cada nodo. También muestra todas las alertas que actualmente afectan al nodo. 
+---
+= Vea la ficha Descripción general
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La pestaña Overview proporciona información básica sobre cada nodo. También muestra todas las alertas que actualmente afectan al nodo.
+
+La pestaña Overview se muestra para todos los nodos.
+
+
+
+== Información del nodo
+
+En la sección Información del nodo de la ficha Descripción general se muestra información básica sobre el nodo de cuadrícula.
+
+image::../media/nodes_page_overview_tab.png[Pestaña Nodes Page Overview]
+
+La información general de un nodo incluye lo siguiente:
+
+* *Nombre*: Nombre de host asignado al nodo y mostrado en el Administrador de cuadrícula.
+* *Tipo*: Tipo de nodo -- nodo de administración, nodo de administración principal, nodo de almacenamiento, nodo de puerta de enlace o nodo de archivado.
+* *ID*: Identificador único del nodo, que también se conoce como UUID.
+* *Estado de conexión*: Uno de los tres estados. Se muestra el icono del estado más grave.
++
+** *Desconocido* image:../media/icon_alarm_blue_unknown.png["icono de signo de interrogación azul"]: El nodo no está conectado a la cuadrícula por una razón desconocida. Por ejemplo, se ha perdido la conexión de red entre los nodos o se ha apagado el suministro eléctrico. La alerta *no se puede comunicar con el nodo* también puede activarse. Es posible que otras alertas estén activas también. Esta situación requiere atención inmediata.
++
+
+NOTE: Es posible que un nodo aparezca como desconocido durante las operaciones de apagado gestionadas. Puede ignorar el estado Desconocido en estos casos.
+
+** *Administrativamente abajo* image:../media/icon_alarm_gray_administratively_down.png["icono de questionmark gris"]: El nodo no está conectado a la cuadrícula por un motivo esperado. Por ejemplo, el nodo o los servicios del nodo se han apagado correctamente, el nodo se está reiniciando o se está actualizando el software. Una o más alertas también pueden estar activas.
+** *Conectado* image:../media/icon_alert_green_checkmark.png["marca de verificación verde de alerta de icono"]: El nodo está conectado a la cuadrícula.
+
+
+* *Almacenamiento utilizado*: Sólo para nodos de almacenamiento.
++
+** *Datos del objeto*: Porcentaje del espacio útil total para los datos del objeto que se han utilizado en el nodo de almacenamiento.
+** *Metadatos de objetos*: Porcentaje del espacio total permitido para metadatos de objetos que se ha utilizado en el nodo de almacenamiento.
+
+
+* *Versión de software*: Versión de StorageGRID instalada en el nodo.
+* *Grupos de alta disponibilidad*: Sólo para nodos de nodo de administración y de puerta de enlace. Se muestra si se incluye una interfaz de red en el nodo en un grupo de alta disponibilidad y si esa interfaz es la interfaz principal.
+* *Direcciones IP*: Las direcciones IP del nodo. Haga clic en *Mostrar direcciones IP adicionales* para ver las direcciones IPv4 e IPv6 y las asignaciones de interfaces del nodo.
+
+
+
+
+== Alertas
+
+La sección Alertas de la ficha Descripción general enumera todas las alertas que afectan actualmente a este nodo que no se han silenciado. Haga clic en el nombre de la alerta para ver más detalles y las acciones recomendadas.
+
+image::../media/nodes_page_alerts_table.png[Tabla de alertas de página nodos]
+
+.Información relacionada
+xref:monitoring-node-connection-states.adoc[Supervise los estados de conexión de los nodos]
+
+xref:viewing-current-alerts.adoc[Ver las alertas actuales]
+
+xref:viewing-specific-alert.adoc[Ver una alerta específica]

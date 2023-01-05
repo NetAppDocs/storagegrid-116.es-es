@@ -1,0 +1,139 @@
+---
+permalink: maintain/decommissioning-connected-grid-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission, connected nodes, decommission node 
+summary: Puede retirar y eliminar permanentemente los nodos conectados a la cuadrícula. 
+---
+= Retirada de nodos de grid conectados
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede retirar y eliminar permanentemente los nodos conectados a la cuadrícula.
+
+* Debe comprender los requisitos y. xref:considerations-for-decommissioning-grid-nodes.adoc[consideraciones sobre el decomisionado de los nodos de cuadrícula].
+* Usted debe haber reunido todos los materiales requeridos.
+* Debe haberse asegurado de que no hay ningún trabajo de reparación de datos activo.
+* Debe haber confirmado que la recuperación del nodo de almacenamiento no está en curso en ningún lugar de la cuadrícula. Si es así, debe esperar a que se complete cualquier recompilación de Cassandra como parte de la recuperación. A continuación, podrá continuar con el desmantelamiento.
+* Debe haber asegurado que no se ejecutarán otros procedimientos de mantenimiento mientras el procedimiento de retirada del nodo se esté ejecutando, a menos que el procedimiento de retirada del nodo se detenga.
+* Debe tener la clave de acceso de aprovisionamiento.
+* Los nodos de grid están conectados.
+* La columna *retirada posible* para el nodo o los nodos que desea retirar debe incluir una Marca de verificación verde.
+* Todos los nodos de grid deben tener un estado normal (verde) image:../media/icon_alert_green_checkmark.png["icono de marca de verificación verde"]. Si ve uno de estos iconos en la columna *Estado*, debe intentar resolver el problema:
++
+|===
+
+
+| . | Color | Gravedad 
+
+
+ a| 
+image:../media/icon_alarm_yellow_notice.gif["icono cuadrado amarillo"]
+ a| 
+Amarillo
+ a| 
+Aviso
+
+
+
+ a| 
+image:../media/icon_alert_yellow_minor.png["icono de diamante naranja claro"]
+ a| 
+Naranja claro
+ a| 
+Menor
+
+
+
+ a| 
+image:../media/icon_alert_orange_major.png["icono de diamante naranja oscuro"]
+ a| 
+Naranja oscuro
+ a| 
+Importante
+
+
+
+ a| 
+image:../media/icon_alert_red_critical.png["icono rojo x"]
+ a| 
+Rojo
+ a| 
+Crítico
+
+|===
+* Si anteriormente había retirado un nodo de almacenamiento desconectado, todos los trabajos de reparación de datos se completaron correctamente. Consulte xref:checking-data-repair-jobs.adoc[Compruebe los trabajos de reparación de datos].
+
+
+
+IMPORTANT: No quite la máquina virtual de un nodo de grid ni otros recursos hasta que se le indique hacerlo en este procedimiento.
+
+. En la página nodos de misión de retirada, seleccione la casilla de verificación de cada nodo de cuadrícula que desee retirar.
+. Introduzca la clave de acceso de aprovisionamiento.
++
+El botón *Iniciar misión* está activado.
+
+. Haga clic en *Iniciar misión*.
++
+Se muestra un cuadro de diálogo de confirmación.
+
++
+image::../media/decommission_confirmation.gif[captura de pantalla del cuadro de diálogo de confirmación de retirada]
+
+. Revise la lista de nodos seleccionados y haga clic en *Aceptar*.
++
+Se inicia el procedimiento de retirada del nodo y se muestra el progreso de cada nodo. Durante el procedimiento, se genera un nuevo paquete de recuperación para mostrar el cambio de configuración de la cuadrícula.
+
++
+image::../media/decommission_nodes_procedure_in_progress.png[captura de pantalla de decomisionado de nodos en curso]
+
++
+
+IMPORTANT: No desconecte un nodo de almacenamiento una vez que se haya iniciado el procedimiento de retirada del servicio. El cambio de estado puede provocar que parte del contenido no se copie en otras ubicaciones.
+
+. Tan pronto como el nuevo paquete de recuperación esté disponible, haga clic en el enlace o seleccione *MANTENIMIENTO* *sistema* *paquete de recuperación* para acceder a la página paquete de recuperación. A continuación, descargue la `.zip` archivo.
++
+Consulte las instrucciones para xref:downloading-recovery-package.adoc[Descarga del paquete de recuperación].
+
++
+
+NOTE: Descargue el Lo antes posible. del paquete de recuperación para asegurarse de que puede recuperar la red si hay algún problema durante el procedimiento de retirada de servicio.
+
+. Supervise periódicamente la página nodos de misión de descommisión para garantizar que todos los nodos seleccionados se han retirado correctamente.
++
+La retirada de los nodos de almacenamiento puede llevar días o semanas. Una vez completadas todas las tareas, la lista de selección de nodos se volverá a mostrar con un mensaje de éxito.
+
++
+image::../media/decommission_nodes_procedure_complete.png[captura de pantalla que muestra que la retirada está completa]
+
+. Siga los pasos adecuados para su plataforma. Por ejemplo:
++
+** *Linux*: Es posible que desee desconectar los volúmenes y eliminar los archivos de configuración de nodo creados durante la instalación.
+** *VMware*: Es posible que desee utilizar la opción "Borrar desde disco" de vCenter para eliminar la máquina virtual. También puede ser necesario eliminar los discos de datos que sean independientes de la máquina virtual.
+** *Dispositivo StorageGRID*: El nodo del dispositivo vuelve automáticamente a un estado no desplegado en el que puede acceder al instalador del dispositivo StorageGRID. Puede apagar el dispositivo o añadirlo a otro sistema StorageGRID.
+
+
+
+
+Complete estos pasos después de completar el procedimiento de retirada del nodo:
+
+* Asegúrese de que las unidades del nodo de cuadrícula que se decomisionan se limpian. Utilice una herramienta o servicio de limpieza de datos disponible en el mercado para eliminar los datos de las unidades de forma permanente y segura.
+* Si decomisionó un nodo del dispositivo y los datos del dispositivo estaban protegidos mediante el cifrado de nodos, utilice el instalador del dispositivo StorageGRID para borrar la configuración del servidor de gestión de claves (Clear KMS). Debe borrar la configuración de KMS si desea utilizar el dispositivo en otra cuadrícula.
++
+xref:../sg100-1000/index.adoc[Servicios de aplicaciones SG100 y SG1000]
+
++
+xref:../sg5600/index.adoc[Dispositivos de almacenamiento SG5600]
+
++
+xref:../sg5700/index.adoc[Dispositivos de almacenamiento SG5700]
+
++
+xref:../sg6000/index.adoc[Dispositivos de almacenamiento SG6000]
+
+
+
+.Información relacionada
+xref:../rhel/index.adoc[Instale Red Hat Enterprise Linux o CentOS]

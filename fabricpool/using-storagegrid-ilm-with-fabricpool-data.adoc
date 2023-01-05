@@ -1,0 +1,199 @@
+---
+permalink: fabricpool/using-storagegrid-ilm-with-fabricpool-data.html 
+sidebar: sidebar 
+keywords: FabricPool, requirements, ILM, information lifecycle management, ILM rule, ILM rules, ILM policy, erasure-coding, replication, cloud storage pool, glacier 
+summary: 'Si utiliza FabricPool para organizar los datos en niveles en StorageGRID, debe comprender los requisitos para crear reglas de la gestión del ciclo de vida de la información de StorageGRID \(ILM\) y una política de ILM para gestionar los datos de FabricPool. Debe asegurarse de que las reglas de ILM que se aplican a los datos de FabricPool no sean disruptivas.' 
+---
+= Utilice la gestión del ciclo de vida de la información de StorageGRID con los datos de FabricPool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si utiliza FabricPool para organizar los datos en niveles en StorageGRID, debe comprender los requisitos para la creación de reglas de la gestión del ciclo de vida de la información (ILM) de StorageGRID y una política de ILM para gestionar los datos de FabricPool. Debe asegurarse de que las reglas de ILM que se aplican a los datos de FabricPool no sean disruptivas.
+
+
+IMPORTANT: FabricPool no conoce las reglas ni las políticas de ILM de StorageGRID. Se pueden perder datos si la política de ILM de StorageGRID está mal configurada. Consulte xref:../ilm/index.adoc[Gestión de objetos con ILM] Para obtener instrucciones detalladas de ILM.
+
+Revise estas directrices para asegurarse de que las reglas de ILM y la política de ILM sean adecuadas para los datos de FabricPool y los requisitos de su negocio. Si ya utiliza ILM de StorageGRID, es posible que deba actualizar la política de ILM activa para cumplir estas directrices.
+
+* Puede utilizar cualquier combinación de reglas de replicación y codificación de borrado para proteger los datos de nivel de cloud.
++
+La mejor práctica recomendada es utilizar códigos de borrado 2+1 dentro de las instalaciones para una protección de datos rentable. La codificación de borrado utiliza más CPU, pero ofrece mucha menos capacidad de almacenamiento que la replicación. Los esquemas 4+1 y 6+1 utilizan menos capacidad que el esquema 2+1. Sin embargo, los esquemas 4+1 y 6+1 son menos flexibles si necesita agregar nodos de almacenamiento durante la expansión de la cuadrícula. Para obtener más información, consulte xref:../expand/adding-storage-capacity-for-erasure-coded-objects.adoc[Añada capacidad de almacenamiento para objetos codificados de borrado].
+
+* Cada regla se aplica a los datos FabricPool debe utilizar código de borrado o bien crear al menos dos copias replicadas.
++
+
+IMPORTANT: Una regla de ILM que crea solo una copia replicada en cualquier periodo de tiempo pone los datos en riesgo de pérdida permanente. Si sólo existe una copia replicada de un objeto, éste se pierde si falla un nodo de almacenamiento o tiene un error importante. También perderá temporalmente el acceso al objeto durante procedimientos de mantenimiento, como las actualizaciones.
+
+* No utilice una regla de ILM que caduque o elimine los datos del nivel de cloud de FabricPool. Establezca el período de retención en cada regla de ILM como "para siempre" a fin de garantizar que la gestión del ciclo de vida de la información de StorageGRID no elimine los objetos de FabricPool.
+* No cree reglas que muevan los datos de niveles de cloud de FabricPool fuera del bloque a otra ubicación. No se pueden utilizar reglas de ILM para archivar datos de FabricPool a cinta mediante un nodo de archivado o usar un pool de almacenamiento en cloud para mover datos de FabricPool a otro almacén de objetos.
++
+
+NOTE: No se puede usar Cloud Storage Pools con FabricPool debido a la latencia añadida de recuperar un objeto del destino de Cloud Storage Pool.
+
+* A partir de ONTAP 9.8, puede crear opcionalmente etiquetas de objeto, con el fin de clasificar y ordenar los datos por niveles para simplificar la gestión. Por ejemplo, puede establecer solo etiquetas en los volúmenes de FabricPool conectados a StorageGRID. A continuación, cuando cree reglas de ILM en StorageGRID, puede utilizar el filtro avanzado etiqueta de objeto para seleccionar y colocar estos datos.
+
+
+
+
+== Ejemplo de política de ILM para datos FabricPool
+
+Use esta sencilla política de ejemplo como punto de partida para sus propias reglas y políticas de ILM.
+
+Este ejemplo asume que está diseñando las reglas del ILM y una política de ILM para un sistema StorageGRID que tiene cuatro nodos de almacenamiento en un único centro de datos en Denver, Colorado. Los datos de FabricPool en este ejemplo utilizan un bloque llamado `fabricpool-bucket`.
+
+
+CAUTION: Las siguientes reglas y políticas de ILM son solo ejemplos. Existen varias formas de configurar las reglas de ILM. Antes de activar una nueva directiva, simule la política propuesta para confirmar que funcionará con el fin de proteger el contenido de las pérdidas. Para obtener más información, consulte xref:../ilm/index.adoc[Gestión de objetos con ILM].
+
+.Pasos
+. Cree un grupo de almacenamiento denominado *DEN*. Seleccione el sitio de Denver.
+. Cree un perfil de código de borrado denominado *2 más 1*. Seleccione el esquema de codificación de borrado 2+1 y el pool de almacenamiento *DEN*.
+. Cree una regla de ILM que se aplique solo a los datos de `fabricpool-bucket`. En este ejemplo, se crean copias con código de borrado.
++
+[cols="1a,2a"]
+|===
+| Definición de regla | Valor de ejemplo 
+
+
+ a| 
+Nombre de regla
+ a| 
+2 más 1 codificación de borrado para datos de FabricPool
+
+
+
+ a| 
+Nombre del bloque
+ a| 
+`fabricpool-bucket`
+
+También puede filtrar en la cuenta de inquilino de FabricPool.
+
+
+
+ a| 
+Filtrado avanzado
+ a| 
+Tamaño de objeto (MB) superior a 0.2 MB.
+
+*Nota:* FabricPool sólo escribe objetos de 4 MB, pero debe agregar un filtro de tamaño de objeto porque esta regla usa código de borrado.
+
+
+
+ a| 
+Tiempo de referencia
+ a| 
+Tiempo de ingesta
+
+
+
+ a| 
+Ubicación
+ a| 
+Desde el día 0 almacenar para siempre
+
+
+
+ a| 
+Tipo
+ a| 
+Código de borrado
+
+
+
+ a| 
+Ubicación
+ a| 
+DEN (2 más 1)
+
+
+
+ a| 
+Comportamiento de ingesta
+ a| 
+Equilibrado
+
+|===
+. Cree una regla de ILM que cree dos copias replicadas de cualquier objeto que no coincida con la primera regla. No seleccione un filtro básico (nombre de cuenta de inquilino o de bloque) ni ningún filtro avanzado.
++
+[cols="1a,2a"]
+|===
+| Definición de regla | Valor de ejemplo 
+
+
+ a| 
+Nombre de regla
+ a| 
+Dos copias replicadas
+
+
+
+ a| 
+Nombre del bloque
+ a| 
+_none_
+
+
+
+ a| 
+Filtrado avanzado
+ a| 
+_none_
+
+
+
+ a| 
+Tiempo de referencia
+ a| 
+Tiempo de ingesta
+
+
+
+ a| 
+Ubicación
+ a| 
+Desde el día 0 almacenar para siempre
+
+
+
+ a| 
+Tipo
+ a| 
+Replicado
+
+
+
+ a| 
+Ubicación
+ a| 
+DEN
+
+
+
+ a| 
+Snapshot
+ a| 
+2
+
+
+
+ a| 
+Comportamiento de ingesta
+ a| 
+Equilibrado
+
+|===
+. Cree una política de ILM propuesta y seleccione las dos reglas. Como la regla de replicación no utiliza ningún filtro, puede ser la regla predeterminada (última) de la directiva.
+. Ingesta de objetos de prueba en el grid.
+. Simule la directiva con los objetos de prueba para verificar el comportamiento.
+. Activar la política.
+
+
+Cuando se activa esta política, StorageGRID coloca los datos de objetos de la siguiente manera:
+
+* Los datos se organizan en niveles desde FabricPool en `fabricpool-bucket` se codificará mediante el esquema de codificación de borrado 2+1. Se colocarán dos fragmentos de datos y un fragmento de paridad en tres nodos de almacenamiento diferentes.
+* Se replicarán todos los objetos de todos los demás bloques. Se crearán dos copias y se colocarán en dos nodos de almacenamiento diferentes.
+* Las copias replicadas y codificadas de borrado se mantendrán en StorageGRID hasta que el cliente S3 las elimine. El ILM de StorageGRID no eliminará nunca estos elementos.
+

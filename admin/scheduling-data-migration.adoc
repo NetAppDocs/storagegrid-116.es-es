@@ -1,0 +1,65 @@
+---
+permalink: admin/scheduling-data-migration.html 
+sidebar: sidebar 
+keywords: data migration schedule, monitor data migration 
+summary: La migración de datos debe programarse y supervisarse según sea necesario para garantizar que los datos se coloquen según la política de ILM en el plazo estipulado. 
+---
+= Programe y supervise la migración de datos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La migración de datos debe programarse y supervisarse según sea necesario para garantizar que los datos se coloquen según la política de ILM en el plazo estipulado.
+
+
+
+== Programar la migración de datos
+
+Evite migrar datos durante las horas operativas del núcleo. Limite la migración de datos a noches, fines de semana y otras veces cuando el uso del sistema sea bajo.
+
+De ser posible, no programe la migración de datos durante periodos de alta actividad. Sin embargo, si no es práctico evitar completamente el período de alta actividad, es seguro continuar siempre que usted supervise de cerca los atributos relevantes y tome medidas si exceden los valores aceptables.
+
+
+
+== Supervisar la migración de datos
+
+En esta tabla, se enumeran los atributos que debe supervisar durante la migración de datos y los problemas que representan.
+
+Si utiliza directivas de clasificación de tráfico con límites de tasa para acelerar el procesamiento, puede supervisar la tasa observada junto con las estadísticas descritas en la siguiente tabla y reducir los límites si es necesario.
+
+[cols="1a,2a"]
+|===
+| Supervisar | Descripción 
+
+
+ a| 
+Número de objetos que están a la espera de la evaluación de ILM
+ a| 
+. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+. Seleccione *_deployment_* > *Descripción general* > *Principal*.
+. En la sección ILM Activity, supervise el número de objetos que se muestran para los siguientes atributos:
++
+** *Esperando - todos (XQUZ)*: El número total de objetos que esperan la evaluación de ILM.
+** *Esperando - Cliente (XCQZ)*: El número total de objetos que esperan la evaluación de ILM de las operaciones cliente (por ejemplo, ingesta).
+
+
+. Si el número de objetos mostrado para cualquiera de estos atributos supera 100,000, acelere la tasa de procesamiento de objetos para reducir la carga en el sistema StorageGRID.
+
+
+
+
+ a| 
+Capacidad de almacenamiento específica del sistema de archivado
+ a| 
+Si la normativa de gestión del ciclo de vida de la información guarda una copia de los datos migrados a un sistema de almacenamiento de archivado dirigido (cinta o cloud), supervise la capacidad del sistema de almacenamiento de archivado dirigido para garantizar que los datos migrados disponen de capacidad suficiente.
+
+
+
+ a| 
+*Nodo de archivo* > *ARC* > *Tienda*
+ a| 
+Si se activa una alarma para el atributo *fallos de almacenamiento (ARVF)*, es posible que el sistema de almacenamiento de archivado dirigido haya alcanzado la capacidad. Compruebe el sistema de almacenamiento de archivos de destino y resuelva cualquier problema que haya activado una alarma.
+
+|===

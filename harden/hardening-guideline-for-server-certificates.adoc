@@ -1,0 +1,35 @@
+---
+permalink: harden/hardening-guideline-for-server-certificates.html 
+sidebar: sidebar 
+keywords: Hardening guidelines, certificates 
+summary: Debe sustituir los certificados predeterminados creados durante la instalación por sus propios certificados personalizados. 
+---
+= Directrices de refuerzo para certificados de servidor
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe sustituir los certificados predeterminados creados durante la instalación por sus propios certificados personalizados.
+
+Para muchas organizaciones, el certificado digital autofirmado para el acceso web StorageGRID no cumple con sus políticas de seguridad de la información. En los sistemas de producción, debe instalar un certificado digital firmado por CA para utilizarlo en la autenticación de StorageGRID.
+
+Específicamente, debe utilizar certificados de servidor personalizados en lugar de los siguientes certificados predeterminados:
+
+* *Certificado de interfaz de administración*: Se utiliza para asegurar el acceso a Grid Manager, al arrendatario Manager, a la API de gestión de grid y a la API de administración de inquilinos.
+* *Certificado API S3 y Swift*: Se utiliza para garantizar el acceso seguro a los nodos de almacenamiento y los nodos de puerta de enlace, que las aplicaciones cliente S3 y Swift utilizan para cargar y descargar datos de objetos.
+
+
+
+NOTE: StorageGRID gestiona los certificados utilizados para los extremos del equilibrador de carga por separado. Para configurar certificados de equilibrador de carga, consulte los pasos para configurar los extremos de equilibrador de carga en las instrucciones para administrar StorageGRID.
+
+Cuando utilice certificados de servidor personalizados, siga estas directrices:
+
+* Los certificados deben tener un `_subjectAltName_` Que coincida con las entradas de DNS para StorageGRID. Para obtener más información, consulte la sección 4.2.1.6, "Nombre alternativo de la expulsión" en https://tools.ietf.org/html/rfc5280#section-4.2.1.6["RFC 5280: Certificado PKIX y perfil CRL"^].
+* Cuando sea posible, evite el uso de certificados comodín. Una excepción a esta directriz es el certificado para un extremo de estilo alojado virtual de S3, que requiere el uso de un comodín si los nombres de bloque no se conocen con anterioridad.
+* Cuando debe utilizar comodines en los certificados, debe tomar medidas adicionales para reducir los riesgos. Utilice un patrón comodín como `*.s3.example.com`, y no utilice `s3.example.com` sufijo para otras aplicaciones. Este patrón también funciona con acceso S3 de estilo de ruta como, por ejemplo `dc1-s1.s3.example.com/mybucket`.
+* Establezca los tiempos de caducidad del certificado como cortos (por ejemplo, 2 meses) y utilice la API de gestión de grid para automatizar la rotación del certificado. Esto es especialmente importante para los certificados con caracteres comodín.
+
+
+Además, los clientes deben usar una comprobación estricta del nombre de host al comunicarse con StorageGRID.

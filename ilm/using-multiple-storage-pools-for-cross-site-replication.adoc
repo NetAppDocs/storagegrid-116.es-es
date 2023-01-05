@@ -1,0 +1,30 @@
+---
+permalink: ilm/using-multiple-storage-pools-for-cross-site-replication.html 
+sidebar: sidebar 
+keywords: site-loss protection, cross-site replication, storage pools 
+summary: Si la implementación de StorageGRID incluye más de un sitio, puede habilitar la protección contra pérdida de sitio creando un pool de almacenamiento para cada sitio y especificando ambos grupos de almacenamiento en las instrucciones de colocación de la regla. Por ejemplo, si configura una regla de ILM para realizar dos copias replicadas y especificar pools de almacenamiento en dos sitios, se colocará una copia de cada objeto en cada sitio. Si configura una regla para realizar dos copias y especifica tres pools de almacenamiento, las copias se distribuyen para equilibrar el uso de disco entre los pools de almacenamiento, a la vez que se asegura de que las dos copias se almacenan en sitios diferentes. 
+---
+= Utilice varios pools de almacenamiento para la replicación entre sitios
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si la implementación de StorageGRID incluye más de un sitio, puede habilitar la protección contra pérdida de sitio mediante la creación de un pool de almacenamiento para cada sitio y especificar ambos pools de almacenamiento en las instrucciones de ubicación de la regla. Por ejemplo, si configura una regla de ILM para realizar dos copias replicadas y especificar pools de almacenamiento en dos sitios, se colocará una copia de cada objeto en cada sitio. Si configura una regla para realizar dos copias y especifica tres pools de almacenamiento, las copias se distribuyen para equilibrar el uso de disco entre los pools de almacenamiento, a la vez que se asegura de que las dos copias se almacenan en sitios diferentes.
+
+El siguiente ejemplo ilustra qué puede suceder si una regla de ILM coloca copias de objetos replicadas en un único pool de almacenamiento que contiene nodos de almacenamiento de dos sitios. Como el sistema utiliza todos los nodos disponibles en el pool de almacenamiento cuando coloca las copias replicadas, es posible que se mantengan todas las copias de algunos objetos en solo uno de los sitios. En este ejemplo, el sistema almacenaba dos copias del objeto AAA en los nodos de almacenamiento del sitio 1 y dos copias del objeto CCC en los nodos de almacenamiento del sitio 2. Sólo se protege el objeto BBB si uno de los sitios falla o se vuelve inaccesible.
+
+image::../media/ilm_replication_make_2_copies_1_pool_2_sites.png[Cree que 2 copias sean reglas en dos sitios pero sólo en una agrupación de almacenamiento]
+
+En cambio, este ejemplo muestra cómo se almacenan los objetos cuando se utilizan varios pools de almacenamiento. En el ejemplo, la regla de ILM especifica que se creen dos copias replicadas de cada objeto y que las copias se distribuyen en dos pools de almacenamiento. Cada pool de almacenamiento contiene todos los nodos de almacenamiento en un sitio. Debido a que una copia de cada objeto se almacena en cada sitio, los datos de objeto están protegidos de un fallo del sitio o falta de accesibilidad.
+
+image::../media/ilm_replication_make_2_copies_2_pools_2_sites.png[Cree 2 copias para regla en dos sitios y dos pools de almacenamiento]
+
+Al usar varios pools de almacenamiento, tenga en cuenta las siguientes reglas:
+
+* Si crea n copias, debe añadir n o más pools de almacenamiento. Por ejemplo, si una regla está configurada para realizar tres copias, debe especificar tres o más pools de almacenamiento.
+* Si el número de copias es igual al número de pools de almacenamiento, se almacena una copia del objeto en cada pool de almacenamiento.
+* Si el número de copias es menor que el número de pools de almacenamiento, el sistema distribuye las copias para mantener el uso del disco entre los pools equilibrados y para garantizar que no se almacenen dos o más copias en la misma agrupación de almacenamiento.
+* Si los pools de almacenamiento se superponen (contienen los mismos nodos de almacenamiento), es posible que todas las copias del objeto se guarden en un solo sitio. Debe asegurarse de que los pools de almacenamiento seleccionados no contengan los mismos nodos de almacenamiento.
+

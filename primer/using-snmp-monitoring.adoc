@@ -1,0 +1,39 @@
+---
+permalink: primer/using-snmp-monitoring.html 
+sidebar: sidebar 
+keywords: snmp, simple network management protocol, agent, trap, inform, mib 
+summary: 'Si desea supervisar StorageGRID mediante el protocolo simple de administración de red \(SNMP\), puede utilizar el administrador de grid para configurar el agente SNMP.' 
+---
+= Usar supervisión de SNMP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si desea supervisar StorageGRID mediante el Protocolo simple de administración de red (SNMP), puede utilizar el Administrador de grid para configurar el agente SNMP.
+
+Cada nodo StorageGRID ejecuta un agente SNMP, o un daemon, que proporciona una base de datos de información de gestión (MIB). El MIB de StorageGRID contiene definiciones de tablas y notificaciones para alertas y alarmas. Cada nodo StorageGRID también admite un subconjunto de objetos MIB-II.
+
+Inicialmente, SNMP está deshabilitado en todos los nodos. Al configurar el agente SNMP, todos los nodos StorageGRID reciben la misma configuración.
+
+El agente SNMP de StorageGRID admite las tres versiones del protocolo SNMP. El agente proporciona acceso MIB de solo lectura para consultas, y puede enviar dos tipos de notificaciones condicionadas por eventos a un sistema de gestión:
+
+* *Trampas* son notificaciones enviadas por el agente SNMP que no requieren el reconocimiento del sistema de administración. Los traps sirven para notificar al sistema de gestión que algo ha sucedido dentro de StorageGRID, por ejemplo, que se activa una alerta. Las tres versiones de SNMP admiten capturas.
+* *Informa* es similar a las trampas, pero requieren el reconocimiento del sistema de administración. Si el agente SNMP no recibe un acuse de recibo en un periodo de tiempo determinado, vuelve a enviar el informe hasta que se reciba un acuse de recibo o se haya alcanzado el valor de reintento máximo. Las informa son compatibles con SNMPv2c y SNMPv3.
+
+
+Las notificaciones Trap e INFORM se envían en los siguientes casos:
+
+* Una alerta predeterminada o personalizada se activa en cualquier nivel de gravedad. Para suprimir las notificaciones SNMP de una alerta, debe configurar un silencio para la alerta. Las notificaciones de alerta se envían mediante el nodo de administrador que esté configurado para que sea el remitente preferido.
+* Ciertas alarmas (sistema heredado) se activan a niveles de gravedad especificados o superiores.
++
+
+NOTE: Las notificaciones SNMP no se envían para cada alarma ni para cada gravedad de alarma.
+
+
+
+*Información relacionada*
+
+* xref:../monitor/index.adoc[Supervisión y solución de problemas]
+

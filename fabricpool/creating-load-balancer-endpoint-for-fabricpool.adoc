@@ -1,0 +1,93 @@
+---
+permalink: fabricpool/creating-load-balancer-endpoint-for-fabricpool.html 
+sidebar: sidebar 
+keywords: fabricPool, load balancer, endpoint, load balancing, create, creating, certificate 
+summary: Al configurar StorageGRID para su uso con FabricPool, debe configurar un extremo de equilibrador de carga y cargar el certificado de extremo de equilibrador de carga, que se utiliza para proteger la conexión entre ONTAP y StorageGRID. 
+---
+= Cree un extremo de equilibrador de carga para FabricPool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Al configurar StorageGRID para su uso con FabricPool, debe configurar un extremo de equilibrador de carga y cargar el certificado de extremo de equilibrador de carga, que se utiliza para proteger la conexión entre ONTAP y StorageGRID.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene el permiso acceso raíz.
+* Tiene los siguientes archivos:
++
+** Certificado de servidor: El archivo de certificado de servidor personalizado.
+** Clave privada del certificado de servidor: El archivo de claves privadas del certificado de servidor personalizado.
+** Paquete DE CA: Un único archivo opcional que contiene los certificados de cada entidad de certificación (CA) intermedia. El archivo debe contener cada uno de los archivos de certificado de CA codificados con PEM, concatenados en el orden de la cadena de certificados.
+
+
+
+
+.Acerca de esta tarea
+Para obtener más detalles sobre esta tarea, consulte xref:../admin/configuring-load-balancer-endpoints.adoc[Configurar puntos finales del equilibrador de carga].
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *Red* > *terminales de equilibrador de carga*.
+. Seleccione *Crear*.
++
+image::../media/load_balancer_endpoint_create_http.png[Crear extremo LB]
+
+. Introduzca los detalles de los extremos.
++
+[cols="1a,2a"]
+|===
+| Campo | Descripción 
+
+
+ a| 
+Nombre
+ a| 
+Nombre descriptivo para el extremo
+
+
+
+ a| 
+Puerto
+ a| 
+El puerto StorageGRID que desea usar para el equilibrio de carga. De forma predeterminada, este campo es 10433, pero puede introducir cualquier puerto externo no utilizado. Si introduce 80 o 443, el extremo se configura únicamente en los nodos de puerta de enlace, ya que estos puertos están reservados en los nodos de administración.
+
+*Nota:* los puertos utilizados por otros servicios de red no están permitidos. Consultexref:../network/network-port-reference.adoc[Referencia de puerto de red].
+
+Debe proporcionar este mismo número de puerto a ONTAP al asociar StorageGRID como un nivel de cloud de FabricPool.
+
+
+
+ a| 
+Tipo de cliente
+ a| 
+Seleccione *S3*.
+
+
+
+ a| 
+Protocolo de red
+ a| 
+Seleccione *HTTPS*.
+
+*Nota*: Se admite el uso de *HTTP* pero no se recomienda.
+
+|===
+. Seleccione *continuar*.
+. Especifique el modo de encuadernación.
++
+Utilice el ajuste *Global* (recomendado) o restrinja la accesibilidad de este punto final a uno de los siguientes puntos:
+
++
+** Interfaces de red específicas de nodos específicos.
+** Direcciones IP virtuales (VIP) de alta disponibilidad específica. Utilice esta selección solo si necesita niveles mucho más altos de aislamiento de las cargas de trabajo.
+
+
+. Seleccione *continuar*.
+. Seleccione *cargar certificado* (recomendado) y, a continuación, busque el certificado de servidor, la clave privada de certificado y el paquete opcional de CA.
+. Seleccione *Crear*.
+
+
+
+NOTE: Los cambios en el certificado de extremo pueden tardar hasta 15 minutos en aplicarse a todos los nodos.

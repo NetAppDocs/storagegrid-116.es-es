@@ -1,0 +1,27 @@
+---
+permalink: maintain/fixing-mssing-network-interface-errors.html 
+sidebar: sidebar 
+keywords: storagegrid, network interface, network interface error 
+summary: Si la red host no está configurada correctamente o se mal escribe un nombre, se produce un error cuando StorageGRID comprueba la asignación especificada en el archivo /etc/storagegrid/Nodes/node-name\.conf. 
+---
+= Corrija los errores de interfaz de red que faltan
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si la red host no está configurada correctamente o se ha escrito un nombre de forma incorrecta, se produce un error cuando StorageGRID comprueba la asignación especificada en `/etc/storagegrid/nodes/_node-name_.conf` archivo.
+
+Es posible que aparezca un error o una advertencia que coincida con este patrón:
+
+`Checking configuration file `/etc/storagegrid/nodes/_node-name_.conf` para el nodo _node-name_...'
+`ERROR: _node-name_: GRID_NETWORK_TARGET = _host-interface-name_`' _Node-name_: La interfaz '_host-interface-name_' no existe'
+
+Se puede informar del error en la red de cuadrícula, la red de administración o la red de cliente. Este error significa que `/etc/storagegrid/nodes/_node-name_.conf` El archivo asigna la red StorageGRID indicada a la interfaz del host llamada `_host-interface-name_`, pero no hay interfaz con ese nombre en el host actual.
+
+Si recibe este error, compruebe que ha completado los pasos de xref:deploying-new-linux-hosts.adoc[Implemente nuevos hosts Linux]. Utilice los mismos nombres para todas las interfaces de host que se usaron en el host original.
+
+Si no puede asignar un nombre a las interfaces del host para que coincidan con el archivo de configuración del nodo, puede editar el archivo de configuración del nodo y cambiar el valor DE GRID_NETWORK_TARGET, ADMIN_NETWORK_TARGET o CLIENT_NETWORK_TARGET para que coincida con una interfaz de host existente.
+
+Asegúrese de que la interfaz del host proporciona acceso al puerto de red física o VLAN adecuados y que la interfaz no haga referencia directamente a un dispositivo de enlace o puente. Debe configurar una VLAN (u otra interfaz virtual) en la parte superior del dispositivo de enlace en el host o usar un puente y un par virtual Ethernet (veth).

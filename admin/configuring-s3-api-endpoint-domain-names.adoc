@@ -1,0 +1,78 @@
+---
+permalink: admin/configuring-s3-api-endpoint-domain-names.html 
+sidebar: sidebar 
+keywords: s3 api, endpoint domain names, virtual hosted-style requests 
+summary: Para admitir solicitudes de estilo alojado virtuales S3, debe usar Grid Manager para configurar la lista de nombres de dominio de extremo a los que se conectan los clientes S3. 
+---
+= Configure los nombres de dominio de extremo API de S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para admitir solicitudes de estilo alojado virtuales S3, debe usar Grid Manager para configurar la lista de nombres de dominio de extremo a los que se conectan los clientes S3.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+* Ha confirmado que no hay una actualización de grid en curso.
++
+
+CAUTION: No realice ningún cambio en la configuración del nombre de dominio cuando se esté realizando una actualización de la cuadrícula.
+
+
+
+.Acerca de esta tarea
+Para habilitar a los clientes que usen nombres de dominio extremo de S3, debe realizar todas las siguientes acciones:
+
+* Use Grid Manager para añadir los nombres de dominio de extremo S3 al sistema StorageGRID.
+* Asegúrese de que el certificado que utiliza el cliente para las conexiones HTTPS a StorageGRID esté firmado para todos los nombres de dominio que el cliente necesita.
++
+Por ejemplo, si el extremo es `s3.company.com`, Debe asegurarse de que el certificado utilizado para las conexiones HTTPS incluye `s3.company.com` Nombre alternativo (SAN) del asunto comodín del extremo y del extremo: `*.s3.company.com`.
+
+* Configure el servidor DNS que utiliza el cliente. Incluya registros DNS para las direcciones IP que utilizan los clientes para realizar conexiones y asegúrese de que los registros hagan referencia a todos los nombres de dominio de extremo requeridos, incluidos los nombres de comodín.
++
+
+NOTE: Los clientes se pueden conectar a StorageGRID mediante la dirección IP de un nodo de puerta de enlace, un nodo de administrador o un nodo de almacenamiento, o bien mediante la conexión a la dirección IP virtual de un grupo de alta disponibilidad. Debe comprender cómo se conectan las aplicaciones cliente a la cuadrícula para que incluya las direcciones IP correctas en los registros DNS.
+
+
+
+Los clientes que usan conexiones HTTPS (recomendadas) a la cuadrícula pueden usar cualquiera de los siguientes certificados:
+
+* Los clientes que se conectan a un extremo de equilibrador de carga pueden utilizar un certificado personalizado para ese extremo. Cada punto final de equilibrador de carga se puede configurar para reconocer diferentes nombres de dominio de punto final.
+* Los clientes que se conectan a un extremo de equilibrio de carga, directamente a un nodo de almacenamiento o directamente al servicio CLB obsoleto en un nodo de puerta de enlace pueden personalizar el certificado de API S3 y Swift global para incluir todos los nombres de dominio de extremo necesarios.
+
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *Red* > *nombres de dominio*.
++
+Aparece la página Endpoint Domain Names.
+
++
+image::../media/configure_endpoint_domain_names.png[Captura de pantalla del cuadro de diálogo nombres de dominio de extremo]
+
+. Introduzca la lista de nombres de dominio de extremo de API de S3 en los campos *Endpoint*. Utilice la image:../media/icon_plus_sign_black_on_white_old.png["icono de signo más"] con el icono para añadir campos adicionales.
++
+Si esta lista está vacía, se deshabilita la compatibilidad con las solicitudes de estilo alojado virtuales de S3.
+
+. Seleccione *Guardar*.
+. Asegúrese de que los certificados de servidor que utilizan los clientes coinciden con los nombres de dominio de extremo requeridos.
++
+** Si los clientes se conectan a un extremo de equilibrador de carga que utiliza su propio certificado, actualice el certificado asociado al extremo.
+** Si los clientes se conectan a un extremo de equilibrio de carga que usa el certificado de API global S3 y Swift, directamente en los nodos de almacenamiento o al servicio CLB en los nodos de puerta de enlace, actualice el certificado de la API global S3 y Swift.
+
+
+. Agregue los registros DNS necesarios para garantizar que se puedan resolver las solicitudes de nombres de dominio de extremo.
+
+
+.Resultado
+Ahora, cuando los clientes utilizan el extremo `bucket.s3.company.com`, El servidor DNS resuelve el punto final correcto y el certificado autentica el punto final como se esperaba.
+
+.Información relacionada
+* xref:../s3/index.adoc[Use S3]
+* xref:viewing-ip-addresses.adoc[Ver direcciones IP]
+* xref:configure-high-availability-group.adoc[Configuración de grupos de alta disponibilidad]
+* xref:configuring-custom-server-certificate-for-storage-node-or-clb.adoc[Configure los certificados API S3 y Swift]
+* xref:configuring-load-balancer-endpoints.adoc[Configurar puntos finales del equilibrador de carga]
+

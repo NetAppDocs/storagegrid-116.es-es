@@ -1,0 +1,43 @@
+---
+permalink: sg5600/verifying-receipt-of-autosupport.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, verify, verification, verifying, confirm, confirmation, confirming, autosupport, auto-support, status 
+summary: Debe verificar que el soporte técnico recibe sus mensajes de AutoSupport. Puede encontrar el estado de AutoSupport para sus sistemas en el portal de Active IQ. Al verificar la recepción de estos mensajes se garantiza que el soporte técnico disponga de la información necesaria si necesita ayuda. 
+---
+= Verifique la recepción de AutoSupport
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe verificar que el soporte técnico recibe sus mensajes de AutoSupport. Puede encontrar el estado de AutoSupport para sus sistemas en el portal de Active IQ. Al verificar la recepción de estos mensajes se garantiza que el soporte técnico disponga de la información necesaria si necesita ayuda.
+
+.Acerca de esta tarea
+AutoSupport puede mostrar uno de los siguientes Estados:
+
+* *ON*
++
+Un estado DE ENCENDIDO indica que el soporte técnico está recibiendo mensajes de AutoSupport actualmente del sistema.
+
+* *OFF*
++
+El estado DE APAGADO sugiere que puede haber deshabilitado AutoSupport porque el soporte técnico no ha recibido un registro semanal del sistema en los últimos 15 días naturales o puede haber un cambio en el entorno o la configuración (por ejemplo).
+
+* *DECLINACIÓN*
++
+Un estado DE RECHAZO significa que ha notificado al soporte técnico que no habilitará AutoSupport.
+
+
+
+Una vez que el soporte técnico recibe un registro semanal del sistema, el estado de AutoSupport cambia a ON.
+
+.Pasos
+. Vaya al sitio de soporte de NetApp en http://mysupport.netapp.com/["mysupport.netapp.com"^], E inicie sesión en el portal de Active IQ.
+. Si el estado de AutoSupport es DESACTIVADO y cree que es incorrecto, complete lo siguiente:
++
+.. Revise la configuración del sistema para asegurarse de que ha activado AutoSupport.
+.. Compruebe el entorno de red y la configuración para garantizar que el sistema pueda enviar mensajes al soporte técnico.
+
+
+

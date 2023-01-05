@@ -1,0 +1,16 @@
+---
+permalink: maintain/storagegrid-hotfix-procedure.html 
+sidebar: sidebar 
+keywords: apply hotfix, install hotfix 
+summary: Es posible que deba aplicar una revisión a su sistema StorageGRID si se detectan y resuelven problemas con el software entre versiones de funciones. 
+---
+= Procedimiento de revisión de StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible que deba aplicar una revisión a su sistema StorageGRID si se detectan y resuelven problemas con el software entre versiones de funciones.
+
+Las correcciones urgentes de StorageGRID contienen cambios de software que se pueden hacer disponibles fuera de una función o una versión de revisión. Los mismos cambios se incluyen en una versión futura. Además, cada versión de revisión contiene un resumen de todas las revisiones previas dentro de la característica o versión de revisión.

@@ -1,0 +1,53 @@
+---
+permalink: admin/what-admin-node-is.html 
+sidebar: sidebar 
+keywords: admin nodes 
+summary: Los nodos de administración, que proporcionan servicios de gestión como configuración, supervisión y registro del sistema. Cada grid debe tener un nodo de administrador primario y puede tener cualquier cantidad de nodos de administrador no primarios por motivos de redundancia. 
+---
+= Qué es un nodo de administrador
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Los nodos de administración, que proporcionan servicios de gestión como configuración, supervisión y registro del sistema. Cada grid debe tener un nodo de administrador primario y puede tener cualquier cantidad de nodos de administrador no primarios por motivos de redundancia.
+
+Cuando inicia sesión en el administrador de grid o en el administrador de inquilinos, se conecta a un nodo de administración. Puede conectarse a cualquier nodo de administrador y cada nodo de administrador muestra una vista similar del sistema StorageGRID. Sin embargo, se deben realizar los procedimientos de mantenimiento usando el nodo de administración principal.
+
+Los nodos de administración también se pueden usar para equilibrar la carga del tráfico de clientes S3 y Swift.
+
+Los nodos de administración alojan los siguientes servicios:
+
+* Servicio AMS
+* Servicio CMN
+* Servicio NMS
+* Servicio Prometheus
+* Equilibrador de carga y servicios de alta disponibilidad (para admitir el tráfico de cliente S3 y Swift)
+
+
+Los nodos de administración también admiten la interfaz de programa de aplicaciones de gestión (API de gestión) para procesar las solicitudes desde la API de gestión de grid y la API de gestión de inquilinos. Consulte xref:using-grid-management-api.adoc[Utilice la API de gestión de grid].
+
+
+
+== Qué es el servicio AMS
+
+El servicio sistema de gestión de auditorías (AMS) realiza un seguimiento de la actividad y los eventos del sistema.
+
+
+
+== En qué consiste el servicio CMN
+
+El servicio nodo de gestión de configuración (CMN) administra las configuraciones de todo el sistema de las características de conectividad y protocolo necesarias para todos los servicios. Además, el servicio CMN se utiliza para ejecutar y supervisar tareas de cuadrícula. Solo hay un servicio CMN por instalación de StorageGRID. El nodo de administración que aloja el servicio CMN se conoce como nodo de administración principal.
+
+
+
+== Qué es el servicio NMS
+
+El servicio sistema de administración de red (NMS) activa las opciones de supervisión, generación de informes y configuración que se muestran a través de Grid Manager, la interfaz basada en explorador del sistema StorageGRID.
+
+
+
+== Qué es el servicio Prometheus
+
+El servicio Prometheus recopila métricas de series temporales de los servicios de todos los nodos.

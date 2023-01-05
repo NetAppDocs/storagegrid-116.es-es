@@ -1,0 +1,173 @@
+---
+permalink: ilm/using-advanced-filters-in-ilm-rules.html 
+sidebar: sidebar 
+keywords: ilm rule advanced filtering 
+summary: El filtrado avanzado permite crear reglas de ILM que se aplican solo a objetos específicos en función de sus metadatos. Al configurar el filtrado avanzado para una regla, debe seleccionar el tipo de metadatos que desea que coincidan, seleccionar un operador y especificar un valor de metadatos. Cuando se evalúan objetos, la regla de ILM se aplica solo a los objetos que tienen metadatos que coincidan con el filtro avanzado. 
+---
+= Usar filtros avanzados en las reglas de ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El filtrado avanzado permite crear reglas de ILM que se aplican solo a objetos específicos en función de sus metadatos. Al configurar el filtrado avanzado para una regla, debe seleccionar el tipo de metadatos que desea que coincidan, seleccionar un operador y especificar un valor de metadatos. Cuando se evalúan objetos, la regla de ILM se aplica solo a los objetos que tienen metadatos que coincidan con el filtro avanzado.
+
+En la tabla se muestran los tipos de metadatos que se pueden especificar en los filtros avanzados, los operadores que se pueden utilizar para cada tipo de metadatos y los valores de metadatos esperados.
+
+[cols="1a,1a,2a"]
+|===
+| Tipo de metadatos | Operadores compatibles | Valor de los metadatos 
+
+
+ a| 
+Tiempo de consumo (microsegundos)
+ a| 
+* es igual a
+* no es igual
+* menor que
+* menor que o igual
+* mayor que
+* mayor o igual que
+
+ a| 
+Hora y fecha en la que se ingirió el objeto.
+
+*Nota:* para evitar problemas de recursos al activar una nueva política de ILM, puede utilizar el filtro avanzado de tiempo de ingesta en cualquier regla que pueda cambiar la ubicación de un gran número de objetos existentes. Establezca el tiempo de ingesta como mayor o igual que el tiempo aproximado en el que la nueva política entrará en vigor para garantizar que los objetos existentes no se muevan innecesariamente.
+
+
+
+ a| 
+Clave
+ a| 
+* es igual a
+* no es igual
+* contiene
+* no contiene
+* comienza con
+* no empieza por
+* termina con
+* no termina con
+
+ a| 
+Todo o parte de una clave de objeto S3 o Swift única.
+
+Por ejemplo, quizás desee hacer coincidir los objetos que terminan con `.txt` o empiece por `test-object/`.
+
+
+
+ a| 
+Hora del último acceso (microsegundos)
+ a| 
+* es igual a
+* no es igual
+* menor que
+* menor que o igual
+* mayor que
+* mayor o igual que
+* existe
+* no existe
+
+ a| 
+Hora y fecha en la que se recuperó por última vez el objeto (leído o visualizado).
+
+*Nota:* Si planea utilizar la última hora de acceso como filtro avanzado, las actualizaciones de la última hora de acceso deben estar habilitadas para el contenedor S3 bucket o Swift.
+
+xref:using-last-access-time-in-ilm-rules.adoc[Utilice la hora del último acceso en las reglas de ILM]
+
+
+
+ a| 
+Limitación de ubicaciones (solo S3)
+ a| 
+* es igual a
+* no es igual
+
+ a| 
+Región en la que se creó un bloque de S3. Utilice *ILM* > *Regiones* para definir las regiones que se muestran.
+
+*Nota:* un valor de US-East-1 coincidirán con objetos en cubos creados en la región US-East-1 así como con objetos en cubos que no tienen una región especificada.
+
+xref:configuring-regions-optional-and-s3-only.adoc[Configurar regiones (opcional solo S3)]
+
+
+
+ a| 
+Tamaño del objeto (MB)
+ a| 
+* es igual a
+* no es igual
+* menor que
+* menor que o igual
+* mayor que
+* mayor o igual que
+
+ a| 
+Tamaño del objeto en MB.
+
+El código de borrado se adapta mejor a los objetos de más de 1 MB. No utilice la codificación de borrado para objetos de menos de 200 KB con el fin de evitar la sobrecarga de gestión de fragmentos codificados con borrado de muy pequeño tamaño.
+
+*Nota:* para filtrar en tamaños de objeto menores de 1 MB, escriba un valor decimal. El tipo de navegador y la configuración regional controlan si necesita utilizar un punto o una coma como separador decimal.
+
+
+
+ a| 
+Metadatos del usuario
+ a| 
+* contiene
+* termina con
+* es igual a
+* existe
+* no contiene
+* no termina con
+* no es igual
+* no existe
+* no empieza por
+* comienza con
+
+ a| 
+Par clave-valor, donde *Nombre de metadatos de usuario* es la clave y *valor de metadatos de usuario* es el valor.
+
+Por ejemplo, para filtrar objetos con metadatos de usuario de `color=blue`, especifique `color` Para *Nombre de metadatos de usuario*, `equals` para el operador, y. `blue` Para *valor de metadatos de usuario*.
+
+*Nota:* los nombres de metadatos del usuario no distinguen entre mayúsculas y minúsculas; los valores de metadatos del usuario distinguen entre mayúsculas y minúsculas.
+
+
+
+ a| 
+Etiqueta de objeto (solo S3)
+ a| 
+* contiene
+* termina con
+* es igual a
+* existe
+* no contiene
+* no termina con
+* no es igual
+* no existe
+* no empieza por
+* comienza con
+
+ a| 
+Par clave-valor, donde *Nombre de etiqueta de objeto* es la clave y *valor de etiqueta de objeto* es el valor.
+
+Por ejemplo, para filtrar objetos que tienen una etiqueta de objeto de `Image=True`, especifique `Image` Para *Nombre de etiqueta de objeto*, `equals` para el operador, y. `True` Para *valor de etiqueta de objeto*.
+
+*Nota:* los nombres de las etiquetas de objeto y los valores de las etiquetas de objeto distinguen entre mayúsculas y minúsculas. Debe introducir estos elementos exactamente como se definieron para el objeto.
+
+|===
+
+
+== Especifique varios tipos de metadatos y valores
+
+Al definir un filtrado avanzado, es posible especificar varios tipos de metadatos y varios valores de metadatos. Por ejemplo, si desea que una regla coincida con objetos de entre 10 MB y 100 MB de tamaño, debe seleccionar el tipo de metadatos *Tamaño de objeto* y especificar dos valores de metadatos.
+
+* El primer valor de metadatos especifica objetos mayores o iguales a 10 MB.
+* El segundo valor de metadatos especifica objetos inferiores o iguales a 100 MB.
+
+
+image::../media/advanced_filtering_size_between.gif[Ejemplo de filtrado avanzado para el tamaño del objeto]
+
+El uso de múltiples entradas permite tener un control preciso sobre qué objetos coinciden. En el ejemplo siguiente, la regla se aplica a los objetos que tienen una Marca A o una Marca B como valor de los metadatos de usuario camera_TYPE. Sin embargo, la regla sólo se aplica a los objetos de Marca B que son menores de 10 MB.
+
+image::../media/advanced_filtering_multiple_rows.gif[Ejemplo de filtrado avanzado para metadatos de usuario]

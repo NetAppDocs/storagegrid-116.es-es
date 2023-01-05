@@ -1,0 +1,129 @@
+---
+permalink: sg5700/reviewing-appliance-network-connections-sg5700.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5700, storage node, storage appliance, network connections, network connection, network, connection, grid, admin, client, management, SANtricity System Manager, SANtricity 
+summary: Antes de instalar el dispositivo StorageGRID, debe comprender qué redes se pueden conectar al dispositivo y cómo se utilizan los puertos de cada controladora. 
+---
+= Revisar las conexiones de red del dispositivo (SG5700)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de instalar el dispositivo StorageGRID, debe comprender qué redes se pueden conectar al dispositivo y cómo se utilizan los puertos de cada controladora.
+
+
+
+== Redes de dispositivos StorageGRID
+
+Al implementar un dispositivo de StorageGRID como nodo de almacenamiento en un grid StorageGRID, puede conectarlo a las siguientes redes:
+
+* *Red de Grid para StorageGRID*: La red de red se utiliza para todo el tráfico interno de StorageGRID. Proporciona conectividad entre todos los nodos de la cuadrícula, en todos los sitios y subredes. Se requiere la red de red.
+* *Red de administración para StorageGRID*: La Red de administración es una red cerrada que se utiliza para la administración y el mantenimiento del sistema. La red de administración suele ser una red privada y no es necesario que se pueda enrutar entre sitios. La red administrativa es opcional.
+* *Red de clientes para StorageGRID:* la red de clientes es una red abierta que se utiliza para proporcionar acceso a las aplicaciones cliente, incluidos S3 y Swift. La red de cliente proporciona acceso de protocolo de cliente a la cuadrícula, de modo que la red de red de red pueda aislarse y protegerse. La red cliente es opcional.
+* *Red de administración para el Administrador del sistema SANtricity* (opcional): Esta red proporciona acceso al Administrador del sistema SANtricity en la controladora E2800, lo que le permite supervisar y administrar los componentes de hardware del dispositivo. Esta red de gestión puede ser la misma que la Red de administración para StorageGRID, o bien puede ser una red de gestión independiente.
++
+Si la red opcional de SANtricity System Manager no está conectada, es posible que no pueda utilizar algunas funciones SANtricity.
+
+
+
+
+NOTE: Para obtener información detallada acerca de las redes StorageGRID, consulte _Grid primer_.
+
+
+
+== Conexiones de dispositivos StorageGRID
+
+Al instalar un dispositivo StorageGRID, debe conectar las dos controladoras entre sí y a las redes necesarias. La figura muestra las dos controladoras del SG5760, con la controladora E2800 en la parte superior y la controladora E5700SG en la parte inferior. En SG5712, la controladora E2800 se encuentra a la izquierda de la controladora E5700SG.
+
+image::../media/sg5760_connections.gif[Conexiones en el dispositivo SG5760]
+
+|===
+|  | Puerto | Tipo de puerto | Función 
+
+
+ a| 
+1
+ a| 
+Dos puertos de interconexión en cada controladora
+ a| 
+SFP+ óptico FC de 16 GB/s
+ a| 
+Conecte las dos controladoras entre sí.
+
+
+
+ a| 
+2
+ a| 
+Puerto de gestión 1 en la controladora E2800
+ a| 
+1 GbE (RJ-45).
+ a| 
+Se conecta a la red en la que se accede a System Manager de SANtricity. Es posible usar la red administrativa para StorageGRID o una red de gestión independiente.
+
+
+
+ a| 
+2
+ a| 
+Puerto de gestión 2 en la controladora E2800
+ a| 
+1 GbE (RJ-45).
+ a| 
+Reservado para soporte técnico.
+
+
+
+ a| 
+3
+ a| 
+Puerto de gestión 1 en la controladora E5700SG
+ a| 
+1 GbE (RJ-45).
+ a| 
+Conecta la controladora E5700SG a la red de administración para StorageGRID.
+
+
+
+ a| 
+3
+ a| 
+Puerto de gestión 2 en la controladora E5700SG
+ a| 
+1 GbE (RJ-45).
+ a| 
+* Se puede unir al puerto de administración 1 si desea una conexión redundante a la red de administración.
+* Puede dejarse sin cables y disponible para acceso local temporal (IP 169.254.0.1).
+* Durante la instalación, se puede utilizar para conectar la controladora E5700SG a un portátil de servicio si las direcciones IP asignadas por DHCP no están disponibles.
+
+
+
+
+ a| 
+4
+ a| 
+10 puertos 1-4 de 25 GbE en la controladora E5700SG
+ a| 
+10-GbE o 25-GbE
+
+*Nota:* los transceptores SFP+ incluidos con el dispositivo admiten velocidades de enlace de 10 GbE. Si desea utilizar velocidades de enlace de 25-GbE para los cuatro puertos de red, debe proporcionar transceptores SFP28.
+ a| 
+Conéctese a la red de red y a la red de cliente para StorageGRID. Consulte «'conexiones de puertos 10/25-GbE para el controlador E5700SG'».
+
+|===
+.Información relacionada
+xref:gathering-installation-information-sg5700.adoc[Reunir información de instalación (SG5700)]
+
+xref:cabling-appliance-sg5700.adoc[Dispositivo de cable (SG5700)]
+
+xref:port-bond-modes-for-e5700sg-controller-ports.adoc[Modos de enlace de puerto para puertos de controladora E5700SG]
+
+xref:../network/index.adoc[Directrices sobre redes]
+
+xref:../vmware/index.adoc[Instale VMware]
+
+xref:../rhel/index.adoc[Instale Red Hat Enterprise Linux o CentOS]
+
+xref:../ubuntu/index.adoc[Instalar Ubuntu o Debian]

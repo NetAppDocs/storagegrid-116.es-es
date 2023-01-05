@@ -1,0 +1,92 @@
+---
+permalink: maintain/restoring-and-validating-grid-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, restore grid node, restore node, validate grid node, validate node 
+summary: Es necesario restaurar los archivos de configuración de grid para los nodos de grid con errores, a continuación, validar los archivos de configuración de grid y resolver los errores que se produzcan. 
+---
+= Restaurar y validar nodos de grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es necesario restaurar los archivos de configuración de grid para los nodos de grid con errores, a continuación, validar los archivos de configuración de grid y resolver los errores que se produzcan.
+
+.Acerca de esta tarea
+Puede importar cualquier nodo de cuadrícula que deba estar presente en el host, siempre que lo esté `/var/local` no se perdió el volumen como resultado de un error del host anterior. Por ejemplo, la `/var/local` Es posible que el volumen siga existiendo si utilizó almacenamiento compartido para los volúmenes de datos del sistema StorageGRID, como se describe en las instrucciones de instalación de StorageGRID para el sistema operativo Linux. Al importar el nodo se restaura el archivo de configuración del nodo en el host.
+
+Si no es posible importar los nodos que faltan, debe volver a crear los archivos de configuración de grid.
+
+A continuación, debe validar el archivo de configuración de grid y resolver cualquier problema de red o almacenamiento que pueda producirse antes de reiniciar StorageGRID. Cuando vuelva a crear el archivo de configuración para un nodo, debe usar el mismo nombre para el nodo de sustitución que se utilizó para el nodo que se está recuperando.
+
+Consulte las instrucciones de instalación para obtener más información sobre la ubicación de `/var/local` volumen para un nodo.
+
+.Pasos
+. En la línea de comandos del host recuperado, se enumeran todos los nodos de grid StorageGRID configurados actualmente:``sudo storagegrid node list``
++
+Si no se configura ningún nodo de cuadrícula, no se producirá ningún resultado. Si se configuran algunos nodos de grid, se debe esperar la salida con el siguiente formato:
+
++
+[listing]
+----
+Name               Metadata-Volume
+================================================================
+dc1-adm1           /dev/mapper/sgws-adm1-var-local
+dc1-gw1            /dev/mapper/sgws-gw1-var-local
+dc1-sn1            /dev/mapper/sgws-sn1-var-local
+dc1-arc1           /dev/mapper/sgws-arc1-var-local
+----
++
+Si no aparecen algunos o todos los nodos de grid que deben configurarse en el host, debe restaurar los nodos de grid que faltan.
+
+. Para importar los nodos de cuadrícula que tienen un `/var/local` volumen:
++
+.. Ejecute el siguiente comando para cada nodo que desee importar:``sudo storagegrid node import node-var-local-volume-path``
++
+La `storagegrid node import` el comando solo se realiza correctamente si el nodo de destino se apaga correctamente en el host en el que se ejecutó por última vez. Si no es así, observará un error similar al siguiente:
+
++
+`This node (_node-name_) appears to be owned by another host (UUID host-uuid).`
+
++
+`Use the --force flag if you are sure import is safe.`
+
+.. Si ve el error sobre el nodo que pertenece a otro host, ejecute el comando de nuevo con el `--force` indicador para completar la importación:``sudo storagegrid --force node import node-var-local-volume-path``
++
+
+NOTE: Todos los nodos importados con el `--force` esta opción requerirá pasos de recuperación adicionales antes de que puedan volver a unirse a la cuadrícula, tal y como se describe en xref:whats-next-performing-additional-recovery-steps-if-required.adoc[Lo siguiente: Si es necesario, realice pasos adicionales de recuperación].
+
+
+
+. Para los nodos de grid que no tienen un `/var/local` volumen, vuelva a crear el archivo de configuración del nodo para restaurarlo al host.
++
+Siga las instrucciones de la sección ""Crear archivos de configuración de nodos"" en las instrucciones de instalación.
+
++
+
+IMPORTANT: Cuando vuelva a crear el archivo de configuración para un nodo, debe usar el mismo nombre para el nodo de sustitución que se utilizó para el nodo que se está recuperando. En las implementaciones de Linux, asegúrese de que el nombre del archivo de configuración contenga el nombre del nodo. Se deben utilizar las mismas interfaces de red, asignaciones de dispositivos de bloque y direcciones IP cuando sea posible. Esta práctica minimiza la cantidad de datos que se debe copiar al nodo durante la recuperación, lo que puede hacer que la recuperación sea significativamente más rápida (en algunos casos, minutos en lugar de semanas).
+
++
+
+IMPORTANT: Si utiliza dispositivos de bloque nuevos (dispositivos que el nodo StorageGRID no utilizó anteriormente) como valores para cualquiera de las variables de configuración que comienzan por `BLOCK_DEVICE_` cuando vaya a volver a crear el archivo de configuración de un nodo, asegúrese de seguir todas las directrices de xref:fixing-missing-block-device-errors.adoc[Solucione los errores de dispositivo de bloque que faltan].
+
+. Ejecute el siguiente comando en el host recuperado para enumerar todos los nodos StorageGRID.
++
+`sudo storagegrid node list`
+
+. Validar el archivo de configuración del nodo de cada nodo de cuadrícula cuyo nombre se muestra en el resultado de la lista de nodos StorageGRID:
++
+`sudo storagegrid node validate _node-name_`
+
++
+Debe solucionar cualquier error o advertencia antes de iniciar el servicio de host de StorageGRID. En las siguientes secciones se ofrecen más detalles sobre los errores que pueden tener un significado especial durante la recuperación.
+
+
+
+.Información relacionada
+xref:../rhel/index.adoc[Instale Red Hat Enterprise Linux o CentOS]
+
+xref:../ubuntu/index.adoc[Instalar Ubuntu o Debian]
+
+xref:fixing-mssing-network-interface-errors.adoc[Corrija los errores de interfaz de red que faltan]

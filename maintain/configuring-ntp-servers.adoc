@@ -1,0 +1,56 @@
+---
+permalink: maintain/configuring-ntp-servers.html 
+sidebar: sidebar 
+keywords: storagegrid, ntp, ntp server, configure ntp, configuring ntp 
+summary: 'Puede añadir, actualizar o eliminar servidores de protocolo de tiempo de red \(NTP\) para garantizar que los datos se sincronizan con precisión entre los nodos de grid del sistema StorageGRID.' 
+---
+= Configure los servidores NTP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede agregar, actualizar o eliminar servidores de protocolo de tiempo de redes (NTP) para garantizar que los datos se sincronizan con precisión entre los nodos de grid en el sistema StorageGRID.
+
+.Lo que necesitará
+* Debe iniciar sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Debe tener los permisos de mantenimiento o acceso raíz.
+* Debe tener la clave de acceso de aprovisionamiento.
+* Debe tener las direcciones IPv4 de los servidores NTP para configurar.
+
+
+.Acerca de esta tarea
+El sistema StorageGRID utiliza el protocolo de hora de red (NTP) para sincronizar la hora entre todos los nodos de grid de la cuadrícula.
+
+Se asigna el rol NTP principal en cada sitio, al menos dos nodos del sistema StorageGRID. Se sincronizan con un mínimo sugerido de cuatro, y un máximo de seis, fuentes de tiempo externas y entre sí. Todos los nodos del sistema StorageGRID que no son un nodo NTP principal actúan como cliente NTP y se sincronizan con estos nodos NTP principales.
+
+Los servidores NTP externos se conectan a los nodos a los que se asignaron previamente roles NTP principales. Por este motivo, se recomienda especificar al menos dos nodos con roles NTP principales.
+
+
+IMPORTANT: Asegúrese de que al menos dos nodos de cada sitio puedan acceder a al menos cuatro fuentes de NTP externas. Si solo un nodo de un sitio puede acceder a los orígenes NTP, se producirán problemas de tiempo si ese nodo falla. Además, designar dos nodos por sitio como orígenes NTP primarios garantiza una sincronización precisa si un sitio está aislado del resto de la cuadrícula.
+
+Los servidores NTP externos especificados deben usar el protocolo NTP. Debe especificar las referencias del servidor NTP de estratum 3 o superior para evitar problemas con la desviación del tiempo.
+
+
+NOTE: Al especificar el origen NTP externo para una instalación StorageGRID de nivel de producción, no utilice el servicio de hora de Windows (W32Time) en una versión de Windows anterior a Windows Server 2016. El servicio de tiempo en versiones anteriores de Windows no es lo suficientemente preciso y no es compatible con Microsoft para su uso en entornos de gran precisión como StorageGRID.
+
+https://support.microsoft.com/en-us/help/939322/support-boundary-to-configure-the-windows-time-service-for-high-accura["Límite de soporte para configurar el servicio de tiempo de Windows para entornos de alta precisión"^]
+
+Si tiene problemas con la estabilidad o disponibilidad de los servidores NTP especificados originalmente durante la instalación, puede actualizar la lista de orígenes NTP externos que utiliza el sistema StorageGRID agregando servidores adicionales o actualizando o quitando servidores existentes.
+
+.Pasos
+. Seleccione *MANTENIMIENTO* *Red* *servidores NTP*.
+. En la sección Servers, añada la actualización o elimine las entradas del servidor NTP, según sea necesario.
++
+Debe incluir al menos 4 servidores NTP y especificar hasta 6 servidores.
+
+. En el cuadro de texto *frase de paso de aprovisionamiento*, introduzca la contraseña de aprovisionamiento del sistema StorageGRID y haga clic en *Guardar*.
++
+El estado del procedimiento se muestra en la parte superior de la página. La página está deshabilitada hasta que se completen las actualizaciones de configuración.
+
++
+
+IMPORTANT: Si todos los servidores NTP fallan en la prueba de conexión después de guardar los nuevos servidores NTP, no continúe. Póngase en contacto con el soporte técnico.
+
+

@@ -1,0 +1,41 @@
+---
+permalink: upgrade/checking-systems-condition-before-upgrading-software.html 
+sidebar: sidebar 
+keywords: upgrade, grid tasks, firewall, ports 
+summary: Antes de actualizar un sistema StorageGRID, es necesario comprobar que el sistema está listo para admitir la actualización. Debe asegurarse de que el sistema se ejecute con normalidad y que todos los nodos de grid estén operativos. 
+---
+= Compruebe el estado del sistema
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de actualizar un sistema StorageGRID, es necesario comprobar que el sistema está listo para admitir la actualización. Debe asegurarse de que el sistema se ejecute con normalidad y que todos los nodos de grid estén operativos.
+
+.Pasos
+. Inicie sesión en Grid Manager mediante una xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+. Compruebe y resuelva cualquier alerta activa.
++
+Para obtener información sobre alertas específicas, consulte xref:../monitor/alerts-reference.adoc[Referencia de alertas].
+
+. Confirme que no hay ninguna tarea de cuadrícula en conflicto activa ni pendiente.
++
+.. Seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+.. Seleccione *_site_* > *_primary Admin Node_* > *CMN* > *Grid Tasks* > *Configuration*.
++
+Las tareas de evaluación de la gestión del ciclo de vida de la información (ILME) son las únicas tareas de la cuadrícula que se pueden ejecutar simultáneamente con la actualización del software.
+
+.. Si hay otras tareas de cuadrícula activas o pendientes, espere a que finalicen o liberen el bloqueo.
++
+
+NOTE: Póngase en contacto con el soporte técnico si una tarea no finaliza o libera el bloqueo.
+
+
+
+. Consulte xref:../network/internal-grid-node-communications.adoc[Comunicaciones internas de los nodos de grid] y.. xref:../network/external-communications.adoc[Comunicaciones externas] Para garantizar que todos los puertos necesarios para StorageGRID 11.6 estén abiertos antes de actualizar.
++
+
+IMPORTANT: Si ha abierto algún puerto de firewall personalizado, se le notificará durante las comprobaciones previas de la actualización. Debe comunicarse con el soporte técnico antes de continuar con la actualización.
+
+

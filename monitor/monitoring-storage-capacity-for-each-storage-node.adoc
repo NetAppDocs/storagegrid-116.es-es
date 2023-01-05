@@ -1,0 +1,75 @@
+---
+permalink: monitor/monitoring-storage-capacity-for-each-storage-node.html 
+sidebar: sidebar 
+keywords: monitor node storage capacity 
+summary: Debe supervisar el espacio utilizable total de cada nodo de almacenamiento para garantizar que el nodo tenga suficiente espacio para los datos de objetos nuevos. 
+---
+= Supervise la capacidad de almacenamiento para cada nodo de almacenamiento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe supervisar el espacio utilizable total de cada nodo de almacenamiento para garantizar que el nodo tenga suficiente espacio para los datos de objetos nuevos.
+
+.Lo que necesitará
+* Debe iniciar sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+
+
+.Acerca de esta tarea
+El espacio útil es la cantidad de espacio de almacenamiento disponible para almacenar objetos. El espacio útil total de un nodo de almacenamiento se calcula sumando el espacio disponible en todos los almacenes de objetos del nodo.
+
+image::../media/calculating_watermarks.gif[Dibujo conceptual para el espacio útil total]
+
+.Pasos
+. Seleccione *NODES* > *_Storage Node_* > *Storage*.
++
+Aparecen los gráficos y las tablas del nodo.
+
+. Pase el cursor sobre el gráfico Storage used - object data.
++
+Se muestran los siguientes valores:
+
++
+** *Usado (%)*: El porcentaje del espacio útil total que se ha utilizado para datos de objeto.
+** *Utilizado*: La cantidad de espacio útil total que se ha utilizado para los datos de objeto.
+** *Datos replicados*: Estimación de la cantidad de datos de objetos replicados en este nodo, sitio o cuadrícula.
+** *Datos codificados por borrado*: Estimación de la cantidad de datos de objetos codificados por borrado en este nodo, sitio o cuadrícula.
+** *Total*: La cantidad total de espacio utilizable en este nodo, sitio o cuadrícula. El valor utilizado es `storagegrid_storage_utilization_data_bytes` métrico.
+
+
++
+image::../media/nodes_page_storage_used_object_data.png[Nodos almacenamiento de páginas datos de objeto usados]
+
+. Revise los valores disponibles en las tablas Volumes y Object store, debajo de los gráficos.
++
+
+NOTE: Para ver gráficos de estos valores, haga clic en los iconos del gráfico image:../media/icon_chart_new_for_11_5.png["Icono de gráfico"] En las columnas disponibles.
+
++
+image::../media/nodes_page_storage_tables.png[Objeto almacena tablas]
+
+. Supervise los valores a lo largo del tiempo para estimar la tasa a la que se está consumiendo el espacio de almacenamiento útil.
+. Para mantener las operaciones del sistema normales, añada nodos de almacenamiento, añada volúmenes de almacenamiento o datos de objetos de archivado antes de consumir el espacio útil.
++
+Al planificar los plazos de una expansión, tenga en cuenta cuánto tiempo se necesitará para adquirir e instalar almacenamiento adicional.
+
++
+
+NOTE: Si su política de ILM utiliza la codificación de borrado, quizás prefiera ampliar cuando los nodos de almacenamiento existentes estén aproximadamente un 70 % llenos para reducir el número de nodos que debe añadirse.
+
++
+Si desea obtener más información sobre la planificación de una expansión del almacenamiento, consulte las instrucciones para ampliar StorageGRID.
+
++
+La alerta *almacenamiento de objetos bajo* se activa cuando queda espacio insuficiente para almacenar datos de objetos en un nodo de almacenamiento.
+
+
+
+.Información relacionada
+xref:../admin/index.adoc[Administre StorageGRID]
+
+xref:troubleshooting-storagegrid-system.adoc[Solucionar problemas de la alerta de almacenamiento de datos de objeto bajo]
+
+xref:../expand/index.adoc[Amplíe su grid]

@@ -1,0 +1,83 @@
+---
+permalink: audit/object-ingest-transactions.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, messages, transaction, transactions, Object ingest, S3 ingest, Swift ingest, S3, Swift, SPUT, ORLM, WPUT 
+summary: 'Puede identificar las transacciones de procesamiento del cliente en el registro de auditoría ubicando los mensajes de auditoría \(S3 o Swift\) específicos de la API.' 
+---
+= Transacciones de procesamiento de objetos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede identificar las transacciones de procesamiento del cliente en el registro de auditoría ubicando mensajes de auditoría específicos de la API (S3 o Swift).
+
+No todos los mensajes de auditoría generados durante una transacción de procesamiento se muestran en las tablas siguientes. Sólo se incluyen los mensajes necesarios para rastrear la transacción de procesamiento.
+
+
+
+== Mensajes de auditoría de incorporación de S3
+
+|===
+| Codificación | Nombre | Descripción | Traza | Consulte 
+
+
+ a| 
+SPUT
+ a| 
+Transacción PUT de S3
+ a| 
+Una transacción de procesamiento PUT DE S3 se ha completado correctamente.
+ a| 
+CBID, S3BK, S3KY
+ a| 
+xref:sput-s3-put.adoc[SPUT: S3 PUT]
+
+
+
+ a| 
+ORLM
+ a| 
+Se cumplen las reglas del objeto
+ a| 
+La política de ILM se ha satisfecho para este objeto.
+ a| 
+CBID
+ a| 
+xref:orlm-object-rules-met.adoc[ORLM: Se cumplen las reglas de objeto]
+
+|===
+
+
+== Mensajes de auditoría de procesamiento rápido
+
+|===
+| Codificación | Nombre | Descripción | Traza | Consulte 
+
+
+ a| 
+WPUT
+ a| 
+Transacción DE SWIFT PUT
+ a| 
+Se ha completado correctamente una transacción de procesamiento DE PUT de Swift.
+ a| 
+CBID, WCON, WOBJ
+ a| 
+xref:wput-swift-put.adoc[WPUT: SWIFT PUT]
+
+
+
+ a| 
+ORLM
+ a| 
+Se cumplen las reglas del objeto
+ a| 
+La política de ILM se ha satisfecho para este objeto.
+ a| 
+CBID
+ a| 
+xref:orlm-object-rules-met.adoc[ORLM: Se cumplen las reglas de objeto]
+
+|===

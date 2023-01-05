@@ -1,0 +1,67 @@
+---
+permalink: admin/editing-tenant-account.html 
+sidebar: sidebar 
+keywords: edit tenant account, change tenant name, allow platform services, tenant quota 
+summary: Puede editar una cuenta de arrendatario para cambiar el nombre para mostrar, cambiar la configuración del origen de identidad, permitir o desactivar servicios de plataforma o introducir una cuota de almacenamiento. 
+---
+= Edite la cuenta de inquilino
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede editar una cuenta de arrendatario para cambiar el nombre para mostrar, cambiar la configuración del origen de identidad, permitir o desactivar servicios de plataforma o introducir una cuota de almacenamiento.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+
+
+.Pasos
+. Seleccione *ARRENDATARIOS*.
++
+image::../media/tenant_accounts_page.png[Página Cuentas de inquilino]
+
+. Seleccione la cuenta de arrendatario que desee editar.
++
+Utilice el cuadro de búsqueda para buscar una cuenta de inquilino por nombre o ID de inquilino.
+
+. En el menú desplegable acciones, seleccione *Editar*.
++
+Este ejemplo se utiliza para una cuadrícula que no utiliza el inicio de sesión único (SSO). Esta cuenta de inquilino no ha configurado su propio origen de identidad.
+
++
+image::../media/edit_tenant_account.png[Editar cuenta de inquilino]
+
+. Cambie los valores de estos campos según sea necesario:
++
+** *Nombre*
+** *Descripción*
+** *Tipo de cliente*
+** *Cuota de almacenamiento*
+
+
+. Seleccione *continuar*.
+. Seleccione o anule la selección de los permisos para la cuenta de inquilino.
++
+** Si deshabilita *Servicios de plataforma* para un arrendatario que ya los está utilizando, los servicios que han configurado para sus cubos S3 dejarán de funcionar. No se envía ningún mensaje de error al inquilino. Por ejemplo, si el inquilino ha configurado la replicación de CloudMirror para un bloque de S3, podrán seguir almacenando objetos en el bloque, pero las copias de esos objetos ya no se realizarán en el bloque S3 externo que se hayan configurado como extremo.
+** Cambie la configuración de la casilla de verificación *usa el origen de identidad propio* para determinar si la cuenta de arrendatario utilizará su propio origen de identidad o el origen de identidad configurado para el administrador de cuadrícula.
++
+Si la casilla de verificación *usa el origen de identidad propio* es:
+
++
+*** Desactivado y seleccionado, el arrendatario ya ha activado su propio origen de identidad. Un arrendatario debe desactivar su origen de identidad antes de poder utilizar el origen de identidad configurado para el Gestor de cuadrícula.
+*** Deshabilitado e ilimitado, SSO se encuentra habilitado para el sistema StorageGRID. El inquilino debe utilizar el origen de identidad configurado para el administrador de grid.
+
+
+** Activa o desactiva *S3 Select* según sea necesario. Consulte xref:manage-s3-select-for-tenant-accounts.adoc[Gestione S3 Select para cuentas de inquilinos].
+
+
+. Seleccione *Guardar*.
+
+
+.Información relacionada
+* xref:manage-platform-services-for-tenants.adoc[Gestione servicios de plataformas para cuentas de inquilinos de S3]
+* xref:../tenant/index.adoc[Usar una cuenta de inquilino]
+

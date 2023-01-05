@@ -1,0 +1,209 @@
+---
+permalink: audit/system-audit-messages.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, messages, system, ECOC, ETAF, GNRG, GNUR, GTED, GTST, GTSU, IDEL, LKCU, LLST, OLST, ORLM, SADD, SADE, SVRF, SVRU, SYSD, SYST, SYSU, VLST 
+summary: 'Debería estar familiarizado con los mensajes de auditoría que pertenecen a la categoría de auditoría del sistema. Son eventos relacionados con el propio sistema de auditoría, los estados del nodo de grid, la actividad de tareas en todo el sistema \(tareas de grid\) y las operaciones de backup de servicio, para que pueda solucionar posibles problemas.' 
+---
+= Mensajes de auditoría del sistema
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debería estar familiarizado con los mensajes de auditoría que pertenecen a la categoría de auditoría del sistema. Se trata de eventos relacionados con el propio sistema de auditoría, los estados del nodo de grid, la actividad de tareas en todo el sistema (tareas de grid) y las operaciones de backup de servicio, para que pueda solucionar los problemas potenciales.
+
+|===
+| Codificación | Título del mensaje y descripción | Consulte 
+
+
+ a| 
+ECMC
+ a| 
+Falta el fragmento de datos con código de borrado: Indica que se ha detectado un fragmento de datos con código de borrado que falta.
+ a| 
+xref:ecmc-missing-erasure-coded-data-fragment.adoc[ECMC: Falta el fragmento de datos codificados de borrado]
+
+
+
+ a| 
+ECOC
+ a| 
+Fragmento de datos con código de borrado dañado: Indica que se ha detectado un fragmento de datos con código de borrado dañado.
+ a| 
+xref:ecoc-corrupt-erasure-coded-data-fragment.adoc[ECOC: Fragmento de datos codificados con borrado dañado]
+
+
+
+ a| 
+ETAF
+ a| 
+Error en la autenticación de seguridad: Error en un intento de conexión mediante la seguridad de la capa de transporte (TLS).
+ a| 
+xref:etaf-security-authentication-failed.adoc[ETAF: Error de autenticación de seguridad]
+
+
+
+ a| 
+GNRG
+ a| 
+Registro de GNDS: Un servicio actualizado o información registrada sobre sí mismo en el sistema StorageGRID.
+ a| 
+xref:gnrg-gnds-registration.adoc[GNRG: Registro GNDS]
+
+
+
+ a| 
+RNUR
+ a| 
+Registro de GNDS: Un servicio se ha registrado de forma no registrada del sistema StorageGRID.
+ a| 
+xref:gnur-gnds-unregistration.adoc[GNUR: Registro de GNDS]
+
+
+
+ a| 
+GTED
+ a| 
+Tarea de cuadrícula finalizada: El servicio CMN ha terminado de procesar la tarea de cuadrícula.
+ a| 
+xref:gted-grid-task-ended.adoc[GTED: La tarea de la red terminó]
+
+
+
+ a| 
+GTST
+ a| 
+Tarea de cuadrícula iniciada: El servicio CMN comenzó a procesar la tarea de cuadrícula.
+ a| 
+xref:gtst-grid-task-started.adoc[GTST: Se ha iniciado la tarea de cuadrícula]
+
+
+
+ a| 
+GTSU
+ a| 
+Tarea de cuadrícula enviada: Se ha enviado una tarea de cuadrícula al servicio CMN.
+ a| 
+xref:gtsu-grid-task-submitted.adoc[GTSU: Se ha enviado la tarea de la cuadrícula]
+
+
+
+ a| 
+IDEL
+ a| 
+ILM Initiated Delete: Este mensaje de auditoría se genera cuando ILM inicia el proceso de eliminación de un objeto.
+ a| 
+xref:idel-ilm-initiated-delete.adoc[IDEL: Eliminación de ILM iniciada]
+
+
+
+ a| 
+LKCU
+ a| 
+Borrado de objeto sobrescrito. Este mensaje de auditoría se genera cuando se elimina automáticamente un objeto sobrescrito para liberar espacio de almacenamiento.
+ a| 
+xref:lkcu-overwritten-object-cleanup.adoc[LKCU: Limpieza de objetos sobrescritos]
+
+
+
+ a| 
+LLST
+ a| 
+Ubicación perdida: Este mensaje de auditoría se genera cuando se pierde una ubicación.
+ a| 
+xref:llst-location-lost.adoc[LLST: Ubicación perdida]
+
+
+
+ a| 
+OLST
+ a| 
+Objeto perdido: Un objeto solicitado no se puede ubicar dentro del sistema StorageGRID.
+ a| 
+xref:olst-system-detected-lost-object.adoc[OLST: El sistema detectó un objeto perdido]
+
+
+
+ a| 
+ORLM
+ a| 
+Object Rules met: Los datos del objeto se almacenan según las reglas de ILM.
+ a| 
+xref:orlm-object-rules-met.adoc[ORLM: Se cumplen las reglas de objeto]
+
+
+
+ a| 
+AGREGAR
+ a| 
+Deshabilitación de auditoría de seguridad: Se ha desactivado el registro de mensajes de auditoría.
+ a| 
+xref:sadd-security-audit-disable.adoc[SADD: Desactivación de auditoría de seguridad]
+
+
+
+ a| 
+SADE
+ a| 
+Habilitación de auditoría de seguridad: Se ha restaurado el registro de mensajes de auditoría.
+ a| 
+xref:sade-security-audit-enable.adoc[SADE: Activación de auditoría de seguridad]
+
+
+
+ a| 
+SRF
+ a| 
+Error de verificación del almacén de objetos: Un bloque de contenido ha fallado las comprobaciones de verificación.
+ a| 
+xref:svrf-object-store-verify-fail.adoc[SVRF: Fallo de verificación del almacén de objetos]
+
+
+
+ a| 
+SVRU
+ a| 
+Verificación de almacén de objetos desconocida: Se han detectado datos de objeto inesperados en el almacén de objetos.
+ a| 
+xref:svru-object-store-verify-unknown.adoc[SVRU: Verificación del almacén de objetos desconocida]
+
+
+
+ a| 
+SYSD
+ a| 
+Node Stop: Se ha solicitado un apagado.
+ a| 
+xref:sysd-node-stop.adoc[SYSD: Parada del nodo]
+
+
+
+ a| 
+SYST
+ a| 
+Nodo de detención: Un servicio ha iniciado una detención elegante.
+ a| 
+xref:syst-node-stopping.adoc[SYST: Nodo detenido]
+
+
+
+ a| 
+SYSU
+ a| 
+Node Start: Se ha iniciado un servicio; la naturaleza del apagado anterior se indica en el mensaje.
+ a| 
+xref:sysu-node-start.adoc[SYSU: Inicio del nodo]
+
+
+
+ a| 
+VLST
+ a| 
+El volumen iniciado por el usuario perdió: El `/proc/CMSI/Volume_Lost` se ejecutó el comando.
+ a| 
+xref:vlst-user-initiated-volume-lost.adoc[VLST: Volumen iniciado por el usuario perdido]
+
+|===
+.Información relacionada
+xref:lkcu-overwritten-object-cleanup.adoc[LKCU: Limpieza de objetos sobrescritos]

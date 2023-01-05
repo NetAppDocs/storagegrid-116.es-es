@@ -1,0 +1,50 @@
+---
+permalink: ilm/editing-cloud-storage-pool.html 
+sidebar: sidebar 
+keywords: edit cloud storage pool 
+summary: Puede editar un pool de almacenamiento en cloud para cambiar su nombre, extremo de servicio u otros detalles; sin embargo, no puede cambiar el bloque de S3 o el contenedor de Azure para un pool de almacenamiento en cloud. 
+---
+= Editar un pool de almacenamiento en el cloud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede editar un pool de almacenamiento en cloud para cambiar su nombre, extremo de servicio u otros detalles; sin embargo, no puede cambiar el bloque de S3 o el contenedor de Azure para un pool de almacenamiento en cloud.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+* Ha revisado el xref:considerations-for-cloud-storage-pools.adoc[Consideraciones para Cloud Storage Pools].
+
+
+.Pasos
+. Seleccione *ILM* > *agrupaciones de almacenamiento*.
++
+Aparece la página Storage Pools. En la tabla Cloud Storage Pools, se enumera los pools de almacenamiento en el cloud.
+
++
+image::../media/cloud_storage_pool_used_in_ilm_rule.png[Página Cloud Storage Pools.]
+
+. Seleccione el botón de opción del pool de almacenamiento en cloud que desea editar.
+. Seleccione *Editar*.
+. Según sea necesario, cambie el nombre para mostrar, el extremo de servicio, las credenciales de autenticación o el método de validación de certificados.
++
+
+IMPORTANT: No puede cambiar el tipo de proveedor, ni el bloque de S3 o el contenedor de Azure para un pool de almacenamiento en cloud.
+
++
+Si ha cargado previamente un certificado de servidor o cliente, puede seleccionar *Ver actual* para revisar el certificado que se está utilizando actualmente.
+
+. Seleccione *Guardar*.
++
+Cuando guarda un pool de almacenamiento en cloud, StorageGRID valida que el bloque o el contenedor y el extremo de servicio existen, y que se pueden acceder a ellos con las credenciales especificadas.
+
++
+Si la validación de Cloud Storage Pool falla, se muestra un mensaje de error. Por ejemplo, es posible que se informe un error si existe un error de certificado.
+
++
+Consulte las instrucciones para xref:troubleshooting-cloud-storage-pools.adoc[Solución de problemas de Cloud Storage Pools], Resuelva el problema e intente volver a guardar el grupo de almacenamiento en la nube.
+
+

@@ -1,0 +1,14 @@
+---
+permalink: maintain/host-level-and-middleware-procedures.html 
+sidebar: sidebar 
+keywords: host level procedures, host-level procedures, middleware procedures 
+summary: Algunos procedimientos de mantenimiento son específicos de las implementaciones de StorageGRID para Linux o VMware o son específicos de otros componentes de la solución StorageGRID. 
+---
+= Procedimientos de middleware y a nivel de host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Algunos procedimientos de mantenimiento son específicos de las implementaciones de StorageGRID para Linux o VMware o son específicos de otros componentes de la solución StorageGRID.

@@ -1,0 +1,215 @@
+---
+permalink: sg5600/upgrading-drive-firmware-using-santricity-storage-manager.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, upgrade, upgrading, firmware, drive, disk, SANtricity Storage Manager, SANtricity 
+summary: El firmware de la unidad se actualiza para asegurarse de tener todas las funciones y correcciones de errores más recientes. 
+---
+= Actualizar el firmware de la unidad mediante SANtricity Storage Manager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El firmware de la unidad se actualiza para asegurarse de tener todas las funciones y correcciones de errores más recientes.
+
+.Lo que necesitará
+* El dispositivo de almacenamiento tiene el estado Optimal.
+* Todas las unidades tienen el estado Optimal.
+* Tiene instalada la última versión de SANtricity Storage Manager que es compatible con la versión de StorageGRID.
++
+xref:upgrading-santricity-os-on-storage-controllers-using-grid-manager-sg5600.adoc[Actualizar el sistema operativo SANtricity en controladoras de almacenamiento mediante Grid Manager]
+
++
+xref:upgrading-santricity-os-on-e2700-controller-using-maintenance-mode.adoc[Actualice el sistema operativo SANtricity en la controladora E2700 mediante modo de mantenimiento]
+
+* Ya tienes xref:placing-appliance-into-maintenance-mode.adoc[Colocó el dispositivo StorageGRID en modo de mantenimiento].
++
+
+NOTE: El modo de mantenimiento interrumpe la conexión a la controladora de almacenamiento, al detener toda la actividad de I/o y colocar todas las unidades en estado sin conexión.
+
+
+
+
+IMPORTANT: No actualice el firmware de la unidad en más de un dispositivo StorageGRID a la vez. Si lo hace, puede provocar la falta de disponibilidad de los datos, según el modelo de puesta en marcha y las políticas de ILM.
+
+.Pasos
+. Confirme que el aparato está en xref:placing-appliance-into-maintenance-mode.adoc[modo de mantenimiento].
+. Abra un explorador web y escriba la dirección IP como URL de SANtricity Storage Manager: +
+`*https://_E2700_Controller_IP_*`
+. Si es necesario, introduzca el nombre de usuario y la contraseña del administrador de SANtricity Storage Manager.
+. En Administración de empresa de SANtricity, seleccione la ficha *dispositivos*.
++
+Se abrirá la ventana Gestión de cabinas SANtricity.
+
+. En Gestión de cabinas de SANtricity, haga doble clic en la cabina de almacenamiento con las unidades que desea actualizar.
+. Verifique que tanto la cabina de almacenamiento como las unidades tengan el estado Optimal.
+. Compruebe la versión de firmware de la unidad instalada actualmente en el dispositivo de almacenamiento:
++
+.. En SANtricity Enterprise Management, seleccione *actualización* > *firmware de la unidad*.
++
+La ventana Descargar firmware de la unidad - Añadir paquetes muestra los archivos de firmware de la unidad que están en uso actualmente.
+
+.. Tenga en cuenta las revisiones de firmware de la unidad actuales y los identificadores de unidades con los paquetes de firmware actuales.
++
+image::../media/sg_storagemanager_upgrade_drive_firmware.png[Actualizar el firmware de la unidad]
+
++
+En este ejemplo:
+
++
+*** La revisión del firmware de la unidad es *NE00*.
+*** El identificador de la unidad es *HUH7280AL5204*.
+
+
+
+
++
+Seleccione *Ver unidades asociadas* para mostrar dónde están instaladas estas unidades en el dispositivo de almacenamiento.
+
+. Descargue y prepare la actualización del firmware de la unidad disponible:
++
+.. Abra el explorador web, desplácese hasta el sitio web de soporte de NetApp e inicie sesión con su ID y contraseña.
++
+https://mysupport.netapp.com/site/["Soporte de NetApp"^]
+
+.. En el sitio de soporte de NetApp, seleccione la pestaña *Descargas* y, a continuación, seleccione *firmware de las unidades de disco E-Series*.
++
+Se muestra la página firmware del disco E-Series.
+
+.. Busque cada *Identificador de unidad* instalado en el dispositivo de almacenamiento y compruebe que cada identificador de unidad tiene la última revisión de firmware.
++
+*** Si la revisión del firmware no es un enlace, este identificador de unidad tiene la revisión de firmware más reciente.
+*** Si se enumeran uno o varios números de pieza de unidad para un identificador de unidad, estas unidades tienen disponible una actualización de firmware. Puede seleccionar cualquier enlace para descargar el archivo de firmware.
++
+image::../media/sg_storage_mgr_download_drive_firmware.png[Página firmware del disco E-Series]
+
+
+
+.. Si aparece una revisión posterior del firmware, seleccione el enlace en la revisión del firmware (Descargar) para descargar una `.zip` archivo que contiene el archivo de firmware.
+.. Extraiga (descomprima) los archivos de almacenamiento del firmware de la unidad que descargó del sitio de soporte.
+
+
+. Instale la actualización del firmware de la unidad:
++
+.. En la ventana Descargar firmware de la unidad de SANtricity Storage Manager - Agregar paquetes, seleccione *Agregar*.
+.. Desplácese hasta el directorio que contiene los archivos de firmware y seleccione hasta cuatro archivos de firmware.
++
+Los archivos de firmware de la unidad tienen un nombre de archivo similar a +
+`D_HUC101212CSS600_30602291_MS01_2800_0002.dlp`
+
++
+Si se selecciona más de un archivo de firmware para actualizar el firmware de la misma unidad, se puede producir un error de conflicto de archivo. Si se produce un error de conflicto de archivo, aparece un cuadro de diálogo de error. Para resolver este error, seleccione *Aceptar* y elimine todos los demás archivos de firmware excepto el que desee utilizar para actualizar el firmware de la unidad. Para eliminar un archivo de firmware, seleccione el archivo de firmware en el área de información Paquetes a transferir y seleccione *Quitar*. Además, solo es posible seleccionar hasta cuatro paquetes de firmware de la unidad a la vez.
+
+.. Seleccione *OK*.
++
+El sistema actualiza el área de información Paquetes a transferir con los archivos de firmware seleccionados.
+
+.. Seleccione *Siguiente*.
++
+Se abre la ventana Descargar firmware de la unidad: Seleccionar unidades.
+
++
+*** Se analizan todas las unidades del dispositivo para obtener información sobre la configuración y poder actualizar.
+*** Se presenta con una selección (según la variedad de unidades de la cabina de almacenamiento) de unidades compatibles que se pueden actualizar con el firmware seleccionado. De manera predeterminada, se muestran las unidades que pueden actualizarse como una operación en línea.
+*** El firmware seleccionado para la unidad aparece en el área de información firmware propuesto. Si debe cambiar el firmware, seleccione *Atrás* para volver al cuadro de diálogo anterior.
+
+
+.. En la capacidad de actualización de la unidad, seleccione la operación de descarga *paralelo* o *todo*.
++
+Es posible usar cualquiera de estos métodos de actualización porque el dispositivo está en modo de mantenimiento, donde se detiene la actividad de I/o de todas las unidades y todos los volúmenes.
+
+.. En unidades compatibles, seleccione las unidades para las que desea actualizar los archivos de firmware seleccionados.
++
+*** Para una o varias unidades, seleccione cada unidad que desee actualizar.
+*** Para todas las unidades compatibles, seleccione *Seleccionar todo*.
++
+La práctica recomendada es actualizar todas las unidades del mismo modelo a la misma revisión de firmware.
+
+
+
+.. Seleccione *Finalizar*; a continuación, escriba `yes` Y seleccione *OK*.
++
+*** Comienza la descarga y la actualización del firmware de la unidad, con Download firmware de la unidad: Progreso que indica el estado de la transferencia del firmware en todas las unidades.
+*** El estado de cada unidad que participa en la actualización aparece en la columna progreso de transferencia de dispositivos actualizados.
++
+Una operación de actualización del firmware de una unidad paralela puede tardar hasta 90 segundos en completarse si todas las unidades se actualizan en un sistema de 24 unidades. En un sistema más grande, el tiempo de ejecución es ligeramente más largo.
+
+
+
+.. Durante el proceso de actualización del firmware, puede: +
++
+*** Seleccione *Detener* para detener la actualización del firmware en curso. Se completa cualquier actualización de firmware actualmente en curso. Cualquier unidad que haya intentado actualizar el firmware muestra su estado individual. Las unidades restantes se enumeran con el estado no se intenta.
++
+
+IMPORTANT: Si se detiene la actualización del firmware de la unidad en el proceso, podrían producirse la pérdida de datos o la falta de disponibilidad de las unidades.
+
+*** Seleccione *Guardar como* para guardar un informe de texto del resumen de progreso de la actualización del firmware. El informe se guarda con una extensión de archivo .log predeterminada. Si desea cambiar la extensión o el directorio, cambie los parámetros en Guardar registro de descarga de unidad.
+
+
+.. Utilice Descargar firmware de la unidad: Progreso para supervisar el progreso de las actualizaciones del firmware de la unidad. El área Drives Updated contiene una lista de unidades programadas para la actualización de firmware y el estado de transferencia de cada unidad que se descarga y actualización.
++
+El progreso y el estado de cada unidad que está participando en la actualización se muestran en la columna progreso de la transferencia. Realice la acción recomendada si se producen errores durante la actualización.
+
++
+*** *Pendiente*
++
+Este estado se muestra para una operación de descarga de firmware en línea programada, pero aún no se inició.
+
+*** *En curso*
++
+El firmware se está transfiriendo a la unidad.
+
+*** *Reconstrucción en curso*
++
+Este estado se muestra si tiene lugar una transferencia de volumen durante la reconstrucción rápida de una unidad. Por lo general, esto se debe a un restablecimiento o un fallo de la controladora y el propietario de la controladora transfiere el volumen.
+
++
+El sistema iniciará una reconstrucción completa de la unidad.
+
+*** *Fallo - parcial*
++
+El firmware solo se transfirió parcialmente a la unidad antes de que un problema impidió que se transfiriera el resto del archivo.
+
+*** *Error: Estado no válido*
++
+El firmware no es válido.
+
+*** *Error - otro*
++
+No se pudo descargar el firmware, posiblemente debido a un problema físico con la unidad.
+
+*** *No se ha intentado*
++
+El firmware no se descargó, lo que puede deberse a diversos motivos diferentes, como la descarga se detuvo antes de que pudiera producirse, o la unidad no cumple los requisitos para la actualización. O la descarga no pudo ocurrir debido a un error.
+
+*** *Correcto*
++
+El firmware se ha descargado correctamente.
+
+
+
+
+
+. Una vez completada la actualización del firmware de la unidad:
++
+** Para cerrar el Asistente para descargar firmware de la unidad, seleccione *Cerrar*.
+** Para volver a iniciar el asistente, seleccione *transferir más*.
+
+
+. Si este procedimiento se completó correctamente y tiene procedimientos adicionales que realizar mientras el nodo se encuentra en modo de mantenimiento, realice ahora. Cuando haya terminado, o si ha experimentado algún fallo y desea volver a empezar, seleccione *Avanzado* > *Reiniciar controlador* y, a continuación, seleccione una de estas opciones:
++
+** Seleccione *Reiniciar en StorageGRID*
+** Seleccione *Reiniciar en el modo de mantenimiento* para reiniciar el controlador con el nodo restante en modo de mantenimiento. Seleccione esta opción si ha experimentado algún error durante el procedimiento y desea volver a empezar. Cuando el nodo termine de reiniciarse en el modo de mantenimiento, reinicie desde el paso adecuado del procedimiento en que falló.
++
+image::../media/reboot_controller_from_maintenance_mode.png[Reinicie la controladora en modo de mantenimiento]
+
++
+El dispositivo puede tardar hasta 20 minutos en reiniciarse y volver a unirse a la cuadrícula. Para confirmar que el reinicio ha finalizado y que el nodo ha vuelto a unirse a la cuadrícula, vuelva a Grid Manager. La página *Nodes* debe mostrar un estado normal (no hay iconos a la izquierda del nombre del nodo) para el nodo del dispositivo, lo que indica que no hay alertas activas y que el nodo está conectado a la cuadrícula.
+
++
+image::../media/node_rejoin_grid_confirmation.png[El nodo del dispositivo se ha vuelto a unir a la cuadrícula]
+
+
+
+

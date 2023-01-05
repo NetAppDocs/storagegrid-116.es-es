@@ -1,0 +1,58 @@
+---
+permalink: sg6000/unable-to-connect-to-appliance.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, troubleshoot, troubleshooting, connect, connection, unable to connect, no connection 
+summary: Si no puede conectarse al dispositivo, puede haber un problema de red o es posible que la instalación del hardware no se haya completado correctamente. 
+---
+= No se puede conectar al dispositivo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si no puede conectarse al dispositivo, puede haber un problema de red o es posible que la instalación del hardware no se haya completado correctamente.
+
+.Pasos
+. Si no puede conectarse con el Administrador del sistema SANtricity:
++
+.. Intente hacer ping al dispositivo con la dirección IP de una controladora de almacenamiento en la red de gestión para System Manager de SANtricity: +
+`*ping _Storage_Controller_IP_*`
+.. Si no recibe respuesta del ping, confirme que está utilizando la dirección IP correcta.
++
+Use la dirección IP para el puerto de gestión 1 en cualquier controladora de almacenamiento.
+
+.. Si la dirección IP es correcta, compruebe el cableado del dispositivo y la configuración de la red.
++
+Si esto no se resuelve el problema, póngase en contacto con el soporte técnico.
+
+.. Si el ping se ha realizado correctamente, abra un explorador Web.
+.. Introduzca la URL para SANtricity System Manager: +
+`*https://_Storage_Controller_IP_*`
++
+Aparece la página de inicio de sesión de SANtricity System Manager.
+
+
+
+. Si no puede conectarse al controlador SG6000-CN:
++
+.. Intente hacer ping al dispositivo utilizando la dirección IP del controlador SG6000-CN: +
+`*ping _SG6000-CN_Controller_IP_*`
+.. Si no recibe respuesta del ping, confirme que está utilizando la dirección IP correcta.
++
+Puede utilizar la dirección IP del dispositivo en la red de grid, la red de administración o la red de cliente.
+
+.. Si la dirección IP es correcta, compruebe el cableado del dispositivo, los transceptores SFP y la configuración de red.
+.. Si dispone de acceso físico al SG6000-CN, puede utilizar una conexión directa con la IP local permanente de enlace `169.254.0.1` para comprobar la configuración de redes de la controladora y actualizarla si es necesario. Para obtener instrucciones detalladas, consulte el paso 2 de la xref:..//sg6000/accessing-storagegrid-appliance-installer-sg6000.adoc[Acceso al instalador de dispositivos de StorageGRID].
++
+Si esto no se resuelve el problema, póngase en contacto con el soporte técnico.
+
+.. Si el ping se ha realizado correctamente, abra un explorador Web.
+.. Introduzca la URL para el instalador de dispositivos de StorageGRID: +
+`*https://_SG6000-CN_Controller_IP_:8443*`
++
+Aparece la página de inicio.
+
+
+
+

@@ -1,0 +1,33 @@
+---
+permalink: expand/adding-grid-nodes-to-add-capabilities.html 
+sidebar: sidebar 
+keywords: grid nodes, expand, expansion, site, add 
+summary: Es posible añadir redundancia o funcionalidades adicionales a un sistema StorageGRID añadiendo nodos grid a las ubicaciones existentes. 
+---
+= Añada nodos de grid para añadir funcionalidades al sistema
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible añadir redundancia o funcionalidades adicionales a un sistema StorageGRID añadiendo nodos grid a las ubicaciones existentes.
+
+Por ejemplo, puede optar por agregar nodos de puerta de enlace adicionales para admitir la creación de grupos de alta disponibilidad de nodos de puerta de enlace, o puede agregar un nodo de administración en un sitio remoto para permitir la supervisión mediante un nodo local.
+
+Los siguientes tipos de nodos se pueden añadir uno o varios de ellos en uno o varios sitios existentes en una sola operación de ampliación:
+
+* Nodos de administrador no primario
+* Nodos de almacenamiento
+* Nodos de puerta de enlace
+* Nodos de archivado
+
+
+Al preparar la adición de nodos de grid, tenga en cuenta las siguientes limitaciones:
+
+* El nodo de administrador principal se pone en marcha durante la instalación inicial. No es posible añadir un nodo de administrador principal durante una ampliación.
+* En la misma expansión, puede añadir nodos de almacenamiento y otros tipos de nodos.
+* Cuando añada nodos de almacenamiento, debe planificar con cuidado el número y la ubicación de los nodos nuevos. Consulte xref:../expand/guidelines-for-adding-object-capacity.adoc[Directrices para añadir capacidad de objeto].
+* Si va a agregar nodos de archivado, tenga en cuenta que cada nodo de archivado sólo admite cinta mediante el middleware Tivoli Storage Manager (TSM).
+* Si la opción *Red cliente de nodo nuevo* predeterminada* se establece en *no confiable* en la página redes de cliente no confiables, las aplicaciones cliente que se conecten a nodos de expansión mediante la red cliente deben conectarse utilizando un puerto de extremo de equilibrador de carga (*CONFIGURACIÓN* > *Red* > *redes de cliente no confiables*). Consulte las instrucciones para xref:../admin/index.adoc[Administración de StorageGRID] para cambiar la configuración del nuevo nodo y configurar los extremos del equilibrador de carga.
+

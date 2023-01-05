@@ -1,0 +1,145 @@
+---
+permalink: expand/adding-storage-capacity-for-erasure-coded-objects.html 
+sidebar: sidebar 
+keywords: erasure coding, capacity, storage nodes, ec, expand, expansion 
+summary: Si la política de ILM incluye una regla que realiza copias con código de borrado, debe planificar dónde añadir más almacenamiento y cuándo añadir más almacenamiento. La cantidad de almacenamiento que se agrega y la programación de la adición pueden afectar la capacidad de almacenamiento útil de la cuadrícula. 
+---
+= Añada capacidad de almacenamiento para objetos codificados de borrado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si la política de ILM incluye una regla que realiza copias con código de borrado, debe planificar dónde añadir más almacenamiento y cuándo añadir más almacenamiento. La cantidad de almacenamiento que debe añadir y el momento oportuno puede afectar a la capacidad de almacenamiento útil del grid.
+
+El primer paso a la hora de planificar una expansión del almacenamiento es examinar las reglas de la política de ILM que crean objetos codificados de borrado. Como StorageGRID crea fragmentos _k+m_ para cada objeto con código de borrado y almacena cada fragmento en un nodo de almacenamiento diferente, debe asegurarse de que al menos los nodos de almacenamiento _k+m_ tengan espacio para los nuevos datos codificados con borrado después de la expansión. Si el perfil de código de borrado proporciona protección contra pérdida de sitio, debe añadir almacenamiento a cada sitio. Consulte xref:../ilm/index.adoc[Gestión de objetos con ILM].
+
+El número de nodos que debe añadir también depende de lo lleno que estén los nodos existentes cuando se realice la ampliación.
+
+
+
+== Recomendación general sobre la adición de capacidad de almacenamiento para objetos con código de borrado
+
+Si desea evitar cálculos detallados, puede añadir dos nodos de almacenamiento por sitio cuando los nodos de almacenamiento existentes alcancen el 70 % de capacidad.
+
+Esta recomendación general ofrece resultados razonables a través de una amplia gama de esquemas de codificación de borrado para grids individuales y para cuadrículas donde la codificación de borrado proporcione protección frente a pérdidas en las instalaciones.
+
+Para comprender mejor los factores que conducen a esta recomendación o para desarrollar un plan más preciso para su sitio, revise la siguiente sección. Para obtener una recomendación personalizada optimizada para su situación, póngase en contacto con su representante de cuentas de NetApp.
+
+
+
+== Calcule el número de nodos de ampliación de almacenamiento que se van a añadir para los objetos de código de borrado
+
+Para optimizar la forma de ampliar una puesta en marcha que almacena objetos de código de borrado, debe tener en cuenta muchos factores:
+
+* Esquema de codificación de borrado en uso
+* Características del pool de almacenamiento utilizado para la codificación de borrado, incluido el número de nodos en cada sitio y la cantidad de espacio libre en cada nodo
+* Si el grid se expandió anteriormente (porque la cantidad de espacio libre por nodo de almacenamiento podría no ser aproximadamente igual en todos los nodos)
+* La naturaleza exacta de la política de ILM, como si las reglas de ILM hacen tanto objetos replicados como códigos de borrado
+
+
+Los siguientes ejemplos pueden ayudarle a comprender el impacto del esquema de codificación de borrado, el número de nodos del pool de almacenamiento y la cantidad de espacio libre en cada nodo.
+
+Consideraciones similares afectan a los cálculos de la normativa ILM que almacena datos replicados y con código de borrado, así como los cálculos de una cuadrícula que se ha ampliado anteriormente.
+
+
+IMPORTANT: Los ejemplos de esta sección representan las mejores prácticas para añadir capacidad de almacenamiento a un sistema StorageGRID. Si no puede añadir el número recomendado de nodos, puede que tenga que ejecutar el procedimiento de reequilibrio de EC para permitir que se almacenen más objetos de código de borrado. Consulte xref:considerations-for-rebalancing-erasure-coded-data.adoc[Reequilibre los datos con código de borrado].
+
+
+
+== Ejemplo 1: Expanda la cuadrícula de un sitio que utiliza codificación de borrado 2+1
+
+Este ejemplo muestra cómo expandir un grid simple que solo incluye tres nodos de almacenamiento.
+
+
+NOTE: Este ejemplo solo utiliza tres nodos de almacenamiento para mayor simplicidad. Sin embargo, no se recomienda utilizar sólo tres nodos de almacenamiento: Una cuadrícula de producción real debe utilizar un mínimo de _k+m_ + 1 nodos de almacenamiento para redundancia, lo que equivale a cuatro nodos de almacenamiento (2+1+1) para este ejemplo.
+
+Se debe asumir lo siguiente:
+
+* Todos los datos se almacenan mediante el esquema de codificación de borrado 2+1. Con el esquema de codificación de borrado 2+1, cada objeto se almacena en tres fragmentos y cada fragmento se guarda en un nodo de almacenamiento distinto.
+* Tiene un sitio con tres nodos de almacenamiento. Cada nodo de almacenamiento tiene una capacidad total de 100 TB.
+* Desea ampliar añadiendo nuevos nodos de almacenamiento de 100 TB.
+* Finalmente, se desea equilibrar los datos codificados con borrado en los nodos antiguos y nuevos.
+
+
+Dispone de una serie de opciones, según el nivel de llenado que están los nodos de almacenamiento cuando se realiza la ampliación.
+
+* *Agregue tres nodos de almacenamiento de 100 TB cuando los nodos existentes estén llenos un 100%*
++
+En este ejemplo, los nodos existentes están llenos al 100 %. Como no hay capacidad libre, se deben añadir inmediatamente tres nodos para continuar con la codificación de borrado de 2+1.
+
++
+Una vez finalizada la ampliación, cuando los objetos estén codificados con borrado, todos los fragmentos se colocarán en los nodos nuevos.
+
++
+image::../media/used_space_after_3_node_expansion.png[Espacio utilizado después de la expansión de 3 nodos]
+
++
+
+NOTE: Esta expansión agrega _k+m_ nodes. Se recomienda añadir cuatro nodos para redundancia. Si agrega sólo los nodos de expansión _k+m_ cuando los nodos existentes están llenos al 100%, todos los objetos nuevos se almacenan en los nodos de expansión. Si alguno de los nuevos nodos deja de estar disponible, incluso de forma temporal, StorageGRID no puede cumplir con los requisitos de ILM.
+
+* *Agregue dos nodos de almacenamiento de 100 TB, cuando los nodos de almacenamiento existentes estén llenos un 67%*
++
+En este ejemplo, los nodos existentes están llenos al 67 %. Como hay 100 TB de capacidad libre en los nodos existentes (33 TB por nodo), solo tiene que añadir dos nodos si realiza la ampliación ahora.
+
++
+Si añade 200 TB de capacidad adicional, podrá continuar con un código de borrado al 2+1 y equilibrar datos codificados de borrado en algún momento entre todos los nodos.
+
++
+image::../media/node_expansion_example_67_percent.png[Ejemplo de ampliación de nodos 1 67 %]
+
+* *Agregue un nodo de almacenamiento de 100 TB cuando los nodos de almacenamiento existentes estén llenos un 33%*
++
+En este ejemplo, los nodos existentes están llenos al 33 %. Como hay 200 TB de capacidad libre en los nodos existentes (67 TB por nodo), solo tiene que añadir un nodo si realiza la ampliación ahora.
+
++
+Si añade 100 TB de capacidad adicional, podrá continuar con un código de borrado al 2+1 y equilibrar datos codificados de borrado en algún momento entre todos los nodos.
+
++
+image::../media/node_expansion_example_33_percent.png[Ejemplo de ampliación de nodos 1 33 %]
+
+
+
+
+
+== Ejemplo 2: Expanda la cuadrícula de tres sitios que utiliza codificación de borrado 6+3
+
+Este ejemplo muestra cómo desarrollar un plan de expansión para una cuadrícula multisitio que tiene un esquema de codificación a borrado con un número mayor de fragmentos. A pesar de las diferencias entre estos ejemplos, el plan de expansión recomendado es muy similar.
+
+Se debe asumir lo siguiente:
+
+* Todos los datos se almacenan mediante el esquema de codificación de borrado 6+3. Con el esquema de codificación de borrado 6+3, cada objeto se almacena como 9 fragmentos y cada fragmento se guarda en un nodo de almacenamiento distinto.
+* Tiene tres sitios y cada sitio tiene cuatro nodos de almacenamiento (12 nodos en total). Cada nodo tiene una capacidad total de 100 TB.
+* Desea ampliar añadiendo nuevos nodos de almacenamiento de 100 TB.
+* Finalmente, se desea equilibrar los datos codificados con borrado en los nodos antiguos y nuevos.
+
+
+Dispone de una serie de opciones, según el nivel de llenado que están los nodos de almacenamiento cuando se realiza la ampliación.
+
+* *Agregue nueve nodos de almacenamiento de 100 TB (tres por sitio), cuando los nodos existentes estén llenos del 100%*
++
+En este ejemplo, los 12 nodos existentes están llenos al 100 %. Como no hay capacidad libre, debe añadir inmediatamente nueve nodos (900 TB de capacidad adicional) para continuar con la codificación de borrado 6+3.
+
++
+Una vez finalizada la ampliación, cuando los objetos estén codificados con borrado, todos los fragmentos se colocarán en los nodos nuevos.
+
++
+
+NOTE: Esta expansión agrega _k+m_ nodes. Se recomienda añadir 12 nodos (cuatro por sitio) para redundancia. Si agrega sólo los nodos de expansión _k+m_ cuando los nodos existentes están llenos al 100%, todos los objetos nuevos se almacenan en los nodos de expansión. Si alguno de los nuevos nodos deja de estar disponible, incluso de forma temporal, StorageGRID no puede cumplir con los requisitos de ILM.
+
+* *Agregue seis nodos de almacenamiento de 100 TB (dos por sitio), cuando los nodos existentes estén llenos del 75%*
++
+En este ejemplo, los 12 nodos existentes están llenos al 75 %. Como hay 300 TB de capacidad libre (25 TB por nodo), solo tiene que añadir seis nodos si realiza la ampliación en este momento. Se agregarían dos nodos a cada uno de los tres sitios.
+
++
+Añadir 600 TB de capacidad de almacenamiento le permitirá continuar con un código de borrado de 6+3 y equilibrar los datos codificados de borrado en algún momento entre todos los nodos.
+
+* *Agregue tres nodos de almacenamiento de 100 TB (uno por sitio), cuando los nodos existentes estén llenos del 50%*
++
+En este ejemplo, los 12 nodos existentes están llenos al 50 %. Como hay 600 TB de capacidad libre (50 TB por nodo), solo tiene que añadir tres nodos si realiza la ampliación en este momento. Agregaría un nodo a cada uno de los tres sitios.
+
++
+Añadir 300 TB de capacidad de almacenamiento le permitirá continuar con un código de borrado de 6+3 y equilibrar los datos codificados de borrado en algún momento entre todos los nodos.
+
+

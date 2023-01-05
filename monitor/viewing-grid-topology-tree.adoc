@@ -1,0 +1,20 @@
+---
+permalink: monitor/viewing-grid-topology-tree.html 
+sidebar: sidebar 
+keywords: how to view the Grid Topology tree 
+summary: El árbol de topología de cuadrícula proporciona acceso a información detallada sobre los elementos del sistema StorageGRID, incluidos los sitios, los nodos de cuadrícula, los servicios y los componentes. En la mayoría de los casos, sólo necesita acceder al árbol de topología de cuadrícula cuando se le indique en la documentación o cuando trabaje con soporte técnico. 
+---
+= Abra el árbol de topología de cuadrícula
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El árbol de topología de cuadrícula proporciona acceso a información detallada sobre los elementos del sistema StorageGRID, incluidos los sitios, los nodos de cuadrícula, los servicios y los componentes. En la mayoría de los casos, sólo necesita acceder al árbol de topología de cuadrícula cuando se le indique en la documentación o cuando trabaje con soporte técnico.
+
+Para acceder al árbol de topología de cuadrícula, seleccione *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+
+image::../media/grid_topology_tree.gif[Partes del árbol de topología de cuadrícula]
+
+Para expandir o contraer el árbol de topología de cuadrícula, haga clic en image:../media/nms_tree_expand.gif["icono de signo más"] o. image:../media/nms_tree_collapse.gif["icono de signo menos"] en el nivel del sitio, nodo o servicio. Para expandir o contraer todos los elementos de todo el sitio o de cada nodo, mantenga pulsada la tecla *<Ctrl>* y haga clic en.

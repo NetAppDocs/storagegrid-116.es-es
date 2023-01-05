@@ -1,0 +1,24 @@
+---
+permalink: monitor/index.html 
+sidebar: sidebar 
+keywords: monitor StorageGRID 
+summary: Use estas instrucciones para supervisar un sistema StorageGRID y para evaluar y resolver los problemas que puedan producirse. 
+---
+= Supervisión y solución de problemas: Descripción general
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Use estas instrucciones para supervisar un sistema StorageGRID y para evaluar y resolver los problemas que puedan producirse.
+
+
+
+== Acerca de estas instrucciones
+
+Estas instrucciones describen cómo utilizar Grid Manager para supervisar un sistema StorageGRID. Aprenderá qué información debe supervisar con regularidad, cómo gestionar alertas y alarmas heredadas, cómo utilizar SNMP para realizar la supervisión y cómo obtener datos de StorageGRID adicionales, incluidos métricas y diagnósticos.
+
+Estas instrucciones también describen cómo solucionar problemas de un sistema StorageGRID y describen todas las alertas del sistema, las alarmas heredadas y los archivos de registro.
+
+Siga estas instrucciones si va a supervisar y dar soporte a un sistema StorageGRID después de que se haya instalado.

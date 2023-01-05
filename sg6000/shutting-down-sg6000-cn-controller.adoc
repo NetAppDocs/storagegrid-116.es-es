@@ -1,0 +1,85 @@
+---
+permalink: sg6000/shutting-down-sg6000-cn-controller.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, power off, turn off, shut off, shutdown, shut down, sg6000-cn, controller 
+summary: Apague el controlador SG6000-CN para realizar el mantenimiento de hardware. 
+---
+= Apague el controlador SG6000-CN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Apague el controlador SG6000-CN para realizar el mantenimiento de hardware.
+
+.Lo que necesitará
+* Ha localizado físicamente el controlador SG6000-CN que requiere mantenimiento en el centro de datos.
++
+xref:locating-controller-in-data-center.adoc[Ubique la controladora en el centro de datos]
+
+* El aparato se ha estado xref:placing-appliance-into-maintenance-mode.adoc[se pone en modo de mantenimiento].
+
+
+.Acerca de esta tarea
+Para evitar interrupciones del servicio, confirme que todos los demás nodos de almacenamiento están conectados al grid antes de apagar la controladora o apagar la controladora durante una ventana de mantenimiento programada cuando sea posible periodos de interrupción del servicio. Consulte la información sobre cómo determinar estados de conexión de nodos en las instrucciones para gestionar objetos con la gestión del ciclo de vida de la información.
+
+
+IMPORTANT: Si alguna vez ha utilizado una regla de ILM que crea solamente una copia de un objeto, debe apagar la controladora durante una ventana de mantenimiento programada. De lo contrario, es posible que pierda temporalmente el acceso a esos objetos durante este procedimiento.
+
++ Consulte información sobre la administración de objetos con administración del ciclo de vida de la información.
+
+.Pasos
+. Una vez colocado el aparato en modo de mantenimiento, apague el controlador SG6000-CN:
++
+
+CAUTION: Debe realizar un apagado controlado de la controladora introduciendo los comandos especificados a continuación. Si se apaga la controladora con el switch de alimentación, se producirá la pérdida de datos.
+
++
+.. Inicie sesión en el nodo de la cuadrícula mediante PuTTY u otro cliente ssh:
++
+... Introduzca el siguiente comando: `ssh admin@_grid_node_IP_`
+... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+... Introduzca el siguiente comando para cambiar a la raíz: `su -`
+... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
++
+Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para `#`.
+
+
+
+.. Apague el controlador SG6000-CN: +
+`*shutdown -h now*`
++
+Este comando puede tardar hasta 10 minutos en completarse.
+
+
+
+. Utilice uno de los siguientes métodos para verificar que el controlador SG6000-CN está apagado:
++
+** Observe el LED de alimentación azul de la parte frontal de la controladora y confirme que está apagado.
++
+image::../media/sg6060_front_panel_power_led_off.jpg[LED de alimentación del panel frontal SG6060 - desactivado]
+
+** Observe los LED verdes de ambos sistemas de alimentación de la parte posterior del controlador y confirme que parpadean a una velocidad normal (aproximadamente un parpadeo por segundo).
++
+image::../media/sg6060_rear_panel_power_led_on.jpg[LED de potencia del panel posterior SG6060]
+
+** Use la interfaz del BMC del controlador:
++
+... Acceda a la interfaz del BMC del controlador.
++
+xref:accessing-bmc-interface-sg6000.adoc[Acceda a la interfaz de BMC]
+
+... Seleccione *Control de alimentación*.
+... Compruebe que las acciones de alimentación indican que el host está apagado actualmente.
++
+image::../media/bmc_power_control_page_controller_off.png[Página de control de potencia de BMC: Controlador apagado]
+
+
+
+
+
+
+
+.Información relacionada
+xref:removing-sg6000-cn-controller-from-cabinet-or-rack.adoc[Retire el controlador SG6000-CN del armario o bastidor]

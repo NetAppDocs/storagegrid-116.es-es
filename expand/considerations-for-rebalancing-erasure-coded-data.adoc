@@ -1,0 +1,168 @@
+---
+permalink: expand/considerations-for-rebalancing-erasure-coded-data.html 
+sidebar: sidebar 
+keywords: erasure coding, rebalance, ec rebalance, site rebalance 
+summary: Si va a realizar una ampliación para añadir nodos de almacenamiento y la política de gestión de la información incluye una o varias reglas de gestión de la información para borrar los datos de código, puede que tenga que realizar el procedimiento de reequilibrio de EC una vez completada la ampliación. 
+---
+= Consideraciones que tener en cuenta al reequilibrar los datos codificados a borrado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si va a realizar una ampliación para añadir nodos de almacenamiento y la política de gestión de la información incluye una o varias reglas de gestión de la información para borrar los datos de código, puede que tenga que realizar el procedimiento de reequilibrio de EC una vez completada la ampliación.
+
+Por ejemplo, si no puede añadir el número recomendado de nodos de almacenamiento para el esquema de codificación de borrado que está usando, puede que deba ejecutar el procedimiento de reequilibrio de EC para permitir que se almacenen los objetos de código de borrado adicionales.
+
+Después de revisar estas consideraciones, realice la expansión y vaya a. xref:rebalancing-erasure-coded-data-after-adding-storage-nodes.adoc[Reequilibre los datos con código de borrado tras añadir nodos de almacenamiento] para ejecutar el procedimiento.
+
+
+
+== ¿Qué es el reequilibrio de la CE?
+
+El reequilibrado de EC es un procedimiento de StorageGRID que puede ser necesario después de una ampliación de nodo de almacenamiento. El procedimiento se ejecuta como un script de línea de comandos desde el nodo de administración principal. Cuando se ejecuta el procedimiento de reequilibrio de EC, StorageGRID redistribuye los fragmentos codificados con borrado entre los nodos de almacenamiento existentes y los que se han ampliado recientemente en un sitio.
+
+Procedimiento de reequilibrio de EC:
+
+* Solo mueve datos de objetos codificados con borrado. No mueve los datos de objetos replicados.
+* Redistribuye los datos dentro de un sitio. No mueve datos de un sitio a otro.
+* Redistribuye los datos entre todos los nodos de almacenamiento de un sitio. No redistribuye datos dentro de los volúmenes de almacenamiento.
+* No se tiene en cuenta el uso de datos replicados en cada nodo de almacenamiento al determinar dónde se deben mover los datos codificados de borrado
+
+
+Una vez finalizado el procedimiento de reequilibrio de EC:
+
+* Los datos con código de borrado se mueven de los nodos de almacenamiento con menos espacio disponible a los nodos de almacenamiento con más espacio disponible.
+* Los valores usados (%) pueden seguir siendo diferentes entre nodos de almacenamiento, ya que el procedimiento de reequilibrio de EC no mueve copias de objetos replicadas.
+* La protección de datos de los objetos codificados de borrado no cambiará.
+
+
+Cuando se ejecuta el procedimiento de reequilibrio de EC, el rendimiento de las operaciones de ILM y las operaciones del cliente S3 y Swift probablemente se verán afectadas. Por este motivo, solo debe realizar este procedimiento en casos limitados.
+
+
+
+== Cuándo no realizar el reequilibrio de EC
+
+Como ejemplo de cuándo no necesita realizar un reequilibrio de EC, tenga en cuenta lo siguiente:
+
+* StorageGRID se ejecuta en un solo sitio, que contiene tres nodos de almacenamiento.
+* La política de ILM usa una regla de codificación de borrado de 2+1 para todos los objetos de mayor tamaño que 1.0 MB y una regla de replicación de 2 copias para los objetos más pequeños.
+* Todos los nodos de almacenamiento se han llenado completamente y la alerta *almacenamiento de objetos bajo* se ha activado en el nivel de gravedad principal. La acción recomendada es realizar un procedimiento de ampliación para añadir nodos de almacenamiento.
++
+image::../media/used_space_before_expansion.png[Espacio usado antes de la expansión]
+
+
+
+Para expandir el sitio en este ejemplo, se recomienda añadir tres o más nodos de almacenamiento nuevos. StorageGRID requiere tres nodos de almacenamiento para la codificación de borrado al 2+1 con el fin de poder colocar los dos fragmentos de datos y el fragmento de paridad en diferentes nodos.
+
+Después de añadir los tres nodos de almacenamiento, los nodos de almacenamiento originales permanecen llenos, pero se pueden seguir ingiriendo los objetos en el esquema de código de borrado 2+1 de los nuevos nodos. No se recomienda ejecutar el procedimiento de reequilibrio de EC en este caso: Al ejecutar el procedimiento se reducirá temporalmente el rendimiento, lo que podría afectar a las operaciones del cliente.
+
+image::../media/used_space_after_3_node_expansion.png[Espacio usado después de la expansión de 3 nodos]
+
+
+
+== Cuándo realizar el reequilibrio de EC
+
+Como ejemplo de cuándo debe realizar el procedimiento de reequilibrio de EC, tenga en cuenta el mismo ejemplo, pero suponga que solo puede agregar dos nodos de almacenamiento. Dado que la codificación de borrado 2+1 requiere al menos tres nodos de almacenamiento, los nuevos nodos no pueden utilizarse para los datos codificados de borrado.
+
+image::../media/used_space_after_2_node_expansion.png[Espacio usado después de la expansión de 2 nodos]
+
+Para resolver este problema y utilizar los nuevos nodos de almacenamiento, puede ejecutar el procedimiento de reequilibrio de EC. Cuando se ejecuta este procedimiento, StorageGRID redistribuye los datos codificados con borrado y los fragmentos de paridad entre todos los nodos de almacenamiento del sitio. En este ejemplo, cuando se completa el procedimiento de reequilibrio de EC, los cinco nodos ahora están llenos de solo un 60 % y los objetos se pueden seguir ingiriendo en el esquema de codificación de borrado 2+1 de todos los nodos de almacenamiento.
+
+image::../media/used_space_after_ec_rebalance.png[Espacio usado aAfter EC reequilibrar]
+
+
+
+== Requisitos para el reequilibrio de la CE
+
+En general, sólo debe ejecutar el procedimiento de reequilibrio de EC en casos limitados. En concreto, sólo debe realizar el reequilibrio de EC si se cumplen todas las siguientes afirmaciones:
+
+* Se utiliza la codificación de borrado para los datos de objetos.
+* La alerta *almacenamiento de objetos bajo* se ha activado para uno o más nodos de almacenamiento de un sitio, lo que indica que los nodos están al menos un 80% llenos.
+* No puede añadir el número recomendado de nuevos nodos de almacenamiento para el esquema de código de borrado que se está utilizando. Consulte xref:adding-storage-capacity-for-erasure-coded-objects.adoc[Añada capacidad de almacenamiento para objetos codificados de borrado].
+* Sus clientes de S3 y Swift pueden tolerar un menor rendimiento de sus operaciones de escritura y lectura mientras se ejecuta el procedimiento de reequilibrio de EC.
+
+
+
+
+== La forma en que el procedimiento de reequilibrio de EC interactúa con otras tareas de mantenimiento
+
+No puede realizar determinados procedimientos de mantenimiento al mismo tiempo que ejecuta el procedimiento de reequilibrio de EC.
+
+[cols="1a,2a"]
+|===
+| Procedimiento | Permitido durante el procedimiento de reequilibrio de EC? 
+
+
+ a| 
+Procedimientos adicionales de reequilibrio de EC
+ a| 
+No
+
+Sólo puede ejecutar un procedimiento de reequilibrio de EC a la vez.
+
+
+
+ a| 
+Procedimiento de retirada
+
+Trabajo de reparación de datos de EC
+ a| 
+No
+
+* Se le impide iniciar un procedimiento de retirada de servicio o una reparación de datos de EC mientras se está ejecutando el procedimiento de reequilibrio de EC.
+* Se le impide iniciar el procedimiento de reequilibrio de EC mientras se ejecuta un procedimiento de retirada del nodo de almacenamiento o una reparación de datos de EC.
+
+
+
+
+ a| 
+Procedimiento de expansión
+ a| 
+No
+
+Si necesita añadir nuevos nodos de almacenamiento en una ampliación, debe esperar a ejecutar el procedimiento de reequilibrio de EC hasta que se hayan añadido todos los nodos nuevos. Si hay un procedimiento de reequilibrio de EC en curso al añadir nuevos nodos de almacenamiento, no se moverán los datos a esos nodos.
+
+
+
+ a| 
+Procedimiento de actualización
+ a| 
+No
+
+Si necesita actualizar el software StorageGRID, debe realizar el procedimiento de actualización antes o después de ejecutar el procedimiento de reequilibrio de EC. Según sea necesario, puede finalizar el procedimiento de reequilibrio de EC para realizar una actualización de software.
+
+
+
+ a| 
+Procedimiento de clonación del nodo de dispositivos
+ a| 
+No
+
+Si necesita clonar un nodo de almacenamiento de dispositivos, debe esperar a ejecutar el procedimiento de reequilibrio de EC hasta que se haya añadido el nuevo nodo. Si hay un procedimiento de reequilibrio de EC en curso al añadir nuevos nodos de almacenamiento, no se moverán los datos a esos nodos.
+
+
+
+ a| 
+Procedimiento de revisión
+ a| 
+Sí.
+
+Puede aplicar una revisión StorageGRID mientras se ejecuta el procedimiento de reequilibrio de EC.
+
+
+
+ a| 
+Otros procedimientos de mantenimiento
+ a| 
+No
+
+Debe finalizar el procedimiento de reequilibrio de EC antes de ejecutar otros procedimientos de mantenimiento.
+
+|===
+
+
+== La interacción del procedimiento de reequilibrio de EC con ILM
+
+Mientras se ejecuta el procedimiento de reequilibrio de EC, evite realizar cambios en la gestión de la información durante el proceso que puedan cambiar la ubicación de los objetos ya codificados de borrado. Por ejemplo, no empiece a utilizar una regla de ILM que tenga un perfil de código de borrado diferente. Si necesita realizar estos cambios en el ILM, debe anular el procedimiento de reequilibrio de EC.

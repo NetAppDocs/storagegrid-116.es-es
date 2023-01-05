@@ -1,0 +1,31 @@
+---
+permalink: primer/downloading-recovery-package.html 
+sidebar: sidebar 
+keywords: recovery package, download, encryption keys 
+summary: El paquete de recuperación es un archivo .zip descargable que contiene archivos y software específicos de la implementación necesarios para instalar, ampliar, actualizar y mantener un sistema StorageGRID. 
+---
+= Descargue el paquete de recuperación
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El paquete de recuperación es un archivo .zip descargable que contiene archivos y software específicos de la implementación necesarios para instalar, ampliar, actualizar y mantener un sistema StorageGRID.
+
+El archivo Recovery Package también contiene información de integración y configuración específica del sistema, incluidos los nombres de host del servidor y las direcciones IP, y contraseñas altamente confidenciales necesarias durante el mantenimiento, la actualización y la expansión del sistema. El paquete de recuperación es necesario para recuperarse de un error del nodo de administración principal.
+
+Al instalar un sistema StorageGRID, es necesario descargar el archivo del paquete de recuperación y confirmar que puede acceder correctamente al contenido de este archivo. También se debe descargar el archivo cada vez que la topología de cuadrícula de los cambios del sistema StorageGRID se debe a los procedimientos de mantenimiento o actualización.
+
+image::../media/recovery_package.png[Paquete de recuperación]
+
+Después de descargar el archivo del paquete de recuperación y confirmar que puede extraer el contenido, copie el archivo del paquete de recuperación en dos ubicaciones seguras, seguras e independientes.
+
+
+IMPORTANT: El archivo del paquete de recuperación debe estar protegido porque contiene claves de cifrado y contraseñas que se pueden usar para obtener datos del sistema StorageGRID.
+
+.Información relacionada
+* xref:../upgrade/index.adoc[Actualizar el software de]
+* xref:../expand/index.adoc[Amplíe su grid]
+* xref:../maintain/index.adoc[Recuperación y mantenimiento]
+

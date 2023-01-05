@@ -1,0 +1,90 @@
+---
+permalink: sg6000/viewing-status-indicators-and-buttons-on-sg6000-cn-controller.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, status, indicators, lights, leds, light, led, switch , button, power, reset, identify, alarm, indicator, boot codes, boot, code, start, startup, start up, start-up, progress, sg6000-cn 
+summary: El controlador SG6000-CN incluye indicadores que ayudan a determinar el estado del controlador, incluidos los siguientes indicadores y botones. 
+---
+= Ver los indicadores de estado y los botones del controlador SG6000-CN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El controlador SG6000-CN incluye indicadores que ayudan a determinar el estado del controlador, incluidos los siguientes indicadores y botones.
+
+image::../media/sg6000_cn_front_indicators.gif[Indicadores delanteros - SG6000-CN]
+
+[cols="1a,2a,3a"]
+|===
+|  | Mostrar | Descripción 
+
+
+ a| 
+1
+ a| 
+Botón de encendido
+ a| 
+* Azul: El controlador está encendido.
+* Apagado: La controladora está apagada.
+
+
+
+
+ a| 
+2
+ a| 
+Botón de reinicio
+ a| 
+_No hay indicador_
+
+Utilice este botón para realizar un restablecimiento completo del controlador.
+
+
+
+ a| 
+3
+ a| 
+Botón identificar
+ a| 
+* Parpadeo o azul fijo: Identifica la controladora en el armario o rack.
+* Desactivado: El controlador no se puede identificar visualmente en el armario o bastidor.
+
+
+Este botón se puede establecer en enlace, encendido (sólido) o Apagado.
+
+
+
+ a| 
+4
+ a| 
+LED de alarma
+ a| 
+* Ámbar: Se ha producido un error.
++
+*Nota:* para ver los códigos de arranque y error, debe acceder a la interfaz del BMC.
+
+* Desactivado: No hay errores.
+
+
+|===
+
+
+== códigos generales de arranque
+
+Durante el arranque o tras un restablecimiento manual del controlador SG6000-CN, se produce lo siguiente:
+
+. El controlador de administración de la placa base (BMC) registra los códigos de la secuencia de arranque, incluidos los errores que se produzcan.
+. El botón de encendido se ilumina.
+. Si se produce algún error durante el arranque, el LED de alarma se enciende.
++
+Para ver los códigos de arranque y error, debe acceder a la interfaz del BMC.
+
+
+
+.Información relacionada
+xref:troubleshooting-hardware-installation.adoc[Solución de problemas de instalación de hardware (SG6000)]
+
+xref:configuring-bmc-interface-sg6000.adoc[Configurar la interfaz de BMC (SG6000)]
+
+xref:powering-on-sg6000-cn-controller-and-verifying-operation.adoc[Encienda el controlador SG6000-CN y compruebe el funcionamiento]

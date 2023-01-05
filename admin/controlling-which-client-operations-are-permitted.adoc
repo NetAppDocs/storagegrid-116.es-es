@@ -1,0 +1,49 @@
+---
+permalink: admin/controlling-which-client-operations-are-permitted.html 
+sidebar: sidebar 
+keywords: prevent client modification, grid option, deny client operations 
+summary: Puede seleccionar la opción de cuadrícula evitar modificación de cliente para denegar operaciones específicas de cliente HTTP. 
+---
+= Controlar qué operaciones de cliente están permitidas
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede seleccionar la opción de cuadrícula evitar modificación de cliente para denegar operaciones específicas de cliente HTTP.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+
+
+.Acerca de esta tarea
+Evitar modificación de cliente es un valor para todo el sistema. Cuando se selecciona la opción impedir modificación de cliente, se deniegan las siguientes solicitudes:
+
+* *API REST S3*
++
+** Eliminar solicitudes de bloques
+** Cualquier solicitud para modificar los datos de un objeto existente, los metadatos definidos por el usuario o el etiquetado de objetos S3
++
+
+NOTE: Este ajuste no se aplica a bloques con versiones habilitadas. El control de versiones ya evita modificaciones en los datos de objetos, los metadatos definidos por el usuario y el etiquetado de objetos.
+
+
+
+* *API REST de Swift*
++
+** Eliminar solicitudes de contenedor
+** Solicitudes para modificar cualquier objeto existente. Por ejemplo, se deniegan las siguientes operaciones: Put Overwrite, Delete, Metadata Update, etc.
+
+
+
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *sistema* > *Opciones de cuadrícula*.
+. En la sección Opciones de red, active la casilla de verificación *evitar modificación de cliente*.
++
+image::../media/prevent_client_modification.png[Evitar modificación de cliente]
+
+. Seleccione *Guardar*.
+

@@ -1,0 +1,64 @@
+---
+permalink: tenant/configuring-cross-origin-resource-sharing-cors.html 
+sidebar: sidebar 
+keywords: how to configure cross-origin resource sharing, cors 
+summary: 'Puede configurar uso compartido de recursos de origen cruzado \(CORS\) para un bloque de S3 si desea que dicho bloque y los objetos de ese bloque sean accesibles a las aplicaciones web de otros dominios.' 
+---
+= Configurar el uso compartido de recursos de origen cruzado (CORS)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede configurar el uso compartido de recursos de origen cruzado (CORS) para un bloque de S3 si desea que dicho bloque y los objetos de ese bloque sean accesibles a las aplicaciones web de otros dominios.
+
+.Lo que necesitará
+* Debe iniciar sesión en el administrador de inquilinos mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Debe pertenecer a un grupo de usuarios que tenga el permiso Administrar todos los cucharones o acceso raíz. Estos permisos anulan la configuración de los permisos en las políticas de grupo o bloque.
+
+
+.Acerca de esta tarea
+El uso compartido de recursos de origen cruzado (CORS) es un mecanismo de seguridad que permite que las aplicaciones web de cliente de un dominio accedan a los recursos de un dominio diferente. Por ejemplo, supongamos que se utiliza un bloque de S3 llamado `Images` para almacenar gráficos. Configurando CORS para `Images` bloque, puede permitir que las imágenes de ese bloque se muestren en el sitio web `http://www.example.com`.
+
+.Pasos
+. Utilice un editor de texto para crear el XML necesario para habilitar CORS.
++
+Este ejemplo muestra el XML utilizado para habilitar CORS para un bloque de S3. Este XML permite a cualquier dominio enviar solicitudes GET al bloque, pero sólo permite el `+http://www.example.com+` Dominio para enviar solicitudes DE PUBLICACIÓN Y ELIMINACIÓN. Se permiten todos los encabezados de las solicitudes.
+
++
+[listing]
+----
+<CORSConfiguration
+    xmlns="http://s3.amazonaws.com/doc/2020-10-22/">
+    <CORSRule>
+        <AllowedOrigin>*</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+    <CORSRule>
+        <AllowedOrigin>http://www.example.com</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedMethod>POST</AllowedMethod>
+        <AllowedMethod>DELETE</AllowedMethod>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+</CORSConfiguration>
+----
++
+Para obtener más información acerca del XML de configuración de CORS, consulte http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html["Documentación de Amazon Web Services (AWS): Guía para desarrolladores de Amazon simple Storage Service"^].
+
+. En el Administrador de inquilinos, seleccione *ALMACENAMIENTO (S3)* > *Cuchos*.
+. Seleccione el nombre del bloque de la lista.
++
+Aparece la página de detalles bucket.
+
+. Seleccione *acceso a bloque* > *uso compartido de recursos de origen cruzado (CORS)*.
+. Seleccione la casilla de verificación *Activar CORS*.
+. Pegue el XML de configuración de CORS en el cuadro de texto y seleccione *Guardar cambios*.
++
+image::../media/cors_configuration_xml.png[Captura de pantalla que muestra el XML de configuración de COR]
+
+. Para modificar la configuración de CORS para el bloque, actualice el XML de configuración de CORS en el cuadro de texto o seleccione *Borrar* para volver a empezar. A continuación, seleccione *Guardar cambios*.
+. Para desactivar CORS para el cucharón, desactive la casilla de verificación *Activar CORS* y, a continuación, seleccione *Guardar cambios*.
+

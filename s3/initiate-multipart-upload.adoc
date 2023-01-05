@@ -1,0 +1,147 @@
+---
+permalink: s3/initiate-multipart-upload.html 
+sidebar: sidebar 
+keywords: initiate multipart upload, uploads 
+summary: La operación Iniciar carga de varias partes inicia una carga de varias partes para un objeto y devuelve un ID de carga. 
+---
+= Inicie la carga de varias partes
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La operación Iniciar carga de varias partes inicia una carga de varias partes para un objeto y devuelve un ID de carga.
+
+La `x-amz-storage-class` se admite el encabezado de la solicitud. El valor enviado para `x-amz-storage-class` Afecta la forma en que StorageGRID protege los datos de objetos durante el procesamiento y no cuántas copias persistentes del objeto se almacenan en el sistema StorageGRID (determinado por ILM).
+
+Si la regla de ILM que coincide con un objeto ingerido utiliza la opción estricta para el comportamiento de la ingesta, la `x-amz-storage-class` el encabezado no tiene efecto.
+
+Se pueden utilizar los siguientes valores para `x-amz-storage-class`:
+
+* `STANDARD` (Predeterminado)
++
+** *Commit* doble: Si la regla ILM especifica la opción COMMIT doble para el comportamiento de procesamiento, tan pronto como un objeto se ingiere una segunda copia de ese objeto se crea y se distribuye a un nodo de almacenamiento diferente (COMMIT doble). Cuando se evalúa el ILM, StorageGRID determina si estas copias provisionales iniciales satisfacen las instrucciones de colocación en la regla. Si no lo hacen, es posible que sea necesario realizar nuevas copias de objetos en ubicaciones diferentes y que sea necesario eliminar las copias provisionales iniciales.
+** *Balanceado*: Si la regla ILM especifica la opción equilibrada y StorageGRID no puede realizar inmediatamente todas las copias especificadas en la regla, StorageGRID realiza dos copias provisionales en nodos de almacenamiento diferentes.
++
+Si StorageGRID puede crear inmediatamente todas las copias de objeto especificadas en la regla de ILM (ubicación síncrona), la `x-amz-storage-class` el encabezado no tiene efecto.
+
+
+
+* `REDUCED_REDUNDANCY`
++
+** *Commit doble*: Si la regla ILM especifica la opción COMMIT doble para el comportamiento de la ingesta, StorageGRID crea una única copia provisional mientras se ingiere el objeto (COMMIT único).
+** *Balanceado*: Si la regla ILM especifica la opción equilibrada, StorageGRID realiza una única copia provisional sólo si el sistema no puede hacer inmediatamente todas las copias especificadas en la regla. Si StorageGRID puede realizar una colocación síncrona, este encabezado no tiene ningún efecto. La `REDUCED_REDUNDANCY` Se recomienda utilizar la opción cuando la regla de ILM que coincide con el objeto crea una única copia replicada. En este caso, utilizar `REDUCED_REDUNDANCY` elimina la creación y eliminación innecesarias de una copia de objetos adicional en cada operación de procesamiento.
+
+
++
+Con el `REDUCED_REDUNDANCY` la opción no se recomienda en otras circunstancias. `REDUCED_REDUNDANCY` aumenta el riesgo de pérdida de datos de objetos durante el procesamiento. Por ejemplo, puede perder datos si la única copia se almacena inicialmente en un nodo de almacenamiento que falla antes de que se pueda realizar la evaluación de ILM.
+
+
+
+*Atención*: Tener sólo una copia replicada durante cualquier período de tiempo pone los datos en riesgo de pérdida permanente. Si sólo existe una copia replicada de un objeto, éste se pierde si falla un nodo de almacenamiento o tiene un error importante. También perderá temporalmente el acceso al objeto durante procedimientos de mantenimiento, como las actualizaciones.
+
+Especificando `REDUCED_REDUNDANCY` sólo afecta al número de copias que se crean cuando un objeto se ingiere por primera vez. No afecta al número de copias del objeto que se realizan cuando el objeto se evalúa mediante la política de ILM activa y no provoca que los datos se almacenen en niveles inferiores de redundancia en el sistema StorageGRID.
+
+*Nota*: Si está ingiriendo un objeto en un cubo con el bloqueo de objetos S3 activado, el `REDUCED_REDUNDANCY` opción ignorada. Si está ingiriendo un objeto en un bloque compatible heredado, el `REDUCED_REDUNDANCY` opción devuelve un error. StorageGRID siempre realizará una ingesta con doble confirmación para garantizar que se cumplan los requisitos de cumplimiento.
+
+Se admiten los siguientes encabezados de solicitud:
+
+* `Content-Type`
+* `x-amz-meta-`, seguido de un par nombre-valor que contiene metadatos definidos por el usuario
++
+Cuando especifique la pareja nombre-valor para los metadatos definidos por el usuario, utilice este formato general:
+
++
+[listing]
+----
+x-amz-meta-_name_: `value`
+----
++
+Si desea utilizar la opción *tiempo de creación definido por el usuario* como tiempo de referencia para una regla de ILM, debe utilizar `creation-time` como nombre de los metadatos que registran cuando se creó el objeto. Por ejemplo:
+
++
+[listing]
+----
+x-amz-meta-creation-time: 1443399726
+----
++
+Valor para `creation-time` Se evalúa como segundos desde el 1 de enero de 1970.
+
++
+
+NOTE: Adición `creation-time` Como metadatos definidos por el usuario no se permite si va a agregar un objeto a un bloque que tiene la conformidad heredada habilitada. Se devolverá un error.
+
+* Encabezados de solicitud de bloqueo de objetos S3:
++
+** `x-amz-object-lock-mode`
+** `x-amz-object-lock-retain-until-date`
+** `x-amz-object-lock-legal-hold`
++
+Si se realiza una solicitud sin estos encabezados, la configuración de retención predeterminada del bloque se utiliza para calcular la versión del objeto mantener hasta la fecha.
+
++
+xref:using-s3-object-lock.adoc[Uso del bloqueo de objetos de S3]
+
+
+
+* Encabezados de solicitud SSE:
++
+** `x-amz-server-side-encryption`
+** `x-amz-server-side-encryption-customer-key-MD5`
+** `x-amz-server-side-encryption-customer-key`
+** `x-amz-server-side-encryption-customer-algorithm`
++
+<<Solicitar encabezados para el cifrado del servidor>>
+
+
+
++
+
+NOTE: Para obtener información acerca de cómo StorageGRID maneja los caracteres UTF-8, consulte la documentación de PUT Object.
+
+
+
+
+
+== Solicitar encabezados para el cifrado del servidor
+
+Puede utilizar los siguientes encabezados de solicitud para cifrar un objeto de varias partes con cifrado del servidor. Las opciones SSE y SSE-C son mutuamente excluyentes.
+
+* *SSE*: Utilice el siguiente encabezado en la solicitud Iniciar carga de varias partes si desea cifrar el objeto con una clave única gestionada por StorageGRID. No especifique este encabezado en ninguna de las solicitudes de artículo de carga.
++
+** `x-amz-server-side-encryption`
+
+
+* *SSE-C*: Utilice los tres encabezados de la solicitud de carga de varias partes iniciada (y en cada solicitud de artículo de carga posterior) si desea cifrar el objeto con una clave única que proporciona y gestiona.
++
+** `x-amz-server-side-encryption-customer-algorithm`: Especificar `AES256`.
+** `x-amz-server-side-encryption-customer-key`: Especifique la clave de cifrado para el nuevo objeto.
+** `x-amz-server-side-encryption-customer-key-MD5`: Especifique el resumen MD5 de la clave de cifrado del nuevo objeto.
+
+
+
+
+*Atención:* las claves de cifrado que usted proporciona nunca se almacenan. Si pierde una clave de cifrado, perderá el objeto correspondiente. Antes de utilizar las claves proporcionadas por el cliente para proteger los datos de objetos, revise las consideraciones que se incluyen en el apartado «"usar cifrado en el servidor".
+
+
+
+== Encabezados de solicitud no compatibles
+
+El siguiente encabezado de solicitud no es compatible y devuelve `XNotImplemented`
+
+* `x-amz-website-redirect-location`
+
+
+
+
+== Creación de versiones
+
+La carga de varias partes consiste en operaciones independientes para iniciar la carga, enumerar cargas, cargar piezas, ensamblar las piezas cargadas y completar la carga. Los objetos se crean (y se crean versiones si corresponde) cuando se realiza la operación de carga de varias partes completa.
+
+.Información relacionada
+xref:../ilm/index.adoc[Gestión de objetos con ILM]
+
+xref:using-server-side-encryption.adoc[Usar cifrado del servidor]
+
+xref:put-object.adoc[OBJETO PUT]

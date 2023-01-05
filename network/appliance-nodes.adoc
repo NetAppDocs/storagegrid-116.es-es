@@ -1,0 +1,26 @@
+---
+permalink: network/appliance-nodes.html 
+sidebar: sidebar 
+keywords: networking for appliance, port bond mode 
+summary: Puede configurar los puertos de red en dispositivos StorageGRID para utilizar los modos de enlace de puertos que cumplan con los requisitos de rendimiento, redundancia y conmutación al respaldo. 
+---
+= Nodos del dispositivo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede configurar los puertos de red en dispositivos StorageGRID para utilizar los modos de enlace de puertos que cumplan con los requisitos de rendimiento, redundancia y conmutación al respaldo.
+
+Los puertos 10/25-GbE de los dispositivos StorageGRID se pueden configurar en modo de enlace fijo o agregado para las conexiones a la red Grid y a la red de clientes.
+
+Los puertos de red administrador de 1 GbE se pueden configurar en modo independiente o activo-Backup para las conexiones a la red administrativa.
+
+Consulte la información sobre los modos de enlace de puertos en las instrucciones de instalación y mantenimiento del dispositivo:
+
+* xref:../sg100-1000/index.adoc[Servicios de aplicaciones SG100 y SG1000]
+* xref:../sg6000/index.adoc[Dispositivos de almacenamiento SG6000]
+* xref:../sg5700/index.adoc[Dispositivos de almacenamiento SG5700]
+* xref:../sg5600/index.adoc[Dispositivos de almacenamiento SG5600]
+

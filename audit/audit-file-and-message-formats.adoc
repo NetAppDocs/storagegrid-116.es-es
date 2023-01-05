@@ -1,0 +1,14 @@
+---
+permalink: audit/audit-file-and-message-formats.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, log file formats, log formats, message formats, log file format, log format ,message format 
+summary: Puede usar los registros de auditoría para recopilar información sobre el sistema y solucionar problemas. Debe comprender el formato del archivo de registro de auditoría y el formato general que se utiliza para los mensajes de auditoría. 
+---
+= Formatos de archivo y mensaje de registro de auditoría
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede usar los registros de auditoría para recopilar información sobre el sistema y solucionar problemas. Debe comprender el formato del archivo de registro de auditoría y el formato general que se utiliza para los mensajes de auditoría.

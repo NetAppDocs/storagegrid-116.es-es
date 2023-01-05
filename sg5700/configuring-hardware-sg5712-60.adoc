@@ -1,0 +1,14 @@
+---
+permalink: sg5700/configuring-hardware-sg5712-60.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5700, storage node, storage appliance, hardware, configure, configuration, set up, setup, network, networking 
+summary: Tras aplicar la alimentación al dispositivo, debe configurar System Manager de SANtricity, que es el software que utilizará para supervisar el hardware. También debe configurar las conexiones de red que utilizará StorageGRID. 
+---
+= Configurar hardware (SG5700)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tras aplicar la alimentación al dispositivo, debe configurar System Manager de SANtricity, que es el software que utilizará para supervisar el hardware. También debe configurar las conexiones de red que utilizará StorageGRID.

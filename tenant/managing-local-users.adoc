@@ -1,0 +1,142 @@
+---
+permalink: tenant/managing-local-users.html 
+sidebar: sidebar 
+keywords: StorageGRID, tenant, tenant manager, users, local users, managing local users, users page, access users page, accessing users page 
+summary: 'Puede crear usuarios locales y asignarles grupos locales para determinar las funciones a las que pueden acceder estos usuarios. El Administrador de arrendatarios incluye un usuario local predefinido denominado «"root"». Aunque puede agregar y quitar usuarios locales, no puede quitar el usuario raíz.' 
+---
+= Gestionar usuarios locales
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede crear usuarios locales y asignarles grupos locales para determinar las funciones a las que pueden acceder estos usuarios. El Administrador de arrendatarios incluye un usuario local predefinido denominado «'root'». Aunque puede agregar y quitar usuarios locales, no puede quitar el usuario raíz.
+
+.Lo que necesitará
+* Debe iniciar sesión en el administrador de inquilinos mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Debe pertenecer a un grupo de usuarios de lectura y escritura que tenga el permiso acceso raíz. Consulte xref:tenant-management-permissions.adoc[Permisos de gestión de inquilinos].
+
+
+
+NOTE: Si se habilitó el inicio de sesión único (SSO) para el sistema StorageGRID, los usuarios locales no podrán iniciar sesión en el administrador de inquilinos o la API de gestión de inquilinos, aunque puedan usar las aplicaciones cliente S3 o Swift para acceder a los recursos del inquilino, en función de los permisos de grupo.
+
+
+
+== Acceder a la página usuarios
+
+Seleccione *ADMINISTRACIÓN de ACCESO* > *usuarios*.
+
+image::../media/tenant_users_list.png[Lista de usuarios inquilinos]
+
+
+
+== Crear usuarios locales
+
+Es posible crear usuarios locales y asignarles a uno o varios grupos locales para controlar sus permisos de acceso.
+
+Los usuarios de S3 que no pertenecen a ningún grupo no tienen permisos de gestión ni políticas de grupo S3 aplicadas. Es posible que estos usuarios tengan acceso a bloques de S3 otorgado a través de una política de bloques.
+
+Los usuarios de Swift que no pertenecen a ningún grupo no tienen permisos de gestión ni acceso al contenedor de Swift.
+
+.Pasos
+. Seleccione *Crear usuario*.
+. Complete los siguientes campos.
++
+** *Nombre completo*: El nombre completo de este usuario, por ejemplo, el nombre y apellido de una persona o el nombre de una aplicación.
+** *Nombre de usuario*: El nombre que este usuario utilizará para iniciar sesión. Los nombres de usuario deben ser únicos y no se pueden cambiar.
+** *Contraseña*: Contraseña que se utiliza cuando el usuario inicia sesión.
+** *Confirmar contraseña*: Escriba la misma contraseña que escribió en el campo Contraseña.
+** *Denegar acceso*: Si selecciona *Sí*, este usuario no puede iniciar sesión en la cuenta de arrendatario, aunque el usuario pueda seguir perteneciendo a uno o más grupos.
++
+Por ejemplo, puede utilizar esta función para suspender temporalmente la capacidad de un usuario para iniciar sesión.
+
+
+
+. Seleccione *continuar*.
+. Asigne el usuario a uno o más grupos locales.
++
+Los usuarios que no pertenecen a ningún grupo no tendrán permisos de administración. Los permisos son acumulativos. Los usuarios tendrán todos los permisos para todos los grupos a los que pertenezcan.
+
+. Seleccione *Crear usuario*.
++
+Los cambios pueden tardar hasta 15 minutos en surtir efecto debido al almacenamiento en caché.
+
+
+
+
+
+== Edite los detalles del usuario
+
+Al editar los detalles de un usuario, puede cambiar el nombre completo y la contraseña del usuario, agregar el usuario a grupos diferentes e impedir que el usuario acceda al arrendatario.
+
+.Pasos
+. En la lista usuarios, seleccione el nombre del usuario cuyos detalles desee ver o editar.
++
+Como alternativa, puede seleccionar la casilla de verificación para el usuario y, a continuación, seleccionar *acciones* > *Ver detalles del usuario*.
+
+. Realice los cambios necesarios en la configuración del usuario.
++
+.. Cambie el nombre completo del usuario según sea necesario seleccionando el nombre completo o el icono de edición image:../media/icon_edit_tm.png["Icono Editar"] En la sección Descripción general.
++
+No puede cambiar el nombre de usuario.
+
+.. En la ficha *Contraseña*, cambie la contraseña del usuario según sea necesario.
+.. En la ficha *Access*, permita que el usuario inicie sesión (seleccione *no*) o impida que el usuario inicie sesión (seleccione *Sí*) según sea necesario.
+.. En la ficha *grupos*, agregue el usuario a grupos o elimine el usuario de los grupos según sea necesario.
+.. Según sea necesario para cada sección, seleccione *Guardar cambios*.
++
+Los cambios pueden tardar hasta 15 minutos en surtir efecto debido al almacenamiento en caché.
+
+
+
+
+
+
+
+== Duplique los usuarios locales
+
+Puede duplicar un usuario local para crear un usuario nuevo más rápidamente.
+
+.Pasos
+. En la lista usuarios, seleccione el usuario que desea duplicar.
+. Seleccione *Duplicar usuario*.
+. Modifique los campos siguientes para el nuevo usuario.
++
+** *Nombre completo*: El nombre completo de este usuario, por ejemplo, el nombre y apellido de una persona o el nombre de una aplicación.
+** *Nombre de usuario*: El nombre que este usuario utilizará para iniciar sesión. Los nombres de usuario deben ser únicos y no se pueden cambiar.
+** *Contraseña*: Contraseña que se utiliza cuando el usuario inicia sesión.
+** *Confirmar contraseña*: Escriba la misma contraseña que escribió en el campo Contraseña.
+** *Denegar acceso*: Si selecciona *Sí*, este usuario no puede iniciar sesión en la cuenta de arrendatario, aunque el usuario pueda seguir perteneciendo a uno o más grupos.
++
+Por ejemplo, puede utilizar esta función para suspender temporalmente la capacidad de un usuario para iniciar sesión.
+
+
+
+. Seleccione *continuar*.
+. Seleccione uno o más grupos locales.
++
+Los usuarios que no pertenecen a ningún grupo no tendrán permisos de administración. Los permisos son acumulativos. Los usuarios tendrán todos los permisos para todos los grupos a los que pertenezcan.
+
+. Seleccione *Crear usuario*.
++
+Los cambios pueden tardar hasta 15 minutos en surtir efecto debido al almacenamiento en caché.
+
+
+
+
+
+== Eliminar usuarios locales
+
+Es posible eliminar de forma permanente usuarios locales que ya no necesiten acceder a la cuenta de inquilino de StorageGRID.
+
+Con el Administrador de inquilinos, puede eliminar usuarios locales, pero no usuarios federados. Debe utilizar el origen de identidad federado para eliminar usuarios federados.
+
+.Pasos
+. En la lista usuarios, seleccione la casilla de verificación del usuario local que desea eliminar.
+. Seleccione *acciones* > *Eliminar usuario*.
+. En el cuadro de diálogo de confirmación, seleccione *Eliminar usuario* para confirmar que desea eliminar al usuario del sistema.
++
+Los cambios pueden tardar hasta 15 minutos en surtir efecto debido al almacenamiento en caché.
+
+

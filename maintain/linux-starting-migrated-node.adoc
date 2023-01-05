@@ -1,0 +1,38 @@
+---
+permalink: maintain/linux-starting-migrated-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, linux, start node 
+summary: Después de validar el nodo migrado, debe iniciar el nodo ejecutando un comando en el host Linux de destino. 
+---
+= Linux: Inicie el nodo migrado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de validar el nodo migrado, debe iniciar el nodo ejecutando un comando en el host Linux de destino.
+
+.Pasos
+. Inicie el nodo en el host nuevo.
++
+[listing]
+----
+sudo storagegrid node start DC1-S3
+Starting node DC1-S3
+----
+. En Grid Manager, compruebe que el estado del nodo es verde sin que se le hayan generado alarmas.
++
+
+IMPORTANT: Comprobar que el estado del nodo sea verde garantiza que el nodo migrado se haya reiniciado completamente y se vuelva a unir al grid. Si el estado no es verde, no migre los nodos adicionales de forma que no tendrá más de un nodo fuera de servicio.
+
++
+Si no puede acceder a Grid Manager, espere 10 minutos y, a continuación, ejecute el siguiente comando:
+
++
+`sudo storagegrid node status *_node-name_*`
+
++
+Confirme que el nodo migrado tiene el estado Run of `Running`.
+
+

@@ -1,0 +1,78 @@
+---
+permalink: tenant/changing-consistency-level.html 
+sidebar: sidebar 
+keywords: how to change tenant consistency level, read after new write, read-after-new-write, strong site, strong-site, strong global, strong-global 
+summary: Si usa un inquilino de S3, puede usar el administrador de inquilinos o la API de gestión de inquilinos para cambiar el control de coherencia para las operaciones realizadas en los objetos en los bloques S3. 
+---
+= Cambie el nivel de coherencia
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si usa un inquilino de S3, puede usar el administrador de inquilinos o la API de gestión de inquilinos para cambiar el control de coherencia para las operaciones realizadas en los objetos en los bloques S3.
+
+.Lo que necesitará
+* Debe iniciar sesión en el administrador de inquilinos mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Debe pertenecer a un grupo de usuarios que tenga el permiso Administrar todos los cucharones o acceso raíz. Estos permisos anulan la configuración de los permisos en las políticas de grupo o bloque. Consulte xref:tenant-management-permissions.adoc[Permisos de gestión de inquilinos].
+
+
+.Acerca de esta tarea
+El nivel de coherencia establece una compensación entre la disponibilidad de los objetos y la coherencia de dichos objetos en los diferentes nodos y sitios de almacenamiento. En general, debe utilizar el nivel de consistencia de *lectura tras escritura nueva* para sus cucharones. Si el nivel de consistencia de *lectura tras escritura nueva* no cumple los requisitos de la aplicación cliente, puede cambiar el nivel de consistencia estableciendo el nivel de consistencia de la cuchara o utilizando la `Consistency-Control` encabezado. La `Consistency-Control` el encabezado anula el nivel de consistencia del cucharón.
+
+
+NOTE: Cuando se cambia el nivel de consistencia de un cubo, solo se garantiza que los objetos que se ingieren después del cambio alcancen el nivel revisado.
+
+.Pasos
+. Seleccione *ALMACENAMIENTO (S3)* > *Cuchos*.
+. Seleccione el nombre del bloque de la lista.
++
+Aparece la página de detalles bucket.
+
+. Seleccione *Opciones de bloque* > *nivel de coherencia*.
+. Seleccione un nivel de coherencia para las operaciones realizadas en los objetos de este bloque.
++
+[cols="1a,3a"]
+|===
+| Nivel de coherencia | Descripción 
+
+
+ a| 
+Todo
+ a| 
+Todos los nodos reciben los datos inmediatamente o se produce un error en la solicitud.
+
+
+
+ a| 
+Fuerte en todo el mundo
+ a| 
+Garantiza la coherencia de lectura tras escritura para todas las solicitudes del cliente en todos los sitios.
+
+
+
+ a| 
+Sitio seguro
+ a| 
+Garantiza la coherencia de lectura tras escritura para todas las solicitudes del cliente dentro de un sitio.
+
+
+
+ a| 
+Read-after-new-write (predeterminado)
+ a| 
+Proporciona coherencia de lectura tras escritura para los objetos nuevos y consistencia final para las actualizaciones de objetos. Ofrece alta disponibilidad y garantías de protección de datos. La mayoría concuerda estrechamente con las garantías de coherencia de Amazon S3.
+
+*Nota:* Si su aplicación intenta DIRIGIR u OBTENER operaciones en claves que no existen, establezca el nivel de consistencia en *disponible*, a menos que necesite garantías de consistencia de Amazon S3. De lo contrario, un número elevado de 500 errores internos del servidor pueden producirse si uno o más nodos de almacenamiento no están disponibles.
+
+
+
+ a| 
+Disponible (eventual consistencia para LA CABEZA o OPERACIONES GET)
+ a| 
+Se comporta igual que el nivel de consistencia de *lectura tras escritura nueva*, pero proporciona una consistencia eventual para las operaciones DE CABEZAL Y GET. Ofrece una mayor disponibilidad para las operaciones DE CABEZAL Y GET que *lectura tras escritura* si los nodos de almacenamiento no están disponibles. Se diferencia de las garantías de coherencia de Amazon S3 para HEAD y GET.
+
+|===
+. Seleccione *Guardar cambios*.
+

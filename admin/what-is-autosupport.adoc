@@ -1,0 +1,82 @@
+---
+permalink: admin/what-is-autosupport.html 
+sidebar: sidebar 
+keywords: autosupport, technical support, storagegrid health, system status, active iq 
+summary: La función AutoSupport permite que el sistema StorageGRID envíe mensajes de estado y estado al soporte técnico. 
+---
+= ¿Qué es AutoSupport?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La función AutoSupport permite que el sistema StorageGRID envíe mensajes de estado y estado al soporte técnico.
+
+El uso de AutoSupport puede acelerar significativamente la detección y resolución de problemas. El soporte técnico también puede supervisar las necesidades de almacenamiento del sistema y ayudarle a determinar si necesita añadir nodos o sitios nuevos. De manera opcional, puede configurar los mensajes de AutoSupport para que se envíen a un destino adicional.
+
+
+
+== Información incluida en los mensajes de AutoSupport
+
+Los mensajes de AutoSupport incluyen información como la siguiente:
+
+* Versión del software StorageGRID
+* Versión del sistema operativo
+* Información de atributos a nivel de sistema y ubicación
+* Alertas y alarmas recientes (sistema heredado)
+* Estado actual de todas las tareas de cuadrícula, incluidos los datos históricos
+* Uso de la base de datos del nodo de administrador
+* Número de objetos perdidos o faltantes
+* Ajustes de configuración de cuadrícula
+* Entidades NMS
+* Política de ILM activa
+* Archivo de especificación de grid aprovisionado
+* Métricas de diagnóstico
+
+
+Puede habilitar la función AutoSupport y las opciones individuales de AutoSupport cuando instale StorageGRID por primera vez, o bien puede habilitarlas más adelante. Si AutoSupport no está habilitado, aparecerá un mensaje en el Panel de Grid Manager. El mensaje incluye un enlace a la página de configuración de AutoSupport.
+
+image::../media/autosupport_disabled_message.png[Mensaje AutoSupport deshabilitado]
+
+Si cierra el mensaje, no volverá a aparecer hasta que se borre la caché del explorador, aunque AutoSupport permanezca deshabilitado.
+
+
+
+== ¿Qué es Active IQ?
+
+Active IQ es un asesor digital basado en cloud que aprovecha el análisis predictivo y los conocimientos de la comunidad de la base instalada de NetApp. Sus evaluaciones de riesgos continuas, las alertas predictivas, las directrices prescriptivas y las acciones automatizadas le ayudan a evitar problemas antes de que se produzcan, lo que mejora el estado del sistema y aumenta la disponibilidad del sistema.
+
+Debe habilitar AutoSupport si desea usar las consolas y la funcionalidad de Active IQ del sitio de soporte de NetApp.
+
+https://docs.netapp.com/us-en/active-iq/index.html["Documentación del asesor digital de Active IQ"^]
+
+
+
+== Protocolos para enviar mensajes AutoSupport
+
+Puede elegir uno de los tres protocolos para enviar mensajes de AutoSupport:
+
+* HTTPS
+* HTTP
+* SMTP
+
+
+Si envía mensajes de AutoSupport mediante HTTPS o HTTP, puede configurar un servidor proxy no transparente entre los nodos de administrador y el soporte técnico.
+
+Si utiliza SMTP como protocolo para mensajes de AutoSupport, debe configurar un servidor de correo SMTP.
+
+
+
+== Opciones de AutoSupport
+
+Puede utilizar cualquier combinación de las siguientes opciones para enviar mensajes de AutoSupport al soporte técnico:
+
+* *Semanal*: Envía automáticamente mensajes de AutoSupport una vez por semana. Valor predeterminado: Activado.
+* *Desencadenada por eventos*: Envía automáticamente mensajes AutoSupport cada hora o cuando se producen eventos significativos del sistema. Valor predeterminado: Activado.
+* *A petición*: Permita que el servicio de asistencia técnica solicite que el sistema StorageGRID envíe mensajes AutoSupport automáticamente, lo que resulta útil cuando está trabajando activamente en un problema (requiere el protocolo de transmisión HTTPS AutoSupport). Ajuste predeterminado: Desactivado.
+* *Desencadenado por el usuario*: Envía manualmente mensajes AutoSupport en cualquier momento.
+
+
+.Información relacionada
+https://mysupport.netapp.com/site/global/dashboard["Soporte de NetApp"^]

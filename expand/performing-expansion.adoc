@@ -1,0 +1,185 @@
+---
+permalink: expand/performing-expansion.html 
+sidebar: sidebar 
+keywords: expand, expansion procedure 
+summary: Cuando se realiza la ampliación, los nuevos nodos de grid se añaden a la puesta en marcha de StorageGRID existente. 
+---
+= Realizar la expansión
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cuando se realiza la ampliación, los nuevos nodos de grid se añaden a la puesta en marcha de StorageGRID existente.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene el permiso de mantenimiento o acceso raíz.
+* Tiene la clave de acceso de aprovisionamiento.
+* Se han implementado todos los nodos de grid que se están añadiendo en esta ampliación.
+* Si añade nodos de almacenamiento, confirma que se han completado todas las operaciones de reparación de datos realizadas como parte de una recuperación. Consulte xref:../maintain/checking-data-repair-jobs.adoc[Compruebe los trabajos de reparación de datos].
+* Si va a agregar un sitio nuevo, debe revisar y actualizar las reglas de ILM antes de iniciar el procedimiento de expansión para asegurarse de que las copias de objetos no se almacenan en el sitio nuevo hasta que haya finalizado la expansión. Por ejemplo, si una regla utiliza el pool de almacenamiento predeterminado (todos los nodos de almacenamiento), debe crear un nuevo pool de almacenamiento que contenga solo los nodos de almacenamiento existentes y actualizar la regla de ILM para usar el nuevo pool de almacenamiento. De lo contrario, los objetos se copiarán en el sitio nuevo tan pronto como el primer nodo de ese sitio se active. Consulte las instrucciones para xref:../ilm/index.adoc[Gestión de objetos con ILM].
+
+
+.Acerca de esta tarea
+La realización de la ampliación incluye las siguientes fases:
+
+. Para configurar la expansión, especifique si va a agregar nuevos nodos de cuadrícula o un sitio nuevo y aprueba los nodos de cuadrícula que desea agregar.
+. Se inicia la expansión.
+. Mientras se ejecuta el proceso de ampliación, se descarga un nuevo archivo de paquete de recuperación.
+. Supervisa el estado de las fases de configuración de la cuadrícula, que se ejecutan automáticamente. El conjunto de fases depende de los tipos de nodos de cuadrícula que se añadan y de si se va a añadir un sitio nuevo.
++
+
+IMPORTANT: Algunas etapas pueden tardar una cantidad significativa de tiempo en ejecutarse en una red grande. Por ejemplo, la transmisión de Cassandra a un nuevo nodo de almacenamiento podría tardar solo unos minutos si la base de datos de Cassandra está vacía. Sin embargo, si la base de datos de Cassandra incluye una gran cantidad de metadatos de objetos, esta etapa puede tardar varias horas o más. No reinicie ningún nodo de almacenamiento durante las etapas de "expansión del clúster Cassandra" o "Inicio de Cassandra y transmisión de datos".
+
+
+
+.Pasos
+. Seleccione *MANTENIMIENTO* > *tareas* > *expansión*.
++
+Aparece la página expansión de cuadrícula. En la sección Pending Nodes, se enumeran todos los nodos que están listos para añadirse.
+
++
+image::../media/grid_expansion_page.png[Captura de pantalla que muestra la página expansión de cuadrícula]
+
+. Seleccione *Configurar expansión*.
++
+Aparece el cuadro de diálogo selección de sitio.
+
++
+image::../media/configure_expansion_dialog.gif[Cuadro de diálogo selección de sitio]
+
+. Seleccione el tipo de expansión que está iniciando:
++
+** Si va a añadir un sitio nuevo, seleccione *Nuevo* e introduzca el nombre del sitio nuevo.
+** Si va a agregar nodos de cuadrícula a un sitio existente, seleccione *existente*.
+
+
+. Seleccione *Guardar*.
+. Revise la lista *nodos pendientes* y confirme que muestra todos los nodos de cuadrícula que ha implementado.
++
+Según sea necesario, puede colocar el cursor sobre la dirección *red MAC* de un nodo para ver los detalles sobre ese nodo.
+
++
+image::../media/grid_node_details.gif[Captura de pantalla de detalles del nodo de cuadrícula]
+
++
+
+NOTE: Si falta un nodo de cuadrícula, confirme que se ha implementado correctamente.
+
+. En la lista de nodos pendientes, apruebe los nodos de cuadrícula para esta expansión.
++
+.. Seleccione el botón de opción situado junto al primer nodo de cuadrícula pendiente que desee aprobar.
+.. Seleccione *aprobar*.
++
+Aparece el formulario de configuración del nodo de cuadrícula.
+
++
+image::../media/grid_node_configuration.gif[Formulario de configuración del nodo de grid]
+
+.. Según sea necesario, modifique los ajustes generales:
++
+*** *Sitio*: El nombre del sitio con el que estará asociado el nodo Grid. Si va a añadir varios nodos, asegúrese de seleccionar el sitio correcto para cada nodo. Si va a añadir un sitio nuevo, todos los nodos se añadirán al sitio nuevo.
+*** *Nombre*: El nombre de host que se asignará al nodo y el nombre que se mostrará en Grid Manager.
+*** *Función NTP*: La función de Protocolo de hora de red (NTP) del nodo de red. Las opciones son *automático*, *primario* y *Cliente*. Al seleccionar *automático*, se asigna la función principal a los nodos de administración, los nodos de almacenamiento con servicios ADC, los nodos de puerta de enlace y cualquier nodo de cuadrícula que tenga direcciones IP no estáticas. Al resto de los nodos de grid se le asigna el rol de cliente.
++
+
+NOTE: Asigne el rol NTP primario al menos a dos nodos en cada sitio. Esto proporciona acceso redundante al sistema a fuentes de sincronización externas.
+
+*** *Servicio ADC* (sólo nodos de almacenamiento): Si este nodo de almacenamiento ejecutará el servicio controlador de dominio administrativo (ADC). El servicio ADC realiza un seguimiento de la ubicación y disponibilidad de los servicios de red. Al menos tres nodos de almacenamiento en cada sitio deben incluir el servicio ADC. No puede agregar el servicio ADC a un nodo después de haberlo implementado.
++
+**** Si va a agregar este nodo para reemplazar un nodo de almacenamiento, seleccione *Sí* si el nodo que va a reemplazar incluye el servicio ADC. Como no puede retirar un nodo de almacenamiento si se conservan muy pocos servicios ADC, esto garantiza que haya un nuevo servicio ADC disponible antes de que se elimine el servicio antiguo.
+**** De lo contrario, seleccione *automático* para que el sistema pueda determinar si este nodo requiere el servicio ADC. Obtenga más información sobre el quórum de ADC xref:../maintain/understanding-adc-service-quorum.adoc[aquí].
+
+
+
+
+.. Según sea necesario, modifique los ajustes de Grid Network, Admin Network y Client Network.
++
+*** *Dirección IPv4 (CIDR)*: Dirección de red CIDR para la interfaz de red. Por ejemplo: 172.16.10.100/24
+*** *Gateway*: La puerta de enlace predeterminada del nodo de red. Por ejemplo: 172.16.10.1
+*** *Subredes (CIDR)*: Una o varias subredes para la Red de administración.
+
+
+.. Seleccione *Guardar*.
++
+El nodo de grid aprobado se mueve a la lista de nodos aprobados.
+
++
+image::../media/grid_expansion_approved_nodes.png[Captura de pantalla que muestra los nodos aprobados]
+
++
+*** Para modificar las propiedades de un nodo de cuadrícula aprobado, seleccione su botón de opción y seleccione *Editar*.
+*** Para volver a mover un nodo de cuadrícula aprobado a la lista nodos pendientes, seleccione el botón de opción correspondiente y seleccione *Restablecer*.
+*** Para quitar de forma permanente un nodo de grid aprobado, apague el nodo. A continuación, seleccione el botón de radio y seleccione *Quitar*.
+
+
+.. Repita estos pasos para cada nodo de cuadrícula pendiente que desee aprobar.
++
+
+NOTE: Si es posible, debe aprobar todas las notas de cuadrícula pendientes y realizar una sola expansión. Se necesitará más tiempo si realiza varias expansiones pequeñas.
+
+
+
+. Cuando haya aprobado todos los nodos de cuadrícula, introduzca la *frase de paso de aprovisionamiento* y seleccione *expandir*.
++
+Después de unos minutos, esta página se actualiza para mostrar el estado del procedimiento de expansión. Cuando hay tareas que afectan a un nodo de cuadrícula individual en curso, la sección Estado del nodo de cuadrícula muestra el estado actual de cada nodo de cuadrícula.
+
++
+
+NOTE: Durante este proceso, en el caso de los dispositivos, el instalador del dispositivo StorageGRID muestra el cambio de la instalación de la fase 3 a la fase 4, finalizar la instalación. Cuando finaliza la fase 4, se reinicia la controladora.
+
++
+image::../media/grid_expansion_progress.png[Esta imagen se explica por el texto circundante.]
+
++
+
+NOTE: Una expansión de sitio incluye una tarea adicional para configurar Cassandra para el nuevo sitio.
+
+. Tan pronto como aparezca el enlace *Download Recovery Package*, descargue el archivo del paquete de recuperación.
++
+Es necesario descargar una copia actualizada de la Lo antes posible. del archivo de paquete de recuperación después de realizar cambios en la topología de la cuadrícula en el sistema StorageGRID. El archivo de paquete de recuperación permite restaurar el sistema si se produce un fallo.
+
++
+.. Seleccione el enlace de descarga.
+.. Introduzca la frase de acceso de aprovisionamiento y seleccione *Iniciar descarga*.
+.. Cuando finalice la descarga, abra la `.zip` archivar y confirmar que incluye un `gpt-backup` directorio y a `_SAID.zip` archivo. A continuación, extraiga el `_SAID.zip` vaya a `/GID*_REV*` y confirme que puede abrir el `passwords.txt` archivo.
+.. Copie el archivo del paquete de recuperación descargado (.zip) en dos ubicaciones seguras, seguras e independientes.
++
+
+IMPORTANT: El archivo del paquete de recuperación debe estar protegido porque contiene claves de cifrado y contraseñas que se pueden usar para obtener datos del sistema StorageGRID.
+
+
+
+. Siga las instrucciones para añadir un nodo de almacenamiento a un sitio existente o añadir otro nuevo.
+
+
+[role="tabbed-block"]
+====
+.Añada el nodo de almacenamiento al sitio existente
+--
+Si va a añadir uno o más nodos de almacenamiento a un sitio existente, supervise el progreso de la etapa "iniciando Cassandra y streaming de datos" revisando el porcentaje que se muestra en el mensaje de estado.
+
+image::../media/grid_expansion_starting_cassandra.png[Grid Expansion > iniciando Cassandra y transmitiendo datos]
+
+Este porcentaje calcula lo completo que es la operación de retransmisión de Cassandra, que se basa en la cantidad total de datos de Cassandra disponibles y en la cantidad que ya se ha escrito en el nodo nuevo.
+
+
+IMPORTANT: No reinicie ningún nodo de almacenamiento durante las etapas de "expansión del clúster Cassandra" o "inicio de Cassandra y transmisión de datos". Estas fases pueden tardar varias horas en completarse para cada nodo de almacenamiento nuevo, especialmente si los nodos de almacenamiento existentes contienen una gran cantidad de metadatos de objetos.
+
+--
+.Agregar nuevo sitio
+--
+Si va a agregar un sitio nuevo, utilice `nodetool status` Para supervisar el progreso de la transmisión en secuencias de Cassandra y ver cuántos metadatos se han copiado en el sitio nuevo durante la fase de "ampliación del clúster Cassandra". La carga total de datos en el nuevo sitio debe estar dentro de aproximadamente el 20% del total de un sitio actual.
+
+
+IMPORTANT: No reinicie ningún nodo de almacenamiento durante las etapas de "expansión del clúster Cassandra" o "inicio de Cassandra y transmisión de datos". Estas fases pueden tardar varias horas en completarse para cada nodo de almacenamiento nuevo, especialmente si los nodos de almacenamiento existentes contienen una gran cantidad de metadatos de objetos.
+
+--
+====
+. Continúe supervisando la expansión hasta que se hayan completado todas las tareas y vuelva a aparecer el botón *Configurar expansión*.
+
+
+.Después de terminar
+En función de los tipos de nodos de cuadrícula que haya añadido, debe realizar pasos adicionales de integración y configuración. Consulte xref:configuring-expanded-storagegrid-system.adoc[Pasos de configuración tras la ampliación].

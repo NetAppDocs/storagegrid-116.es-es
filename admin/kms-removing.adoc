@@ -1,0 +1,46 @@
+---
+permalink: admin/kms-removing.html 
+sidebar: sidebar 
+keywords: remove kms, remove key management server 
+summary: En algunos casos, es posible quitar un servidor de gestión de claves. Por ejemplo, puede que desee quitar un KMS específico de un sitio si ha retirado del servicio el sitio. 
+---
+= Quitar un servidor de gestión de claves (KMS)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En algunos casos, es posible quitar un servidor de gestión de claves. Por ejemplo, puede que desee quitar un KMS específico de un sitio si ha retirado del servicio el sitio.
+
+.Lo que necesitará
+* Ha revisado el xref:kms-considerations-and-requirements.adoc[consideraciones y requisitos para usar un servidor de gestión de claves].
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene el permiso acceso raíz.
+
+
+.Acerca de esta tarea
+Puede eliminar un KMS en los siguientes casos:
+
+* Puede eliminar un KMS específico de un sitio si se ha dado de baja o si el sitio incluye ningún nodo de dispositivo con cifrado de nodo activado.
+* Puede eliminar el KMS predeterminado si ya existe un KMS específico del sitio para cada sitio que tiene nodos de dispositivo con cifrado de nodo activado.
+
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *Seguridad* > *servidor de administración de claves*.
++
+Aparece la página servidor de gestión de claves para mostrar todos los servidores de gestión de claves configurados.
+
++
+image::../media/kms_configuration_details_table.png[Detalles de configuración DE KMS Tabla]
+
+. Seleccione el botón de opción del KMS que desea quitar y seleccione *Quitar*.
+. Revise las consideraciones en el cuadro de diálogo de advertencia.
++
+image::../media/kms_remove_warning.png[Advertencia de eliminación DE KMS]
+
+. Seleccione *OK*.
++
+La configuración de KMS se elimina.
+
+

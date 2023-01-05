@@ -1,0 +1,98 @@
+---
+permalink: tenant/understanding-tenant-management-api.html 
+sidebar: sidebar 
+keywords: how to understand tenant management api 
+summary: Puede realizar tareas de administración del sistema mediante la API REST de gestión de inquilinos en lugar de la interfaz de usuario de inquilino Manager. Por ejemplo, se recomienda utilizar la API para automatizar operaciones o crear varias entidades, como los usuarios, más rápidamente. 
+---
+= Comprender la API de gestión de inquilinos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede realizar tareas de administración del sistema mediante la API REST de gestión de inquilinos en lugar de la interfaz de usuario de inquilino Manager. Por ejemplo, se recomienda utilizar la API para automatizar operaciones o crear varias entidades, como los usuarios, más rápidamente.
+
+API de gestión de inquilinos:
+
+* Utiliza la plataforma API de código abierto de Swagger. Swagger proporciona una interfaz de usuario intuitiva que permite a los desarrolladores y no desarrolladores interactuar con la API. La interfaz de usuario de Swagger proporciona detalles y documentación completos para cada operación de API.
+* Utiliza xref:tenant-management-api-versioning.adoc[creación de versiones para dar cabida a actualizaciones no disruptivas].
+
+
+Para acceder a la documentación de Swagger para la API de gestión de inquilinos:
+
+.Pasos
+. Inicie sesión en el Administrador de inquilinos.
+. En la parte superior del Administrador de inquilinos, seleccione el icono de ayuda y seleccione *Documentación de API*.
+
+
+
+
+== Operaciones de API
+
+La API de gestión de inquilinos organiza las operaciones de API disponibles en las siguientes secciones:
+
+* *Cuenta* -- Operaciones en la cuenta de arrendatario actual, incluyendo la obtención de información de uso de almacenamiento.
+* *Auth* -- Operaciones para realizar la autenticación de sesión de usuario.
++
+La API de administración de arrendatarios admite el esquema de autenticación de token Bearer. Para el inicio de sesión de un inquilino, debe proporcionar un nombre de usuario, una contraseña y un ID de cuenta en el cuerpo JSON de la solicitud de autenticación (es decir, `POST /api/v3/authorize`). Si el usuario se autentica correctamente, se devuelve un token de seguridad. Este token se debe proporcionar en el encabezado de las posteriores solicitudes de API ("autorización: Token del portador").
+
++
+Para obtener información acerca de cómo mejorar la seguridad de autenticación, consulte xref:protecting-against-cross-site-request-forgery-csrf.adoc[Protección contra falsificación de solicitudes entre sitios].
+
++
+
+NOTE: Si está habilitado el inicio de sesión único (SSO) para el sistema StorageGRID, debe realizar diferentes pasos para la autenticación. Consulte xref:../admin/using-grid-management-api.adoc[Instrucciones de uso de la API de gestión de grid].
+
+* *Config* -- Operaciones relacionadas con la versión del producto y las versiones de la API de Gestión de arrendatarios. Puede mostrar la versión de la versión del producto y las versiones principales de la API que admite esa versión.
+* *Containers* -- Operaciones en bloques de S3 o contenedores Swift, como se indica a continuación:
++
+*S3*
+
++
+** Crear bloque (con y sin S3 Object Lock habilitado)
+** Modificar la retención predeterminada de bloque (para bloques con bloqueo de objetos S3 habilitado)
+** Configure el control de coherencia para las operaciones realizadas en los objetos
+** Crear, actualizar y eliminar la configuración de CORS de un bloque
+** Activar y desactivar las actualizaciones de la hora de último acceso para los objetos
+** Gestionar la configuración de los servicios de plataforma, incluida la replicación de CloudMirror, las notificaciones y la integración de búsqueda (metadatos-notification)
+** Eliminar cubos vacíos
+
+
++
+*Swift*: Establece el nivel de consistencia utilizado para los contenedores
+
+* *Características desactivadas* -- Operaciones para ver las funciones que podrían haberse desactivado.
+* *Endpoints* -- Operaciones para administrar un punto final. Los extremos permiten que un bloque de S3 use un servicio externo para la replicación de CloudMirror de StorageGRID, notificaciones o integración de búsqueda.
+* *Grupos* -- Operaciones para administrar grupos de inquilinos locales y recuperar grupos de inquilinos federados de un origen de identidades externo.
+* *Identity-source* -- Operaciones para configurar un origen de identidad externo y sincronizar manualmente la información del grupo federado y del usuario.
+* *Regiones* -- Operaciones para determinar qué regiones se han configurado para el sistema StorageGRID.
+* *s3* -- Operaciones para administrar claves de acceso S3 para usuarios inquilinos.
+* *s3-object-lock* -- Operaciones en la configuración global de S3 Object Lock, que se utiliza para respaldar el cumplimiento normativo.
+* *Usuarios* -- Operaciones para ver y administrar usuarios de arrendatarios.
+
+
+
+
+== Detalles de la operación
+
+Al expandir cada operación de API, puede ver su acción HTTP, su URL de extremo, una lista de cualquier parámetro requerido o opcional, un ejemplo del cuerpo de la solicitud (cuando sea necesario) y las posibles respuestas.
+
+image::../media/tenant_api_swagger_example.gif[Ejemplo que muestra la operación DE OBTENER grupos en la API de Swagger]
+
+
+
+== Emita solicitudes API
+
+
+IMPORTANT: Cualquier operación de API que realice mediante la página web de documentos de API es una operación en directo. Tenga cuidado de no crear, actualizar o eliminar datos de configuración u otros datos por error.
+
+.Pasos
+. Seleccione la acción HTTP para ver los detalles de la solicitud.
+. Determine si la solicitud requiere parámetros adicionales, como un ID de grupo o de usuario. A continuación, obtenga estos valores. Es posible que primero deba emitir una solicitud de API diferente para obtener la información que necesita.
+. Determine si necesita modificar el cuerpo de solicitud de ejemplo. Si es así, puede seleccionar *Modelo* para conocer los requisitos de cada campo.
+. Seleccione *probar*.
+. Proporcione los parámetros necesarios o modifique el cuerpo de la solicitud según sea necesario.
+. Seleccione *Ejecutar*.
+. Revise el código de respuesta para determinar si la solicitud se ha realizado correctamente.
+

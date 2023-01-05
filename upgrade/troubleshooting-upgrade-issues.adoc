@@ -1,0 +1,49 @@
+---
+permalink: upgrade/troubleshooting-upgrade-issues.html 
+sidebar: sidebar 
+keywords: upgrade, troubleshoot, troubleshooting, errors, upgrade precheck 
+summary: Si la actualización no se realiza correctamente, es posible que pueda resolver el problema por su cuenta. Si no puede resolver un problema, debe recopilar la información necesaria antes de ponerse en contacto con el soporte técnico. 
+---
+= No se completó la actualización
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si la actualización no se realiza correctamente, es posible que pueda resolver el problema por su cuenta. Si no puede resolver un problema, debe recopilar la información necesaria antes de ponerse en contacto con el soporte técnico.
+
+Las secciones siguientes describen cómo recuperar de situaciones en las que la actualización ha fallado parcialmente. Si no puede resolver un problema de actualización, póngase en contacto con el soporte técnico.
+
+
+
+== Errores de las comprobaciones previas de actualización
+
+Para detectar y resolver problemas, puede ejecutar manualmente las comprobaciones previas de la actualización antes de iniciar la actualización real. La mayoría de los errores de las comprobaciones previas proporcionan información sobre cómo resolver el problema. Si necesita ayuda, póngase en contacto con el soporte técnico.
+
+
+
+== Errores de aprovisionamiento
+
+Si el proceso de aprovisionamiento automático falla, póngase en contacto con el soporte técnico.
+
+
+
+== El nodo de grid se bloquea o no puede iniciarse
+
+Si un nodo de grid se bloquea durante el proceso de actualización o no puede iniciarse correctamente después de que se complete la actualización, póngase en contacto con el soporte técnico para investigar y corregir cualquier problema subyacente.
+
+
+
+== La ingesta o la recuperación de datos se interrumpe
+
+Si la ingesta o recuperación de datos se interrumpe de forma inesperada cuando no actualiza un nodo de grid, póngase en contacto con el soporte técnico.
+
+
+
+== Errores de actualización de base de datos
+
+Si se produce un error en la actualización de la base de datos, vuelva a intentar la actualización. Si vuelve a fallar, póngase en contacto con el soporte técnico de.
+
+.Información relacionada
+xref:checking-systems-condition-before-upgrading-software.adoc[Comprobación del estado del sistema antes de actualizar el software]

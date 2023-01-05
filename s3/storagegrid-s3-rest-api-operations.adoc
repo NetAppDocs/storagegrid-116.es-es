@@ -1,0 +1,52 @@
+---
+permalink: s3/storagegrid-s3-rest-api-operations.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations 
+summary: Existen operaciones añadidas en la API DE REST de S3 específicas del sistema StorageGRID. 
+---
+= Operaciones de la API de REST de StorageGRID S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Existen operaciones añadidas en la API DE REST de S3 específicas del sistema StorageGRID.
+
+* xref:../s3/get-bucket-consistency-request.adoc[OBTENGA la solicitud de consistencia de bloque]
++
+La solicitud DE consistencia DE GET Bucket permite determinar el nivel de consistencia que se aplica a un bloque determinado.
+
+* xref:../s3/put-bucket-consistency-request.adoc[PONER solicitud de consistencia de bloque]
++
+La solicitud PUT Bucket Consistency permite especificar el nivel de coherencia que se va a aplicar a las operaciones realizadas en un bloque.
+
+* xref:../s3/get-bucket-last-access-time-request.adoc[GET Bucket última solicitud de tiempo de acceso]
++
+La solicitud DE tiempo DE acceso del último bloque DE GET Bucket permite determinar si las actualizaciones de la última hora de acceso están habilitadas o deshabilitadas para bloques individuales.
+
+* xref:../s3/put-bucket-last-access-time-request.adoc[PUT Bucket última solicitud de tiempo de acceso]
++
+La solicitud DE la última hora de acceso al bloque DE PUT permite habilitar o deshabilitar las actualizaciones del último tiempo de acceso para bloques individuales. Al deshabilitar las actualizaciones de la última hora de acceso, se mejora el rendimiento, y es la configuración predeterminada para todos los bloques creados con la versión 10.3.0 o posterior.
+
+* xref:../s3/delete-bucket-metadata-notification-configuration-request.adoc[DELETE bucket metadata notification Configuration]
++
+La solicitud de configuración DE notificación DE metadatos DELETE Bucket permite deshabilitar el servicio de integración de búsqueda para bloques individuales al eliminar el XML de configuración.
+
+* xref:../s3/get-bucket-metadata-notification-configuration-request.adoc[OBTENGA la solicitud de configuración de notificación de metadatos del bloque]
++
+La solicitud de configuración DE notificación DE metadatos GET Bucket permite recuperar el XML de configuración que se utiliza para configurar la integración de búsqueda de bloques individuales.
+
+* xref:../s3/put-bucket-metadata-notification-configuration-request.adoc[PUT bucket metadata notification Configuration]
++
+La solicitud de configuración de notificación DE metadatos DE PUT Bucket permite habilitar el servicio de integración de búsqueda para bloques individuales. El XML de configuración de notificación de metadatos que se proporciona en el cuerpo de la solicitud especifica los objetos cuyos metadatos se envían al índice de búsqueda de destino.
+
+* xref:../s3/get-storage-usage-request.adoc[OBTENGA la solicitud de uso del almacenamiento]
++
+La solicitud GET Storage Usage le indica la cantidad total de almacenamiento que está usando una cuenta y por cada bloque asociado con la cuenta.
+
+* xref:../s3/deprecated-bucket-requests-for-legacy-compliance.adoc[Solicitudes de bloques obsoletas para cumplimiento de normativas heredadas]
++
+Es posible que deba utilizar la API DE REST de StorageGRID S3 para gestionar los bloques creados con la función de cumplimiento heredada.
+
+

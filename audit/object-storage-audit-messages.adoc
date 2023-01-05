@@ -1,0 +1,135 @@
+---
+permalink: audit/object-storage-audit-messages.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, object storage, object management, object retrieval, node transfer, verification, APCT, ARCB, ARCE, ARCT, AREM, ASCE, ASCT, ATCE, AVCC, CBSE, CBRE, SCMT, SREM 
+summary: Debería estar familiarizado con los mensajes de auditoría que pertenecen a la categoría de auditoría de almacenamiento de objetos. Estos son eventos relacionados con el almacenamiento y la gestión de objetos dentro del sistema StorageGRID. Entre estas se incluyen las recuperaciones y almacenamiento de objetos, el nodo de grid a transferencias de Grid-nodo y las verificaciones. 
+---
+= Mensajes de auditoría del almacenamiento de objetos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debería estar familiarizado con los mensajes de auditoría que pertenecen a la categoría de auditoría de almacenamiento de objetos. Estos son eventos relacionados con el almacenamiento y la gestión de objetos dentro del sistema StorageGRID. Entre estas se incluyen las recuperaciones y almacenamiento de objetos, el nodo de grid a transferencias de Grid-nodo y las verificaciones.
+
+|===
+| Codificación | Descripción | Consulte 
+
+
+ a| 
+APCT
+ a| 
+Análisis de archivo desde Cloud-Tier: Los datos de objetos archivados se eliminan de un sistema de almacenamiento de archivado externo, que se conecta a StorageGRID a través de la API S3.
+ a| 
+xref:apct-archive-purge-from-cloud-tier.adoc[APCT: Purga de archivos desde la capa de cloud]
+
+
+
+ a| 
+ARCB
+ a| 
+Inicio de recuperación de objetos de archivo: El servicio ARC inicia la recuperación de datos de objetos desde el sistema de almacenamiento de archivos externo.
+ a| 
+xref:arcb-archive-object-retrieve-begin.adoc[ARCB: Inicio de recuperación de objetos de archivo]
+
+
+
+ a| 
+ARCE
+ a| 
+Fin de recuperación de objeto de archivo: Los datos de objeto se han recuperado de un sistema de almacenamiento de archivos externo y el servicio ARC informa del estado de la operación de recuperación.
+ a| 
+xref:arce-archive-object-retrieve-end.adoc[ARCE: Fin de recuperación de objetos archivados]
+
+
+
+ a| 
+ARCT
+ a| 
+Recuperación de archivo desde Cloud-Tier: Los datos de objetos archivados se recuperan de un sistema de almacenamiento de archivado externo, que se conecta a StorageGRID a través de la API S3.
+ a| 
+xref:arct-archive-retrieve-from-cloud-tier.adoc[ARCT: Recuperación de archivos a partir de nivel de cloud]
+
+
+
+ a| 
+AREM
+ a| 
+Eliminación de objetos de archivo: Un bloque de contenido se ha eliminado correctamente o sin éxito del sistema de almacenamiento de archivos externo.
+ a| 
+xref:arem-archive-object-remove.adoc[AREM: Eliminación de objeto de archivado]
+
+
+
+ a| 
+ASCE
+ a| 
+Fin del almacén de objetos archivados: Se ha escrito un bloque de contenido en el sistema de almacenamiento de archivos externo y el servicio ARC informa del estado de la operación de escritura.
+ a| 
+xref:asce-archive-object-store-end.adoc[ASCE: Fin del almacén de objetos de archivo]
+
+
+
+ a| 
+ASCT
+ a| 
+Almacenamiento de archivos Cloud-Tier: Los datos de objetos se almacenan en un sistema de almacenamiento de archivado externo, que se conecta a la StorageGRID a través de la API de S3.
+ a| 
+xref:asct-archive-store-cloud-tier.adoc[ASCT: Archive Store Cloud-Tier]
+
+
+
+ a| 
+ATCE
+ a| 
+Inicio del almacén de objetos de archivado: Se ha iniciado la escritura de un bloque de contenido en un almacenamiento de archivado externo.
+ a| 
+xref:atce-archive-object-store-begin.adoc[ATCE: Inicio del almacén de objetos de archivado]
+
+
+
+ a| 
+AVCC
+ a| 
+Validación de archivo Configuración de nivel de cloud: La configuración de la cuenta y el bloque proporcionados se validó correctamente o sin éxito.
+ a| 
+xref:avcc-archive-validate-cloud-tier-configuration.adoc[AVCC: Validación de archivo de la configuración de Cloud-Tier]
+
+
+
+ a| 
+CBSE
+ a| 
+Objeto Send End: La entidad de origen completó una operación de transferencia de datos de un nodo de cuadrícula a un nodo de cuadrícula.
+ a| 
+xref:cbse-object-send-end.adoc[CBSE: Fin de envío de objeto]
+
+
+
+ a| 
+CBRE
+ a| 
+Fin de recepción de objetos: La entidad de destino completó una operación de transferencia de datos de Grid-node hacia Grid-node.
+ a| 
+xref:cbre-object-receive-end.adoc[CBRE: Fin de recepción de objeto]
+
+
+
+ a| 
+SCMT
+ a| 
+Confirmación del almacén de objetos: Un bloque de contenido se almacenó y verificó completamente, y ahora se puede solicitar.
+ a| 
+xref:scmt-object-store-commit.adoc[SCMT: Confirmación del almacén de objetos]
+
+
+
+ a| 
+SREM
+ a| 
+Almacén de objetos Quitar: Se ha eliminado un bloque de contenido de un nodo de cuadrícula y ya no se puede solicitar directamente.
+ a| 
+xref:srem-object-store-remove.adoc[SREM: Almacén de objetos Quitar]
+
+|===

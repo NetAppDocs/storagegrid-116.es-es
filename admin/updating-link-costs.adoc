@@ -1,0 +1,34 @@
+---
+permalink: admin/updating-link-costs.html 
+sidebar: sidebar 
+keywords: link costs, latency between sites 
+summary: Puede actualizar los costes de enlace entre los sitios de centros de datos para reflejar la latencia entre los sitios. 
+---
+= Actualizar costes de enlace
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede actualizar los costes de enlace entre los sitios de centros de datos para reflejar la latencia entre los sitios.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene el permiso Configuración de página de topología de cuadrícula.
+
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *Red* > *coste de enlace*.
++
+image::../media/configuring_link_costs.png[Coste del enlace]
+
+. Seleccione un sitio en *origen de enlace* e introduzca un valor de coste entre 0 y 100 en *destino de enlace*.
++
+No se puede cambiar el coste del vínculo si el origen es el mismo que el destino.
+
++
+Para cancelar los cambios, seleccione image:../media/nms_revert.gif["icono de deshacer"]*Revert*.
+
+. Seleccione *aplicar cambios*.
+

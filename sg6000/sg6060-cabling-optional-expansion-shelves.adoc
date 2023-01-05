@@ -1,0 +1,104 @@
+---
+permalink: sg6000/sg6060-cabling-optional-expansion-shelves.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, cabling, cable, wiring, wire, expansion shelf, sg6060 
+summary: Si utiliza bandejas de expansión, debe conectarlos a la bandeja de controladoras E2860. Puede tener un máximo de dos bandejas de expansión para cada dispositivo SG6060. 
+---
+= SG6060 y SG606060X: Cableado de bandejas de expansión opcionales
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si utiliza bandejas de expansión, debe conectarlos a la bandeja de controladoras E2860. Puede tener un máximo de dos bandejas de expansión para cada dispositivo SG6060 o SG6060X.
+
+.Lo que necesitará
+* Se suministran los dos cables SAS con cada bandeja de ampliación.
+* Instaló las bandejas de expansión en el armario o rack que contiene la bandeja de controladoras E2860.
++
+xref:sg6060-installing-60-drive-shelves-into-cabinet-or-rack.adoc[SG6060 y SG606060X: Instale bandejas de 60 unidades en el armario o rack]
+
+
+
+.Paso
+Conecte cada bandeja de expansión a la bandeja de controladoras E2860 como se muestra en el diagrama.
+
+Este dibujo muestra el cableado para dos estantes de expansión en un SG6060 (el cableado de expansión para SG6060X es el mismo). Si solo tiene una bandeja de expansión, conecte IOM A a la controladora A y conecte el IOM B a la controladora B.
+
+image::../media/expansion_shelves_connections_sg6060.png[Conexiones de la bandeja de expansión SG6060 y SG6060X]
+
+[cols="1a,2a"]
+|===
+| Llamada | Descripción 
+
+
+ a| 
+1
+ a| 
+SG6000-CN
+
+
+
+ a| 
+2
+ a| 
+Bandeja de controladoras E2860
+
+
+
+ a| 
+3
+ a| 
+Controladora a
+
+
+
+ a| 
+4
+ a| 
+Controladora B
+
+
+
+ a| 
+5
+ a| 
+Bandeja de expansión 1
+
+
+
+ a| 
+6
+ a| 
+IOM A para la bandeja de ampliación 1
+
+
+
+ a| 
+7
+ a| 
+IOM B para la bandeja de expansión 1
+
+
+
+ a| 
+8
+ a| 
+Bandeja de expansión 2
+
+
+
+ a| 
+9
+ a| 
+IOM A para bandeja de expansión 2
+
+
+
+ a| 
+10
+ a| 
+IOM B para la bandeja de expansión 2
+
+|===

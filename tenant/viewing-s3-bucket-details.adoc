@@ -1,0 +1,55 @@
+---
+permalink: tenant/viewing-s3-bucket-details.html 
+sidebar: sidebar 
+keywords: how to view s3 bucket details 
+summary: Puede ver una lista de las configuraciones de bloques y bloques en su cuenta de inquilino. 
+---
+= Ver detalles de bloques de S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede ver una lista de las configuraciones de bloques y bloques en su cuenta de inquilino.
+
+.Lo que necesitará
+* Debe iniciar sesión en el administrador de inquilinos mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+
+
+.Pasos
+. Seleccione *ALMACENAMIENTO (S3)* > *Cuchos*.
++
+Aparece la página Cuchos y enumera todos los cucharones de la cuenta de arrendatario.
+
++
+image::../media/buckets_table.png[Mesa de cucharones]
+
+. Revisar la información de cada bloque.
++
+Según sea necesario, puede ordenar la información por cualquier columna o puede avanzar y retroceder por la lista.
+
++
+** Nombre: Nombre único del bloque, que no se puede cambiar.
+** S3 Object Lock: Si está habilitado el bloqueo de objetos de S3 para este bloque.
++
+Esta columna no se muestra si la configuración global de bloqueo de objetos S3 está deshabilitada. Esta columna también muestra información para todos los segmentos compatibles anteriores.
+
+** Región: La región del cucharón, que no se puede cambiar.
+** Recuento de objetos: El número de objetos de este bloque.
+** Espacio utilizado: Tamaño lógico de todos los objetos de este bloque. El tamaño lógico no incluye el espacio real necesario para las copias replicadas o con código de borrado o para los metadatos de objetos.
+** Fecha de creación: La fecha y la hora en que se creó el segmento.
+
+
++
+
+IMPORTANT: Los valores de recuento de objetos y espacio utilizado que se muestran son estimaciones. Estas estimaciones se ven afectadas por el tiempo de los ingests, la conectividad de red y el estado del nodo. Si los bloques tienen habilitado el control de versiones, las versiones de objetos eliminados se incluyen en el recuento de objetos.
+
+. Para ver y gestionar la configuración de un bloque, seleccione el nombre del bloque.
++
+La página de detalles bucket permite ver y editar la configuración de las opciones de bloques, el acceso a bloques y xref:what-platform-services-are.adoc[servicios de plataforma].
+
++
+image::../media/bucket_details_page.png[Página Detalles de bloque]
+
+

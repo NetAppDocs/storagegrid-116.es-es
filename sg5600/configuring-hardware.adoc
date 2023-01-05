@@ -1,0 +1,14 @@
+---
+permalink: sg5600/configuring-hardware.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, hardware, configure, configuration, set up, setup, network, networking 
+summary: Después de aplicar la alimentación al dispositivo, debe configurar Storage Manager de SANtricity, que es el software que utilizará para supervisar el hardware. También debe configurar las conexiones de red que utilizará StorageGRID. 
+---
+= Configurar el hardware (SG5600)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de aplicar la alimentación al dispositivo, debe configurar Storage Manager de SANtricity, que es el software que utilizará para supervisar el hardware. También debe configurar las conexiones de red que utilizará StorageGRID.

@@ -1,0 +1,33 @@
+---
+permalink: upgrade/impact-of-upgrade-on-groups-and-user-accounts.html 
+sidebar: sidebar 
+keywords: upgrade, permissions 
+summary: Debe comprender el impacto de la actualización de StorageGRID de modo que pueda actualizar los grupos y las cuentas de usuario según corresponda una vez completada la actualización. 
+---
+= Impacto de una actualización en grupos y cuentas de usuario
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe comprender el impacto de la actualización de StorageGRID de modo que pueda actualizar los grupos y las cuentas de usuario según corresponda una vez completada la actualización.
+
+
+
+== Cambios en los permisos y opciones de grupo
+
+Después de actualizar a StorageGRID 11.6, seleccione opcionalmente los siguientes permisos y opciones nuevos o actualizados (*CONFIGURACIÓN* > *control de acceso* > *grupos de administración*).
+
+[cols="1a,2a"]
+|===
+| Permiso u opción | Descripción 
+
+
+ a| 
+Cuentas de inquilino
+ a| 
+Además de permitir a los usuarios crear, editar y eliminar cuentas de arrendatario, este permiso ahora permite a los usuarios de administración ver las directivas de clasificación de tráfico existentes (*CONFIGURATION* > *Network* > *Traffic Classification*).
+
+|===
+Consulte xref:../admin/managing-admin-groups.adoc[Gestione los grupos de administradores].

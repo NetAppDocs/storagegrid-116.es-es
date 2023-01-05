@@ -1,0 +1,122 @@
+---
+permalink: ilm/creating-ilm-policy-after-s3-object-lock-is-enabled.html 
+sidebar: sidebar 
+keywords: how to create ILM policy, policy for S3 object lock 
+summary: Si la configuración global de bloqueo de objetos S3 está habilitada, los pasos para crear una política son ligeramente diferentes. Debe asegurarse de que la política de ILM cumpla con los requisitos de los bloques con S3 Object Lock habilitado. 
+---
+= Cree una política de ILM después de habilitar el bloqueo de objetos de S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si la configuración global de bloqueo de objetos S3 está habilitada, los pasos para crear una política son ligeramente diferentes. Debe asegurarse de que la política de ILM cumpla con los requisitos de los bloques con S3 Object Lock habilitado.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+* La configuración global de bloqueo de objetos S3 ya está habilitada para el sistema StorageGRID.
++
+
+NOTE: Si la opción de bloqueo de objetos global de S3 no se ha habilitado, utilice las instrucciones generales para xref:creating-proposed-ilm-policy.adoc[Creación de una política de ILM propuesta].
+
+* Ha creado las reglas de ILM que cumplen y no cumplen con las normativas que desea agregar a la política propuesta. Según sea necesario, puede guardar una directiva propuesta, crear reglas adicionales y, a continuación, editar la directiva propuesta para agregar las nuevas reglas. Consultexref:example-7-compliant-ilm-policy-for-s3-object-lock.adoc[Ejemplo 7: Política de ILM conforme con la normativa para el bloqueo de objetos S3].
+* Ya tienes xref:creating-default-ilm-rule.adoc[Se ha creado una regla de ILM predeterminada] para la directiva que cumple con las normativas.
+* Opcionalmente, ha visto el vídeo: https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c929e94e-353a-4375-b112-acc5013c81c7["Vídeo: Políticas de ILM de StorageGRID"^]
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c929e94e-353a-4375-b112-acc5013c81c7]
+image::../media/video-screenshot-ilm-policies.png[Vídeo: Políticas de ILM de StorageGRID]
+
+
+
+.Pasos
+. Seleccione *ILM* > *políticas*.
++
+Aparece la página ILM Policies. Si la configuración de bloqueo de objetos global de S3 está habilitada, la página ILM Policies indica qué reglas de ILM son compatibles.
+
++
+image::../media/ilm_policies_page_compliant.png[Cumplimiento de la página de políticas de ILM]
+
+. Introduzca un nombre único para la directiva propuesta en el campo *Nombre*.
++
+Debe introducir al menos 1 y no más de 64 caracteres.
+
+. Introduzca el motivo por el que está creando una nueva directiva propuesta en el campo *motivo del cambio*.
++
+Debe introducir al menos 1 y no más de 128 caracteres.
+
+. Para agregar reglas a la directiva, seleccione *Seleccionar reglas*.
++
+Aparece el cuadro de diálogo Seleccionar reglas para la directiva, con todas las reglas definidas en la lista.
+
++
+** La sección Seleccionar regla predeterminada enumera las reglas que pueden ser predeterminadas para una directiva compatible. Incluye reglas compatibles que no utilizan filtros ni el tiempo de referencia no corriente.
+** La sección Seleccionar otras reglas enumera las demás reglas compatibles y no compatibles que se pueden seleccionar para esta directiva.
++
+image::../media/ilm_policy_select_rules_for_compliant_policy.png[Política de ILM Seleccione reglas para la política que cumple con las normativas]
+
+
+
+. Seleccione un nombre de regla o el icono más detalles image:../media/icon_nms_more_details.gif["icono para más detalles"] para ver la configuración de esa regla.
+. En la sección *Seleccionar regla predeterminada*, seleccione una regla predeterminada para la directiva propuesta.
++
+En la tabla de esta sección sólo se enumeran las reglas que cumplen y no utilizan ningún filtro.
+
++
+
+NOTE: Si no aparece ninguna regla en la sección Select Default Rule, debe salir de la página de la política de ILM y. xref:creating-default-ilm-rule.adoc[Cree una regla de ILM predeterminada] eso es conforme.
+
++
+
+IMPORTANT: No utilice la regla convertir 2 copias en stock como regla predeterminada para una directiva. La regla make 2 copies utiliza un único pool de almacenamiento, todos los nodos de almacenamiento, que contiene todos los sitios. Si utiliza esta regla, es posible que se coloquen varias copias de un objeto en el mismo sitio.
+
+. En la sección *Seleccionar otras reglas*, seleccione cualquier otra regla que desee incluir en la directiva.
++
+.. Si necesita una regla «predeterminada» distinta para los objetos de bloques S3 que no cumplen las normativas, seleccione opcionalmente una regla no conforme a la normativa que no utilice un filtro.
++
+Por ejemplo, se recomienda usar un pool de almacenamiento en cloud o un nodo de archivado para almacenar objetos en bloques que no tienen el bloqueo de objetos de S3 habilitado.
+
++
+
+NOTE: Sólo puede seleccionar una regla no compatible que no utilice un filtro. Tan pronto como seleccione una regla, la columna *is Selectable* muestra *no* para cualquier otra regla no compatible sin filtros.
+
+.. Seleccione cualquier otra regla compatible o no compatible que desee utilizar en la directiva.
++
+Las otras reglas deben utilizar al menos un filtro (cuenta de inquilino, nombre de bloque o filtro avanzado, como el tamaño del objeto).
+
+
+
+. Cuando haya terminado de seleccionar las reglas, seleccione *aplicar*.
++
+Se muestran las reglas seleccionadas. La regla predeterminada está al final, con las demás reglas encima. Si también ha seleccionado una regla de «default» no conforme, esa regla se añade como la regla de segundo a último en la política.
+
++
+En este ejemplo, la última regla, 2 copias 2 centros de datos, es la regla predeterminada: Es compatible y no tiene filtros. La segunda regla, Cloud Storage Pool, también no tiene filtros pero no es conforme.
+
++
+image::../media/ilm_policies_selected_rules_compliant.png[Cumplimiento de las reglas seleccionadas en políticas de ILM]
+
+. Arrastre y suelte las filas de las reglas no predeterminadas para determinar el orden en el que se evaluarán estas reglas.
++
+No se puede mover la regla predeterminada ni la regla de «incumplimiento».
+
++
+
+IMPORTANT: Debe confirmar que las reglas de ILM se encuentran en el orden correcto. Cuando se activa la directiva, las reglas del orden indicado evalúan los objetos nuevos y existentes, empezando por la parte superior.
+
+. Según sea necesario, seleccione el icono de eliminación image:../media/icon_nms_delete_new.gif["icono de eliminar"] Para eliminar cualquier regla que no desee en la directiva, o *Seleccionar reglas* para agregar más reglas.
+. Cuando haya terminado, seleccione *Guardar*.
++
+La página ILM Policies se actualiza:
+
++
+** La política que ha guardado se muestra como propuesta. Las políticas propuestas no tienen fechas de inicio y finalización.
+** Los botones *Simulate* y *Activate* están activados.
++
+image::../media/ilm_policy_proposed_policy_s3_object_lock.png[Política de ILM propuesta política bloqueo de objetos de S3]
+
+
+
+. Vaya a. xref:simulating-ilm-policy.adoc[Simule una política de gestión de la vida útil].
+

@@ -1,0 +1,14 @@
+---
+permalink: sg5600/maintaining-sg5600-appliance.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, maintain, maintaining, hardware, procedures, tasks 
+summary: Es posible que deba actualizar el software de sistema operativo SANtricity en la controladora E2700, sustituir la controladora E2700 o la controladora E5600SG, o sustituir componentes específicos. En los procedimientos descritos en esta sección se asume que el dispositivo ya se ha puesto en marcha como nodo de almacenamiento en un sistema StorageGRID. 
+---
+= Mantenga el dispositivo SG5600
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible que deba actualizar el software de sistema operativo SANtricity en la controladora E2700, sustituir la controladora E2700 o la controladora E5600SG, o sustituir componentes específicos. En los procedimientos descritos en esta sección se asume que el dispositivo ya se ha puesto en marcha como nodo de almacenamiento en un sistema StorageGRID.

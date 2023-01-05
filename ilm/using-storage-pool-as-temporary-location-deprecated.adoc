@@ -1,0 +1,22 @@
+---
+permalink: ilm/using-storage-pool-as-temporary-location-deprecated.html 
+sidebar: sidebar 
+keywords: storage pool temporary location 
+summary: Cuando crea una regla de ILM con una ubicación de objetos que incluya un solo pool de almacenamiento, se le solicita que especifique un segundo pool de almacenamiento que se usará como ubicación temporal. 
+---
+= Usar un pool de almacenamiento como ubicación temporal (obsoleto)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cuando crea una regla de ILM con una ubicación de objetos que incluya un solo pool de almacenamiento, se le solicita que especifique un segundo pool de almacenamiento que se usará como ubicación temporal.
+
+Las ubicaciones temporales han quedado obsoletas y se eliminarán en un lanzamiento futuro. No debe seleccionar un pool de almacenamiento como ubicación temporal para una nueva regla de ILM.
+
+
+NOTE: Si selecciona el comportamiento de procesamiento estricto (paso 3 del asistente Crear regla de ILM), se omitirá la ubicación temporal.
+
+.Información relacionada
+xref:data-protection-options-for-ingest.adoc[Opciones de protección de datos para consumo]

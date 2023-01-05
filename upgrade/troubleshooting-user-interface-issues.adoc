@@ -1,0 +1,33 @@
+---
+permalink: upgrade/troubleshooting-user-interface-issues.html 
+sidebar: sidebar 
+keywords: grid manager, tenant manager, error, browser 
+summary: Es posible que vea problemas con el administrador de grid o el administrador de inquilinos después de actualizar a una nueva versión del software StorageGRID. 
+---
+= Solucionar problemas de la interfaz de usuario
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible que vea problemas con el administrador de grid o el administrador de inquilinos después de actualizar a una nueva versión del software StorageGRID.
+
+
+
+== La interfaz Web no responde de la manera esperada
+
+Es posible que el administrador de grid o el administrador de inquilinos no respondan como se espera después de actualizar el software StorageGRID.
+
+Si tiene problemas con la interfaz web:
+
+* Asegúrese de utilizar un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
++
+
+NOTE: Normalmente, el navegador admite cambios para cada versión de StorageGRID.
+
+* Borre la caché del navegador web.
++
+Al borrar la caché se eliminan los recursos obsoletos utilizados por la versión anterior del software StorageGRID y se permite que la interfaz de usuario vuelva a funcionar correctamente. Para obtener instrucciones, consulte la documentación de su navegador web.
+
+

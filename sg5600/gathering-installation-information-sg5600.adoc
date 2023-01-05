@@ -1,0 +1,362 @@
+---
+permalink: sg5600/gathering-installation-information-sg5600.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, install, information, site, pre-install, preparing, prepare, preinstall, info, preparation 
+summary: Al instalar y configurar el dispositivo StorageGRID, debe tomar decisiones y recopilar información acerca de los puertos del switch Ethernet, las direcciones IP y los modos de enlace de puerto y red. 
+---
+= Recopilar información de instalación (SG5600)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Al instalar y configurar el dispositivo StorageGRID, debe tomar decisiones y recopilar información acerca de los puertos del switch Ethernet, las direcciones IP y los modos de enlace de puerto y red.
+
+.Acerca de esta tarea
+Puede utilizar las siguientes tablas para registrar la información de cada red que conecte al dispositivo. Estos valores son necesarios para instalar y configurar el hardware.
+
+
+
+== Información necesaria para conectar la controladora E2700 a SANtricity Storage Manager
+
+Debe conectar la controladora E2700 a la red de gestión que utilizará para SANtricity Storage Manager.
+
+|===
+| Información necesaria | Su valor 
+
+
+ a| 
+El puerto del switch Ethernet se conectará al puerto de gestión 1
+ a| 
+
+
+
+ a| 
+Dirección MAC del puerto de gestión 1 (impreso en una etiqueta cerca del puerto P1)
+ a| 
+
+
+
+ a| 
+Dirección IP asignada por DHCP para el puerto de gestión 1, si está disponible después de encenderse
+
+*Nota:* Si la red que va a conectar al controlador E2700 incluye un servidor DHCP, el administrador de red puede utilizar la dirección MAC para determinar la dirección IP asignada por el servidor DHCP.
+ a| 
+
+
+
+ a| 
+Velocidad y modo doble
+
+*Nota:* debe asegurarse de que el conmutador Ethernet de la red de administración de SANtricity Storage Manager está establecido en Negotiate automático.
+ a| 
+Debe ser:
+
+* Autonegociar (predeterminado)
+
+
+
+
+ a| 
+Formato de dirección IP
+ a| 
+Elija una opción:
+
+* IPv4
+* IPv6
+
+
+
+
+ a| 
+Dirección IP estática que planea usar para el dispositivo en la red de gestión
+ a| 
+Para IPv4:
+
+* Dirección IPv4:
+* Máscara de subred:
+* Puerta de enlace:
+
+
+Para IPv6:
+
+* Dirección IPv6:
+* Dirección IP enrutable:
+* Dirección IP del enrutador de la controladora E2700:
+
+
+|===
+
+
+== Información necesaria para conectar el controlador E5600SG a la red de administrador
+
+La red de administración de StorageGRID es una red opcional que se utiliza para la administración y el mantenimiento del sistema. El dispositivo se conecta a la red de administrador mediante los puertos de gestión de 1-GbE en la controladora E5600SG.
+
+|===
+| Información necesaria | Su valor 
+
+
+ a| 
+Red de administrador habilitada
+ a| 
+Elija una opción:
+
+* No
+* Sí (predeterminado)
+
+
+
+
+ a| 
+Modo de enlace de red
+ a| 
+Elija una opción:
+
+* Independiente
+* Copia de seguridad activa
+
+
+
+
+ a| 
+Puerto del switch para el puerto de gestión 1 (P1)
+ a| 
+
+
+
+ a| 
+Puerto de switch para el puerto de administración 2 (P2; activo-Backup, solo modo de enlace de red)
+ a| 
+
+
+
+ a| 
+Dirección MAC del puerto de gestión 1 (impreso en una etiqueta cerca del puerto P1)
+ a| 
+
+
+
+ a| 
+Dirección IP asignada por DHCP para el puerto de gestión 1, si está disponible después de encenderse
+
+*Nota:* Si la red Admin incluye un servidor DHCP, el controlador E5600SG muestra la dirección IP asignada por DHCP en su pantalla de siete segmentos después de que se inicie. También puede determinar la dirección IP asignada por DHCP utilizando la dirección MAC para buscar la IP asignada.
+ a| 
+* Dirección IPv4 (CIDR):
+* Puerta de enlace:
+
+
+
+
+ a| 
+Dirección IP estática que piensa usar para el nodo de almacenamiento del dispositivo en la red de administración
+
+*Nota:* Si su red no tiene una puerta de enlace, especifique la misma dirección IPv4 estática para la puerta de enlace.
+ a| 
+* Dirección IPv4 (CIDR):
+* Puerta de enlace:
+
+
+
+
+ a| 
+Subredes de red de administración (CIDR)
+ a| 
+
+|===
+
+
+== La información necesaria para conectar y configurar puertos 10-GbE en la controladora E5600SG
+
+Los cuatro puertos de 10 GbE del controlador E5600SG se conectan a la red de grid y la red de clientes de StorageGRID.
+
+
+NOTE: Consulte "conexiones de puertos de 10 GbE para la controladora E5600SG" para obtener más información acerca de las opciones de estos puertos.
+
+|===
+| Información necesaria | Su valor 
+
+
+ a| 
+Modo de enlace de puerto
+ a| 
+Elija una opción:
+
+* Fijo (predeterminado)
+* Agregado
+
+
+
+
+ a| 
+Puerto de conmutador para el puerto 1 (red cliente para modo fijo)
+ a| 
+
+
+
+ a| 
+Puerto de conmutador para el puerto 2 (red de cuadrícula para modo fijo)
+ a| 
+
+
+
+ a| 
+Puerto de conmutador para el puerto 3 (red cliente para modo fijo)
+ a| 
+
+
+
+ a| 
+Puerto de conmutador para el puerto 4 (red de cuadrícula para modo fijo)
+ a| 
+
+|===
+
+
+== Información necesaria para conectar el controlador E5600SG a Grid Network
+
+Grid Network para StorageGRID es una red necesaria que se utiliza para todo el tráfico interno de StorageGRID. El dispositivo se conecta a la red Grid mediante los puertos de 10 GbE en la controladora E5600SG.
+
+
+NOTE: Consulte "conexiones de puertos de 10 GbE para la controladora E5600SG" para obtener más información acerca de las opciones de estos puertos.
+
+|===
+| Información necesaria | Su valor 
+
+
+ a| 
+Modo de enlace de red
+ a| 
+Elija una opción:
+
+* Active-Backup (predeterminado)
+* LACP (802.3ad)
+
+
+
+
+ a| 
+Etiquetado VLAN habilitado
+ a| 
+Elija una opción:
+
+* No (predeterminado)
+* Sí
+
+
+
+
+ a| 
+Etiqueta de VLAN (si el etiquetado de VLAN está habilitado)
+ a| 
+Introduzca un valor entre 0 y 4095:
+
+
+
+ a| 
+Dirección IP asignada por DHCP para la red de cuadrícula, si está disponible después del encendido
+
+*Nota:* Si Grid Network incluye un servidor DHCP, el controlador E5600SG muestra la dirección IP asignada por DHCP para la Red de cuadrícula en su pantalla de siete segmentos después de que se inicie.
+ a| 
+* Dirección IPv4 (CIDR):
+* Puerta de enlace:
+
+
+
+
+ a| 
+Dirección IP estática que tiene previsto usar para el nodo de almacenamiento del dispositivo en la red de grid
+
+*Nota:* Si su red no tiene una puerta de enlace, especifique la misma dirección IPv4 estática para la puerta de enlace.
+ a| 
+* Dirección IPv4 (CIDR):
+* Puerta de enlace:
+
+
+
+
+ a| 
+Subredes de red de cuadrícula (CIDR)
+
+*Nota:* Si la red de cliente no está activada, la ruta predeterminada del controlador utilizará la puerta de enlace especificada aquí.
+ a| 
+
+|===
+
+
+== Información necesaria para conectar la controladora E5600SG a la red cliente
+
+La red de cliente para StorageGRID es una red opcional que se utiliza para proporcionar acceso de protocolo de cliente a la cuadrícula. El dispositivo se conecta a la red cliente mediante los puertos 10-GbE de la controladora E5600SG.
+
+
+NOTE: Consulte "conexiones de puertos de 10 GbE para la controladora E5600SG" para obtener más información acerca de las opciones de estos puertos.
+
+|===
+| Información necesaria | Su valor 
+
+
+ a| 
+Red de cliente habilitada
+ a| 
+Elija una opción:
+
+* No (predeterminado)
+* Sí
+
+
+
+
+ a| 
+Modo de enlace de red
+ a| 
+Elija una opción:
+
+* Active-Backup (predeterminado)
+* LACP (802.3ad)
+
+
+
+
+ a| 
+Etiquetado VLAN habilitado
+ a| 
+Elija una opción:
+
+* No (predeterminado)
+* Sí
+
+
+
+
+ a| 
+Etiqueta de VLAN (si el etiquetado de VLAN está habilitado)
+ a| 
+Introduzca un valor entre 0 y 4095:
+
+
+
+ a| 
+Dirección IP asignada por DHCP para la red cliente, si está disponible después del encendido
+ a| 
+* Dirección IPv4 (CIDR):
+* Puerta de enlace:
+
+
+
+
+ a| 
+Dirección IP estática que tiene previsto usar para el nodo de almacenamiento del dispositivo en la red cliente
+
+*Nota:* Si la red de cliente está activada, la ruta predeterminada del controlador utilizará la puerta de enlace especificada aquí.
+ a| 
+* Dirección IPv4 (CIDR):
+* Puerta de enlace:
+
+
+|===
+.Información relacionada
+xref:reviewing-appliance-network-connections-sg5600.adoc[Revisar las conexiones de red del dispositivo (SG5600)]
+
+xref:configuring-hardware.adoc[Configurar el hardware (SG5600)]
+
+xref:port-bond-modes-for-e5600sg-controller-ports.adoc[Modos de enlace de puertos para puertos de controladoras E5600SG]

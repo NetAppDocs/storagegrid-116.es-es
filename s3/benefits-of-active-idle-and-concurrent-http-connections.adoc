@@ -1,0 +1,21 @@
+---
+permalink: s3/benefits-of-active-idle-and-concurrent-http-connections.html 
+sidebar: sidebar 
+keywords: active http connection benefits, idle http connection benefits, concurrent http connection benefits 
+summary: La forma en que se configuran las conexiones HTTP puede afectar el rendimiento del sistema StorageGRID. Las configuraciones varían en función de si la conexión HTTP está activa o inactiva o si tiene varias conexiones simultáneas. 
+---
+= Ventajas de las conexiones HTTP activas, inactivas y simultáneas
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La forma en que se configuran las conexiones HTTP puede afectar el rendimiento del sistema StorageGRID. Las configuraciones varían en función de si la conexión HTTP está activa o inactiva o si tiene varias conexiones simultáneas.
+
+Puede identificar las ventajas en el rendimiento de los siguientes tipos de conexiones HTTP:
+
+* Conexiones HTTP inactivas
+* Conexiones HTTP activas
+* Conexiones HTTP simultáneas
+

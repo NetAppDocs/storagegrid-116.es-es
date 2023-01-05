@@ -1,0 +1,54 @@
+---
+permalink: admin/selecting-preferred-sender.html 
+sidebar: sidebar 
+keywords: preferred sender, admin nodes, primary admin node 
+summary: Si la implementación de StorageGRID incluye varios nodos de administrador, puede seleccionar qué nodo de administrador debe ser el remitente preferido de notificaciones. De forma predeterminada, se selecciona el nodo de administración principal, pero cualquier nodo de administración puede ser el remitente preferido. 
+---
+= Seleccione un remitente preferido
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si la implementación de StorageGRID incluye varios nodos de administrador, puede seleccionar qué nodo de administrador debe ser el remitente preferido de notificaciones. De forma predeterminada, se selecciona el nodo de administración principal, pero cualquier nodo de administración puede ser el remitente preferido.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+
+
+.Acerca de esta tarea
+La página *CONFIGURATION* > *System* > *Opciones de visualización* muestra qué nodo de administración está seleccionado actualmente para ser el emisor preferido. El nodo de administrador principal está seleccionado de forma predeterminada.
+
+En operaciones normales del sistema, solo el remitente preferido envía las siguientes notificaciones:
+
+* Mensajes de AutoSupport
+* Notificaciones SNMP
+* Mensajes de correo electrónico de alerta
+* Correos electrónicos de alarma (sistema heredado)
+
+
+Sin embargo, todos los demás nodos de administración (remitentes en espera) supervisan al remitente preferido. Si se detecta un problema, un remitente en espera también puede enviar estas notificaciones.
+
+Tanto el remitente preferido como el remitente en espera pueden enviar notificaciones en los siguientes casos:
+
+* Si los nodos de administración se convierten en "'desembarcados'" entre sí, tanto el remitente preferido como los remitentes en espera intentarán enviar notificaciones, y pueden recibirse varias copias de las notificaciones.
+* Después de que un remitente en espera detecta problemas con el remitente preferido y comienza a enviar notificaciones, es posible que el remitente preferido recupere su capacidad de enviar notificaciones. Si esto ocurre, es posible que se envíen notificaciones duplicadas. El remitente en espera dejará de enviar notificaciones cuando ya no detecte errores en el remitente preferido.
+
+
+
+NOTE: Cuando prueba notificaciones de alarma y mensajes de AutoSupport, todos los nodos administrador envían el correo electrónico de prueba. Cuando prueba las notificaciones de alerta, debe iniciar sesión en cada nodo de administrador para verificar la conectividad.
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *sistema* > *Opciones de pantalla*.
+. En el menú Opciones de pantalla, seleccione *Opciones*.
+. Seleccione el nodo de administración que desea establecer como remitente preferido de la lista desplegable.
++
+image::../media/display_options_preferred_sender.gif[Opciones de pantalla]
+
+. Seleccione *aplicar cambios*.
++
+El nodo de administrador se establece como el remitente preferido de notificaciones.
+
+

@@ -1,0 +1,43 @@
+---
+permalink: admin/viewing-storagegrid-license-information.html 
+sidebar: sidebar 
+keywords: storagegrid license, view license, licensed capacity of grid 
+summary: Puede ver la información de licencia del sistema StorageGRID, como la capacidad de almacenamiento máxima de su grid, cuando sea necesario. 
+---
+= Consulte la información de licencia de StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede ver la información de licencia del sistema StorageGRID, como la capacidad de almacenamiento máxima de su grid, cuando sea necesario.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+
+
+.Acerca de esta tarea
+Si se produce un problema con la licencia de software para este sistema StorageGRID, el panel Estado del Panel incluye un icono de estado de licencia y un enlace *Licencia*. El número indica cuántos problemas relacionados con la licencia existen.
+
+image::../media/dashboard_health_panel_license_status.png[Estado de licencia del panel de mantenimiento del panel de control]
+
+.Paso
+Para ver la licencia, realice una de las siguientes acciones:
+
+* En el panel Estado del panel, seleccione el icono de estado de la licencia o el enlace *Licencia*. Este vínculo sólo aparece si hay un problema con la licencia.
+* Seleccione *MANTENIMIENTO* > *sistema* > *Licencia*.
+
+
+Aparece la página Licencia y proporciona la siguiente información de sólo lectura acerca de la licencia actual:
+
+* ID del sistema de StorageGRID, que es el número de identificación exclusivo para esta instalación de StorageGRID
+* Número de serie de la licencia
+* Capacidad de almacenamiento bajo licencia del grid
+* Fecha de finalización de la licencia del software
+* Fecha de finalización del contrato de servicio de soporte
+* Contenido del archivo de texto de licencia
+
+
+
+NOTE: Para las licencias emitidas antes de StorageGRID 10.3, la capacidad de almacenamiento con licencia no está incluida en el archivo de licencia y se muestra un mensaje "Ver acuerdo de licencia" en lugar de un valor.

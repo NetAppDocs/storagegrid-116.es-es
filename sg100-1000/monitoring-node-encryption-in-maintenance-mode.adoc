@@ -1,0 +1,63 @@
+---
+permalink: sg100-1000/monitoring-node-encryption-in-maintenance-mode.html 
+sidebar: sidebar 
+keywords: storagegrid, sg100, sg1000, service appliance, services appliance, gateway Node, admin node, kms, key management server, monitor, monitoring, status, encryption 
+summary: 'Si habilitó el cifrado de nodos para el dispositivo durante la instalación, puede supervisar el estado de cifrado del nodo de cada nodo de dispositivo, incluidos el estado del cifrado del nodo y los detalles del servidor de gestión de claves \(KMS\).' 
+---
+= Supervisión del cifrado de nodos en modo de mantenimiento (SG100 y SG1000)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si habilitó el cifrado de nodos para el dispositivo durante la instalación, puede supervisar el estado de cifrado del nodo de cada nodo de dispositivo, incluidos el estado del cifrado del nodo y detalles del servidor de gestión de claves (KMS).
+
+.Lo que necesitará
+* Ha habilitado el cifrado de nodos para el dispositivo durante la instalación. No se puede habilitar el cifrado de nodos después de que el dispositivo se haya instalado.
+* Ya tienes xref:placing-appliance-into-maintenance-mode.adoc[puso el aparato en modo de mantenimiento].
+
+
+.Pasos
+. En el instalador del dispositivo StorageGRID, seleccione *Configurar hardware* > *cifrado de nodos*.
++
+image::../media/fde_monitor_in_maint_mode.png[Configuración de KMS Borrar]
+
++
+La página cifrado de nodos incluye tres secciones:
+
++
+** El estado de cifrado muestra si el cifrado de nodos está habilitado o deshabilitado para el dispositivo.
+** Detalles del servidor de gestión de claves muestra información sobre el KMS que se utiliza para cifrar el dispositivo. Puede expandir las secciones de certificados de servidor y cliente para ver los detalles y el estado del certificado.
++
+*** Para solucionar problemas con los propios certificados, como renovar certificados caducados, consulte xref:../admin/kms-configuring.adoc[Instrucciones para configurar KMS].
+*** Si hay problemas inesperados al conectarse a los hosts KMS, compruebe que xref:checking-dns-server-configuration.adoc[Los servidores del sistema de nombres de dominio (DNS) son correctos] y eso xref:configuring-network-links-sg100-and-sg1000.adoc[la red del dispositivo está configurada correctamente].
+*** Si no puede resolver problemas de certificado, póngase en contacto con el soporte técnico.
+
+
+** Clear KMS Key deshabilita el cifrado de nodos para el dispositivo, elimina la asociación entre el dispositivo y el servidor de gestión de claves configurado para el sitio StorageGRID y elimina todos los datos del dispositivo. Debe xref:clearing-key-management-server-configuration.adoc[Borre la clave KMS] Antes de poder instalar el dispositivo en otro sistema StorageGRID.
++
+
+IMPORTANT: Al borrar la configuración de KMS se eliminan los datos del dispositivo, lo que hace que no se pueda acceder a ellos de forma permanente. Estos datos no se pueden recuperar.
+
+
+
+. Cuando haya terminado de comprobar el estado de cifrado de nodo, reinicie el nodo. En el instalador del dispositivo StorageGRID, seleccione *Avanzado* > *Reiniciar controlador* y, a continuación, seleccione una de estas opciones:
++
+** Seleccione *Reiniciar en StorageGRID* para reiniciar el controlador con el nodo que vuelve a unir la cuadrícula. Seleccione esta opción si hizo trabajo en modo de mantenimiento y está listo para devolver el nodo a su funcionamiento normal.
+** Seleccione *Reiniciar en el modo de mantenimiento* para reiniciar el controlador con el nodo restante en modo de mantenimiento. (Esta opción solo está disponible si la controladora se encuentra en modo de mantenimiento). Seleccione esta opción si hay otras operaciones de mantenimiento que debe realizar en el nodo antes de poder volver a unirse a la cuadrícula.
++
+image::../media/reboot_controller_from_maintenance_mode.png[Reinicie la controladora en modo de mantenimiento]
+
++
+El dispositivo puede tardar hasta 20 minutos en reiniciarse y volver a unirse a la cuadrícula. Para confirmar que el reinicio ha finalizado y que el nodo ha vuelto a unirse a la cuadrícula, vuelva a Grid Manager. La página *NODES* debe mostrar un estado normal (sin icono) para el nodo del dispositivo, indicando que no hay alertas activas y que el nodo está conectado a la cuadrícula.
+
++
+image::../media/nodes_menu.png[El nodo del dispositivo se ha vuelto a unir a la cuadrícula]
+
+
+
+
+
+.Información relacionada
+xref:../admin/index.adoc[Administre StorageGRID]

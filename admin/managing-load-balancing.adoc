@@ -1,0 +1,27 @@
+---
+permalink: admin/managing-load-balancing.html 
+sidebar: sidebar 
+keywords: manage load balancing, balance workload, client ingest, client retrieval, distribute connection 
+summary: Las funciones de equilibrio de carga de StorageGRID se pueden usar para manejar cargas de trabajo de procesamiento y recuperación de los clientes S3 y Swift. El equilibrio de carga maximiza la velocidad y la capacidad de conexión distribuyendo las cargas de trabajo y las conexiones entre varios nodos de almacenamiento. 
+---
+= Gestionar el equilibrio de carga: Descripción general
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Las funciones de equilibrio de carga de StorageGRID se pueden usar para manejar cargas de trabajo de procesamiento y recuperación de los clientes S3 y Swift. El equilibrio de carga maximiza la velocidad y la capacidad de conexión distribuyendo las cargas de trabajo y las conexiones entre varios nodos de almacenamiento.
+
+Puede equilibrar las cargas de trabajo de clientes de las siguientes maneras:
+
+* Use el servicio Load Balancer, que se instala en los nodos de administrador y de puerta de enlace. El servicio Load Balancer proporciona equilibrio de carga de capa 7 y realiza terminación TLS de solicitudes de cliente, inspecciona las solicitudes y establece nuevas conexiones seguras a los nodos de almacenamiento. Este es el mecanismo de equilibrio de carga recomendado.
++
+Consulte xref:how-load-balancing-works-load-balancer-service.adoc[Cómo funciona el equilibrio de carga: Servicio de equilibrio de carga].
+
+* Utilice el servicio de equilibrio de carga de conexión (CLB) obsoleto, que se instala sólo en nodos de puerta de enlace. El servicio CLB proporciona equilibrio de carga de capa 4 y soporta costes de enlace.
++
+Consulte xref:how-load-balancing-works-clb-service.adoc[Cómo funciona el equilibrio de carga: Servicio CLB (obsoleto)].
+
+* Integre un equilibrador de carga de terceros. Si desea obtener más información, póngase en contacto con el representante de cuenta de NetApp.
+

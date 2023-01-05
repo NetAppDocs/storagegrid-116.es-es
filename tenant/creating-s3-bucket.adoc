@@ -1,0 +1,93 @@
+---
+permalink: tenant/creating-s3-bucket.html 
+sidebar: sidebar 
+keywords: how to create S3 bucket 
+summary: Puede usar el administrador de inquilinos para crear bloques S3 para los datos de objetos. Al crear un bloque, debe especificar el nombre y la región del bloque. Si la opción de configuración global de bloqueo de objetos S3 se encuentra habilitada para el sistema StorageGRID, de manera opcional, puede habilitar el bloqueo de objetos S3 para el bloque. 
+---
+= Crear bloque de S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede usar el administrador de inquilinos para crear bloques S3 para los datos de objetos. Al crear un bloque, debe especificar el nombre y la región del bloque. Si la opción de configuración global de bloqueo de objetos S3 se encuentra habilitada para el sistema StorageGRID, de manera opcional, puede habilitar el bloqueo de objetos S3 para el bloque.
+
+.Lo que necesitará
+* Ha iniciado sesión en el administrador de inquilinos mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Pertenece a un grupo de usuarios que tiene el permiso Administrar todos los cucharones o acceso raíz. Estos permisos anulan la configuración de los permisos en las políticas de grupo o bloque.
++
+
+NOTE: Los permisos para establecer o modificar las propiedades de Object Lock de grupos o objetos de S3 pueden ser concedidos por xref:../s3/bucket-and-group-access-policies.adoc[política de bloques o política de grupo].
+
+* Si tiene pensado crear un bloque con S3 Object Lock, ha habilitado la configuración global de S3 Object Lock para el sistema StorageGRID y ha revisado los requisitos para bloques y objetos de S3 Object Lock.
++
+xref:using-s3-object-lock.adoc[Utilice el bloqueo de objetos de S3]
+
+
+
+.Pasos
+. Seleccione *ALMACENAMIENTO (S3)* > *Cuchos*.
+. Seleccione *Crear cucharón*.
++
+image::../media/bucket_create_compliance_disabled.png[Cumplimiento de la función de creación de bloque deshabilitada]
+
+. Introduzca un nombre único para el bloque.
++
+
+IMPORTANT: No se puede cambiar el nombre del bloque después de crear el bloque.
+
++
+Los nombres de los bloques deben cumplir con las siguientes reglas:
+
++
+** Debe ser único en cada sistema StorageGRID (no solo dentro de la cuenta de inquilino).
+** Debe ser compatible con DNS.
+** Debe incluir al menos 3 y no más de 63 caracteres.
+** Cada etiqueta debe comenzar y terminar con una letra minúscula o un número y solo puede utilizar letras minúsculas, números y guiones.
+** No debe utilizar periodos en solicitudes de estilo alojadas virtuales. Los períodos provocarán problemas en la verificación del certificado comodín del servidor.
+
+
++
+
+NOTE: Para obtener más información, consulte https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html["Documentación de Amazon Web Services (AWS) sobre reglas de nomenclatura de bloques"^].
+
+. Seleccione la región para este segmento.
++
+El administrador de StorageGRID gestiona las regiones disponibles. La región de un bloque puede afectar la política de protección de datos aplicada a los objetos. De forma predeterminada, todos los bloques se crean en la `us-east-1` región.
+
++
+
+IMPORTANT: No se puede cambiar la región después de crear el bloque.
+
+. Seleccione *continuar*.
+. Opcionalmente, habilite el control de versiones del objeto para el bloque.
++
+Habilite el control de versiones de objetos si desea almacenar cada versión de cada objeto en este bloque. A continuación, puede recuperar versiones anteriores de un objeto según sea necesario.
+
+. Si aparece la sección S3 Object Lock, de forma opcional, habilite S3 Object Lock para el bloque.
++
+
+IMPORTANT: No se puede habilitar o deshabilitar S3 Object Lock después de crear el bloque.
+
++
+La sección S3 Object Lock aparece solo si se habilita la configuración global de S3 Object Lock.
+
++
+El bloqueo de objetos S3 debe estar habilitado para el bloque antes de que una aplicación cliente S3 pueda especificar la configuración de retención legal y hasta la fecha para los objetos agregados al bloque.
+
++
+Si habilita S3 Object Lock para un bloque, el control de versiones de bloques se habilita automáticamente. También puede hacerlo xref:../s3/operations-on-buckets.adoc#using-s3-object-lock-default-bucket-retention[especifique un modo de retención predeterminado y un período de retención predeterminado para el bloque] que se aplican a cada objeto ingerido en el bloque que no especifica su propia configuración de retención.
+
+. Seleccione *Crear cucharón*.
++
+El cucharón se crea y se agrega a la tabla de la página Cuches.
+
+
+
+.Información relacionada
+xref:../ilm/index.adoc[Gestión de objetos con ILM]
+
+xref:understanding-tenant-management-api.adoc[Comprender la API de gestión de inquilinos]
+
+xref:../s3/index.adoc[Use S3]

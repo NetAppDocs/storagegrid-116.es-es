@@ -1,0 +1,17 @@
+---
+permalink: sg5600/port-bond-modes-for-e5600sg-controller-ports.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, port bond, port bonding, port bond mode, port-bond mode 
+summary: Al configurar los enlaces de red para los puertos de controladoras E5600SG, puede utilizar la vinculación de puertos para los puertos 10-GbE que se conectan a la red de grid y la red de cliente opcional, y los puertos de gestión de 1-GbE que se conectan a la red de administración opcional. El enlace de puertos ayuda a proteger los datos proporcionando rutas redundantes entre las redes StorageGRID y el dispositivo. 
+---
+= Modos de enlace de puertos para los puertos de la controladora E5600SG
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Al configurar los enlaces de red para los puertos de controladoras E5600SG, puede utilizar la vinculación de puertos para los puertos 10-GbE que se conectan a la red de grid y la red de cliente opcional, y los puertos de gestión de 1-GbE que se conectan a la red de administración opcional. El enlace de puertos ayuda a proteger los datos proporcionando rutas redundantes entre las redes StorageGRID y el dispositivo.
+
+.Información relacionada
+xref:configuring-network-links-sg5600.adoc[Configurar enlaces de red (SG5600)]

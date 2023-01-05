@@ -1,0 +1,54 @@
+---
+permalink: primer/monitoring-and-managing-alerts.html 
+sidebar: sidebar 
+keywords: how to manage alerts 
+summary: El sistema de alertas proporciona una interfaz fácil de usar para detectar, evaluar y resolver los problemas que pueden ocurrir durante el funcionamiento de StorageGRID. 
+---
+= Supervisar y gestionar alertas
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El sistema de alertas proporciona una interfaz fácil de usar para detectar, evaluar y resolver los problemas que pueden ocurrir durante el funcionamiento de StorageGRID.
+
+El sistema de alertas está diseñado para ser su herramienta principal para supervisar cualquier problema que pueda producirse en el sistema StorageGRID.
+
+* El sistema de alertas se centra en los problemas que pueden llevar a la práctica en el sistema. Se activan alertas para eventos que requieren su atención inmediata, no para eventos que se pueden ignorar de forma segura.
+* Las páginas Alertas actuales y Alertas resueltas proporcionan una interfaz fácil de usar para ver los problemas actuales e históricos. Puede ordenar el listado por alertas individuales y grupos de alertas. Por ejemplo, podría ordenar todas las alertas por nodo/sitio para ver qué alertas afectan a un nodo concreto. O bien, se pueden ordenar las alertas de un grupo por tiempo activadas para encontrar la instancia más reciente de una alerta específica.
+* Se agrupan varias alertas del mismo tipo en un correo electrónico para reducir el número de notificaciones. Además, se muestran varias alertas del mismo tipo como un grupo en las páginas Alertas y Alertas resueltas actuales. Puede expandir y contraer grupos de alertas para mostrar u ocultar las alertas individuales. Por ejemplo, si varios nodos informan de la alerta *no se puede comunicar con el nodo*, sólo se envía un correo electrónico y la alerta se muestra como un grupo en la página Alertas actuales.
++
+image::../media/alerts_current_page.png[Página Alertas]
+
+* Las alertas utilizan nombres y descripciones intuitivos que le ayudan a entender más rápidamente el problema. Las notificaciones de alerta incluyen detalles sobre el nodo y el sitio afectado, la gravedad de alerta, la hora en la que se activó la regla de alerta y el valor actual de las métricas relacionadas con la alerta.
+* Las notificaciones de alertas por correo electrónico y los listados de alertas de las páginas actuales de Alertas y Alertas resueltas ofrecen acciones recomendadas para resolver una alerta. Estas acciones recomendadas suelen incluir enlaces directos a documentación de StorageGRID para facilitar la búsqueda y el acceso a procedimientos más detallados para la solución de problemas.
++
+image::../media/alerts_page_details_modal.png[Detalles de la página Alertas modal]
+
+
+
+
+NOTE: El sistema de alarma heredado está obsoleto. La interfaz de usuario y las API del sistema de alarma heredado se eliminarán en una versión futura. El sistema de alerta ofrece ventajas importantes y es más fácil de usar.
+
+
+
+== Gestionar alertas
+
+Todos los usuarios de StorageGRID pueden ver alertas. Si tiene el permiso acceso raíz o Administrar alertas, también puede administrar alertas, como se indica a continuación:
+
+* Si necesita suprimir temporalmente las notificaciones de una alerta en uno o más niveles de gravedad, puede silenciar fácilmente una regla de alerta específica durante una duración determinada. Puede silenciar una regla de alerta de toda la cuadrícula, un solo sitio o un único nodo.
+* Puede editar las reglas de alerta predeterminadas si es necesario. Puede deshabilitar una regla de alerta por completo o cambiar sus condiciones de activación y duración.
+* Puede crear reglas de alerta personalizadas para tener en cuenta las condiciones específicas que son relevantes para su situación y para proporcionar sus propias acciones recomendadas. Para definir las condiciones de una alerta personalizada, debe crear expresiones mediante las métricas Prometheus disponibles en la sección Metrics de la API de gestión de grid.
++
+Por ejemplo, esta expresión provoca que se active una alerta si la cantidad de RAM instalada para un nodo es inferior a 24,000,000,000 bytes (24 GB).
+
++
+[listing]
+----
+node_memory_MemTotal < 24000000000
+----
+
+
+.Información relacionada
+xref:../monitor/index.adoc[Supervisión y solución de problemas]

@@ -1,0 +1,21 @@
+---
+permalink: maintain/hotfix-planning-and-preparation.html 
+sidebar: sidebar 
+keywords: storagegrid, hotfix, prepare for a hotfix, plan for a hotfix 
+summary: Debe planificar antes de aplicar una revisión para garantizar una interrupción mínima en su sistema StorageGRID. 
+---
+= Planifique y prepare una revisión
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe planificar antes de aplicar una revisión para garantizar una interrupción mínima en su sistema StorageGRID.
+
+.Pasos
+* xref:how-your-system-is-affected-when-you-apply-hotfix.adoc[Cómo se ve afectado el sistema cuando se aplica una revisión]
+* xref:obtaining-required-materials-for-hotfix.adoc[Obtener los materiales necesarios para una revisión]
+* xref:downloading-hotfix-file.adoc[Descargando el archivo de revisión]
+* xref:checking-systems-condition-before-applying-hotfix.adoc[Comprobación de la condición del sistema antes de aplicar una revisión]
+

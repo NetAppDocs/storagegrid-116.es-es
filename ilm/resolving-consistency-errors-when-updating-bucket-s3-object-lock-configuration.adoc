@@ -1,0 +1,38 @@
+---
+permalink: ilm/resolving-consistency-errors-when-updating-bucket-s3-object-lock-configuration.html 
+sidebar: sidebar 
+keywords: consistency error, s3 object lock and consistency 
+summary: Si un sitio de centro de datos o varios nodos de almacenamiento de un sitio no están disponibles, es posible que deba ayudar a los usuarios inquilinos S3 a aplicar los cambios en la configuración del bloqueo de objetos S3 o del cumplimiento heredado. 
+---
+= Resuelva los errores de coherencia al actualizar la configuración de bloqueo de objetos de S3 o cumplimiento heredado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si un sitio de centro de datos o varios nodos de almacenamiento de un sitio no están disponibles, es posible que deba ayudar a los usuarios inquilinos S3 a aplicar los cambios en la configuración del bloqueo de objetos S3 o del cumplimiento heredado.
+
+Los usuarios inquilinos que tienen bloques con S3 Object Lock (o Legacy Compliance) habilitado pueden cambiar ciertas opciones. Por ejemplo, es posible que un usuario arrendatario que utilice el bloqueo de objetos S3 deba poner una versión de objeto en retención legal.
+
+Cuando un usuario tenant actualiza la configuración de un bloque de S3 o una versión de objeto, StorageGRID intenta actualizar inmediatamente los metadatos del objeto o el bloque en el grid. Si el sistema no puede actualizar los metadatos debido a que un sitio de centro de datos o varios nodos de almacenamiento no están disponibles, se muestra un mensaje de error. Específicamente:
+
+* Los usuarios de tenant Manager ven el siguiente mensaje de error:
++
+image::../media/bucket_configure_compliance_consistency_error.gif[captura de pantalla del mensaje de advertencia si un servicio está inactivo cuando se cambia la configuración de cumplimiento del cucharón]
+
+* Los usuarios de la API de gestión de inquilinos y los usuarios de la API S3 reciben un código de respuesta de `503 Service Unavailable` con texto de mensaje similar.
+
+
+Para resolver este error, siga estos pasos:
+
+. Se debe intentar que todos los nodos o sitios de almacenamiento estén disponibles de nuevo Lo antes posible..
+. Si no puede dejar suficientes nodos de almacenamiento en cada sitio disponible, póngase en contacto con el soporte técnico, que puede ayudarle a recuperar nodos y asegurarse de que los cambios se apliquen de manera coherente en la cuadrícula.
+. Una vez resuelto el problema subyacente, recuerde al usuario inquilino que vuelva a intentar cambiar sus cambios de configuración.
+
+
+.Información relacionada
+* xref:../tenant/index.adoc[Usar una cuenta de inquilino]
+* xref:../s3/index.adoc[Use S3]
+* xref:../maintain/index.adoc[Recuperación y mantenimiento]
+

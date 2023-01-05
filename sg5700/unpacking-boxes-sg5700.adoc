@@ -1,0 +1,69 @@
+---
+permalink: sg5700/unpacking-boxes-sg5700.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5700, storage node, storage appliance, install, installation, unpack, unbox, prepare, inventory, components, contents 
+summary: Antes de instalar el aparato StorageGRID, desembale todas las cajas y compare el contenido con los artículos del recibo de embalaje. 
+---
+= Cajas de desempaquetado (SG5700)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de instalar el aparato StorageGRID, desembale todas las cajas y compare el contenido con los artículos del recibo de embalaje.
+
+* *SG5712 con 12 unidades instaladas*
++
+image::../media/de212c_table_size.gif[Dispositivo SG5712 2U]
+
+* *Dispositivo SG5760 sin unidades instaladas*
++
+image::../media/de460c_table_size.gif[Dispositivo SG5760 4U]
+
+* *Bisel frontal para el aparato*
++
+image::../media/sg5700_front_bezels.gif[Carretes de SG5712 y SG5760]
+
+* *Kit de guías con instrucciones*
++
+image::../media/rail_kit.gif[Kit de rieles]
+
+* *SG5760: Sesenta unidades*
++
+image::../media/sg5760_drive.gif[Unidad]
+
+* *SG5760: Identificadores*
++
+image::../media/handles.gif[SG5760 gestiona]
+
+* *SG5760: Soportes de fondo y tuercas de jaula para la instalación de bastidores de agujero cuadrado*
++
+image::../media/back_brackets_table_size.gif[Soportes y tuercas de jaula para SG5760]
+
+
+
+
+
+== Cables y conectores
+
+El envío del dispositivo StorageGRID incluye los siguientes cables y conectores:
+
+* *Dos cables de alimentación para su país*
++
+image::../media/power_cords.gif[Cables de alimentación]
+
++
+Es posible que el armario tenga cables de alimentación especiales que utilice en lugar de los cables de alimentación que se suministran con el aparato.
+
+* *Cables ópticos y transceptores SFP*
++
+image::../media/fc_cable_and_sfp.gif[Cables ópticos y SFP]
+
++
+Dos cables ópticos para los puertos de interconexión de FC
+
++
+Ocho transceptores SFP+, compatible con los cuatro puertos FC interconnect de 16 GB/s y los cuatro puertos de red de 10 GbE
+
+

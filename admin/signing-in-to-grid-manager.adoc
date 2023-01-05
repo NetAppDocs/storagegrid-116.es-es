@@ -1,0 +1,127 @@
+---
+permalink: admin/signing-in-to-grid-manager.html 
+sidebar: sidebar 
+keywords: grid manager, sign in, log in 
+summary: 'Para acceder a la página de inicio de sesión de Grid Manager, introduzca el nombre de dominio completo \(FQDN\) o la dirección IP de un nodo de administración en la barra de direcciones de un explorador web compatible.' 
+---
+= Inicie sesión en Grid Manager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para acceder a la página de inicio de sesión de Grid Manager, introduzca el nombre de dominio completo (FQDN) o la dirección IP de un nodo de administración en la barra de direcciones de un explorador web compatible.
+
+.Lo que necesitará
+* Tiene sus credenciales de inicio de sesión.
+* Tiene la dirección URL de Grid Manager.
+* Está utilizando un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Las cookies están habilitadas en su navegador web.
+* Tiene permisos de acceso específicos.
+
+
+.Acerca de esta tarea
+Cada sistema StorageGRID incluye un nodo de administrador primario y cualquier número de nodos de administrador que no son primarios. Puede iniciar sesión en Grid Manager en cualquier nodo de administrador para gestionar el sistema StorageGRID. Sin embargo, los nodos del administrador no son exactamente los mismos:
+
+* Las confirmaciones de alarma (sistema heredado) realizadas en un nodo de administración no se copian en otros nodos de administración. Por este motivo, es posible que la información mostrada para las alarmas no tenga el mismo aspecto en cada nodo de administración.
+* Algunos procedimientos de mantenimiento solo se pueden realizar desde el nodo de administración principal.
+
+
+Si se incluyen nodos de administración en un grupo de alta disponibilidad (ha), puede conectarse mediante la dirección IP virtual del grupo de alta disponibilidad o un nombre de dominio completo que asigne la dirección IP virtual. El nodo de administración principal se debe seleccionar como la interfaz principal del grupo, de modo que al acceder a Grid Manager, se tiene acceso en el nodo de administración principal a menos que el nodo de administración principal no esté disponible.
+
+.Pasos
+. Inicie un explorador web compatible.
+. En la barra de direcciones del navegador, introduzca la dirección URL de Grid Manager:
++
+`https://_FQDN_or_Admin_Node_IP_/`
+
++
+donde `_FQDN_or_Admin_Node_IP_` Es un nombre de dominio completo o la dirección IP de un nodo de administrador o la dirección IP virtual de un grupo ha de nodos de administrador.
+
++
+Si debe acceder a Grid Manager en un puerto distinto del puerto estándar para HTTPS (443), introduzca lo siguiente, donde `_FQDN_or_Admin_Node_IP_` Es un nombre de dominio completo o una dirección IP y el puerto es el número de puerto:
+
++
+`https://_FQDN_or_Admin_Node_IP:port_/`
+
+. Si se le solicita una alerta de seguridad, instale el certificado mediante el asistente de instalación del explorador (consulte xref:using-storagegrid-security-certificates.adoc[Acerca de los certificados de seguridad]).
+. Inicie sesión en Grid Manager:
++
+** Si su sistema StorageGRID no utiliza el inicio de sesión único (SSO):
++
+... Introduzca su nombre de usuario y contraseña para el administrador de grid.
+... Seleccione *Iniciar sesión*.
++
+image::../media/sign_in_grid_manager_no_sso.gif[Iniciar sesión en la página]
+
+
+
+** Si SSO está habilitado para el sistema StorageGRID y esta es la primera vez que accede a la URL en este navegador:
++
+... Seleccione *Iniciar sesión*. Puede dejar el campo ID de cuenta en blanco.
++
+image::../media/sso_sign_in_first_time.gif[Pantalla de inicio de sesión si SSO está activado y no hay cookies]
+
+... Introduzca sus credenciales de SSO estándar en la página de inicio de sesión con SSO de su organización. Por ejemplo:
++
+image::../media/sso_organization_page.gif[Ejemplo de página de inicio de sesión de organización para SSO]
+
+
+
+** Si SSO está habilitado para el sistema StorageGRID y ya ha accedido previamente a Grid Manager o a una cuenta de inquilino:
++
+... Realice una de las siguientes acciones:
++
+**** Introduzca *0* (el ID de cuenta de Grid Manager) y seleccione *Iniciar sesión*.
+**** Seleccione *Grid Manager* si aparece en la lista de cuentas recientes y seleccione *Iniciar sesión*.
++
+image::../media/sign_in_grid_manager_sso.gif[Seleccione Grid Manager en la lista de cuentas recientes si SSO está activado]
+
+
+
+... Inicie sesión con sus credenciales SSO estándar en la página de inicio de sesión SSO de su organización. Cuando haya iniciado sesión, aparecerá la página de inicio de Grid Manager, que incluye el Panel. Para saber qué información se proporciona, consulte xref:../monitor/viewing-dashboard.adoc[Consulte la consola].
+
+
+
+
++
+image::../media/grid_manager_dashboard.png[Consola]
+
+. Si desea iniciar sesión en otro nodo de administración:
++
+[cols="1a,2a"]
+|===
+| Opción | Pasos 
+
+
+ a| 
+SSO no está habilitado
+ a| 
+.. En la barra de direcciones del navegador, introduzca el nombre de dominio completo o la dirección IP del otro nodo de administración. Incluya el número de puerto según sea necesario.
+.. Introduzca su nombre de usuario y contraseña para el administrador de grid.
+.. Seleccione *Iniciar sesión*.
+
+
+
+
+ a| 
+SSO habilitado
+ a| 
+En la barra de direcciones del navegador, introduzca el nombre de dominio completo o la dirección IP del otro nodo de administración.
+
+Si inició sesión en un nodo de administrador, puede acceder a otros nodos de administrador sin tener que volver a iniciar sesión. Sin embargo, si su sesión SSO caduca, se le solicitará de nuevo sus credenciales.
+
+*Nota:* SSO no está disponible en el puerto restringido de Grid Manager. Debe utilizar el puerto HTTPS predeterminado (443) si desea que los usuarios se autentiquen con inicio de sesión único.
+
+|===
+
+
+.Información relacionada
+* xref:controlling-access-through-firewalls.adoc[Controlar el acceso mediante firewalls]
+* xref:configuring-sso.adoc[Configurar el inicio de sesión único]
+* xref:managing-admin-groups.adoc[Gestione los grupos de administradores]
+* xref:managing-high-availability-groups.adoc[Gestión de grupos de alta disponibilidad]
+* xref:../tenant/index.adoc[Usar una cuenta de inquilino]
+* xref:../monitor/index.adoc[Supervisión y solución de problemas]
+

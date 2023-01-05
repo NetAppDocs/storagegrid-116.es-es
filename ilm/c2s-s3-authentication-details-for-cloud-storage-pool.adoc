@@ -1,0 +1,64 @@
+---
+permalink: ilm/c2s-s3-authentication-details-for-cloud-storage-pool.html 
+sidebar: sidebar 
+keywords: cloud storage pool with C2S, commercial cloud services, c2s access portal 
+summary: 'Para utilizar el servicio Commercial Cloud Services \(C2S\) S3 como un pool de almacenamiento en cloud, debe configurar C2S Access Portal \(CAP\) como el tipo de autenticación, de modo que StorageGRID pueda solicitar credenciales temporales para acceder al bloque de S3 de su cuenta C2S.' 
+---
+= C2S S3: Especifique los detalles de la autenticación de un pool de almacenamiento en el cloud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para utilizar el servicio S3 de Commercial Cloud Services (C2S) como un Pool de almacenamiento en cloud, debe configurar C2S Access Portal (CAP) como el tipo de autenticación, de modo que StorageGRID pueda solicitar credenciales temporales para acceder al bloque de S3 de su cuenta C2S.
+
+.Lo que necesitará
+* Introdujo la información básica de un pool de almacenamiento en cloud de Amazon S3, incluido el extremo de servicio.
+* Conoce la dirección URL completa que StorageGRID utilizará para obtener credenciales temporales del servidor CAP, incluidos todos los parámetros API necesarios y opcionales asignados a su cuenta C2S.
+* Tiene un certificado de CA de servidor emitido por una entidad de certificación gubernamental (CA) correspondiente. StorageGRID utiliza este certificado para comprobar la identidad del servidor CAP. El certificado de CA del servidor debe utilizar la codificación PEM.
+* Tiene un certificado de cliente emitido por una autoridad de certificación gubernamental (CA) correspondiente. StorageGRID utiliza este certificado para identificarse al servidor CAP. El certificado de cliente debe utilizar la codificación PEM y debe tener acceso a su cuenta C2S.
+* Tiene una clave privada codificada en PEM para el certificado de cliente.
+* Si la clave privada del certificado de cliente está cifrada, tendrá la frase de contraseña para descifrarla.
+
+
+.Pasos
+. En la sección *autenticación*, seleccione *CAP (Portal de acceso de C2S)* en el menú desplegable *Tipo de autenticación*.
++
+Aparecen los campos de autenticación CAP C2S.
+
++
+image::../media/cloud_storage_pool_create_c2s.png[Creación de Cloud Storage Pool C2S]
+
+. Proporcione la siguiente información:
++
+.. Para *URL de credenciales temporales*, introduzca la dirección URL completa que StorageGRID utilizará para obtener credenciales temporales del servidor CAP, incluidos todos los parámetros API necesarios y opcionales asignados a su cuenta C2S.
+.. Para *Certificado CA de servidor*, seleccione *Seleccionar nuevo* y cargue el certificado de CA codificado con PEM que StorageGRID utilizará para verificar el servidor CAP.
+.. Para *Certificado de cliente*, seleccione *Seleccionar nuevo* y cargue el certificado codificado con PEM que StorageGRID utilizará para identificarse al servidor CAP.
+.. Para *clave privada de cliente*, seleccione *Seleccionar nuevo* y cargue la clave privada codificada con PEM para el certificado de cliente.
++
+Si la clave privada está cifrada, se debe utilizar el formato tradicional. (No se admite el formato cifrado PKCS #8).
+
+.. Si la clave privada del cliente está cifrada, introduzca la frase de acceso para descifrar la clave privada del cliente. De lo contrario, deje en blanco el campo *frase de paso de clave privada cliente*.
+
+
+. En la sección Server Verification, introduzca la siguiente información:
++
+.. Para *validación de certificados*, seleccione *utilizar certificado de CA personalizado*.
+.. Seleccione *Seleccionar nuevo* y cargue el certificado de CA codificado con PEM.
+
+
+. Seleccione *Guardar*.
+
+
+Cuando guarda un pool de almacenamiento en cloud, StorageGRID hace lo siguiente:
+
+* Valida que el bloque y el extremo de servicio existen y que se pueden alcanzar utilizando las credenciales especificadas.
+* Escribe un archivo de marcador en el bloque para identificar el bloque como un pool de almacenamiento en el cloud. No elimine nunca este archivo, que se denomina `x-ntap-sgws-cloud-pool-uuid`.
+
+
+Si la validación de Cloud Storage Pool falla, recibirá un mensaje de error que explica por qué falló la validación. Por ejemplo, se puede informar un error si existe un error de certificado o si el bloque especificado no existe todavía.
+
+image::../media/cloud_storage_pool_create_error.gif[Error al crear el pool de almacenamiento en cloud]
+
+Consulte las instrucciones para xref:troubleshooting-cloud-storage-pools.adoc[Solución de problemas de Cloud Storage Pools], Resuelva el problema e intente volver a guardar el grupo de almacenamiento en la nube.

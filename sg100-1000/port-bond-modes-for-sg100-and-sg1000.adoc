@@ -1,0 +1,14 @@
+---
+permalink: sg100-1000/port-bond-modes-for-sg100-and-sg1000.html 
+sidebar: sidebar 
+keywords: storagegrid, sg100, sg1000, service appliance, services appliance, gateway Node, admin node, port bond, port bonding, port bond mode, port-bond mode 
+summary: Al configurar enlaces de red para los dispositivos SG100 y SG1000, puede utilizar conexiones de puertos para los puertos que se conectan a la red Grid y a la red de clientes opcional, así como puertos de gestión de 1 GbE que se conectan a la red de administración opcional. El enlace de puertos ayuda a proteger los datos proporcionando rutas redundantes entre las redes StorageGRID y el dispositivo. 
+---
+= Modos de enlace de puerto para los dispositivos SG100 y SG1000
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Al configurar enlaces de red para los dispositivos SG100 y SG1000, puede utilizar conexiones de puertos para los puertos que se conectan a la red Grid y a la red de clientes opcional, así como puertos de gestión de 1 GbE que se conectan a la red de administración opcional. El enlace de puertos ayuda a proteger los datos proporcionando rutas redundantes entre las redes StorageGRID y el dispositivo.

@@ -1,0 +1,85 @@
+---
+permalink: rhel/where-to-go-next.html 
+sidebar: sidebar 
+keywords: what to do after red hat linux centos installation 
+summary: Tras completar una instalación, debe realizar una serie de pasos de integración y configuración. Se requieren algunos pasos; otros son opcionales. 
+---
+= A continuación, ¿dónde ir
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tras completar una instalación, debe realizar una serie de pasos de integración y configuración. Se requieren algunos pasos; otros son opcionales.
+
+
+
+== Tareas requeridas
+
+* Cree una cuenta de inquilino para cada protocolo de cliente (Swift o S3) que se usará para almacenar objetos en su sistema de StorageGRID.
+* Controlar el acceso al sistema configurando grupos y cuentas de usuario. Opcionalmente, puede configurar un origen de identidad federado (como Active Directory u OpenLDAP) para que pueda importar grupos de administración y usuarios. También puede crear usuarios y grupos locales.
+* Integre y pruebe las aplicaciones cliente API S3 o Swift que usará para cargar objetos en el sistema StorageGRID.
+* Cuando esté listo, configure las reglas de gestión del ciclo de vida de la información (ILM) y la política de ILM que desee usar para proteger los datos de los objetos.
++
+
+NOTE: Al instalar StorageGRID, se activa la política predeterminada de ILM, la política de copias base 2. Esta política incluye la regla de gestión del ciclo de vida de la información en stock (hacer 2 copias) y se aplica si no se ha activado ninguna otra política.
+
+* Si la instalación incluye nodos de almacenamiento del dispositivo, use el software SANtricity para completar las siguientes tareas:
++
+** Conéctese a cada dispositivo StorageGRID.
+** Comprobar recepción de datos AutoSupport.
+
+
+* Si el sistema StorageGRID incluye cualquier nodo de archivado, configure la conexión del nodo de archivado con el sistema de almacenamiento de archivado externo de destino.
+
+
+
+NOTE: Si algún nodo de archivado utilizará Tivoli Storage Manager como sistema de almacenamiento de archivado externo, también deberá configurar Tivoli Storage Manager.
+
+* Revise y siga las directrices de optimización del sistema StorageGRID para eliminar los riesgos de seguridad.
+* Configurar las notificaciones por correo electrónico para las alertas del sistema.
+
+
+
+
+== Tareas opcionales
+
+* Si desea recibir notificaciones del sistema de alarmas (heredadas), configure listas de correo y notificaciones por correo electrónico para alarmas.
+* Actualice las direcciones IP del nodo de grid si han cambiado desde que planeó la implementación y generó el paquete de recuperación. Consulte información sobre el cambio de direcciones IP en las instrucciones de recuperación y mantenimiento.
+* Configurar el cifrado del almacenamiento, si es necesario.
+* Configure la compresión del almacenamiento para reducir el tamaño de los objetos almacenados, si es necesario.
+* Configure el acceso de los clientes de auditoría. Puede configurar el acceso al sistema para fines de auditoría a través de un recurso compartido de archivos NFS o CIFS. Consulte las instrucciones para administrar StorageGRID.
+
+
+
+NOTE: La exportación de auditorías por CIFS/Samba ha sido obsoleta y se eliminará en una futura versión de StorageGRID.
+
+.Información relacionada
+xref:../admin/index.adoc[Administre StorageGRID]
+
+xref:../s3/index.adoc[Use S3]
+
+xref:../swift/index.adoc[Use Swift]
+
+xref:../ilm/index.adoc[Gestión de objetos con ILM]
+
+xref:../monitor/index.adoc[Supervisión y solución de problemas]
+
+xref:../maintain/index.adoc[Recuperación y mantenimiento]
+
+xref:../sg100-1000/index.adoc[Servicios de aplicaciones SG100 y SG1000]
+
+xref:../sg5600/index.adoc[Dispositivos de almacenamiento SG5600]
+
+xref:../sg5700/index.adoc[Dispositivos de almacenamiento SG5700]
+
+xref:../sg6000/index.adoc[Dispositivos de almacenamiento SG6000]
+
+xref:../release-notes/index.adoc[Notas de la versión]
+
+xref:../harden/index.adoc[Endurecimiento del sistema]
+
+xref:../audit/index.adoc[Revisar los registros de auditoría]
+
+xref:../upgrade/index.adoc[Actualizar el software de]

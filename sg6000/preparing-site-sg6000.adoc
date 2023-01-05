@@ -1,0 +1,122 @@
+---
+permalink: sg6000/preparing-site-sg6000.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, install, installation, site prep, site preparating, preparing site, site requirements, requirements, site, dimensions, weight, weights, temperature, humidity, altitude, airflow, heat, wiring, power, grounding, facility 
+summary: Antes de instalar el dispositivo, debe asegurarse de que el sitio y el armario o rack que desee usar cumplan con las especificaciones de un dispositivo StorageGRID. 
+---
+= Sitio de preparación (SG6000)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de instalar el dispositivo, debe asegurarse de que el sitio y el armario o rack que desee usar cumplan con las especificaciones de un dispositivo StorageGRID.
+
+.Pasos
+. Confirmar que el emplazamiento cumple los requisitos de temperatura, humedad, rango de altitud, flujo de aire, disipación de calor, cableado, alimentación y conexión a tierra. Si desea obtener más información, consulte Hardware Universe de NetApp.
+. Confirme que su ubicación ofrece una potencia de CA de 240 voltios para el SG6060 o una potencia de CA de 120 voltios para el SGF6024.
+. Obtenga un armario o rack de 19 pulgadas (48.3 cm) para colocar bandejas de este tamaño (sin cables):
++
+|===
+| Tipo de bandeja | Altura | Anchura | Profundidad | Peso máximo 
+
+
+ a| 
+*Bandeja de controladores E2860* para SG6060
+ a| 
+6.87 pda
+
+(17.46 cm)
+ a| 
+17.66 pda
+
+(44.86 cm)
+ a| 
+38.25 pda
+
+(97.16 cm)
+ a| 
+250 lb.
+
+(113 kg)
+
+
+
+ a| 
+*Estante de expansión opcional* para SG6060 (uno o dos)
+ a| 
+6.87 pda
+
+(17.46 cm)
+ a| 
+17.66 pda
+
+(44.86 cm)
+ a| 
+38.25 pda
+
+(97.16 cm)
+ a| 
+250 lb.
+
+(113 kg)
+
+
+
+ a| 
+*Estante del controlador EF570* para SGF6024
+ a| 
+3.35 pda
+
+(8.50 cm)
+ a| 
+17.66 pda
+
+(44.86 cm)
+ a| 
+19.00 pda
+
+(48.26 cm)
+ a| 
+51.74 lb.
+
+(23.47 kg)
+
+
+
+ a| 
+*Controlador SG6000-CN* para cada aparato
+ a| 
+1.70 pda
+
+(4.32 cm)
+ a| 
+17.32 pda
+
+(44.0 cm)
+ a| 
+32.0 pda
+
+(81.3 cm)
+ a| 
+39 lb.
+
+(17.7 kg)
+
+|===
+. Decida dónde va a instalar el aparato.
++
+
+CAUTION: Al instalar la bandeja de controladoras E2860 o las bandejas de expansión opcionales, instale el hardware desde la parte inferior hasta la parte superior del rack o armario para evitar que el equipo se vuelque. Para garantizar que el equipo más pesado se encuentra en la parte inferior del armario o bastidor, instale el controlador SG6000-CN encima de la bandeja de controladores E2860 y las bandejas de expansión.
+
++
+
+IMPORTANT: Antes de realizar la instalación, compruebe que los cables ópticos de 0,5 m que se suministran con el aparato o los cables que suministra, tienen la longitud suficiente para el diseño planificado.
+
+
+
+.Información relacionada
+https://hwu.netapp.com["Hardware Universe de NetApp"^]
+
+https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^]

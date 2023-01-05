@@ -1,0 +1,127 @@
+---
+section: tenant
+title: Usar una cuenta de inquilino
+entries:
+- title: Descripción general
+  pdf-filename: Usar una cuenta de inquilino de StorageGRID
+  url: "/tenant/index.html"
+- title: Cómo iniciar sesión y salir
+  entries:
+  - title: Inicie sesión en el Administrador de inquilinos
+    url: "/tenant/signing-in-to-tenant-manager.html"
+  - title: Cierre la sesión del responsable de inquilinos
+    url: "/tenant/signing-out-of-tenant-manager.html"
+- title: Consola de tenant Manager
+  url: "/tenant/understanding-tenant-manager-dashboard.html"
+- title: API de gestión de inquilinos
+  entries:
+  - title: Comprender la API de gestión de inquilinos
+    url: "/tenant/understanding-tenant-management-api.html"
+  - title: Creación de versiones de la API de gestión de inquilinos
+    url: "/tenant/tenant-management-api-versioning.html"
+  - title: Protección contra falsificación de solicitudes entre sitios (CSRF)
+    url: "/tenant/protecting-against-cross-site-request-forgery-csrf.html"
+- title: Gestione el acceso al sistema
+  entries:
+  - title: Usar la federación de identidades
+    url: "/tenant/using-identity-federation.html"
+  - title: Gestionar grupos
+    entries:
+    - title: Cree grupos para el inquilino de S3
+      url: "/tenant/creating-groups-for-s3-tenant.html"
+    - title: Cree grupos para el inquilino Swift
+      url: "/tenant/creating-groups-for-swift-tenant.html"
+    - title: Permisos de gestión de inquilinos
+      url: "/tenant/tenant-management-permissions.html"
+    - title: Ver y editar detalles del grupo
+      url: "/tenant/viewing-and-editing-group-details.html"
+    - title: Añadir usuarios a un grupo local
+      url: "/tenant/adding-users-to-local-group.html"
+    - title: Editar el nombre del grupo
+      url: "/tenant/editing-group-name.html"
+    - title: Grupo duplicado
+      url: "/tenant/duplicating-group.html"
+    - title: Eliminar grupo
+      url: "/tenant/deleting-group.html"
+  - title: Gestionar usuarios locales
+    url: "/tenant/managing-local-users.html"
+- title: Gestione cuentas de inquilinos S3
+  entries:
+  - title: Gestión de claves de acceso de S3
+    url: "/tenant/managing-s3-access-keys.html"
+    entries:
+    - title: Cree sus propias claves de acceso S3
+      url: "/tenant/creating-your-own-s3-access-keys.html"
+    - title: Consulte las claves de acceso de S3
+      url: "/tenant/viewing-your-s3-access-keys.html"
+    - title: Elimine sus propias claves de acceso de S3
+      url: "/tenant/deleting-your-own-s3-access-keys.html"
+    - title: Cree las claves de acceso S3 de otro usuario
+      url: "/tenant/creating-another-users-s3-access-keys.html"
+    - title: Ver las claves de acceso S3 de otro usuario
+      url: "/tenant/viewing-another-users-s3-access-keys.html"
+    - title: Elimine las claves de acceso S3 de otro usuario
+      url: "/tenant/deleting-another-users-s3-access-keys.html"
+  - title: Gestión de bloques S3
+    entries:
+    - title: Use el bloqueo de objetos de S3 con inquilinos
+      url: "/tenant/using-s3-object-lock.html"
+    - title: Crear bloque de S3
+      url: "/tenant/creating-s3-bucket.html"
+    - title: Ver detalles de bloques de S3
+      url: "/tenant/viewing-s3-bucket-details.html"
+    - title: Cambiar el nivel de coherencia
+      url: "/tenant/changing-consistency-level.html"
+    - title: Activar o desactivar las actualizaciones de la hora del último acceso
+      url: "/tenant/enabling-or-disabling-last-access-time-updates.html"
+    - title: Cambiar el control de versiones del objeto para un bloque
+      url: "/tenant/changing-bucket-versioning.html"
+    - title: Configurar el uso compartido de recursos de origen cruzado (CORS)
+      url: "/tenant/configuring-cross-origin-resource-sharing-cors.html"
+    - title: Eliminar bloque de S3
+      url: "/tenant/deleting-s3-bucket.html"
+    - title: Utilice la consola Experimental S3
+      url: "/tenant/use-s3-console.html"
+- title: Gestione servicios de plataformas S3
+  entries:
+  - title: "¿Qué son los servicios de plataforma?"
+    url: "/tenant/what-platform-services-are.html"
+    entries:
+    - title: Servicio de replicación de CloudMirror
+      url: "/tenant/understanding-cloudmirror-replication-service.html"
+    - title: Notificaciones para cubos
+      url: "/tenant/understanding-notifications-for-buckets.html"
+    - title: Servicio de integración de búsqueda
+      url: "/tenant/understanding-search-integration-service.html"
+  - title: Consideraciones sobre el uso de servicios de plataforma
+    url: "/tenant/considerations-for-using-platform-services.html"
+  - title: Configure los extremos de servicios de la plataforma
+    url: "/tenant/configuring-platform-services-endpoints.html"
+    entries:
+    - title: Especifique URN para el extremo de servicios de la plataforma
+      url: "/tenant/specifying-urn-for-platform-services-endpoint.html"
+    - title: Cree un extremo de servicios de plataforma
+      url: "/tenant/creating-platform-services-endpoint.html"
+    - title: Probar la conexión para el extremo de servicios de la plataforma
+      url: "/tenant/testing-connection-for-platform-services-endpoint.html"
+    - title: Editar extremo de servicios de plataforma
+      url: "/tenant/editing-platform-services-endpoint.html"
+    - title: Eliminar extremo de servicios de plataforma
+      url: "/tenant/deleting-platform-services-endpoint.html"
+    - title: Solucionar errores de extremos de servicios de plataforma
+      url: "/tenant/troubleshooting-platform-services-endpoint-errors.html"
+  - title: Configure la replicación de CloudMirror
+    url: "/tenant/configuring-cloudmirror-replication.html"
+  - title: Configure las notificaciones de eventos
+    url: "/tenant/configuring-event-notifications.html"
+  - title: Utilice el servicio de integración de búsqueda
+    url: "/tenant/using-search-integration-service.html"
+    entries:
+    - title: Configurar XML para la integración de búsqueda
+      url: "/tenant/configuration-xml-for-search-configuration.html"
+    - title: Configure el servicio de integración de búsqueda
+      url: "/tenant/configuring-search-integration-service.html"
+    - title: JSON generado por el servicio de integración de búsqueda
+      url: "/tenant/json-generated-by-search-integration-service.html"
+    - title: Metadatos de objetos incluidos en las notificaciones de metadatos
+      url: "/tenant/object-metadata-included-in-metadata-notifications.html"

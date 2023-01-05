@@ -1,0 +1,14 @@
+---
+permalink: sg5600/troubleshooting-hardware-installation.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, troubleshoot, troubleshooting, hardware, install, installation 
+summary: Si encuentra problemas durante la instalación, es posible que le sea útil revisar información sobre la solución de problemas relacionados con la configuración del hardware y los problemas de conectividad. 
+---
+= Solucionar problemas de instalación de hardware (SG5600)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si encuentra problemas durante la instalación, es posible que le sea útil revisar información sobre la solución de problemas relacionados con la configuración del hardware y los problemas de conectividad.

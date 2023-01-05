@@ -1,0 +1,35 @@
+---
+permalink: primer/reviewing-audit-messages.html 
+sidebar: sidebar 
+keywords: audit message 
+summary: Los mensajes de auditoría pueden ayudarle a comprender mejor las operaciones detalladas del sistema StorageGRID. Es posible usar registros de auditoría para solucionar problemas y evaluar el rendimiento. 
+---
+= Revisar los mensajes de auditoría
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Los mensajes de auditoría pueden ayudarle a comprender mejor las operaciones detalladas del sistema StorageGRID. Es posible usar registros de auditoría para solucionar problemas y evaluar el rendimiento.
+
+Durante el funcionamiento normal del sistema, todos los servicios de StorageGRID generan mensajes de auditoría de la siguiente manera:
+
+* Los mensajes de auditoría del sistema están relacionados con el mismo sistema de auditoría, los estados del nodo de grid, la actividad de tareas en todo el sistema y las operaciones de backup de servicio.
+* Los mensajes de auditoría del almacenamiento de objetos están relacionados con el almacenamiento y la gestión de objetos dentro de StorageGRID, incluidos el almacenamiento y la recuperación de objetos, el nodo de grid a nodos de grid y las verificaciones.
+* Los mensajes de auditoría de lectura y escritura del cliente se registran cuando una aplicación cliente S3 o Swift hace una solicitud para crear, modificar o recuperar un objeto.
+* Los mensajes de auditoría de gestión registran las solicitudes de los usuarios a la API de gestión.
+
+
+Cada nodo de administración almacena los mensajes de auditoría en archivos de texto. El recurso compartido de auditoría contiene el archivo activo (audit.log) y registros de auditoría comprimidos de los días anteriores. Además, cada nodo de su grid almacena una cantidad limitada de mensajes de auditoría en un archivo de registro local (localaudit.log).
+
+Para facilitar el acceso a los registros de auditoría, es posible configurar el acceso de clientes al recurso compartido de auditoría para NFS y CIFS (CIFS está obsoleto). También es posible acceder a los archivos del registro de auditoría directamente desde la línea de comandos del nodo de administración.
+
+De manera opcional, se puede enviar información de auditoría almacenada en los nodos administrador y local a un servidor de syslog externo. El uso de un servidor de syslog externo puede facilitar la gestión de la información de auditoría y reducir el tráfico de red. Consulte xref:../monitor/configure-audit-messages.adoc[Configurar los mensajes de auditoría y los destinos de registro] si quiere más información.
+
+Para obtener detalles sobre el archivo de registro de auditoría, el formato de los mensajes de auditoría, los tipos de mensajes de auditoría y las herramientas que se encuentran disponibles para analizar los mensajes de auditoría, consulte la xref:../audit/index.adoc[instrucciones para los mensajes de auditoría]. Para obtener información sobre cómo configurar el acceso al cliente de auditoría, consulte xref:../admin/configuring-audit-client-access.adoc[Configure el acceso de los clientes de auditoría].
+
+.Información relacionada
+* xref:../audit/index.adoc[Revisar los registros de auditoría]
+* xref:../admin/index.adoc[Administre StorageGRID]
+

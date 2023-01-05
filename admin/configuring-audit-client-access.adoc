@@ -1,0 +1,21 @@
+---
+permalink: admin/configuring-audit-client-access.html 
+sidebar: sidebar 
+keywords: audit client, ams, audit management service 
+summary: 'El nodo Admin, a través del servicio sistema de administración de auditorías \(AMS\), registra todos los eventos del sistema auditados en un archivo de registro disponible a través del recurso compartido de auditoría, que se agrega a cada nodo de administración durante la instalación. Para facilitar el acceso a los registros de auditoría, puede configurar el acceso de los clientes a recursos compartidos de auditoría de CIFS y NFS.' 
+---
+= Configure el acceso de los clientes de auditoría
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El nodo Admin, a través del servicio sistema de administración de auditorías (AMS), registra todos los eventos del sistema auditados en un archivo de registro disponible a través del recurso compartido de auditoría, que se agrega a cada nodo Admin en la instalación. Para facilitar el acceso a los registros de auditoría, puede configurar el acceso de los clientes a recursos compartidos de auditoría de CIFS y NFS.
+
+El sistema StorageGRID utiliza un reconocimiento positivo para evitar la pérdida de mensajes de auditoría antes de que se escriban en el archivo de registro. Un mensaje permanece en cola en un servicio hasta que el servicio AMS o un servicio intermedio de retransmisión de auditoría ha reconocido el control de él.
+
+Para obtener más información, consulte xref:../audit/index.adoc[Revisar los registros de auditoría].
+
+
+NOTE: La exportación de auditorías por CIFS/Samba ha sido obsoleta y se eliminará en una futura versión de StorageGRID. Si dispone de la opción de utilizar CIFS o NFS, elija NFS.

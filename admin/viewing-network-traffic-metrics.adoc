@@ -1,0 +1,87 @@
+---
+permalink: admin/viewing-network-traffic-metrics.html 
+sidebar: sidebar 
+keywords: network traffic, traffic classification policy, monitor traffic 
+summary: Puede supervisar el tráfico de red mediante la visualización de los gráficos disponibles en la página Directivas de clasificación del tráfico. 
+---
+= Ver las métricas de tráfico de red
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede supervisar el tráfico de red mediante la visualización de los gráficos disponibles en la página Directivas de clasificación del tráfico.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene el permiso acceso raíz o Cuentas de inquilino.
+
+
+.Acerca de esta tarea
+Para cualquier directiva de clasificación de tráfico existente, puede ver las métricas del servicio Load Balancer para determinar si la directiva limita correctamente el tráfico en toda la red. Los datos de los gráficos pueden ayudarle a determinar si es necesario ajustar la política.
+
+Incluso si no se establecen límites para una política de clasificación del tráfico, se recopilan las métricas y los gráficos proporcionan información útil para comprender las tendencias del tráfico.
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *Red* > *Clasificación de tráfico*.
++
+Aparece la página Directivas de clasificación del tráfico y las directivas existentes se muestran en la tabla.
+
++
+image::../media/traffic_classification_policies_main_screen_w_examples.png[Ejemplo de directiva de tráfico para gráfico]
+
++
+
+NOTE: Los botones *Crear*, *Editar* y *Quitar* están desactivados si tiene el permiso Cuentas de arrendatario pero no tiene el permiso acceso raíz.
+
+. Seleccione el botón de opción situado a la izquierda de la política para la que desea ver las métricas.
+. Seleccione *métricas*.
++
+Se abrirá una nueva ventana del explorador y aparecerán los gráficos de la directiva de clasificación del tráfico. Los gráficos muestran métricas solo para el tráfico que coincide con la directiva seleccionada.
+
++
+Puede seleccionar otras directivas para visualizarlas mediante el menú desplegable *Policy*.
+
++
+image::../media/traffic_classification_policy_graph.png[Gráfico de tráfico de red]
+
++
+Los siguientes gráficos están incluidos en la página web.
+
++
+** Tráfico de solicitud del equilibrador de carga: Este gráfico proporciona una media móvil de 3 minutos del rendimiento de los datos transmitidos entre los extremos del equilibrador de carga y los clientes que realizan las solicitudes, en bits por segundo.
+** Tasa de finalización de solicitudes de equilibrador de carga: Este gráfico proporciona una media de movimiento de 3 minutos del número de solicitudes completadas por segundo, desglosadas por tipo de solicitud (GET, PUT, HEAD y DELETE). Este valor se actualiza cuando se han validado los encabezados de una nueva solicitud.
+** Tasa de respuesta de error: Este gráfico proporciona un promedio móvil de 3 minutos del número de respuestas de error devueltas a clientes por segundo, desglosado por el código de respuesta de error.
+** Duración media de la solicitud (sin error): Este gráfico proporciona una media móvil de 3 minutos de duración de la solicitud, desglosada por tipo de solicitud (GET, PUT, HEAD y DELETE). Cada duración de la solicitud comienza cuando el servicio Load Balancer analiza una cabecera de solicitud y finaliza cuando se devuelve el cuerpo de respuesta completo al cliente.
+** Tasa de solicitud de escritura por tamaño de objeto: Este mapa térmico proporciona una media móvil de 3 minutos de la velocidad a la que se completan las solicitudes de escritura en función del tamaño del objeto. En este contexto, las solicitudes de escritura se refieren sólo a SOLICITUDES PUT.
+** Tasa de solicitud de lectura por tamaño de objeto: Este mapa térmico proporciona una media móvil de 3 minutos de la velocidad a la que se completan las solicitudes de lectura en función del tamaño del objeto. En este contexto, las solicitudes de lectura se refieren sólo a OBTENER solicitudes. Los colores del mapa térmico indican la frecuencia relativa de un tamaño de objeto dentro de un gráfico individual. Los colores más frescos (por ejemplo, púrpura y azul) indican tasas relativas más bajas, y los colores más cálidos (por ejemplo, naranja y rojo) indican tasas relativas más altas.
+
+
+. Pase el cursor por un gráfico de líneas para ver una ventana emergente de valores en una parte específica del gráfico.
++
+image::../media/traffic_classification_policy_graph_popup_closeup.png[Valores emergentes de gráfico de líneas de tráfico]
+
+. Pase el cursor por encima de un mapa térmico para ver una ventana emergente que muestra la fecha y hora de la muestra, los tamaños de objeto agregados al recuento y el número de solicitudes por segundo durante ese período de tiempo.
++
+image::../media/traffic_classification_policy_heatmap_closeup.png[Valores emergentes de gráfico de barras de tráfico]
+
+. Utilice el menú desplegable *Política* de la parte superior izquierda para seleccionar una directiva diferente.
++
+Se muestran los gráficos de la política seleccionada.
+
+. También puede acceder a los gráficos desde el menú *SUPPORT*.
++
+.. Seleccione *SUPPORT* > *Tools* > *Metrics*.
+.. En la sección *Grafana* de la página, seleccione *Directiva de clasificación de tráfico*.
+.. Seleccione la política del menú desplegable que hay en la esquina superior izquierda de la página.
++
+Las directivas de clasificación del tráfico se identifican por su ID. Los ID de directiva se muestran en la página Directivas de clasificación de tráfico.
+
+
+
+. Analice los gráficos para determinar con qué frecuencia la política limita el tráfico y si necesita ajustar la política.
+
+
+.Información relacionada
+xref:../monitor/index.adoc[Supervisión y solución de problemas]

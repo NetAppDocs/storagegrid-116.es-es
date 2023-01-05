@@ -1,0 +1,52 @@
+---
+permalink: admin/specifying-node-client-network-is-untrusted.html 
+sidebar: sidebar 
+keywords: how to specify if client network is untrusted, what is untrusted client network 
+summary: Si utiliza una red de cliente, puede especificar si la red de cliente de cada nodo es de confianza o no es de confianza. También puede especificar la configuración predeterminada para los nuevos nodos agregados en una ampliación. 
+---
+= Especifique que la red de cliente del nodo no es de confianza
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si utiliza una red de cliente, puede especificar si la red de cliente de cada nodo es de confianza o no es de confianza. También puede especificar la configuración predeterminada para los nuevos nodos agregados en una ampliación.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene el permiso acceso raíz.
+* Si desea que un nodo de administración o un nodo de puerta de enlace acepte tráfico entrante sólo en puntos finales configurados explícitamente, ha definido los puntos finales del equilibrador de carga.
++
+
+NOTE: Las conexiones de cliente existentes podrían fallar si no se han configurado extremos de equilibrador de carga.
+
+
+
+.Pasos
+. Seleccione *CONFIGURACIÓN* > *Seguridad* > *redes de cliente no fiables*.
++
+En la página redes de cliente no fiables se enumeran todos los nodos del sistema StorageGRID. La columna motivo no disponible incluye una entrada si la red de cliente del nodo debe ser de confianza.
+
++
+image::../media/untrusted_client_networks_page.png[Redes de clientes no confiables]
+
+. En la sección *establecer nuevo nodo predeterminado* , especifique cuál debe ser la configuración predeterminada cuando se agregan nuevos nodos a la cuadrícula en un procedimiento de expansión.
++
+** *Trusted*: Cuando se agrega un nodo en una expansión, su red de cliente es de confianza.
+** *No fiable*: Cuando se agrega un nodo en una expansión, su red cliente no es de confianza. Según sea necesario, puede volver a esta página para cambiar la configuración de un nuevo nodo concreto.
+
+
++
+
+NOTE: Esta configuración no afecta a los nodos existentes del sistema StorageGRID.
+
+. En la sección *Seleccionar nodos de red de cliente no confiable*, seleccione los nodos que deben permitir conexiones de cliente sólo en puntos finales de equilibrador de carga configurados explícitamente.
++
+Puede seleccionar o anular la selección de la casilla de comprobación en el título para seleccionar o anular la selección de todos los nodos.
+
+. Seleccione *Guardar*.
++
+Las nuevas reglas de firewall se agregan y aplican inmediatamente. Las conexiones de cliente existentes podrían fallar si no se han configurado extremos de equilibrador de carga.
+
+

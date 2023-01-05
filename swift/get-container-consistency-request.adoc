@@ -1,0 +1,121 @@
+---
+permalink: swift/get-container-consistency-request.html 
+sidebar: sidebar 
+keywords: get container consistency request 
+summary: El nivel de coherencia establece una compensación entre la disponibilidad de los objetos y la coherencia de dichos objetos en los diferentes nodos y sitios de almacenamiento. La solicitud DE consistencia DEL contenedor le permite determinar el nivel de consistencia que se aplica a un contenedor en particular. 
+---
+= OBTENGA la solicitud de consistencia del contenedor
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El nivel de coherencia establece una compensación entre la disponibilidad de los objetos y la coherencia de dichos objetos en los diferentes nodos y sitios de almacenamiento. La solicitud DE consistencia DEL contenedor le permite determinar el nivel de consistencia que se aplica a un contenedor en particular.
+
+
+
+== Solicitud
+
+|===
+| Solicitar encabezado HTTP | Descripción 
+
+
+ a| 
+`X-Auth-Token`
+ a| 
+Especifica el token de autenticación Swift de la cuenta que se va a utilizar para la solicitud.
+
+
+
+ a| 
+`x-ntap-sg-consistency`
+ a| 
+Especifica el tipo de solicitud, donde `true` = OBTENER la consistencia del contenedor, y. `false` = OBTENER contenedor.
+
+
+
+ a| 
+`Host`
+ a| 
+El nombre de host al que se dirige la solicitud.
+
+|===
+
+
+== Ejemplo de solicitud
+
+[listing]
+----
+GET /v1/28544923908243208806/Swift container
+X-Auth-Token: SGRD_3a877009a2d24cb1801587bfa9050f29
+x-ntap-sg-consistency: true
+Host: test.com
+----
+
+
+== Respuesta
+
+|===
+| Encabezado HTTP de respuesta | Descripción 
+
+
+ a| 
+`Date`
+ a| 
+La fecha y la hora de la respuesta.
+
+
+
+ a| 
+`Connection`
+ a| 
+Si la conexión con el servidor está abierta o cerrada.
+
+
+
+ a| 
+`X-Trans-Id`
+ a| 
+Identificador de transacción único para la solicitud.
+
+
+
+ a| 
+`Content-Length`
+ a| 
+La longitud del cuerpo de respuesta.
+
+
+
+ a| 
+`x-ntap-sg-consistency`
+ a| 
+El nivel de control de consistencia que se aplica al contenedor. Se admiten los siguientes valores:
+
+* *Todos*: Todos los nodos reciben los datos inmediatamente o la solicitud falla.
+* *Strong-global*: Garantiza la coherencia de lectura tras escritura para todas las solicitudes de clientes en todos los sitios.
+* *Strong-site*: Garantiza la coherencia de lectura después de escritura para todas las solicitudes de cliente dentro de un sitio.
+* *Read-after-new-write*: Proporciona consistencia de lectura-after-write para nuevos objetos y eventual consistencia para actualizaciones de objetos. Ofrece garantías de alta disponibilidad y protección de datos.
++
+*Nota*: Si su aplicación utiliza PETICIONES HEAD en objetos que no existen, puede recibir un número elevado de 500 errores internos del servidor si uno o más nodos de almacenamiento no están disponibles. Para evitar estos errores, utilice el nivel "'disponible'".
+
+* *Disponible* (eventual consistencia para las operaciones DE LA CABEZA): Se comporta igual que el nivel de consistencia "entre-después-nueva-escritura", pero sólo proporciona consistencia eventual para las operaciones DE LA CABEZA. Ofrece una mayor disponibilidad para las OPERACIONES DE CABEZAL que una «escritura tras otra» si los nodos de almacenamiento no están disponibles.
+
+
+|===
+
+
+== Ejemplo de respuesta
+
+[listing]
+----
+HTTP/1.1 204 No Content
+Date: Sat, 29 Nov 2015 01:02:18 GMT
+Connection: CLOSE
+X-Trans-Id: 1936575373
+Content-Length: 0
+x-ntap-sg-consistency: strong-site
+----
+.Información relacionada
+xref:../tenant/index.adoc[Usar cuenta de inquilino]

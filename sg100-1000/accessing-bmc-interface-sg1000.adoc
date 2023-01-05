@@ -1,0 +1,69 @@
+---
+permalink: sg100-1000/accessing-bmc-interface-sg1000.html 
+sidebar: sidebar 
+keywords: storagegrid, sg100, sg1000, service appliance, services appliance, gateway Node, admin node, BMC, baseboard management controller, access, open, login 
+summary: Puede acceder a la interfaz del BMC en el dispositivo de servicios mediante la dirección IP estática o DHCP del puerto de gestión del BMC. 
+---
+= Acceda a la interfaz de BMC
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede acceder a la interfaz del BMC en el dispositivo de servicios mediante la dirección IP estática o DHCP del puerto de gestión del BMC.
+
+.Lo que necesitará
+* El cliente de gestión está usando un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* El puerto de administración de BMC del dispositivo de servicios está conectado a la red de administración que planea utilizar.
++
+*SG100 Puerto de gestión BMC*
+
++
+image::../media/sg100_bmc_management_port.png[sg100 bmc puerto de gestión]
+
++
+*Puerto de administración de SG1000 BMC*
+
++
+image::../media/sg1000_bmc_management_port.png[Puerto de administración de BMC SG1000]
+
+
+
+.Pasos
+. Introduzca la dirección URL de la interfaz del BMC: +
+`*https://_BMC_Port_IP_*`
++
+Para `_BMC_Port_IP_`, Utilice la dirección IP estática o DHCP para el puerto de administración del BMC.
+
++
+Aparece la página de inicio de sesión de BMC.
+
++
+
+NOTE: Si aún no ha configurado `BMC_Port_IP` siga las instrucciones de xref:configuring-bmc-interface-sg1000.adoc[Configurar la interfaz BMC (SG100/SG1000)]. Si no puede seguir este procedimiento debido a un problema de hardware y aún no ha configurado una dirección IP de BMC, es posible que aún pueda acceder al BMC. De forma predeterminada, el BMC obtiene una dirección IP mediante DHCP. Si DHCP está activado en la red BMC, el administrador de red puede proporcionar la dirección IP asignada al BMC MAC, que se imprime en la etiqueta situada en la parte frontal del controlador SG6000-CN. Si DHCP no está habilitado en la red BMC, el BMC no responderá después de unos minutos y se asignará la IP estática predeterminada `192.168.0.120`. Es posible que necesite conectar su portátil directamente al puerto BMC y cambiar la configuración de red para asignar una IP a su portátil `192.168.0.200/24`, para navegar a. `192.168.0.120`.
+
+. Introduzca el nombre de usuario raíz y la contraseña, utilizando la contraseña que estableció al cambiar la contraseña raíz predeterminada: +
+`*root*`
++
+`*_password_*`
+
++
+image::../media/bmc_signin_page.gif[Página de inicio de sesión de BMC]
+
+. Haga clic en *Iniciar sesión*
++
+Aparece el panel BMC.
+
++
+image::../media/bmc_dashboard.gif[Consola de BMC]
+
+. Opcionalmente, cree usuarios adicionales seleccionando *Ajustes* *Gestión de usuarios* y haciendo clic en cualquier usuario "desactivado".
++
+
+NOTE: Cuando los usuarios inician sesión por primera vez, es posible que se les pida que cambien su contraseña para aumentar la seguridad.
+
+
+
+.Información relacionada
+xref:changing-root-password-for-bmc-interface-sg1000.adoc[Cambie la contraseña raíz de la interfaz del BMC]

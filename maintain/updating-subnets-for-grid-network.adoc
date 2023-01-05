@@ -1,0 +1,45 @@
+---
+permalink: maintain/updating-subnets-for-grid-network.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, subnet, grid network, update subnets 
+summary: 'StorageGRID mantiene una lista de las subredes de red utilizadas para comunicarse entre los nodos de grid en la red de cuadrícula \(eth0\). Estas entradas incluyen las subredes utilizadas para la red de cuadrícula por cada sitio del sistema StorageGRID, así como las subredes utilizadas para NTP, DNS, LDAP u otros servidores externos a los que se acceda a través de la puerta de enlace de red de cuadrícula. Al agregar nodos de cuadrícula o un sitio nuevo en una expansión, es posible que deba actualizar o agregar subredes a la red de cuadrícula.' 
+---
+= Actualice las subredes de la red de cuadrícula
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID mantiene una lista de las subredes de red que se utilizan para comunicarse entre los nodos de grid en la red de cuadrícula (eth0). Estas entradas incluyen las subredes utilizadas para la red de cuadrícula por cada sitio del sistema StorageGRID, así como las subredes utilizadas para NTP, DNS, LDAP u otros servidores externos a los que se acceda a través de la puerta de enlace de red de cuadrícula. Al agregar nodos de cuadrícula o un sitio nuevo en una expansión, es posible que deba actualizar o agregar subredes a la red de cuadrícula.
+
+.Lo que necesitará
+* Debe iniciar sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Debe tener los permisos de mantenimiento o acceso raíz.
+* Debe tener la clave de acceso de aprovisionamiento.
+* Debe tener las direcciones de red, en notación CIDR, de las subredes que desea configurar.
+
+
+.Acerca de esta tarea
+Si está realizando una actividad de expansión que incluye la adición de una nueva subred, debe agregar la nueva subred de cuadrícula antes de iniciar el procedimiento de expansión.
+
+.Pasos
+. Seleccione *MANTENIMIENTO* > *Red* > *Red de red*.
++
+image::../media/maintenance_grid_networks_page.gif[Esta imagen se explica por el texto circundante.]
+
+. En la lista subredes, haga clic en el signo más para añadir una nueva subred en notación CIDR.
++
+Por ejemplo, introduzca `10.96.104.0/22`.
+
+. Introduzca la frase de acceso de aprovisionamiento y haga clic en *Guardar*.
++
+Las subredes que ha especificado se configuran automáticamente para el sistema StorageGRID.
+
+. Descargue un nuevo paquete de recuperación desde Grid Manager.
++
+.. Seleccione *MANTENIMIENTO* > *sistema* > *paquete de recuperación*.
+.. Introduzca la clave de acceso de aprovisionamiento.
+
+
+

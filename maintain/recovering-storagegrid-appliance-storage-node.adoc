@@ -1,0 +1,48 @@
+---
+permalink: maintain/recovering-storagegrid-appliance-storage-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, appliance storage node failure 
+summary: El procedimiento para recuperar un nodo de almacenamiento en dispositivos StorageGRID con fallos es el mismo tanto si se está recuperando de la pérdida de la unidad del sistema como de la pérdida de volúmenes de almacenamiento únicamente. 
+---
+= Recupere el nodo de almacenamiento del dispositivo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El procedimiento para recuperar un nodo de almacenamiento en dispositivos StorageGRID con fallos es el mismo tanto si se está recuperando de la pérdida de la unidad del sistema como de la pérdida de volúmenes de almacenamiento únicamente.
+
+.Acerca de esta tarea
+Debe preparar el dispositivo y reinstalar el software, configurar el nodo para volver a unirse a la cuadrícula, volver a formatear el almacenamiento y restaurar los datos de los objetos.
+
+image::../media/overview_sga_recovery.gif[Diagrama de flujo general de la recuperación del dispositivo StorageGRID]
+
+
+CAUTION: Si más de un nodo de almacenamiento presenta errores (o está sin conexión), póngase en contacto con el soporte técnico. No realice el siguiente procedimiento de recuperación. Podrían perderse datos.
+
+
+CAUTION: Si este es el segundo fallo del nodo de almacenamiento en menos de 15 días después de un fallo o una recuperación en el nodo de almacenamiento, póngase en contacto con el soporte técnico. La reconstrucción de Cassandra en dos o más nodos de almacenamiento en 15 días puede provocar la pérdida de datos.
+
+
+NOTE: Si se produce un error en más de un nodo de almacenamiento de un sitio, es posible que se requiera un procedimiento de recuperación del sitio. Póngase en contacto con el soporte técnico.
+
+xref:how-site-recovery-is-performed-by-technical-support.adoc[Cómo realiza la recuperación del sitio el soporte técnico]
+
+
+IMPORTANT: Si las reglas de ILM se configuran para almacenar una sola copia replicada y existe una en un volumen de almacenamiento donde se produjo un error, no podrá recuperar el objeto.
+
+
+NOTE: Si encuentra una alarma de Servicios: Estado - Cassandra (SVST) durante la recuperación, consulte las instrucciones de supervisión y solución de problemas para recuperar la alarma reconstruyendo Cassandra. Una vez reconstruida Cassandra, las alarmas se deberían borrar. Si las alarmas no se borran, póngase en contacto con el soporte técnico.
+
+
+NOTE: Para obtener información sobre procedimientos de mantenimiento del hardware, como instrucciones para reemplazar un controlador o reinstalar SANtricity OS, consulte las instrucciones de instalación y mantenimiento del dispositivo de almacenamiento.
+
+.Información relacionada
+xref:../monitor/index.adoc[Supervisión y solución de problemas]
+
+xref:../sg6000/index.adoc[Dispositivos de almacenamiento SG6000]
+
+xref:../sg5700/index.adoc[Dispositivos de almacenamiento SG5700]
+
+xref:../sg5600/index.adoc[Dispositivos de almacenamiento SG5600]

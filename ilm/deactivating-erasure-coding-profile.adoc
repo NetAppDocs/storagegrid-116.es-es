@@ -1,0 +1,155 @@
+---
+permalink: ilm/deactivating-erasure-coding-profile.html 
+sidebar: sidebar 
+keywords: deactivate ec profile, remove erasure coding profile 
+summary: Puede desactivar un perfil de código de borrado si ya no tiene pensado utilizarlo y si el perfil no se utiliza actualmente en ninguna regla de ILM. 
+---
+= Desactivar un perfil de código de borrado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede desactivar un perfil de código de borrado si ya no tiene pensado utilizarlo y si el perfil no se utiliza actualmente en ninguna regla de ILM.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+* Ha confirmado que no hay operaciones de reparación de datos codificados para borrado ni procedimientos de retirada en curso. Se devuelve un mensaje de error si intenta desactivar un perfil de código de borrado mientras alguna de estas operaciones está en curso.
+
+
+.Acerca de esta tarea
+Cuando desactiva un perfil de código de borrado, el perfil sigue apareciendo en la página Perfiles de código de borrado, pero su estado es *desactivado*.
+
+image::../media/deactivated_ec_profile.png[Perfil EC desactivado]
+
+Ya no puede utilizar un perfil de código de borrado que se haya desactivado. No se muestra un perfil desactivado al crear las instrucciones de colocación para una regla de ILM. No puede reactivar un perfil desactivado.
+
+StorageGRID evita la desactivación de un perfil de código de borrado si se cumple alguna de las siguientes condiciones:
+
+* El perfil de código de borrado se utiliza actualmente en una regla de ILM.
+* El perfil de código de borrado ya no se utiliza en ninguna regla de ILM, pero los datos de los objetos y los fragmentos de paridad para el perfil siguen existiendo.
+
+
+.Pasos
+. Seleccione *ILM* > *código de borrado*.
++
+Aparece la página Perfiles de código de borrado. Los botones *Renombrar* y *Desactivar* están desactivados.
+
+. Revise la columna *Estado* para confirmar que el perfil de código de borrado que desea desactivar no se utiliza en ninguna regla de ILM.
++
+No puede desactivar un perfil de codificación de borrado si se utiliza en cualquier regla de ILM. En el ejemplo, el *2_1 EC Profile* se utiliza en al menos una regla ILM.
+
++
+image::../media/ec_profile_used_in_ilm_rule.png[Perfil de EC utilizado en la regla de ILM]
+
+. Si el perfil se utiliza en una regla de ILM, siga estos pasos:
++
+.. Seleccione *ILM* > *Reglas*.
+.. Para cada regla de la lista, seleccione el botón de opción y revise el diagrama de retención para determinar si la regla utiliza el perfil de código de borrado que desea desactivar.
++
+En el ejemplo, la regla *tres sitio EC para objetos más grandes* utiliza un grupo de almacenamiento denominado *todos los 3 sitios* y el perfil de código de borrado *todos los sitios 6-3*. Los perfiles de código de borrado se representan con este icono: image:../media/icon_nms_erasure_coded.gif["Icono de perfiles EC"]
+
++
+image::../media/ilm_rule_ec_profile_used.png[Perfil EC de regla de ILM utilizado]
+
+.. Si la regla de ILM utiliza el perfil de código de borrado que desea desactivar, determine si la regla se utiliza en la política de ILM activa o en una política propuesta.
++
+En el ejemplo, la regla *tres sitios EC para objetos más grandes* se utiliza en la política activa de ILM.
+
+.. Complete los pasos adicionales de la tabla, según el lugar donde se utilice el perfil de código de borrado.
++
+[cols="2a,3a,1a"]
+|===
+| ¿Dónde se ha utilizado el perfil? | Pasos adicionales que se deben realizar antes de desactivar el perfil | Consulte estas instrucciones adicionales 
+
+
+ a| 
+No se usa nunca en ninguna regla de ILM
+ a| 
+No se requieren pasos adicionales. Continúe con este procedimiento.
+ a| 
+_Ninguno_
+
+
+
+ a| 
+En una regla de ILM que nunca se haya usado en ninguna política de ILM
+ a| 
+... Edite o elimine todas las reglas de ILM afectadas. Si edita la regla, elimine todas las ubicaciones que utilicen el perfil de código de borrado.
+... Continúe con este procedimiento.
+
+ a| 
+xref:working-with-ilm-rules-and-ilm-policies.adoc[Trabaje con las reglas de ILM y las políticas de ILM]
+
+
+
+ a| 
+En una regla de ILM que esté actualmente en la política activa de ILM
+ a| 
+... Clonar la política activa.
+... Quite la regla de ILM que utiliza el perfil de código de borrado.
+... Añada una o varias reglas nuevas de ILM para garantizar la protección de los objetos.
+... Guarde, simule y active la nueva directiva.
+... Espere a que se aplique la nueva directiva y a que los objetos existentes se muevan a nuevas ubicaciones en función de las nuevas reglas que haya agregado.
++
+*Nota:* dependiendo del número de objetos y del tamaño de su sistema StorageGRID, las operaciones de ILM pueden tardar semanas o incluso meses en mover los objetos a nuevas ubicaciones, según las nuevas reglas de ILM.
+
++
+Aunque puede intentar desactivar de forma segura un perfil de código de borrado mientras sigue asociado con datos, la operación de desactivación fallará. Un mensaje de error le informará si el perfil aún no está listo para ser desactivado.
+
+... Edite o elimine la regla que ha eliminado de la política. Si edita la regla, elimine todas las ubicaciones que utilicen el perfil de código de borrado.
+... Continúe con este procedimiento.
+
+ a| 
+*** xref:creating-ilm-policy.adoc[Cree una política de ILM]
+*** xref:working-with-ilm-rules-and-ilm-policies.adoc[Trabaje con las reglas de ILM y las políticas de ILM]
+
+
+
+
+ a| 
+En una regla de ILM que se encuentra actualmente en una política de ILM propuesta
+ a| 
+... Edite la directiva propuesta.
+... Quite la regla de ILM que utiliza el perfil de código de borrado.
+... Añada una o varias reglas nuevas de ILM para garantizar que todos los objetos estén protegidos.
+... Guarde la directiva propuesta.
+... Edite o elimine la regla que ha eliminado de la política. Si edita la regla, elimine todas las ubicaciones que utilicen el perfil de código de borrado.
+... Continúe con este procedimiento.
+
+ a| 
+*** xref:creating-ilm-policy.adoc[Cree una política de ILM]
+*** xref:working-with-ilm-rules-and-ilm-policies.adoc[Trabaje con las reglas de ILM y las políticas de ILM]
+
+
+
+
+ a| 
+En una regla de ILM que está en una política histórica de ILM
+ a| 
+... Edite o elimine la regla. Si edita la regla, elimine todas las ubicaciones que utilicen el perfil de código de borrado. (La regla aparecerá ahora como una regla histórica en la política histórica.)
+... Continúe con este procedimiento.
+
+ a| 
+xref:working-with-ilm-rules-and-ilm-policies.adoc[Trabaje con las reglas de ILM y las políticas de ILM]
+
+|===
+.. Actualice la página Perfiles de código de borrado para asegurarse de que el perfil no se utilice en una regla de ILM.
+
+
+. Si el perfil no se utiliza en una regla de ILM, seleccione el botón de opción y seleccione *Desactivar*.
++
+Aparece el cuadro de diálogo Desactivar perfil de EC.
+
++
+image::../media/deactivate_ec_profile_confirmation.png[Desactivar la confirmación de perfil de EC]
+
+. Si está seguro de que desea desactivar el perfil, seleccione *Desactivar*.
++
+** Si StorageGRID puede desactivar el perfil de código de borrado, su estado será *desactivado*. Ya no puede seleccionar este perfil para ninguna regla de ILM.
+** Si StorageGRID no puede desactivar el perfil, aparecerá un mensaje de error. Por ejemplo, aparece un mensaje de error si los datos del objeto siguen asociados a este perfil. Es posible que deba esperar varias semanas antes de volver a intentar el proceso de desactivación.
+
+
+

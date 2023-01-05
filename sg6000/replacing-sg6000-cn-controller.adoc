@@ -1,0 +1,92 @@
+---
+permalink: sg6000/replacing-sg6000-cn-controller.html 
+sidebar: sidebar 
+keywords: storagegrid, sg6000, storage node, storage appliance, Replacing, replace, sg6000-cn, controller, remove, removing, removal, install, installing, installation 
+summary: Es posible que deba sustituir el controlador SG6000-CN si no funciona de forma óptima o si ha fallado. 
+---
+= Sustituir el controlador SG6000-CN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible que deba sustituir el controlador SG6000-CN si no funciona de forma óptima o si ha fallado.
+
+.Lo que necesitará
+* Tiene una controladora de sustitución con el mismo número de pieza que la controladora que desea sustituir.
+* Tiene etiquetas para identificar cada cable conectado a la controladora.
+* Localizó físicamente la controladora para reemplazar en el centro de datos.
++
+xref:locating-controller-in-data-center.adoc[Ubique la controladora en el centro de datos]
+
+
+
+.Acerca de esta tarea
+No se podrá acceder al nodo de almacenamiento del dispositivo cuando sustituya el controlador SG6000-CN. Si el controlador SG6000-CN funciona lo suficiente, puede realizar una parada controlada al inicio de este procedimiento.
+
+
+NOTE: Si va a sustituir la controladora antes de instalar el software StorageGRID, es posible que no pueda acceder al instalador de dispositivos de StorageGRID inmediatamente después de completar este procedimiento. Aunque puede acceder al instalador del dispositivo StorageGRID desde otros hosts de la misma subred que el dispositivo, no puede acceder al mismo desde hosts de otras subredes. Esta condición debe resolverse dentro de los 15 minutos (cuando se agota cualquier entrada de caché ARP para el tiempo de espera original de la controladora); asimismo, puede borrar la condición de inmediato mediante la purga manual de todas las entradas antiguas de la caché ARP desde el enrutador o la puerta de enlace local.
+
+.Pasos
+. Si el controlador SG6000-CN funciona lo suficiente como para permitir un apagado controlado, apague el controlador SG6000-CN.
++
+xref:shutting-down-sg6000-cn-controller.adoc[Apague el controlador SG6000-CN]
+
+. Utilice uno de estos dos métodos para verificar que la alimentación del controlador SG6000-CN está desactivada:
++
+** El LED del indicador de alimentación de la parte frontal de la controladora está apagado.
+** La página Power Control de la interfaz del BMC indica que el controlador está apagado.
+
+
+. Si las redes StorageGRID conectadas a la controladora utilizan servidores DHCP, actualice la configuración de red/DNS y dirección IP.
++
+.. Busque la etiqueta de dirección MAC en la parte frontal del controlador SG6000-CN y determine la dirección MAC del puerto de red de administración.
++
+
+NOTE: La etiqueta de dirección MAC incluye la dirección MAC para el puerto de gestión del BMC. + para determinar la dirección MAC del puerto de red de administración, debe agregar *2* al número hexadecimal de la etiqueta. Por ejemplo, si la dirección MAC de la etiqueta termina en *09*, la dirección MAC del puerto de administración finalizará en *0B*. Si la dirección MAC de la etiqueta termina en *(_y_)FF*, la dirección MAC del puerto de administración finalizará en *(_y_+1)01*. Puede realizar este cálculo fácilmente abriendo Calculadora en Windows, establecerlo en modo Programador, seleccionando hex, escribiendo la dirección MAC y, a continuación, escribiendo *+ 2 =*.
+
+.. Solicite al administrador de red que asocie la red DNS y la dirección IP de la controladora que quitó con la dirección MAC de la controladora de reemplazo.
++
+
+IMPORTANT: Debe asegurarse de que todas las direcciones IP de la controladora original se hayan actualizado antes de aplicar alimentación a la controladora de reemplazo. De lo contrario, la controladora obtendrá nuevas direcciones IP de DHCP cuando se arranca y es posible que no pueda volver a conectarse a StorageGRID. Este paso se aplica a todas las redes StorageGRID conectadas a la controladora.
+
++
+
+NOTE: Si la controladora original usaba la dirección IP estática, la nueva controladora adoptará automáticamente las direcciones IP de la controladora que se quitó.
+
+
+
+. Desmontaje y sustitución del controlador SG6000-CN:
++
+.. Etiquete los cables y desconecte los cables y cualquier transceptor SFP+ o SFP28.
++
+
+IMPORTANT: Para evitar un rendimiento degradado, no gire, pliegue, pellizque ni pellizque los cables.
+
+.. Quite la controladora que ha fallado del armario o rack.
+.. Instale la controladora de reemplazo en el armario o rack.
+.. Sustituya los cables y cualquier transceptores SFP+ o SFP28.
+.. Encienda la controladora y supervise los LED y los códigos de arranque de la controladora.
+
+
+. Confirme que el nodo de almacenamiento del dispositivo aparece en Grid Manager y que no aparece ninguna alarma.
+. En Grid Manager, seleccione *NODES* y compruebe que la dirección IP del BMC para el controlador del nodo es correcta.
++
+Si la dirección IP de la controladora del nodo no es válida o no está en el rango esperado, vuelva a configurar la dirección IP como se describe en las instrucciones de recuperación y mantenimiento.
+
++
+
+NOTE: Si aplicó personalización adicional durante la instalación original, como configurar destinos de capturas SNMP o notificaciones por correo electrónico, debería registrar y validar la configuración y volver a aplicarla, si fuera necesario.
+
++
+xref:../maintain/index.adoc[Recuperación y mantenimiento]
+
+
+
+.Información relacionada
+xref:sg6000-cn-installing-into-cabinet-or-rack.adoc[SG6000-CN: Instalación en armario o bastidor]
+
+xref:viewing-status-indicators-and-buttons-on-sg6000-cn-controller.adoc[Ver los indicadores de estado y los botones del controlador SG6000-CN]
+
+xref:viewing-boot-up-codes-for-sg6000-cn-controller.adoc[Ver los códigos de arranque del controlador SG6000-CN]

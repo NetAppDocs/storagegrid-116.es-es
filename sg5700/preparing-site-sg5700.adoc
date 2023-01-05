@@ -1,0 +1,76 @@
+---
+permalink: sg5700/preparing-site-sg5700.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5700, storage node, storage appliance, install, installation, site prep, site preparating, preparing site, site requirements, requirements, site, dimensions, weight, weights, temperature, humidity, altitude, airflow, heat, wiring, power, grounding, facility 
+summary: Antes de instalar el dispositivo, debe asegurarse de que el sitio y el armario o rack que desee usar cumplan con las especificaciones de un dispositivo StorageGRID. 
+---
+= Preparación del sitio (SG5700)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de instalar el dispositivo, debe asegurarse de que el sitio y el armario o rack que desee usar cumplan con las especificaciones de un dispositivo StorageGRID.
+
+.Pasos
+. Confirmar que el emplazamiento cumple los requisitos de temperatura, humedad, rango de altitud, flujo de aire, disipación de calor, cableado, alimentación y conexión a tierra. Si desea obtener más información, consulte Hardware Universe de NetApp.
+. Si está instalando el modelo SG5760, confirme que su ubicación proporciona alimentación de CA de 240 voltios.
+. Obtenga un armario o rack de 19 pulgadas (48.3 cm) para colocar bandejas de este tamaño (sin cables):
++
+|===
+| Modelo de dispositivo | Altura | Anchura | Profundidad | Peso máximo 
+
+
+ a| 
+SG5712
+
+(12 unidades)
+ a| 
+3.41 pda
+
+(8.68 cm)
+ a| 
+17.6 pda
+
+(44.7 cm)
+ a| 
+21.1 pda
+
+(53.6 cm)
+ a| 
+63.9 lb
+
+(29.0 kg)
+
+
+
+ a| 
+SG5760
+
+(60 unidades)
+ a| 
+6.87 pda
+
+(17.46 cm)
+ a| 
+17.66 pda
+
+(44.86 cm)
+ a| 
+38.25 pda
+
+(97.16 cm)
+ a| 
+250 lb.
+
+(113 kg)
+
+|===
+. Instale los switches de red necesarios. Consulte la herramienta de la matriz de interoperabilidad de NetApp para obtener información de compatibilidad.
+
+
+.Información relacionada
+https://hwu.netapp.com["Hardware Universe de NetApp"^]
+
+https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^]

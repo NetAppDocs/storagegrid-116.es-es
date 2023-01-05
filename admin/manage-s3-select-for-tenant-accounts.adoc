@@ -1,0 +1,47 @@
+---
+permalink: admin/manage-s3-select-for-tenant-accounts.html 
+sidebar: sidebar 
+keywords: s3 select, selectobjectcontent, best practices 
+summary: Puede permitir que determinados inquilinos S3 usen S3 Select para emitir solicitudes SelectObjectContent en objetos individuales. 
+---
+= Gestione S3 Select para cuentas de inquilinos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede permitir que determinados inquilinos S3 usen S3 Select para emitir solicitudes SelectObjectContent en objetos individuales.
+
+S3 Select proporciona una forma eficiente de buscar en grandes cantidades de datos sin tener que implementar una base de datos y recursos asociados para permitir las búsquedas. También reduce el coste y la latencia de la recuperación de datos.
+
+
+
+== ¿Qué es S3 Select?
+
+S3 Select permite que los clientes S3 utilicen solicitudes SelectObjectContent para filtrar y recuperar solo los datos necesarios de un objeto. La implementación de StorageGRID de S3 Select incluye un subconjunto de comandos y funciones de S3 Select.
+
+
+
+== Consideraciones y requisitos para usar S3 Select
+
+StorageGRID requiere lo siguiente para consultas S3 Select:
+
+* El objeto que desea consultar tiene el formato CSV o es un archivo comprimido GZIP o BZIP2 que contiene un archivo con formato CSV.
+* El administrador de grid debe otorgar a los inquilinos la capacidad de S3 Select. Seleccione *permitir selección de S3* cuando xref:creating-tenant-account.adoc[crear un inquilino] o. xref:editing-tenant-account.adoc[edición de un arrendatario].
+* La solicitud SelectObjectContent debe enviarse a un xref:configuring-load-balancer-endpoints.adoc[Extremo del equilibrador de carga de StorageGRID]. Los nodos de administración y puerta de enlace que utiliza el extremo deben ser nodos de dispositivo SG100 o SG1000 o nodos de software basados en VMware.
+
+
+Tenga en cuenta las siguientes limitaciones:
+
+* No se admiten los nodos de equilibrador de carga de configuración básica.
+* Las consultas no se pueden enviar directamente a los nodos de almacenamiento.
+* Las consultas enviadas a través del servicio CLB obsoleto no son compatibles.
+
+
+
+IMPORTANT: Las solicitudes SelectObjectContent pueden reducir el rendimiento de equilibrio de carga de todos los clientes S3 y todos los inquilinos. Habilite esta función solo cuando sea necesario y solo para inquilinos de confianza.
+
+Consulte xref:../s3/use-s3-select.adoc[Instrucciones para usar S3 Select].
+
+Para ver xref:../monitor/reviewing-support-metrics.adoc[Gráficos Grafana] Para las operaciones de S3 Select a lo largo del tiempo, seleccione *SUPPORT* > *Tools* > *Metrics* en Grid Manager.

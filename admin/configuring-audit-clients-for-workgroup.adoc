@@ -1,0 +1,169 @@
+---
+permalink: admin/configuring-audit-clients-for-workgroup.html 
+sidebar: sidebar 
+keywords: audit client for workgroup 
+summary: Realice este procedimiento para cada nodo de administrador en una implementación de StorageGRID desde la que desea recuperar mensajes de auditoría. 
+---
+= Configurar clientes de auditoría para Workgroup
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Realice este procedimiento para cada nodo de administrador en una implementación de StorageGRID desde la que desea recuperar mensajes de auditoría.
+
+.Lo que necesitará
+* Usted tiene la `Passwords.txt` Archivo con la contraseña de la cuenta root/admin (disponible en DICHO paquete).
+* Usted tiene la `Configuration.txt` Archivo (disponible en DICHO paquete).
+
+
+.Acerca de esta tarea
+La exportación de auditorías por CIFS/Samba ha sido obsoleta y se eliminará en una futura versión de StorageGRID.
+
+.Pasos
+. Inicie sesión en el nodo de administración principal:
++
+.. Introduzca el siguiente comando: `ssh admin@_primary_Admin_Node_IP_`
+.. Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+.. Introduzca el siguiente comando para cambiar a la raíz: `su -`
+.. Introduzca la contraseña que aparece en `Passwords.txt` archivo.
++
+Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para `#`.
+
+
+
+. Confirme que todos los servicios tienen el estado en ejecución o verificado: `storagegrid-status`
++
+Si todos los servicios no están en ejecución ni verificados, resuelva los problemas antes de continuar.
+
+. Vuelva a la línea de comandos y pulse *Ctrl*+*C*.
+. Inicie la utilidad de configuración CIFS: `config_cifs.rb`
++
+[listing]
+----
+
+---------------------------------------------------------------------
+| Shares                 | Authentication         | Config          |
+---------------------------------------------------------------------
+| add-audit-share        | set-authentication     | validate-config |
+| enable-disable-share   | set-netbios-name       | help            |
+| add-user-to-share      | join-domain            | exit            |
+| remove-user-from-share | add-password-server    |                 |
+| modify-group           | remove-password-server |                 |
+|                        | add-wins-server        |                 |
+|                        | remove-wins-server     |                 |
+---------------------------------------------------------------------
+----
+. Establezca la autenticación para el grupo de trabajo de Windows:
++
+Si ya se ha establecido la autenticación, aparece un mensaje de aviso. Si ya se ha configurado la autenticación, vaya al paso siguiente.
+
++
+.. Introduzca: `set-authentication`
+.. Cuando se le solicite la instalación de Windows Workgroup o Active Directory, introduzca: `workgroup`
+.. Cuando se le solicite, escriba un nombre del grupo de trabajo: `_workgroup_name_`
+.. Cuando se le solicite, cree un nombre NetBIOS significativo: `_netbios_name_`
++
+o.
+
++
+Pulse *Intro* para utilizar el nombre de host del nodo de administración como nombre NetBIOS.
+
++
+La secuencia de comandos reinicia el servidor Samba y se aplican los cambios. Esto debería tardar menos de un minuto. Después de establecer la autenticación, agregue un cliente de auditoría.
+
+.. Cuando se le solicite, pulse *Intro*.
++
+Aparece la utilidad de configuración de CIFS.
+
+
+
+. Agregar un cliente de auditoría:
++
+.. Introduzca: `add-audit-share`
++
+
+NOTE: El recurso compartido se añade automáticamente como de solo lectura.
+
+.. Cuando se le solicite, agregue un usuario o grupo: `_user_`
+.. Cuando se le solicite, introduzca el nombre de usuario de auditoría: `_audit_user_name_`
+.. Cuando se le solicite, escriba una contraseña para el usuario de auditoría: `_password_`
+.. Cuando se le solicite, vuelva a introducir la misma contraseña para confirmarla: `_password_`
+.. Cuando se le solicite, pulse *Intro*.
++
+Aparece la utilidad de configuración de CIFS.
+
+
+
++
+
+NOTE: No es necesario introducir un directorio. El nombre del directorio de auditoría está predefinido.
+
+. Si se permite que más de un usuario o grupo acceda al recurso compartido de auditoría, agregue los usuarios adicionales:
++
+.. Introduzca: `add-user-to-share`
++
+Se muestra una lista numerada de los recursos compartidos habilitados.
+
+.. Cuando se le solicite, escriba el número del recurso compartido auditoría-exportación: `_share_number_`
+.. Cuando se le solicite, agregue un usuario o grupo: `user`
++
+o. `group`
+
+.. Cuando se le solicite, introduzca el nombre del usuario o grupo de auditoría: `_audit_user or audit_group_`
+.. Cuando se le solicite, pulse *Intro*.
++
+Aparece la utilidad de configuración de CIFS.
+
+.. Repita estos subpasos para cada usuario o grupo adicional que tenga acceso al recurso compartido de auditoría.
+
+
+. Si lo desea, compruebe la configuración: `validate-config`
++
+Los servicios se comprueban y visualizan. Puede ignorar con toda tranquilidad los siguientes mensajes:
+
++
+[listing]
+----
+Can't find include file /etc/samba/includes/cifs-interfaces.inc
+Can't find include file /etc/samba/includes/cifs-filesystem.inc
+Can't find include file /etc/samba/includes/cifs-custom-config.inc
+Can't find include file /etc/samba/includes/cifs-shares.inc
+rlimit_max: increasing rlimit_max (1024) to minimum Windows limit (16384)
+----
++
+.. Cuando se le solicite, pulse *Intro*.
++
+Se muestra la configuración del cliente de auditoría.
+
+.. Cuando se le solicite, pulse *Intro*.
++
+Aparece la utilidad de configuración de CIFS.
+
+
+
+. Cierre la utilidad de configuración CIFS: `exit`
+. Inicie el servicio Samba: `service smbd start`
+. Si la implementación de StorageGRID es un solo sitio, vaya al paso siguiente.
++
+o.
+
++
+De manera opcional, si la implementación de StorageGRID incluye nodos de administración en otros sitios, habilite este recurso compartido de auditoría según sea necesario:
+
++
+.. Inicie sesión de forma remota en el nodo de administración de un sitio:
++
+... Introduzca el siguiente comando: `ssh admin@_grid_node_IP_`
+... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+... Introduzca el siguiente comando para cambiar a la raíz: `su -`
+... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+
+
+.. Repita los pasos para configurar el recurso compartido de auditoría de cada nodo de administración adicional.
+.. Cierre el inicio de sesión de la shell segura remota en el nodo de administración remota: `exit`
+
+
+. Cierre la sesión del shell de comandos: `exit`
+

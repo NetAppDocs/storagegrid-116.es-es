@@ -1,0 +1,35 @@
+---
+permalink: admin/configuring-client-connections.html 
+sidebar: sidebar 
+keywords: s3 connection, swift connection, connect to storagegrid 
+summary: Como administrador de grid, gestiona las opciones de configuración que controlan cómo los inquilinos S3 y Swift pueden conectar las aplicaciones cliente con el sistema StorageGRID para almacenar y recuperar datos. Hay una serie de opciones diferentes para responder a los distintos requisitos de cliente y cliente. 
+---
+= Acerca de las conexiones de los clientes S3 y Swift
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Como administrador de grid, gestiona las opciones de configuración que controlan cómo los inquilinos S3 y Swift pueden conectar las aplicaciones cliente con el sistema StorageGRID para almacenar y recuperar datos. Hay una serie de opciones diferentes para responder a los distintos requisitos de cliente y cliente.
+
+Las aplicaciones cliente pueden almacenar o recuperar objetos conectándose a cualquiera de los siguientes elementos:
+
+* El servicio Load Balancer en los nodos de administrador o de puerta de enlace, o bien, de forma opcional, la dirección IP virtual de un grupo de alta disponibilidad (ha) de nodos de administración o nodos de puerta de enlace
+* El servicio CLB en los nodos de puerta de enlace o, opcionalmente, la dirección IP virtual de un grupo de nodos de puerta de enlace de alta disponibilidad
++
+
+NOTE: El servicio CLB está obsoleto. Los clientes configurados antes de la versión StorageGRID 11.3 pueden seguir utilizando el servicio CLB en los nodos de puerta de enlace. El resto de aplicaciones cliente que dependen de StorageGRID para proporcionar equilibrio de carga se deben conectar mediante el servicio Load Balancer.
+
+* Nodos de almacenamiento, con o sin un equilibrador de carga externo
+
+
+Opcionalmente, puede configurar las siguientes funciones en el sistema StorageGRID:
+
+* * Interfaces VLAN*: Puede crear interfaces LAN virtuales (VLAN) en nodos de administración y nodos de puerta de enlace para aislar y dividir el tráfico de cliente y cliente para seguridad, flexibilidad y rendimiento. Después de crear una interfaz VLAN, lo debe agregar a un grupo de alta disponibilidad.
+* *Grupos de alta disponibilidad*: Puede crear un grupo ha de las interfaces para nodos de puerta de enlace o nodos de administración para crear una configuración de copia de seguridad activa, o puede utilizar DNS round-robin o un equilibrador de carga de terceros y varios grupos ha para lograr una configuración activo-activo. Las conexiones de clientes se realizan mediante las direcciones IP virtuales de los grupos de alta disponibilidad.
+* *Servicio de equilibrador de carga*: Puede permitir a los clientes utilizar el servicio de equilibrador de carga mediante la creación de puntos finales de equilibrador de carga para las conexiones de cliente. Al crear un extremo de equilibrio de carga, especifica un número de puerto, si el extremo acepta conexiones HTTP o HTTPS, el tipo de cliente (S3 o Swift) que utilizará el extremo y el certificado que se utilizará para las conexiones HTTPS (si procede).
+* *Red cliente no confiable*: Puede hacer que la Red cliente sea más segura configurándola como no confiable. Cuando la red de cliente no es de confianza, los clientes sólo pueden conectarse utilizando puntos finales de equilibrador de carga.
+
+
+También es posible habilitar el uso de HTTP para los clientes que se conectan a StorageGRID directamente a los nodos de almacenamiento o mediante el servicio CLB (obsoleto), y es posible configurar los nombres de dominio de extremo de la API de S3 para los clientes S3.

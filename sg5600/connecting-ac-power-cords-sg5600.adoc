@@ -1,0 +1,38 @@
+---
+permalink: sg5600/connecting-ac-power-cords-sg5600.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, wire, wiring, cabling, cable, Connecting, connect, power cords, power, ac, ac power 
+summary: Debe conectar los cables de alimentación de CA a la fuente de alimentación externa y al conector de alimentación de CA de cada controlador. Una vez que haya conectado los cables de alimentación, podrá encender la alimentación. 
+---
+= Conexión de los cables de alimentación de CA (SG5600)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe conectar los cables de alimentación de CA a la fuente de alimentación externa y al conector de alimentación de CA de cada controlador. Una vez que haya conectado los cables de alimentación, podrá encender la alimentación.
+
+.Lo que necesitará
+Ambos interruptores de alimentación del aparato deben estar apagados antes de conectar la alimentación.
+
+
+CAUTION: *Riesgo de descarga eléctrica* -- antes de conectar los cables de alimentación, asegúrese de que los dos interruptores de alimentación del aparato están apagados.
+
+.Acerca de esta tarea
+* Debe utilizar fuentes de alimentación independientes para cada fuente de alimentación.
++
+La conexión a fuentes de alimentación independientes mantiene la redundancia de energía.
+
+* Puede utilizar los cables de alimentación que se suministran con el controlador con tomas de corriente típicas utilizadas en el país de destino, como tomas de corriente de una fuente de alimentación ininterrumpida (UPS).
++
+Sin embargo, estos cables de alimentación no están diseñados para utilizarse en la mayoría de los armarios compatibles con EIA.
+
+
+
+.Pasos
+. Apague los interruptores de alimentación del compartimento o chasis.
+. Apague los switches de alimentación de las controladoras.
+. Conecte los cables de alimentación primarios del armario a las fuentes de alimentación externas.
+. Conecte los cables de alimentación al conector de alimentación de CA de cada controladora.
+

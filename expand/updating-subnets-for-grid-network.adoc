@@ -1,0 +1,41 @@
+---
+permalink: expand/updating-subnets-for-grid-network.html 
+sidebar: sidebar 
+keywords: expand, expansion, add subnets, Grid Network 
+summary: Al agregar nodos de cuadrícula o un sitio nuevo en una expansión, es posible que deba actualizar o agregar subredes a la red de cuadrícula. 
+---
+= Actualice las subredes de la red de cuadrícula
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Al agregar nodos de cuadrícula o un sitio nuevo en una expansión, es posible que deba actualizar o agregar subredes a la red de cuadrícula.
+
+StorageGRID mantiene una lista de las subredes de red que se utilizan para comunicarse entre los nodos de grid en la red de cuadrícula (eth0). Estas entradas incluyen las subredes utilizadas para la red de cuadrícula por cada sitio del sistema StorageGRID, así como las subredes utilizadas para NTP, DNS, LDAP u otros servidores externos a los que se acceda a través de la puerta de enlace de red de cuadrícula.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene el permiso de mantenimiento o acceso raíz.
+* Tiene la clave de acceso de aprovisionamiento.
+* Tiene las direcciones de red, en notación CIDR, de las subredes que desea configurar.
+
+
+.Acerca de esta tarea
+Si alguno de los nodos nuevos tiene una dirección IP de red de cuadrícula en una subred no utilizada anteriormente, debe agregar la nueva subred a la lista de subredes de red de cuadrícula antes de iniciar la expansión. De lo contrario, tendrá que cancelar la expansión, agregar la nueva subred e iniciar el procedimiento de nuevo.
+
+.Pasos
+. Seleccione *MANTENIMIENTO* > *Red* > *Red de red*.
++
+image::../media/maintenance_grid_networks_page.gif[Esta imagen se explica por el texto circundante.]
+
+. En la lista subredes, seleccione el signo más para añadir una nueva subred en notación CIDR.
++
+Por ejemplo, introduzca 10.96.104.0/22.
+
+. Introduzca la contraseña de aprovisionamiento y seleccione *Guardar*.
++
+Las subredes que ha especificado se configuran automáticamente para el sistema StorageGRID.
+
+

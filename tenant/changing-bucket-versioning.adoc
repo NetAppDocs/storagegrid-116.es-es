@@ -1,0 +1,70 @@
+---
+permalink: tenant/changing-bucket-versioning.html 
+sidebar: sidebar 
+keywords: how to change bucket versioning, disabled versioning, enabled versioning, suspended versioning 
+summary: Si usa un inquilino de S3, puede usar el administrador de inquilinos o la API de gestión de inquilinos para cambiar el estado de versionado de los bloques de S3. 
+---
+= Cambiar el control de versiones del objeto para un bloque
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si usa un inquilino de S3, puede usar el administrador de inquilinos o la API de gestión de inquilinos para cambiar el estado de versionado de los bloques de S3.
+
+.Lo que necesitará
+* Ha iniciado sesión en el administrador de inquilinos mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Pertenece a un grupo de usuarios que tiene el permiso Administrar todos los cucharones o acceso raíz. Estos permisos anulan la configuración de los permisos en las políticas de grupo o bloque.
++
+xref:tenant-management-permissions.adoc[Permisos de gestión de inquilinos]
+
+
+
+.Acerca de esta tarea
+Puede habilitar o suspender el control de versiones de objetos de un bloque. Una vez que habilita el control de versiones de un bloque, no puede volver a un estado sin versiones. Sin embargo, puede suspender el control de versiones del bloque.
+
+* Desactivado: El control de versiones no se ha activado nunca
+* Activado: El control de versiones está activado
+* Suspendido: El control de versiones se ha habilitado anteriormente y se ha suspendido
+
+
+xref:../s3/object-versioning.adoc[Versionado de objetos de S3]
+
+xref:../ilm/example-4-ilm-rules-and-policy-for-s3-versioned-objects.adoc[Reglas de ILM y políticas para objetos con versiones de S3 (ejemplo 4)]
+
+.Pasos
+. Seleccione *ALMACENAMIENTO (S3)* > *Cuchos*.
+. Seleccione el nombre del bloque de la lista.
+. Seleccione *Opciones de bloque* > *versiones de objeto*.
++
+image::../media/bucket_object_versioning.png[Control de versiones de objetos de cambio de bloque]
+
+. Seleccione un estado de control de versiones para los objetos de este bloque.
++
+
+NOTE: Si se habilita el bloqueo de objetos S3 o la compatibilidad con versiones heredadas, se desactivarán las opciones *versiones de objetos*.
+
++
+[cols="1a,3a"]
+|===
+| Opción | Descripción 
+
+
+ a| 
+Habilite el control de versiones
+ a| 
+Habilite el control de versiones de objetos si desea almacenar cada versión de cada objeto en este bloque. A continuación, puede recuperar versiones anteriores de un objeto según sea necesario.
+
+Los objetos que ya estaban en el bloque se versionarán cuando los modifique un usuario.
+
+
+
+ a| 
+Suspender las versiones
+ a| 
+Suspenda el control de versiones de objetos si ya no desea crear nuevas versiones de objetos. Aún puede recuperar cualquier versión de objeto existente.
+
+|===
+. Seleccione *Guardar cambios*.
+

@@ -1,0 +1,64 @@
+---
+permalink: fabricpool/best-practices-for-load-balancing.html 
+sidebar: sidebar 
+keywords: fabricPool, load balancer, endpoint, load balancing, Layer 7, cloud tier, best practices 
+summary: Antes de asociar StorageGRID como un nivel de cloud de FabricPool, debe utilizar el Administrador de grid de StorageGRID para configurar al menos un extremo de equilibrador de carga. 
+---
+= Prácticas recomendadas para el equilibrio de carga
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de asociar StorageGRID como un nivel de cloud de FabricPool, debe utilizar el Administrador de grid de StorageGRID para configurar al menos un extremo de equilibrador de carga.
+
+
+
+== ¿Qué es el equilibrio de carga?
+
+Cuando los datos se organizan en niveles desde FabricPool a un sistema StorageGRID, StorageGRID utiliza un equilibrio de carga para gestionar la carga de trabajo de procesamiento y recuperación. El equilibrio de carga maximiza la velocidad y la capacidad de conexión mediante la distribución de la carga de trabajo FabricPool entre varios nodos de almacenamiento.
+
+El servicio de equilibrador de carga de StorageGRID se instala en todos los nodos de administrador y en todos los nodos de puerta de enlace, y ofrece balanceo de carga de capa 7. Realiza la terminación de las solicitudes de cliente de Seguridad de capa de transporte (TLS), inspecciona las solicitudes y establece nuevas conexiones seguras a los nodos de almacenamiento.
+
+El servicio Load Balancer de cada nodo funciona de forma independiente cuando se reenvía tráfico de clientes a los nodos de almacenamiento. Mediante un proceso de ponderación, el servicio Load Balancer envía más solicitudes a los nodos de almacenamiento con una mayor disponibilidad de CPU.
+
+Aunque el servicio StorageGRID Load Balancer es el mecanismo de equilibrio de carga recomendado, puede que en su lugar desee integrar un equilibrador de carga de terceros. Si quiere más información, póngase en contacto con su representante de cuenta de NetApp o consulte https://www.netapp.com/pdf.html?item=/media/17068-tr4626pdf.pdf["TR-4626: Equilibradores de carga globales y de terceros de StorageGRID"^].
+
+
+NOTE: El servicio de equilibrador de carga de conexión (CLB) independiente en los nodos de puerta de enlace queda obsoleto y ya no se recomienda su uso con FabricPool.
+
+
+
+== Prácticas recomendadas para el balanceo de carga de StorageGRID
+
+Como práctica recomendada general, cada sitio del sistema StorageGRID debe incluir dos o más nodos con el servicio de equilibrador de carga. Por ejemplo, un sitio puede incluir dos nodos de puerta de enlace, o bien un nodo de administrador y un nodo de puerta de enlace. Asegúrese de que dispone de una infraestructura adecuada de red, hardware o virtualización para cada nodo de equilibrio de carga, ya sea para dispositivos de servicios SG100 o SG1000, nodos de configuración básica o nodos basados en máquinas virtuales (VM).
+
+Debe configurar un extremo de equilibrador de carga de StorageGRID para definir el puerto que utilizarán los nodos de puerta de enlace y los nodos de administración para las solicitudes de FabricPool entrantes y salientes.
+
+
+
+== Prácticas recomendadas para el certificado de extremo de equilibrio de carga
+
+Al crear un extremo de equilibrio de carga para utilizarlo con FabricPool, debe utilizar HTTPS como protocolo. Se admite la comunicación con StorageGRID sin cifrado TLS, pero no se recomienda
+
+A continuación, se puede cargar un certificado firmado por una CA de confianza pública o una entidad de certificación (CA) privada, o bien se puede generar un certificado autofirmado. El certificado permite la autenticación de ONTAP con StorageGRID.
+
+Como práctica recomendada, debe usar un certificado de servidor de CA para proteger la conexión. Los certificados firmados por una CA se pueden rotar de forma no disruptiva.
+
+Cuando solicite un certificado de CA para utilizarlo con el extremo de equilibrador de carga, asegúrese de que el nombre de dominio del certificado coincide con el nombre de servidor que escriba en ONTAP para ese extremo de equilibrador de carga. Si es posible, utilice un comodín (*) para permitir URL de tipo host virtual. Por ejemplo:
+
+[listing]
+----
+*.s3.storagegrid.company.com
+----
+Cuando añade StorageGRID como un nivel de cloud de FabricPool, debe instalar el mismo certificado en el clúster de ONTAP, así como en el certificado raíz y en todos los certificados de una entidad de certificación (CA) subordinados.
+
+
+NOTE: StorageGRID utiliza certificados de servidor para diversos fines. Si se conecta al servicio Load Balancer, de manera opcional, se puede usar el certificado API S3 y Swift.
+
+Para obtener más información acerca del certificado de servidor para un extremo de equilibrio de carga:
+
+* xref:../admin/configuring-load-balancer-endpoints.adoc[Configurar puntos finales del equilibrador de carga]
+* xref:../harden/hardening-guideline-for-server-certificates.adoc[Directrices de refuerzo para certificados de servidor]
+

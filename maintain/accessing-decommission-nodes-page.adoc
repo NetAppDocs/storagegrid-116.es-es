@@ -1,0 +1,158 @@
+---
+permalink: maintain/accessing-decommission-nodes-page.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission nodes, decommissioning nodes, maintenance task 
+summary: Cuando accede a la página nodos de misión de descommisión de Grid Manager, puede ver de un vistazo qué nodos se pueden retirar del servicio. 
+---
+= Acceda a la página nodos de misión
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cuando accede a la página nodos de misión de descommisión de Grid Manager, puede ver de un vistazo qué nodos se pueden retirar del servicio.
+
+.Lo que necesitará
+* Debe iniciar sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Debe tener los permisos de mantenimiento o acceso raíz.
+
+
+.Pasos
+. Seleccione *MANTENIMIENTO* > *tareas* > *misión*.
+. Seleccione *nodos de misión*.
++
+Aparecerá la página nodos de misión. Desde esta página, puede:
+
++
+** Determine qué nodos de cuadrícula se pueden retirar del servicio actualmente.
+** Ver el estado de todos los nodos de grid
+** Ordene la lista en orden ascendente o descendente por *Nombre*, *Sitio*, *Tipo* o *tiene ADC*.
+** Introduzca los términos de búsqueda para encontrar rápidamente nodos concretos. Por ejemplo, esta página muestra nodos de cuadrícula en dos centros de datos. La columna Decommission posible indica que puede retirar el nodo de puerta de enlace, uno de los cinco nodos de almacenamiento y el nodo de administración no primario.
+
+
++
+image::../media/decommission_nodes_page_all_connected.png[Página Decomisión nodos]
+
+. Revise la columna *DECOMmission possible* para cada nodo que desee retirar.
++
+Si se puede retirar el servicio de un nodo de cuadrícula, esta columna incluye una Marca de verificación verde y la columna situada más a la izquierda incluye una casilla de verificación. Si un nodo no puede retirarse, esta columna describe el problema. Si hay más de una razón por la que un nodo no puede ser retirado, se muestra el motivo más crítico.
+
++
+[cols="1a,2a,3a"]
+|===
+| Razón posible de retirada | Descripción | Pasos a resolver 
+
+
+ a| 
+No, el tipo de nodo decomisionado no es compatible.
+ a| 
+No puede retirar el nodo administrador principal ni un nodo de archivado.
+ a| 
+Ninguno.
+
+
+
+ a| 
+No, al menos un nodo de grid está desconectado.
+
+*Nota:* este mensaje sólo se muestra para los nodos de red conectados.
+ a| 
+No puede retirar un nodo de grid conectado si hay algún nodo de grid desconectado.
+
+La columna *Estado* incluye uno de estos iconos para los nodos de cuadrícula desconectados:
+
+** image:../media/icon_alarm_gray_administratively_down.png["icono de questionmark gris"] (Gris): Administrativamente abajo
+** image:../media/icon_alarm_blue_unknown.png["icono de signo de interrogación azul"] (Azul): Desconocido
+
+ a| 
+Vaya a la <<decommission_procedure_choices,paso que enumera las opciones de procedimiento de retirada de servicio>>.
+
+
+
+ a| 
+No, uno o más nodos necesarios están desconectados actualmente y deben recuperarse.
+
+*Nota:* este mensaje sólo se muestra para los nodos de red desconectados.
+ a| 
+No puede retirar un nodo de red desconectado si también se desconecta uno o más nodos necesarios (por ejemplo, un nodo de almacenamiento necesario para el quórum de ADC).
+ a| 
+.. Revise los mensajes de DECOMmission posibles para todos los nodos desconectados.
+.. Determine qué nodos no se pueden retirar del servicio porque son necesarios.
++
+*** Si el estado de un nodo requerido está administrativamente inactivo, vuelva a conectar el nodo.
+*** Si el estado de un nodo requerido es Desconocido, realice un procedimiento de recuperación de nodos para recuperar el nodo requerido.
+
+
+
+
+
+
+ a| 
+No, miembro de los grupos de alta disponibilidad: _X_. Antes de poder retirar este nodo, debe quitarlo de todos los grupos de alta disponibilidad.
+ a| 
+No puede retirar un nodo de administrador ni un nodo de puerta de enlace si una interfaz de nodo pertenece a un grupo de alta disponibilidad.
+ a| 
+Edite el grupo de alta disponibilidad para quitar la interfaz del nodo o eliminar todo el grupo de alta disponibilidad. Consulte las instrucciones para administrar StorageGRID.
+
+
+
+ a| 
+No, el sitio _x_ requiere un mínimo de _n_ nodos de almacenamiento con servicios ADC.
+ a| 
+*Sólo nodos de almacenamiento.* no puede retirar un nodo de almacenamiento si no quedan nodos suficientes en el sitio para admitir los requisitos de quórum de ADC.
+ a| 
+Realice una expansión. Agregue un nodo de almacenamiento nuevo al sitio y especifique que debe tener un servicio ADC. Consulte la información sobre el quórum de ADC.
+
+
+
+ a| 
+No, uno o varios perfiles de código de borrado necesitan al menos _n_ nodos de almacenamiento. Si el perfil no se utiliza en una regla de ILM, puede desactivarlo.
+ a| 
+*Sólo nodos de almacenamiento.* no puede retirar un nodo de almacenamiento a menos que queden suficientes nodos para los perfiles de código de borrado existentes.
+
+Por ejemplo, si existe un perfil de código de borrado para la codificación de borrado 4+2, deben permanecer al menos 6 nodos de almacenamiento.
+ a| 
+Para cada perfil de código de borrado afectado, realice uno de los siguientes pasos, en función de cómo se utilice el perfil:
+
+** *Utilizado en la política activa de ILM*: Realizar una expansión. Añada suficientes nodos de almacenamiento nuevos para permitir que continúe la codificación de borrado. Consulte las instrucciones para ampliar StorageGRID.
+** *Utilizado en una regla de ILM pero no en la política de ILM activa*: Edite o elimine la regla y, a continuación, desactive el perfil de código de borrado.
+** *No se utiliza en ninguna regla ILM*: Desactiva el perfil de código de borrado.
+
+
+*Nota:* aparece un mensaje de error si intenta desactivar un perfil de código de borrado y los datos de objeto siguen asociados con el perfil. Es posible que deba esperar varias semanas antes de volver a intentar el proceso de desactivación.
+
+Obtenga información sobre cómo desactivar un perfil de código de borrado en las instrucciones para gestionar objetos con la gestión del ciclo de vida de la información.
+
+|===
+. [[Decomisión_procedure_elitiers]]Si es posible la retirada del servicio para el nodo, determine qué procedimiento debe realizar:
+
+
+[cols="1a,1a"]
+|===
+| Si la cuadrícula incluye... | Vaya a... 
+
+
+ a| 
+Todos los nodos de grid desconectados
+ a| 
+xref:decommissioning-disconnected-grid-nodes.adoc[Retirada de nodos de red desconectados]
+
+
+
+ a| 
+Solo nodos de grid conectados
+ a| 
+xref:decommissioning-connected-grid-nodes.adoc[Retirada de nodos de grid conectados]
+
+|===
+.Información relacionada
+xref:checking-data-repair-jobs.adoc[Compruebe los trabajos de reparación de datos]
+
+xref:understanding-adc-service-quorum.adoc[Comprender el quórum de ADC]
+
+xref:../ilm/index.adoc[Gestión de objetos con ILM]
+
+xref:../expand/index.adoc[Amplíe su grid]
+
+xref:../admin/index.adoc[Administre StorageGRID]

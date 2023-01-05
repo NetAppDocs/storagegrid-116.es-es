@@ -1,0 +1,82 @@
+---
+permalink: sg5600/index.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, overview, models, features 
+summary: El dispositivo SG5600 de StorageGRID es una plataforma integrada de almacenamiento y computación que funciona como un nodo de almacenamiento en un grid StorageGRID. 
+---
+= Dispositivos SG5600: Información general
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El dispositivo SG5600 de StorageGRID es una plataforma integrada de almacenamiento y computación que funciona como un nodo de almacenamiento en un grid StorageGRID.
+
+El dispositivo SG5600 StorageGRID incluye los siguientes componentes:
+
+|===
+| Componente | Descripción 
+
+
+ a| 
+Controladora E5600SG
+ a| 
+Compute ServerLa controladora E5600SG ejecuta el sistema operativo Linux y el software StorageGRID.
+
+Esta controladora se conecta a las siguientes:
+
+* Las redes de administración, grid y cliente del sistema StorageGRID
+* La controladora E2700, utiliza rutas SAS duales (activo/activo) con la controladora E5600SG funcionando como iniciador
+
+
+
+
+ a| 
+Controladora E2700
+ a| 
+Controlador de almacenamiento la controladora E2700 funciona como cabina de almacenamiento E-Series estándar en modo simple y ejecuta el sistema operativo SANtricity (firmware de la controladora).
+
+Esta controladora se conecta a las siguientes:
+
+* La red de gestión en la que se ha instalado SANtricity Storage Manager
+* La controladora E5600SG, utiliza rutas SAS duales (activo/activo) con la controladora E2700 que funciona como objetivo
+
+
+|===
+El dispositivo SG5600 también incluye los siguientes componentes, según el modelo:
+
+|===
+| Componente | Modelo SG5612 | Modelo SG5660 
+
+
+ a| 
+Unidades
+ a| 
+12 unidades NL-SAS
+ a| 
+60 unidades NL-SAS
+
+
+
+ a| 
+Compartimento
+ a| 
+El compartimento DE1600, un chasis de unidad rack (2U) que aloja las unidades y las controladoras
+ a| 
+Compartimento DE6600, cuatro chasis de unidad rack (4U) que alojan las unidades y las controladoras
+
+
+
+ a| 
+Fuentes de alimentación y ventiladores
+ a| 
+Dos contenedores de alimentación/ventilador
+ a| 
+Dos fuentes de alimentación y dos ventiladores
+
+|===
+
+NOTE: El controlador E5600SG está muy personalizado para su uso en el dispositivo StorageGRID. Todos los demás componentes funcionan de la forma descrita en la documentación de E-Series, excepto si se indica en estas instrucciones.
+
+El almacenamiento bruto máximo disponible en cada nodo de almacenamiento del dispositivo StorageGRID es fijo, según el modelo y la configuración del dispositivo. No se puede expandir el almacenamiento disponible si se añade una bandeja con unidades adicionales.

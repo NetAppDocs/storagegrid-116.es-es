@@ -1,0 +1,18 @@
+---
+permalink: maintain/accessing-server-manager-log-file.html 
+sidebar: sidebar 
+keywords: storagegrid, server manager, log file 
+summary: Si surge un problema al utilizar Server Manager, compruebe su archivo de registro. 
+---
+= Acceda al archivo de registro de Server Manager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si surge un problema al utilizar Server Manager, compruebe su archivo de registro.
+
+Los mensajes de error relacionados con Server Manager se capturan en el archivo de registro de Server Manager, que se encuentra en: `/var/local/log/servermanager.log`
+
+Compruebe si hay mensajes de error en este archivo. Si es necesario, Escale el problema al soporte técnico. Es posible que se le solicite reenviar los archivos de registro al soporte técnico.

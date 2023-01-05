@@ -1,0 +1,72 @@
+---
+permalink: monitor/monitoring-system-health.html 
+sidebar: sidebar 
+keywords: how to monitor system health, how to view system health 
+summary: Debe supervisar el estado general del sistema StorageGRID a diario. 
+---
+= Supervise el estado del sistema
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe supervisar el estado general del sistema StorageGRID a diario.
+
+.Acerca de esta tarea
+El sistema StorageGRID es tolerante a fallos y puede seguir funcionando incluso cuando no hay partes de la cuadrícula. Es probable que el primer signo de un problema potencial en el sistema de StorageGRID sea una alerta o una alarma (sistema heredado) y no necesariamente un problema en el funcionamiento del sistema. Prestar atención al estado del sistema puede ayudarle a detectar problemas menores antes de que afecten a operaciones o a la eficiencia del grid.
+
+El panel Estado del Panel de Grid Manager proporciona un resumen de los problemas que pueden afectar al sistema. Debe investigar los problemas que se muestran en la consola.
+
+
+NOTE: Para recibir notificaciones de alertas en cuanto se activen, se pueden configurar notificaciones por correo electrónico para alertas o capturas SNMP.
+
+.Pasos
+. Inicie sesión en Grid Manager para ver el panel.
+. Revise la información del panel Estado.
++
+image::../media/dashboard_health_panel.png[Panel de estado del panel de control]
+
++
+Cuando existen problemas, aparecen vínculos que le permiten ver detalles adicionales:
+
++
+[cols="1a,2a"]
+|===
+| Enlace | Lo que indica 
+
+
+ a| 
+Detalles de la cuadrícula
+ a| 
+Aparece si hay nodos desconectados (estado de conexión desconocido o administrativamente inactivo). Haga clic en el enlace o haga clic en el icono azul o gris para determinar qué nodo o nodos están afectados.
+
+
+
+ a| 
+Alertas actuales
+ a| 
+Aparece si hay alguna alerta activa en ese momento. Haga clic en el enlace o haga clic en *crítico*, *mayor* o *menor* para ver los detalles en la página *ALERTAS* > *actual*.
+
+
+
+ a| 
+Alertas resueltas recientemente
+ a| 
+Aparece si se han resuelto todas las alertas activadas en la última semana. Haga clic en el enlace para ver los detalles en la página *ALERTS* > *Resolved*.
+
+
+
+ a| 
+Licencia
+ a| 
+Aparece si se produce un problema con la licencia de software de este sistema StorageGRID. Haga clic en el enlace para ver los detalles en la página *MANTENIMIENTO* > *sistema* > *Licencia*.
+
+|===
+
+
+.Información relacionada
+* xref:../admin/index.adoc[Administre StorageGRID]
+* xref:email-alert-notifications.adoc[Configure notificaciones por correo electrónico para las alertas]
+* xref:using-snmp-monitoring.adoc[Usar supervisión de SNMP]
+

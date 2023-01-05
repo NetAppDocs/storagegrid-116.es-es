@@ -1,0 +1,50 @@
+---
+permalink: sg5600/adding-appliance-to-santricity-storage-manager.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5600, storage node, storage appliance, Adding, add, appliance, SANtricity Storage Manager, SANtricity 
+summary: La controladora E2700 se conecta al dispositivo con SANtricity Storage Manager y, a continuación, añade el dispositivo como una cabina de almacenamiento. 
+---
+= Añada el dispositivo a SANtricity Storage Manager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La controladora E2700 se conecta al dispositivo con SANtricity Storage Manager y, a continuación, añade el dispositivo como una cabina de almacenamiento.
+
+.Lo que necesitará
+Está utilizando un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+
+.Acerca de esta tarea
+Para obtener instrucciones detalladas, consulte la documentación de SANtricity Storage Manager.
+
+.Pasos
+. Abra un explorador web y escriba la dirección IP como URL de SANtricity Storage Manager: +
+`*https://_E2700_Controller_IP_*`
++
+Aparece la página de inicio de sesión en SANtricity Storage Manager.
+
+. En la página *Seleccionar método de adición*, seleccione *Manual* y haga clic en *Aceptar*.
+. Seleccione *Editar* > *Agregar matriz de almacenamiento*.
++
+Se mostrará la página Add New Storage Array - Manual.
+
++
+image::../media/sanricity_add_new_storage_array_out_of_band.gif[SANtricity Añadir nueva página de cabina de almacenamiento]
+
+. En el cuadro *Administración fuera de banda*, introduzca uno de los siguientes valores:
++
+** *Usando DHCP:* la dirección IP asignada por el servidor DHCP al puerto de administración 1 del controlador E2700
+** *Sin usar DHCP:* `192.168.128.101`
++
+
+NOTE: Solo una de las controladoras del dispositivo está conectada a SANtricity Storage Manager, por lo que solo debe introducir una dirección IP.
+
+
+
+. Haga clic en *Agregar*.
+
+
+.Información relacionada
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61197["Documentación de NetApp: SANtricity Storage Manager"^]

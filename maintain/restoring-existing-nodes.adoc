@@ -1,0 +1,24 @@
+---
+permalink: maintain/restoring-existing-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, restore node to host 
+summary: Para restaurar un nodo de grid con errores en un nuevo host Linux, puede restaurar el archivo de configuración del nodo con los comandos correspondientes. 
+---
+= Restaurar los nodos de grid en el host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para restaurar un nodo de grid con errores en un nuevo host Linux, puede restaurar el archivo de configuración del nodo con los comandos correspondientes.
+
+Cuando se realiza una instalación nueva, se crea un archivo de configuración de nodos para cada nodo de grid que se instala en un host. Cuando restaura un nodo de grid en un host de reemplazo, restaura o sustituye el archivo de configuración de nodos en los nodos de grid con errores.
+
+Si alguno de los volúmenes de almacenamiento en bloque se conservó del host anterior, es posible que deba realizar procedimientos de recuperación adicionales. Los comandos de esta sección le ayudan a determinar qué procedimientos adicionales son necesarios.
+
+.Pasos
+* xref:restoring-and-validating-grid-nodes.adoc[Restaurar y validar nodos de grid]
+* xref:starting-storagegrid-host-service.adoc[Inicie el servicio de host StorageGRID]
+* xref:recovering-nodes-that-fail-to-start-normally.adoc[Recupere los nodos que no se inician normalmente]
+

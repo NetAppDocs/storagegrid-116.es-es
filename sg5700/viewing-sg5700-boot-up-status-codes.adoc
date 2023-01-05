@@ -1,0 +1,83 @@
+---
+permalink: sg5700/viewing-sg5700-boot-up-status-codes.html 
+sidebar: sidebar 
+keywords: storagegrid, sg5700, storage node, storage appliance, boot codes, boot-up codes, start codes, codes, boot, start 
+summary: Las pantallas de siete segmentos de cada controlador muestran el estado y los códigos de error a medida que el dispositivo se enciende. 
+---
+= Ver los códigos de estado de arranque SG5700
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Las pantallas de siete segmentos de cada controlador muestran el estado y los códigos de error a medida que el dispositivo se enciende.
+
+.Acerca de esta tarea
+La controladora E2800 y la controladora E5700SG muestran diferentes Estados y códigos de error.
+
+Para comprender qué significan estos códigos, consulte los siguientes recursos:
+
+|===
+| Controladora | Referencia 
+
+
+ a| 
+Controladora E2800
+ a| 
+_E5700 y Guía de supervisión del sistema E2800_
+
+*Nota:* los códigos enumerados para el controlador E5700 E-Series no se aplican al controlador E5700SG del aparato.
+
+
+
+ a| 
+Controladora E5700SG
+ a| 
+"Indicadores de Estados en el controlador E5700SG"
+
+|===
+.Pasos
+. Durante el arranque, supervise el progreso visualizando los códigos que se muestran en las pantallas de siete segmentos.
++
+** La pantalla de siete segmentos del controlador E2800 muestra la secuencia de repetición *OS*, *SD*, `*_blank_*` para indicar que está realizando el procesamiento de comienzo del día.
+** La pantalla de siete segmentos del controlador E5700SG muestra una secuencia de códigos que termina con *AA* y *FF*.
+
+
+. Una vez arrancados las controladoras, confirme las pantallas de siete segmentos que muestran lo siguiente:
++
+image::../media/seven_segment_display_codes.gif[Visualización de siete segmentos después de que se han iniciado las controladoras.]
+
++
+|===
+| Controladora | Pantalla de siete segmentos 
+
+
+ a| 
+Controladora E2800
+ a| 
+Muestra 99, que es el ID predeterminado de una bandeja de controladoras E-Series.
+
+
+
+ a| 
+Controladora E5700SG
+ a| 
+Muestra *HO*, seguido de una secuencia repetida de dos números.
+
+[listing]
+----
+HO -- IP address for Admin Network -- IP address for Grid Network HO
+----
+En la secuencia, el primer conjunto de números es la dirección IP asignada por DHCP para el puerto de gestión 1 de la controladora. Esta dirección se utiliza para conectar la controladora a la red del administrador para StorageGRID. El segundo conjunto de números es la dirección IP asignada por DHCP utilizada para conectar el dispositivo a la red de cuadrícula para StorageGRID.
+
+*Nota:* Si no se puede asignar una dirección IP mediante DHCP, se muestra 0.0.0.0.
+
+|===
+. Si las pantallas de siete segmentos muestran otros valores, consulte xref:troubleshooting-hardware-installation.adoc[Solucionar problemas de instalación de hardware (SG5700)] y confirme que ha completado los pasos de la instalación correctamente. Si no puede resolver el problema, póngase en contacto con el soporte técnico.
+
+
+.Información relacionada
+xref:status-indicators-on-e5700sg-controller.adoc[Indicadores de estado en el controlador E5700SG]
+
+https://library.netapp.com/ecmdocs/ECMLP2588751/html/frameset.html["Guía de supervisión del sistema E5700 y E2800"^]

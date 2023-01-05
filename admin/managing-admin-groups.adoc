@@ -1,0 +1,380 @@
+---
+permalink: admin/managing-admin-groups.html 
+sidebar: sidebar 
+keywords: what are admin groups, user permissions 
+summary: Es posible crear grupos de administración para gestionar los permisos de seguridad de uno o más usuarios de administrador. Los usuarios deben pertenecer a un grupo para tener acceso al sistema StorageGRID. 
+---
+= Gestione los grupos de administradores
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible crear grupos de administración para gestionar los permisos de seguridad de uno o más usuarios de administrador. Los usuarios deben pertenecer a un grupo para tener acceso al sistema StorageGRID.
+
+.Lo que necesitará
+* Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
+* Tiene permisos de acceso específicos.
+* Si planea importar un grupo federado, ha configurado la federación de identidades y el grupo federado ya existe en el origen de identidades configurado.
+
+
+
+
+== Cree un grupo de administración
+
+Los grupos de administración permiten determinar a qué usuarios se puede acceder a qué características y operaciones en Grid Manager y en la API de gestión de grid.
+
+
+
+=== Acceda al asistente
+
+. Seleccione *CONFIGURACIÓN* > *Control de acceso* > *grupos de administración*.
+. Seleccione *Crear grupo*.
+
+
+
+
+=== Elija un tipo de grupo
+
+Puede crear un grupo local o importar un grupo federado.
+
+* Cree un grupo local si desea asignar permisos a los usuarios locales.
+* Cree un grupo federado para importar usuarios desde el origen de identidades.
+
+
+[role="tabbed-block"]
+====
+.Grupo local
+--
+. Seleccione *Grupo local*.
+. Introduzca un nombre para mostrar para el grupo, que puede actualizar más adelante si es necesario. Por ejemplo, «usuarios de mantenimiento» o «Administradores de ILM».
+. Introduzca un nombre único para el grupo, que no se podrá actualizar más adelante.
+. Seleccione *continuar*.
+
+
+--
+.Grupo federado
+--
+. Seleccione *Grupo federado*.
+. Introduzca el nombre del grupo que desea importar, exactamente como aparece en el origen de identidad configurado.
++
+** Para Active Directory y Azure, utilice sAMAccountName.
+** Para OpenLDAP, utilice CN (Nombre común).
+** Para otro LDAP, utilice el nombre exclusivo adecuado para el servidor LDAP.
+
+
+. Seleccione *continuar*.
+
+
+--
+====
+
+
+=== Administrar permisos de grupo
+
+. En *modo de acceso*, seleccione si los usuarios del grupo pueden cambiar la configuración y realizar operaciones en Grid Manager y la API de gestión de grid o si sólo pueden ver la configuración y las características.
++
+** *Read-write* (predeterminado): Los usuarios pueden cambiar la configuración y realizar las operaciones permitidas por sus permisos de administración.
+** *Sólo lectura*: Los usuarios sólo pueden ver los ajustes y las funciones. No pueden realizar cambios ni realizar ninguna operación en Grid Manager o en la API de gestión de grid. Los usuarios locales de solo lectura pueden cambiar sus propias contraseñas.
++
+
+NOTE: Si un usuario pertenece a varios grupos y cualquier grupo está establecido en *sólo lectura*, el usuario tendrá acceso de sólo lectura a todos los ajustes y características seleccionados.
+
+
+
+. Seleccione uno o varios <<Permisos de grupo>>.
++
+Debe asignar al menos un permiso a cada grupo; de lo contrario, los usuarios que pertenezcan al grupo no podrán iniciar sesión en StorageGRID.
+
+. Si está creando un grupo local, seleccione *continuar*. Si está creando un grupo federado, seleccione *Crear grupo* y *Finalizar*.
+
+
+
+
+=== Añadir usuarios (sólo grupos locales)
+
+. Opcionalmente, seleccione uno o varios usuarios locales para este grupo.
++
+Si todavía no ha creado usuarios locales, puede guardar el grupo sin agregar usuarios. Puede agregar este grupo al usuario en la página usuarios. Consultexref:managing-users.adoc[Gestionar usuarios] para obtener más detalles.
+
+. Seleccione *Crear grupo* y *Finalizar*.
+
+
+
+
+== Consulte y edite los grupos de administración
+
+Puede ver los detalles de los grupos existentes, modificar un grupo o duplicar un grupo.
+
+* Para ver información básica de todos los grupos, revise la tabla de la página grupos.
+* Para ver todos los detalles de un grupo específico o editar un grupo, utilice el menú *acciones* o la página de detalles.
++
+[cols="1a, 2a,2a"]
+|===
+| Tarea | Menú Actions | Detalles 
+
+
+ a| 
+Ver detalles del grupo
+ a| 
+.. Seleccione la casilla de verificación del grupo.
+.. Seleccione *acciones* > *Ver detalles del grupo*.
+
+ a| 
+Seleccione el nombre del grupo en la tabla.
+
+
+
+ a| 
+Editar nombre para mostrar (sólo grupos locales)
+ a| 
+.. Seleccione la casilla de verificación del grupo.
+.. Seleccione *acciones* > *Editar nombre de grupo*.
+.. Introduzca el nuevo nombre.
+.. Seleccione *Guardar cambios*.
+
+ a| 
+.. Seleccione el nombre del grupo para mostrar los detalles.
+.. Seleccione el icono de edición image:../media/icon_edit_tm.png["Icono Editar"].
+.. Introduzca el nuevo nombre.
+.. Seleccione *Guardar cambios*.
+
+
+
+
+ a| 
+Edite el modo de acceso o los permisos
+ a| 
+.. Seleccione la casilla de verificación del grupo.
+.. Seleccione *acciones* > *Ver detalles del grupo*.
+.. Si lo desea, cambie el modo de acceso del grupo.
+.. Opcionalmente, seleccione o anule la selección <<Permisos de grupo>>.
+.. Seleccione *Guardar cambios*.
+
+ a| 
+.. Seleccione el nombre del grupo para mostrar los detalles.
+.. Si lo desea, cambie el modo de acceso del grupo.
+.. Opcionalmente, seleccione o anule la selección <<Permisos de grupo>>.
+.. Seleccione *Guardar cambios*.
+
+
+|===
+
+
+
+
+== Duplicar un grupo
+
+. Seleccione la casilla de verificación del grupo.
+. Seleccione *acciones* > *Duplicar grupo*.
+. Complete el asistente para grupos duplicados.
+
+
+
+
+== Eliminar un grupo
+
+Es posible eliminar un grupo de administración cuando se desea quitar el grupo del sistema y quitar todos los permisos asociados con el grupo. Al eliminar un grupo de administración, se quitan todos los usuarios del grupo, pero no se eliminan los usuarios.
+
+. En la página grupos, active la casilla de verificación de cada grupo que desee quitar.
+. Seleccione *acciones* > *Eliminar grupo*.
+. Seleccione *Eliminar grupos*.
+
+
+
+
+== Permisos de grupo
+
+Al crear grupos de usuarios de administrador, debe seleccionar uno o más permisos para controlar el acceso a funciones específicas de Grid Manager. A continuación, puede asignar cada usuario a uno o varios de estos grupos de administración para determinar qué tareas puede realizar el usuario.
+
+Debe asignar al menos un permiso a cada grupo; de lo contrario, los usuarios pertenecientes a ese grupo no podrán iniciar sesión en Grid Manager o en la API de gestión de grid.
+
+De forma predeterminada, cualquier usuario que pertenezca a un grupo que tenga al menos un permiso puede realizar las siguientes tareas:
+
+* Inicie sesión en Grid Manager
+* Consulte la consola
+* Puede ver las páginas Nodes
+* Supervise la topología de grid
+* Ver las alertas actuales y resueltas
+* Ver alarmas actuales e históricas (sistema heredado)
+* Cambiar su propia contraseña (sólo usuarios locales)
+* Vea cierta información en las páginas Configuración y Mantenimiento
+
+
+
+
+=== Interacción entre permisos y modo de acceso
+
+Para todos los permisos, la configuración del *modo de acceso* del grupo determina si los usuarios pueden cambiar la configuración y realizar operaciones o si sólo pueden ver la configuración y las características relacionadas. Si un usuario pertenece a varios grupos y cualquier grupo está establecido en *sólo lectura*, el usuario tendrá acceso de sólo lectura a todos los ajustes y características seleccionados.
+
+En las siguientes secciones se describen los permisos que se pueden asignar al crear o editar un grupo de administradores. Cualquier funcionalidad que no se haya mencionado explícitamente requiere el permiso *acceso raíz*.
+
+
+
+=== Acceso raíz
+
+Este permiso proporciona acceso a todas las funciones de administración de grid.
+
+
+
+=== Confirmar alarmas (heredadas)
+
+Este permiso proporciona acceso para reconocer y responder a alarmas (sistema heredado). Todos los usuarios que han iniciado sesión pueden ver las alarmas actuales e históricas.
+
+Si desea que un usuario supervise la topología de la cuadrícula y reconozca únicamente las alarmas, debe asignar este permiso.
+
+
+
+=== Cambiar la contraseña raíz del inquilino
+
+Este permiso proporciona acceso a la opción *Cambiar contraseña raíz* de la página arrendatarios, lo que le permite controlar quién puede cambiar la contraseña del usuario raíz local del arrendatario. Este permiso también se usa para migrar claves S3 cuando se habilita la función de importación de claves S3. Los usuarios que no tienen este permiso no pueden ver la opción *Cambiar contraseña raíz*.
+
+
+NOTE: Para conceder acceso a la página arrendatarios, que contiene la opción *Cambiar contraseña root*, también asigne el permiso *Cuentas de arrendatario*.
+
+
+
+=== Configuración de la página de topología de grid
+
+Este permiso permite acceder a las fichas Configuración de la página *SUPPORT* > *Tools* > *Topología de cuadrícula*.
+
+
+
+=== ILM
+
+Este permiso permite acceder a las siguientes opciones del menú *ILM*:
+
+* Bases de datos
+* Normativas
+* Codificación de borrado
+* Regiones
+* Pools de almacenamiento
+
+
+
+NOTE: Los usuarios deben tener los permisos *Other grid Configuration* y *Grid Topology page Configuration* para administrar los grados de almacenamiento.
+
+
+
+=== Mantenimiento
+
+Los usuarios deben tener permiso de mantenimiento para utilizar estas opciones:
+
+* *CONFIGURACIÓN* > *Control de acceso*:
++
+** Contraseñas de grid
+
+
+* *MANTENIMIENTO* > *tareas*:
++
+** Retirada
+** Expansión
+** Comprobación de existencia de objeto
+** Recuperación
+
+
+* *MANTENIMIENTO* > *sistema*:
++
+** Paquete de recuperación
+** Actualización de software
+
+
+* *SOPORTE* > *Herramientas*:
++
+** Registros
+
+
+
+
+Los usuarios que no tienen permiso de mantenimiento pueden ver, pero no editar, estas páginas:
+
+* *MANTENIMIENTO* > *Red*:
++
+** Servidores DNS
+** Red Grid
+** Servidores NTP
+
+
+* *MANTENIMIENTO* > *sistema*:
++
+** Licencia
+
+
+* *CONFIGURACIÓN* > *Seguridad*:
++
+** Certificados
+** Nombres de dominio
+
+
+* *CONFIGURACIÓN* > *Supervisión*:
++
+** Servidor de auditoría y syslog
+
+
+
+
+
+
+=== Gestionar alertas
+
+Este permiso proporciona acceso a opciones para gestionar alertas. Los usuarios deben tener este permiso para gestionar las silencios, las notificaciones de alerta y las reglas de alerta.
+
+
+
+=== Consulta de métricas
+
+Este permiso permite acceder a la página *SUPPORT* > *Tools* > *Metrics*. Este permiso también proporciona acceso a consultas de métricas Prometheus personalizadas mediante la sección *Metrics* de la API de gestión de grid.
+
+
+
+=== Búsqueda de metadatos de objetos
+
+Este permiso proporciona acceso a la página *ILM* > *Búsqueda de metadatos de objetos*.
+
+
+
+=== Otra configuración de cuadrícula
+
+Este permiso proporciona acceso a opciones de configuración de cuadrícula adicionales.
+
+
+IMPORTANT: Para ver estas opciones adicionales, los usuarios también deben tener el permiso *Configuración de página de topología de cuadrícula*.
+
+* *ILM*:
++
+** Grados de almacenamiento
+
+
+* *CONFIGURACIÓN* > *Red*:
++
+** Coste del enlace
+
+
+* *CONFIGURACIÓN* > *sistema*:
++
+** Opciones de visualización
+** Opciones de cuadrícula
+** Opciones de almacenamiento
+
+
+* *SOPORTE* > *Alarmas (heredado)*:
++
+** Eventos personalizados
+** Alarmas globales
+** Configuración de correo electrónico heredado
+
+
+
+
+
+
+=== Administrador de dispositivos de almacenamiento
+
+Este permiso proporciona acceso al System Manager de SANtricity E-Series en dispositivos de almacenamiento a través de Grid Manager.
+
+
+
+=== Cuentas de inquilino
+
+Este permiso proporciona acceso a la página arrendatarios, donde puede crear, editar y quitar cuentas de arrendatario. Este permiso también permite a los usuarios ver las directivas de clasificación de tráfico existentes.

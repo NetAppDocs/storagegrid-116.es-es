@@ -1,0 +1,57 @@
+---
+permalink: audit/object-delete-transactions.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, messages, transaction, transactions, Object delete, S3 delete, Swift delete, S3, Swift, SDEL, WDEL 
+summary: 'Puede identificar transacciones de eliminación de objetos en el registro de auditoría ubicando mensajes de auditoría \(S3 y Swift\) específicos de la API.' 
+---
+= Objeto: Eliminar transacciones
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede identificar transacciones de eliminación de objetos en el registro de auditoría ubicando mensajes de auditoría específicos de la API (S3 y Swift).
+
+En las tablas siguientes no se enumeran todos los mensajes de auditoría generados durante una transacción de eliminación. Sólo se incluyen los mensajes necesarios para realizar el seguimiento de la transacción de eliminación.
+
+
+
+== S3 elimina mensajes de auditoría
+
+|===
+| Codificación | Nombre | Descripción | Traza | Consulte 
+
+
+ a| 
+SDEL
+ a| 
+Eliminación de S3
+ a| 
+Solicitud realizada para eliminar el objeto de un bloque.
+ a| 
+CBID, S3KY
+ a| 
+xref:sdel-s3-delete.adoc[SDEL: ELIMINACIÓN DE S3]
+
+|===
+
+
+== Elimine mensajes de auditoría de Swift
+
+|===
+| Codificación | Nombre | Descripción | Traza | Consulte 
+
+
+ a| 
+¡WDEL
+ a| 
+Eliminación de Swift
+ a| 
+Solicitud realizada para eliminar el objeto de un contenedor o del contenedor.
+ a| 
+CBID, WOBJ
+ a| 
+xref:wdel-swift-delete.adoc[WDEL: ELIMINACIÓN de Swift]
+
+|===

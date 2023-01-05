@@ -1,0 +1,313 @@
+---
+permalink: upgrade/whats-new.html 
+sidebar: sidebar 
+keywords: what is new in StorageGRID 11.6 
+summary: Esta versión de StorageGRID presenta las siguientes funciones. 
+---
+= Novedades de StorageGRID 11.6
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Esta versión de StorageGRID presenta las siguientes funciones.
+
+
+
+== Mejoras en la facilidad de uso
+
+La interfaz de usuario de Grid Manager se ha rediseñado de manera considerable para mejorar la experiencia del usuario.
+
+* Una nueva barra lateral reemplaza los menús desplegables de la interfaz de usuario antigua.
+* Se reorganizaron varios menús para mantener juntos las opciones relacionadas. Por ejemplo, el menú *CONFIGURACIÓN* incluye una nueva sección *Seguridad* para las opciones certificados, servidor de administración de claves, Configuración de proxy y redes de cliente no confiables.
+* Un campo *Buscar* en la barra de encabezado permite navegar rápidamente a las páginas de Grid Manager.
+* La tabla de resumen de la página *Nodes* proporciona información de alto nivel para todos los sitios y nodos, como los datos de objeto utilizados y los metadatos de objetos utilizados, e incluye un nuevo campo de búsqueda. Se muestran iconos de alerta junto a cualquier nodo con alertas activas.
+* Los nuevos asistentes le guían en configuraciones más complejas, como los flujos de trabajo de grupos de administración, usuarios de administración, inquilinos, extremos de equilibrador de carga y grupos de alta disponibilidad (ha).
+* Todas las páginas de la interfaz de usuario se han vuelto a imprimir con fuentes actualizadas, estilos de botones y formatos de tabla.
++
+
+NOTE: A menos que se haya producido un cambio funcional, las capturas de pantalla del sitio de documentación de StorageGRID 11.6 no se han actualizado para reflejar el nuevo estilo de página de Grid Manager.
+
+
+
+Consulte lo siguiente:
+
+* xref:../admin/index.adoc[Administre StorageGRID]
+* xref:../monitor/index.adoc[Supervisión y solución de problemas]
+
+
+
+
+== Múltiples interfaces VLAN
+
+Ahora puede crear interfaces de LAN virtual (VLAN) para los nodos de administración y de puerta de enlace. Puede utilizar interfaces VLAN en grupos de alta disponibilidad y extremos de equilibrio de carga para aislar y dividir el tráfico del cliente en particiones para seguridad, flexibilidad y rendimiento.
+
+* El nuevo asistente *Crear una interfaz VLAN* le guiará a través del proceso de introducir una identificación VLAN y elegir una interfaz padre en uno o más nodos. Una interfaz principal puede ser Grid Network, Client Network o una interfaz troncal adicional para la máquina virtual o el host sin sistema operativo. Consulte xref:../admin/configure-vlan-interfaces.html[Configure las interfaces VLAN].
+* Ahora se puede añadir un tronco o interfaces de acceso adicionales a un nodo. Si agrega una interfaz troncal, debe configurar una interfaz VLAN. Si agrega una interfaz de acceso, puede agregar la interfaz directamente a un grupo de alta disponibilidad; no es necesario configurar una interfaz de VLAN. Consulte lo siguiente:
++
+** *Linux (antes de instalar el nodo)*: <<Mejoras en la instalación>>
+** *Linux (después de instalar el nodo)*: xref:../maintain/linux-adding-trunk-or-access-interfaces-to-node.adoc[Linux: Añada tronco o interfaces de acceso a un nodo]
+** *VMware (después de instalar el nodo)*: xref:../vmware/collecting-information-about-your-deployment-environment.adoc[Recopile información sobre el entorno de implementación]
+
+
+
+
+
+
+== Puede usar Azure AD para la federación de identidades
+
+Ahora puede seleccionar Azure Active Directory (Azure AD) como origen de identidades al configurar la federación de identidades para el Administrador de grid o el Administrador de inquilinos. Consulte xref:../admin/using-identity-federation.adoc[Usar la federación de identidades].
+
+
+
+== Puede utilizar Azure AD y PingFederate para SSO
+
+Ahora puede seleccionar Azure AD o PingFederate como tipo SSO al configurar el inicio de sesión único (SSO) para su grid. A continuación, puede utilizar el modo Sandbox para configurar y probar las aplicaciones empresariales de Azure AD o las conexiones del proveedor de servicios de PingFederate (SP) a cada nodo de administración de StorageGRID. Consulte xref:../admin/configuring-sso.adoc[Configurar el inicio de sesión único].
+
+
+
+== Gestión de certificados centralizada
+
+* La nueva página de certificados (*CONFIGURACIÓN* > *Seguridad* > *certificados*) consolida la información sobre todos los certificados de seguridad StorageGRID en una única ubicación. Puede gestionar los certificados globales de StorageGRID, de la CA de grid y de cliente desde la página nueva o ver información sobre otros certificados, como los que se utilizan para extremos de equilibrador de carga, inquilinos y federación de identidades. Consulte xref:../admin/using-storagegrid-security-certificates.adoc[Acerca de los certificados de seguridad].
+* Como parte de este cambio, se cambió el nombre de los siguientes certificados globales:
++
+** El *Certificado de servidor de interfaz de administración* es ahora el *Certificado de interfaz de administración*.
+** El certificado de servidor * Object Storage API Service Endpoints* (también llamado Storage API Server Certificate) es ahora el certificado de la API *S3 y Swift*.
+** El *Certificado CA interno*, *Certificado CA del sistema*, *Certificado CA* y *Certificado CA predeterminado* se conocen de manera consistente como el *Certificado CA de Grid*.
+
+
+
+
+
+
+== Otras mejoras de Grid Manager
+
+* *Actualizaciones a grupos de alta disponibilidad*. Ahora, un asistente lo guiará en el proceso de creación de un grupo de alta disponibilidad. Consulte xref:../admin/configure-high-availability-group.html[Configuración de grupos de alta disponibilidad].
++
+** Además de seleccionar interfaces en Grid Network (eth0) o Client Network (eth2), ahora puede seleccionar interfaces VLAN o cualquier interfaz de acceso que haya agregado al nodo.
+** Ahora puede especificar un orden de prioridad para las interfaces. Puede elegir la interfaz principal y clasificar cada interfaz de backup en orden.
+** Si alguno de los clientes S3, Swift, administrativos o inquilinos tendrá acceso a las direcciones VIP del grupo de alta disponibilidad desde una subred diferente, ahora puede proporcionar la dirección IP para la puerta de enlace.
+
+
+* *Actualizaciones a los extremos del equilibrador de carga*. Un nuevo asistente le guiará a través del proceso de creación de un punto final de equilibrio de carga. Consulte xref:../admin/configuring-load-balancer-endpoints.adoc[Configurar puntos finales del equilibrador de carga].
++
+** Ahora puede seleccionar el tipo de cliente (S3 o Swift) cuando crea el extremo por primera vez, en lugar de añadir este detalle después de crear el extremo.
+** Ahora puede utilizar el certificado global * StorageGRID S3 y Swift* para un extremo de equilibrador de carga en lugar de cargar o generar un certificado independiente.
++
+
+NOTE: Este certificado global se utilizó anteriormente para conexiones al servicio CLB obsoleto y a nodos de almacenamiento. Si desea utilizar el certificado global para un extremo de equilibrio de carga, debe cargar un certificado personalizado en la página del certificado API S3 y Swift.
+
+
+
+
+
+
+
+== Nuevas funciones del administrador de inquilinos
+
+* *Nueva Consola Experimental S3*. Disponible como enlace de la página Buckets en el Administrador de inquilinos, la nueva consola de S3 experimental permite a los usuarios de inquilinos S3 ver y gestionar los objetos de sus bloques. Consulte xref:../tenant/use-s3-console.adoc[Utilice la consola Experimental S3].
+
+
+
+IMPORTANT: La consola de S3 de experimental no se ha probado completamente y no está pensada para la gestión masiva de objetos ni para su uso en un entorno de producción. Los inquilinos solo deben usar S3 Console al realizar funciones para un número reducido de objetos, o cuando se utilizan grids de prueba de concepto o no de producción.
+
+* *Puede eliminar varios bloques S3*. Los usuarios de inquilinos ahora pueden eliminar más de un bloque de S3 a la vez. Cada segmento que desea eliminar debe estar vacío. Consulte xref:../tenant/deleting-s3-bucket.adoc[Eliminar bloque de S3].
+* *Actualiza a permiso de cuentas de inquilino*. Los usuarios de administrador que pertenecen a un grupo con el permiso Cuentas de arrendatario ahora pueden ver las directivas de clasificación de tráfico existentes. Anteriormente, se requería a los usuarios tener permiso acceso raíz para ver estas métricas.
+
+
+
+
+== Nuevo proceso de actualización y revisión
+
+* La página *actualización de StorageGRID* se ha rediseñado (*MANTENIMIENTO* > *sistema* > *actualización de software* > *actualización de StorageGRID*).
+* Después de que se completa la actualización a StorageGRID 11.6, puede utilizar el Administrador de grid para actualizar a una versión futura y aplicar una revisión para esa versión al mismo tiempo. La página de actualización de StorageGRID mostrará la ruta de actualización recomendada y vinculará directamente con las páginas de descarga correctas.
+* Una nueva casilla de verificación *Buscar actualizaciones de software* en la página AutoSupport (*SUPPORT* > *Tools* > *AutoSupport*) permite controlar esta funcionalidad. Puede desactivar la búsqueda de actualizaciones de software disponibles si el sistema no tiene acceso WAN. Consulte xref:../admin/configure-autosupport-grid-manager.adoc#disable-checks-for-software-updates[Configurar las comprobaciones de  de AutoSupport para actualizaciones de software].
++
+
+NOTE: Para la actualización a StorageGRID 11.6, puede utilizar opcionalmente una secuencia de comandos para actualizar y aplicar una revisión al mismo tiempo. Consulte https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_run_combined_major_upgrade_and_hotfix_script_for_StorageGRID["Base de conocimientos de NetApp: Cómo ejecutar scripts combinados de actualizaciones importantes y revisiones para StorageGRID"^].
+
+* Ahora puede pausar una actualización del sistema operativo de SANtricity y omitir la actualización de algunos nodos si necesita finalizar la actualización en el futuro. Consulte las instrucciones para su dispositivo de almacenamiento:
++
+** xref:../sg5600/upgrading-santricity-os-on-storage-controllers-using-grid-manager-sg5600.adoc[Actualizar el sistema operativo SANtricity en controladoras de almacenamiento mediante Grid Manager (SG5600)]
+** xref:../sg5700/upgrading-santricity-os-on-storage-controllers-using-grid-manager-sg5700.adoc[Actualizar el sistema operativo SANtricity en controladoras de almacenamiento mediante Grid Manager (SG5700)]
+** xref:../sg6000/upgrading-santricity-os-on-storage-controllers-using-grid-manager-sg6000.adoc[Actualizar el sistema operativo SANtricity en controladoras de almacenamiento mediante Grid Manager (SG6000)]
+
+
+
+
+
+
+== Compatibilidad con servidores de syslog externos
+
+* Ahora puede configurar un servidor de syslog externo si desea guardar y administrar mensajes de auditoría y un subconjunto de registros de StorageGRID de forma remota (*CONFIGURACIÓN* > *Supervisión* > *servidor de auditoría y syslog*). Una vez que se configura un servidor de syslog externo, puede guardar mensajes de auditoría y ciertos archivos de registro de forma local, remota o ambos. Al configurar los destinos de la información de auditoría, puede reducir el tráfico de red en los nodos admin. Consulte xref:../monitor/configure-audit-messages.adoc[Configurar los mensajes de auditoría y los destinos de registro].
+* En relación con esta funcionalidad, las nuevas casillas de verificación de la página registros (*SUPPORT* > *Tools* > *Logs*) le permiten especificar qué tipos de registros desea recopilar, como ciertos registros de aplicaciones, registros de auditoría, registros utilizados para la depuración de la red y registros de la base de datos Prometheus. Consulte xref:../monitor/collecting-log-files-and-system-data.adoc[Recopilar archivos de registro y datos del sistema].
+
+
+
+
+== S3 Select
+
+Ahora puede permitir a los inquilinos S3 que emita solicitudes SelectObjectContent a objetos individuales. S3 Select proporciona una forma eficiente de buscar en grandes cantidades de datos sin tener que implementar una base de datos y recursos asociados para permitir las búsquedas. También reduce el coste y la latencia de la recuperación de datos. Consulte xref:../admin/manage-s3-select-for-tenant-accounts.adoc[Gestione S3 Select para cuentas de inquilinos] y.. xref:../s3/use-s3-select.adoc[Utilice S3 Select].
+
+También se añadieron los gráficos Grafana para las operaciones de S3 Select. Consulte xref:../monitor/reviewing-support-metrics.adoc[Revisar las métricas de soporte].
+
+
+
+== Período de retención de bloques predeterminado de S3 Object Lock
+
+Cuando se usa el bloqueo de objetos S3, ahora se puede especificar un período de retención predeterminado para el bloque. El período de retención predeterminado se aplica a cualquier objeto agregado al bloque que no tenga su propia configuración de retención. Consulte xref:../s3/using-s3-object-lock.adoc[Utilice el bloqueo de objetos de S3].
+
+
+
+== Compatibilidad con Google Cloud Platform
+
+Ahora puede usar Google Cloud Platform (GCP) como extremo de los pools de almacenamiento en cloud y el servicio de la plataforma CloudMirror. Consulte xref:../tenant/specifying-urn-for-platform-services-endpoint.adoc[Especifique el URN para un extremo de servicios de plataforma] y.. xref:../ilm/creating-cloud-storage-pool.adoc[Cree un pool de almacenamiento en el cloud].
+
+
+
+== Compatibilidad con AWS C2S
+
+Ahora puede usar extremos de los servicios de cloud comercial (C2S) de AWS para la replicación de CloudMirror. Consulte xref:../tenant/creating-platform-services-endpoint.adoc[Cree un extremo de servicios de plataforma].
+
+
+
+== Otros cambios de S3
+
+* *OBTENER soporte de objeto Y OBJETO PRINCIPAL para objetos multipartes*. Anteriormente, StorageGRID no era compatible con `partNumber` Solicitar parámetro EN GET Object o HEAD Object peticiones. Ahora puede emitir solicitudes GET Y HEAD para recuperar una parte específica de un objeto de varias partes. GET and HEAD Object también es compatible con `x-amz-mp-parts-count` elemento de respuesta para indicar cuántas partes tiene un objeto.
+* *Cambios en el control de consistencia "disponible"*. El control de consistencia “disponible” ahora se comporta igual que el nivel de consistencia de “lectura tras escritura nueva”, pero proporciona una coherencia eventual para las operaciones DE CABEZAL Y GET. El control de coherencia “disponible” ofrece una mayor disponibilidad para las operaciones HEAD y GET que “Read-after-new-write” si los nodos de almacenamiento no están disponibles. Se diferencia de las garantías de coherencia de Amazon S3 para HEAD y GET.
++
+xref:../s3/index.adoc[Use S3]
+
+
+
+
+
+== Mejoras en el rendimiento
+
+* *Los nodos de almacenamiento admiten 2000 millones de objetos*. La estructura de directorios subyacente en nodos de almacenamiento se optimizó para mejorar la escalabilidad y el rendimiento. Ahora, los nodos de almacenamiento utilizan subdirectorios adicionales para almacenar hasta 2000 millones de objetos replicados y maximizar el rendimiento. Los subdirectorios de nodos se modifican al actualizar a StorageGRID 11.6, pero los objetos existentes no se redistribuyen a los nuevos directorios.
+* *Aumento del rendimiento de la eliminación basada en ILM para dispositivos de alto rendimiento*. Los recursos y el rendimiento empleados para realizar operaciones de eliminación del ciclo de vida de la información ahora se adaptan al tamaño y la funcionalidad de cada nodo de la aplicación StorageGRID. Para los dispositivos SG5600, el rendimiento es el mismo que para StorageGRID 11.5. Para los dispositivos SG5700, se realizaron pequeñas mejoras para eliminar el rendimiento de la ILM. Para los dispositivos SG6000, que tienen más RAM y más CPU, las eliminaciones de ILM se procesan ahora de forma mucho más rápida. Las mejoras se hacen especialmente notables en los dispositivos SGF6024 all-flash.
+* *Marcas de agua de volumen de almacenamiento optimizadas*. En las versiones anteriores, la configuración de las tres marcas de agua de volumen de almacenamiento se aplicaba a cada volumen de almacenamiento en cada nodo de almacenamiento. StorageGRID ahora puede optimizar estas marcas de agua para cada volumen de almacenamiento, según el tamaño del nodo de almacenamiento y la capacidad relativa del volumen. Consulte xref:../admin/what-storage-volume-watermarks-are.adoc[¿Qué son las marcas de agua del volumen de almacenamiento].
++
+Las marcas de agua optimizadas se aplican automáticamente a todos los sistemas StorageGRID 11.6 nuevos y más actualizados. Las marcas de agua optimizadas serán mayores que los ajustes predeterminados anteriores.
+
++
+Si utiliza marcas de agua personalizadas, la alerta *anulación de Marca de agua de sólo lectura baja* puede activarse después de actualizar. Esta alerta le permite saber si la configuración personalizada de la Marca de agua es demasiado pequeña. Consulte xref:../monitor/troubleshoot-low-watermark-alert.adoc[Solucionar los problemas de las alertas de anulación de la Marca de agua de sólo lectura baja].
+
++
+Como parte de este cambio, se añadieron dos métricas Prometheus:
+
++
+** `storagegrid_storage_volume_minimum_optimized_soft_readonly_watermark`
+** `storagegrid_storage_volume_maximum_optimized_soft_readonly_watermark`
+
+
+* *Aumento del espacio máximo de metadatos permitido*. El espacio máximo de metadatos permitido para los nodos de almacenamiento aumentó a 3.96 TB (de 2.64 TB) en el caso de los nodos de mayor capacidad, que son nodos con un espacio reservado real para metadatos de más de 4 TB. Este nuevo valor permite que se almacenen más metadatos de objetos en determinados nodos de almacenamiento y puede aumentar la capacidad de los metadatos de StorageGRID hasta un 50 %.
++
+
+NOTE: Si todavía no lo ha hecho, y si sus nodos de almacenamiento tienen suficiente RAM y espacio suficiente en el volumen 0, podrá xref:../upgrade/increasing-metadata-reserved-space-setting.adoc[Aumente manualmente la configuración del espacio reservado de metadatos hasta 8 TB después de instalar o actualizar].
+
++
+** xref:../admin/managing-object-metadata-storage.adoc#allowed-metadata-space[Gestione el almacenamiento de metadatos de objetos  espacio de metadatos permitido]
+** xref:../upgrade/increasing-metadata-reserved-space-setting.adoc[Aumentar el espacio reservado de metadatos]
+
+
+
+
+
+
+== Mejoras en los procedimientos de mantenimiento y las herramientas de soporte
+
+* *Puede cambiar las contraseñas de la consola de nodos*. Ahora puede utilizar Grid Manager para cambiar las contraseñas de la consola del nodo (*CONFIGURACIÓN* > *Control de acceso* > *contraseñas de cuadrícula*). Estas contraseñas se utilizan para iniciar sesión en un nodo como “admin” mediante SSH, o al usuario root en una conexión de VM/consola física. Consulte xref:../admin/change-node-console-password.adoc[Cambie las contraseñas de la consola de los nodos].
+* *Asistente para comprobación de la existencia de nuevos objetos*. Ahora puede verificar la integridad del objeto con un asistente de comprobación de la existencia de objetos fácil de usar (*MANTENIMIENTO* > *tareas* > *comprobación de la existencia de objetos*), que sustituye al procedimiento de verificación en primer plano. El nuevo procedimiento tarda un tercio o menos en completarse y puede verificar varios nodos a la vez. Consulte xref:../monitor/verifying-object-integrity.html[Verifique la integridad del objeto].
+* * Cuadro de "tiempo estimado hasta la finalización" para el reequilibrio de EC y trabajos de reparación de EC*. Ahora puede ver el tiempo estimado hasta la finalización y el porcentaje de finalización de un reequilibrio de EC actual o un trabajo de reparación EC.
+* *Porcentaje estimado completado para reparaciones de datos replicadas*. Ahora puede agregar el `show-replicated-repair-status` de la `repair-data` comando para ver un porcentaje estimado de finalización para una reparación replicada.
++
+
+IMPORTANT: La `show-replicated-repair-status` Esta opción está disponible para la versión preliminar técnica de StorageGRID 11.6. Esta característica está en desarrollo y el valor devuelto puede ser incorrecto o retardado. Para determinar si una reparación está completa, continúe utilizando *esperando - todos*, *reparaciones intentadas (XRPA*) y *periodo de exploración — estimado (XSCM)* como se describe en los procedimientos de recuperación.
+
+* Los resultados de la página Diagnósticos (*SUPPORT* > *Tools* > *Diagnostics*) ahora se ordenan por gravedad y, a continuación, por orden alfabético.
+* Prometheus y Grafana se actualizaron a nuevas versiones con interfaces y gráficos modificados. Como parte de este cambio, se cambiaron las etiquetas de algunas métricas.
++
+** Si tiene consultas personalizadas de las que ha utilizado las etiquetas de `node_network_up`, ahora debe utilizar las etiquetas de `node_network_info` en su lugar.
+** Si también se utilizó el nombre de la etiqueta `interface` desde cualquiera de las `node_network` métricas, ahora debe utilizar la `device` en su lugar, etiquete.
+
+
+* Anteriormente, las métricas de Prometheus se almacenaban en nodos de administración durante 31 días. Ahora, las métricas se almacenan hasta que se llena el espacio reservado a los datos de Prometheus, lo cual puede aumentar significativamente el tiempo de disponibilidad de las métricas históricas.
++
+Cuando la `/var/local/mysql_ibdata/` el volumen alcanza la capacidad; las métricas más antiguas se eliminan primero.
+
+
+
+
+
+== Mejoras en la instalación
+
+* Ahora tiene la opción de utilizar Podman como contenedor durante la instalación de Red Hat Enterprise Linux. Anteriormente, StorageGRID solo admitía un contenedor Docker.
+* Los esquemas API para StorageGRID ahora se incluyen en los archivos de instalación para las plataformas Red Hat Enterprise Linux/CentOS, Ubuntu/Debian y VMware. Después de extraer el archivo, puede encontrar los esquemas en `/extras/api-schemas` carpeta.
+* La `BLOCK_DEVICE_RANGEDB` introduzca el archivo de configuración del nodo para las implementaciones con configuración básica y ahora debe contener tres dígitos en lugar de dos. Es decir, en lugar de `BLOCK_DEVICE_RANGEDB_nn`, debe especificar `BLOCK_DEVICE_RANGEDB_nnn`.
++
+Para comprobar la compatibilidad con las puestas en marcha existentes, aún se admiten las claves de dos dígitos para los nodos actualizados.
+
+* Opcionalmente, puede añadir una o varias instancias del nuevo `INTERFACES_TARGET_nnnn` clave del archivo de configuración del nodo para puestas en marcha con configuración básica. Cada clave proporciona el nombre y la descripción de una interfaz física en el host de configuración básica, que se mostrará en la página interfaces VLAN y la página grupos de alta disponibilidad.
++
+** xref:../rhel/creating-node-configuration-files.adoc[Crear archivos de configuración de nodos para implementaciones de Red Hat Enterprise Linux o CentOS]
+** xref:../ubuntu/creating-node-configuration-files.adoc[Cree archivos de configuración de nodos para implementaciones de Ubuntu o Debian]
+
+
+
+
+
+
+== Nuevas alertas
+
+Se han añadido las siguientes alertas nuevas para StorageGRID 11.6:
+
+* Los registros de auditoría se están agregando a la cola de la memoria
+* Tablas dañadas en Cassandra
+* Fallo de reequilibrio de EC
+* Fallo de reparación de EC
+* Reparación EC bloqueada
+* Caducidad de certificado de servidor global para la API de S3 y Swift
+* Vencimiento del certificado de CA de syslog externo
+* Vencimiento del certificado de cliente de syslog externo
+* Vencimiento del certificado de servidor de syslog externo
+* Error de reenvío del servidor de syslog externo
+* Error de sincronización de la federación de identidades para un inquilino
+* Se ha detectado una actividad de equilibrador de carga de CLB heredada
+* Los registros se están agregando a la cola del disco
+* Anulación de Marca de agua de sólo lectura baja
+* Bajo espacio libre en el directorio tmp
+* Error en la comprobación de la existencia del objeto
+* Comprobación de existencia de objeto bloqueada
+* S3 PUT Object size demasiado grande
+
+
+Consulte xref:../monitor/alerts-reference.adoc[Referencia de alertas].
+
+
+
+== Cambios en los mensajes de auditoría
+
+* Se ha agregado un nuevo campo *BUID* al mensaje de auditoría ORLM: Object Rules met. El campo *BUID* muestra el ID de cucharón, que se utiliza para operaciones internas. El nuevo campo sólo aparece si el estado del mensaje es PRGD.
+* Se ha agregado un nuevo campo *SGRP* a los siguientes mensajes de auditoría. El campo *SGRP* sólo está presente si un objeto se eliminó en un sitio diferente al lugar donde se ingirió.
++
+** IDEL: Eliminación de ILM iniciada
+** OVWR: Sobrescritura de objetos
+** SDEL: ELIMINACIÓN DE S3
+** WDEL: ELIMINACIÓN de Swift
+
+
+
+
+Consulte xref:../audit/index.adoc[Revisar los registros de auditoría].
+
+
+
+== Cambios en la documentación de StorageGRID
+
+La apariencia del sitio de documentación de StorageGRID 11.6 se ha modificado y ahora utiliza GitHub como plataforma subyacente.
+
+NetApp agradece las valoraciones que se han proporcionado en relación con el contenido y anima a los usuarios a aprovechar la nueva función «solicitar cambios en la documentación» que se encuentra disponible en todas las páginas de la documentación del producto. La plataforma de documentación también ofrece una función de contribución de contenido incrustado para los usuarios de GitHub.
+
+Eche un vistazo y contribuya a esta documentación. Puede editar, solicitar un cambio o simplemente enviar comentarios.

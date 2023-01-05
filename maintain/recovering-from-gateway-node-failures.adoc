@@ -1,0 +1,19 @@
+---
+permalink: maintain/recovering-from-gateway-node-failures.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, gateway node failure 
+summary: Debe completar una secuencia de tareas para poder recuperarlas de un fallo en el nodo de puerta de enlace. 
+---
+= Recuperarse de fallos de nodo de puerta de enlace
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe completar una secuencia de tareas para poder recuperarlas de un fallo en el nodo de puerta de enlace.
+
+image::../media/overview_api_gateway_node_recovery.png[Diagrama de flujo general de recuperación del nodo de puerta de enlace]
+
+.Información relacionada
+xref:../sg100-1000/index.adoc[Servicios de aplicaciones SG100 y SG1000]
