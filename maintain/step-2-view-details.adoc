@@ -62,7 +62,7 @@ Se incluye la siguiente información para el sitio seleccionado:
 ** Detalles sobre cada nodo:
 +
 *** Para cada nodo de almacenamiento, la cantidad de espacio que se ha usado para los datos de objetos.
-*** Para los nodos de administrador y los nodos de puerta de enlace, si el nodo se utiliza actualmente en un grupo de alta disponibilidad (ha). No puede retirar un nodo de administrador ni un nodo de puerta de enlace que se utilice en un grupo de alta disponibilidad. Antes de iniciar la retirada, debe editar grupos de alta disponibilidad para quitar todos los nodos del sitio. O bien, puede quitar el grupo de alta disponibilidad si solo incluye nodos de este sitio.
+*** Para los nodos de administrador y los nodos de puerta de enlace, si el nodo se utiliza actualmente en un grupo de alta disponibilidad (ha). No puede decomisionar un nodo de administración ni un nodo de puerta de enlace que se utilice en un grupo de alta disponibilidad. Antes de iniciar la retirada, debe editar grupos de alta disponibilidad para quitar todos los nodos del sitio. O bien, puede quitar el grupo de alta disponibilidad si solo incluye nodos de este sitio.
 +
 xref:../admin/index.adoc[Administre StorageGRID]
 

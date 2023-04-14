@@ -75,7 +75,7 @@ Cada dispositivo SG6060 y SG606060X puede tener una o dos bandejas de expansión
 
 == Diagramas SG6060 y 60X
 
-Los frentes del SG6060 y SG6060X son idénticos. Esta figura muestra el frente del SG6060, que incluye una controladora de computación 1U y una bandeja 4U con dos controladoras de almacenamiento y 60 unidades en cinco cajones de unidades.
+Los frentes del SG6060 y del SG6060X son idénticos. En la siguiente figura, se muestra el frente de SG6060, que incluye una controladora de computación de 1U y una bandeja 4U que contiene dos controladoras de almacenamiento y 60 unidades en cinco cajones de unidades.
 
 *Vista frontal SG6060*
 
@@ -113,7 +113,7 @@ Se ha eliminado el controlador informático SG6000-CN con marco frontal
 Bandeja de controladoras E2860 con cubierta protectora frontal retirada (la bandeja de expansión opcional muestra idéntica)
 
 |===
-Esta figura muestra la parte posterior del SG6060, incluidas las controladoras de almacenamiento y computación, los ventiladores y los suministros de alimentación.
+Las siguientes figuras muestran la parte posterior de los sistemas SG6060 y SG6060X, incluidas las controladoras de computación y de almacenamiento, los ventiladores y los suministros de alimentación.
 
 *Vista posterior SG6060*
 
@@ -203,7 +203,7 @@ Suministro de alimentación (1 de 2) para la bandeja de controladoras E2860
 |===
 *SG6060 y estante de expansión SG6060X*
 
-En esta figura, se muestra la parte posterior de la bandeja de expansión opcional para el SG6060 y SG6060X, incluidos los módulos de entrada/salida (IOM), los ventiladores y los suministros de alimentación. Cada SG6060 se puede instalar con una o dos bandejas de expansión, que se pueden incluir en la instalación inicial o añadir más adelante.
+En esta figura, se muestra la parte posterior de la bandeja de expansión opcional para el SG6060 y SG6060X, incluidos los módulos de entrada/salida (IOM), los ventiladores y los suministros de alimentación. Cada SG6060 y SG6060X puede instalarse con una o dos bandejas de expansión, que pueden incluirse en la instalación inicial o añadirse posteriormente.
 
 image::../media/de460c_expansion_shelf_rear_view.gif[Bandeja de expansión trasera]
 

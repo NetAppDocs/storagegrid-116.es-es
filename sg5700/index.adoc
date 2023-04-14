@@ -22,7 +22,7 @@ El dispositivo de la serie SG5700 de StorageGRID proporciona las siguientes func
 * Admitir unidades de cifrado de disco completo (FDE) o unidades de estándar de procesamiento de información federal (FIPS). Cuando estas unidades se usan con la función Drive Security en SANtricity System Manager, se evita el acceso no autorizado a los datos.
 
 
-El dispositivo SG5700 está disponible en cuatro modelos: SG5712 y SG5712X, así como SG5760 y SG5760X. No existen diferencias de especificación o funcionamiento entre el SG5712 y el SG5712X, excepto la ubicación de los puertos de interconexión de la controladora de almacenamiento. De igual modo, no existen diferencias de especificación ni funcionamiento entre el SG5712 y el SG5712X, excepto la ubicación de los puertos de interconexión del controlador de almacenamiento.
+El dispositivo SG5700 está disponible en cuatro modelos: SG5712 y SG5712X, así como SG5760 y SG5760X. No existen diferencias de especificación o funcionamiento entre el SG5712 y el SG5712X, excepto la ubicación de los puertos de interconexión de la controladora de almacenamiento. Del mismo modo, no hay especificaciones o diferencias funcionales entre el SG5760 y el SG5760X excepto en lo que respecta a la ubicación de los puertos de interconexión en la controladora de almacenamiento.
 
 Los modelos incluyen los siguientes componentes:
 

@@ -37,7 +37,7 @@ El pool de almacenamiento todos los nodos del almacenamiento no se puede editar.
 . Según sea necesario, seleccione otros sitios y grados de almacenamiento.
 +
 
-NOTE: No podrá cambiar el sitio o el grado de almacenamiento si el pool de almacenamiento se utiliza en un perfil de código de borrado y el cambio provocaría que el esquema de codificación de borrado no sea válido. Por ejemplo, si un pool de almacenamiento utilizado en un perfil de codificación de borrado incluye actualmente un grado de almacenamiento con un solo sitio, se le impide utilizar una calificación de almacenamiento con dos sitios, ya que el cambio haría que el esquema de codificación de borrado no sea válido.
+NOTE: No podrá cambiar el sitio o el grado de almacenamiento si el pool de almacenamiento se utiliza en un perfil de código de borrado y el cambio provocaría que el esquema de codificación de borrado no sea válido. Por ejemplo, si un pool de almacenamiento utilizado en un perfil de código de borrado incluye actualmente un grado de almacenamiento con un solo sitio, se le impide utilizar un grado de almacenamiento con dos sitios, ya que el cambio haría que el esquema de código de borrado no sea válido.
 
 . Seleccione *Guardar*.
 

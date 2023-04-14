@@ -15,25 +15,22 @@ Es posible que deba sustituir el adaptador de bus de host (HBA) Fibre Channel en
 
 .Lo que necesitará
 * Tiene el adaptador de bus de host de Fibre Channel de sustitución correcto.
-* Ha determinado qué controlador SG6000-CN contiene el HBA Fibre Channel que se debe sustituir.
+* Ya tienes link:verifying-fibre-channel-hba-to-replace.html["Se determina qué controladora SG6000-CN contiene el HBA Fibre Channel que debe reemplazar"].
+* Ya tienes link:locating-controller-in-data-center.html["Ubicado físicamente el controlador SG6000-CN"] en el centro de datos.
+* Ya tienes link:shutting-down-sg6000-cn-controller.html["Apague el controlador SG6000-CN"].
 +
-xref:verifying-fibre-channel-hba-to-replace.adoc[Verifique el adaptador de bus de host de Fibre Channel que desea sustituir]
 
-* Ha localizado físicamente el controlador SG6000-CN en el que va a sustituir el HBA Fibre Channel en el centro de datos.
-+
-xref:locating-controller-in-data-center.adoc[Ubique la controladora en el centro de datos]
+IMPORTANT: Es necesario realizar un apagado controlado antes de retirar la controladora del rack.
 
-* Quitó la cubierta de la controladora.
-+
-xref:removing-sg6000-cn-controller-cover.adoc[Retire la cubierta del controlador SG6000-CN]
-
+* Ya tienes link:removing-sg6000-cn-controller-from-cabinet-or-rack.html["ha quitado la controladora del armario o el rack"].
+* Ya tienes link:removing-sg6000-cn-controller-cover.html["ha quitado la cubierta del controlador"].
 
 
 .Acerca de esta tarea
-Para evitar interrupciones del servicio, confirme que todos los demás nodos de almacenamiento están conectados al grid antes de iniciar la sustitución de un HBA Fibre Channel o sustituya el adaptador durante un periodo de mantenimiento programado cuando normalmente se esperan periodos de interrupción del servicio. Consulte la información sobre cómo determinar estados de conexión de nodos en las instrucciones para gestionar objetos con la gestión del ciclo de vida de la información.
+Para evitar interrupciones del servicio, confirme que todos los demás nodos de almacenamiento están conectados al grid antes de iniciar la sustitución de un HBA Fibre Channel o sustituya el adaptador durante un periodo de mantenimiento programado cuando normalmente se esperan periodos de interrupción del servicio. Consulte la información acerca de link:../monitor/monitor-node-connection-states.html["supervisar los estados de conexión de los nodos"].
 
 
-IMPORTANT: Si alguna vez ha utilizado una regla de ILM que crea solamente una copia de un objeto, debe reemplazar el HBA de Fibre Channel durante una ventana de mantenimiento programada. De lo contrario, es posible que pierda temporalmente el acceso a esos objetos durante este procedimiento. + Consulte información sobre la administración de objetos con administración del ciclo de vida de la información.
+IMPORTANT: Si alguna vez ha utilizado una regla de ILM que crea solamente una copia de un objeto, debe reemplazar el HBA de Fibre Channel durante una ventana de mantenimiento programada. De lo contrario, es posible que pierda temporalmente el acceso a esos objetos durante este procedimiento. Consulte la información acerca de link:../ilm/why-you-should-not-use-single-copy-replication.html["por qué no debe utilizar replicación de copia única"].
 
 .Pasos
 . Envuelva el extremo de la correa de la muñequera ESD alrededor de su muñeca y fije el extremo de la pinza a una masa metálica para evitar descargas estáticas.
@@ -57,12 +54,3 @@ El conjunto de tarjeta vertical tiene dos adaptadores: Un HBA Fibre Channel y un
 Instale el HBA Fibre Channel de repuesto.
 
 xref:reinstalling-fibre-channel-hba.adoc[Vuelva a instalar el HBA Fibre Channel]
-
-.Información relacionada
-xref:reinstalling-fibre-channel-hba.adoc[Vuelva a instalar el HBA Fibre Channel]
-
-xref:../admin/index.adoc[Administre StorageGRID]
-
-xref:../monitor/index.adoc[Supervisión y solución de problemas]
-
-xref:../ilm/index.adoc[Gestión de objetos con ILM]

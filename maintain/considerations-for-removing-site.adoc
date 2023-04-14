@@ -168,7 +168,7 @@ NOTE: Si sus reglas y políticas de ILM se diseñaron para proteger contra la p�
 
 == Consideraciones sobre los controles de consistencia cuando se quita un sitio
 
-El nivel de coherencia de un bloque de S3 o un contenedor Swift determina si StorageGRID replica por completo los metadatos de objetos en todos los nodos y sitios antes de indicar a un cliente que la ingesta de objetos se ha realizado correctamente. El nivel de consistencia hace una compensación entre la disponibilidad de los objetos y la coherencia de dichos objetos en los diferentes nodos y sitios de almacenamiento.
+El nivel de coherencia de un bloque de S3 o un contenedor Swift determina si StorageGRID replica por completo los metadatos de objetos en todos los nodos y sitios antes de indicar a un cliente que la ingesta de objetos se ha realizado correctamente. Los controles de consistencia proporcionan un equilibrio entre la disponibilidad de los objetos y la coherencia de dichos objetos en distintos nodos de almacenamiento y sitios.
 
 Cuando StorageGRID quita un sitio, éste debe asegurarse de que no se escribe ningún dato en el sitio que se va a quitar. Como resultado, anula temporalmente el nivel de coherencia de cada bloque o contenedor. Tras iniciar el proceso de retirada del sitio, StorageGRID utiliza temporalmente consistencia de sitio seguro para evitar que los metadatos del objeto se escriban en el sitio que se está quitando.
 

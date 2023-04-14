@@ -17,7 +17,7 @@ Las políticas de clasificación del tráfico se aplican a los extremos en el se
 
 
 
-== Haga coincidir las reglas y los límites opcionales
+== Reglas de coincidencia
 
 Cada directiva de clasificación de tráfico contiene una o más reglas coincidentes para identificar el tráfico de red relacionado con una o varias de las siguientes entidades:
 
@@ -28,6 +28,10 @@ Cada directiva de clasificación de tráfico contiene una o más reglas coincide
 
 
 StorageGRID supervisa el tráfico que coincide con cualquier regla dentro de la política de acuerdo con los objetivos de la regla. Cualquier tráfico que coincida con cualquier regla de una directiva se gestiona mediante dicha directiva. A la inversa, puede establecer reglas que coincidan con todo el tráfico excepto una entidad especificada.
+
+
+
+== Limitación del tráfico
 
 Opcionalmente, puede establecer límites para una directiva en función de los siguientes parámetros:
 
@@ -41,14 +45,12 @@ Opcionalmente, puede establecer límites para una directiva en función de los s
 * Tasa de solicitudes de escritura
 
 
+Los valores límite se aplican por cada equilibrador de carga. Si el tráfico se distribuye de forma simultánea entre varios equilibradores de carga, las tasas máximas totales son un múltiplo de los límites de velocidad que especifique.
+
 
 NOTE: Puede crear políticas para limitar el ancho de banda agregado o para limitar el ancho de banda por solicitud. Sin embargo, StorageGRID no puede limitar ambos tipos de ancho de banda a la vez. Los límites de ancho de banda agregados pueden imponer un impacto adicional mínimo en el rendimiento en el tráfico no limitado.
 
-
-
-== Limitación del tráfico
-
-Cuando ha creado directivas de clasificación de tráfico, el tráfico se puede limitar según el tipo de reglas y límites establecidos. Para límites de ancho de banda agregados o por solicitud, las solicitudes se transmiten de entrada o salida a la velocidad establecida. StorageGRID sólo puede aplicar una velocidad, por lo que la política más específica, por tipo de matrcher, es la aplicada. Para todos los demás tipos de límites, las solicitudes de clientes se retrasan 250 milisegundos y reciben una respuesta de reducción lenta de 503 para las solicitudes que exceden cualquier límite de directiva coincidente.
+Para límites de ancho de banda agregados o por solicitud, las solicitudes se transmiten de entrada o salida a la velocidad establecida. StorageGRID sólo puede aplicar una velocidad, por lo que la política más específica, por tipo de matrcher, es la aplicada. Para todos los demás tipos de límites, las solicitudes de clientes se retrasan 250 milisegundos y reciben una respuesta de reducción lenta de 503 para las solicitudes que exceden cualquier límite de directiva coincidente.
 
 En Grid Manager, puede ver los gráficos de tráfico y comprobar que las directivas están aplicando los límites de tráfico que espera.
 

@@ -88,7 +88,7 @@ NOTE: Se activa la alerta *colocación de ILM inalcanzable* para indicar que la 
 +
 *** La cantidad de copias no puede ser mayor que la cantidad de pools de almacenamiento.
 *** Si el número de copias es igual al número de pools de almacenamiento, se almacena una copia del objeto en cada pool de almacenamiento.
-*** Si el número de copias es menor que el número de pools de almacenamiento, el sistema distribuye las copias para mantener el uso de disco entre los pools equilibrados, a la vez que garantiza que ningún sitio obtenga más de una copia de un objeto.
+*** Si el número de copias es inferior al número de pools de almacenamiento, se almacena una copia en el sitio de procesamiento y, a continuación, el sistema distribuye las copias restantes para mantener el uso del disco entre los pools equilibrados, a la vez que se garantiza que ningún sitio obtenga más de una copia de un objeto.
 *** Si los pools de almacenamiento se superponen (contienen los mismos nodos de almacenamiento), es posible que todas las copias del objeto se guarden en un solo sitio. Por este motivo, no especifique el pool de almacenamiento predeterminado todos los nodos de almacenamiento y otro pool de almacenamiento.
 +
 image::../media/ilm_rule_with_multiple_storage_pools.png[Instrucciones de colocación para múltiples pools de almacenamiento]

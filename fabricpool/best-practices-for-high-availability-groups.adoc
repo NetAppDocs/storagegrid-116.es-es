@@ -42,7 +42,7 @@ Una vez resuelto el fallo y haya una interfaz de mayor prioridad disponible de n
 
 Las prácticas recomendadas para crear un grupo de alta disponibilidad de StorageGRID para FabricPool dependen de la carga de trabajo de la siguiente manera:
 
-* Si piensa utilizar FabricPool con datos de carga de trabajo primaria, debe crear un grupo de alta disponibilidad que incluya, al menos, dos nodos de equilibrio de carga para evitar la interrupción de la recuperación de datos.
+* Si piensa utilizar FabricPool con datos de carga de trabajo principal, debe crear un grupo de alta disponibilidad que incluya al menos dos nodos de equilibrio de carga para evitar la interrupción de la recuperación de datos.
 * Si planea utilizar la política de organización en niveles de volúmenes sólo para snapshots de FabricPool o los niveles de rendimiento locales no primarios (por ejemplo, ubicaciones de recuperación ante desastres o destinos de SnapMirror® de NetApp), puede configurar un grupo ha con sólo un nodo.
 
 

@@ -33,7 +33,7 @@ Las solicitudes de clientes en conflicto, como dos clientes que escriben en la m
 
 De forma predeterminada, StorageGRID proporciona coherencia de lectura tras escritura para los objetos recién creados y coherencia eventual para las actualizaciones de objetos y operaciones DE CABECERA. Cualquier OBTENER después de un PUESTO completado correctamente podrá leer los datos recién escritos. Las sobrescrituras de objetos existentes, actualizaciones de metadatos y eliminaciones son coherentes en la actualidad. Por lo general, las sobrescrituras tardan segundos o minutos en propagarse, pero pueden tardar hasta 15 días.
 
-StorageGRID también le permite controlar la coherencia de cada contenedor. Puede cambiar el control de coherencia para compensar la disponibilidad de los objetos y la coherencia de dichos objetos en diferentes nodos y sitios de almacenamiento, según lo requiera su aplicación.
+StorageGRID también le permite controlar la coherencia de cada contenedor. Puede cambiar el control de coherencia para proporcionar un equilibrio entre la disponibilidad de los objetos y la coherencia de esos objetos en diferentes nodos de almacenamiento y sitios, según lo requiera la aplicación.
 
 .Información relacionada
 xref:../ilm/index.adoc[Gestión de objetos con ILM]

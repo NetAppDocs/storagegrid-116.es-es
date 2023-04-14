@@ -279,6 +279,9 @@ Tráfico interno para procedimientos de mantenimiento e informes de errores.
 
 
 
+| 8443 | TCP | Nodo de administrador principal | Nodos del dispositivo | Tráfico interno relacionado con el procedimiento de modo de mantenimiento. 
+
+
  a| 
 9042
  a| 

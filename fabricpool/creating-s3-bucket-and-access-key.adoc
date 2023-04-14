@@ -72,7 +72,7 @@ image::../media/create_bucket_for_fabricpool.png[Crear bloque para FabricPool]
 
 +
 
-NOTE: En el caso de los bloques FabricPool, el nivel de coherencia recomendado es «relativamente nuevo en términos de escritura». No se recomienda el nivel de consistencia «'disponible'». Consulte xref:../tenant/changing-consistency-level.adoc[Cambie el nivel de coherencia].
+NOTE: Para los depósitos FabricPool, el nivel de consistencia del cucharón recomendado es *Leer-después-nuevo-escribir*, que es la configuración predeterminada para un nuevo cucharón. No edite los depósitos de FabricPool para usar *Disponible* o cualquier otro nivel de consistencia.
 
 . Cree una clave de acceso y una clave de acceso secreta.
 +

@@ -2,7 +2,7 @@
 permalink: s3/consistency-controls.html 
 sidebar: sidebar 
 keywords: consistency controls 
-summary: Los controles de consistencia proporcionan una compensación entre la disponibilidad de los objetos y la consistencia de dichos objetos en diferentes nodos y sitios de almacenamiento, según lo requiera su aplicación. 
+summary: Los controles de consistencia proporcionan un equilibrio entre la disponibilidad de los objetos y la coherencia de dichos objetos en diferentes nodos de almacenamiento y sitios, según lo requiera la aplicación. 
 ---
 = Controles de consistencia
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Los controles de consistencia proporcionan una compensación entre la d
 
 
 [role="lead"]
-Los controles de consistencia proporcionan una compensación entre la disponibilidad de los objetos y la consistencia de dichos objetos en diferentes nodos y sitios de almacenamiento, según lo requiera su aplicación.
+Los controles de consistencia proporcionan un equilibrio entre la disponibilidad de los objetos y la coherencia de dichos objetos en diferentes nodos de almacenamiento y sitios, según lo requiera la aplicación.
 
 De forma predeterminada, StorageGRID garantiza la coherencia de lectura tras escritura de los objetos recién creados. Cualquier OBTENER después de un PUESTO completado correctamente podrá leer los datos recién escritos. Las sobrescrituras de objetos existentes, actualizaciones de metadatos y eliminaciones son coherentes en la actualidad. Por lo general, las sobrescrituras tardan segundos o minutos en propagarse, pero pueden tardar hasta 15 días.
 
@@ -25,46 +25,13 @@ El control de consistencia afecta a cómo los metadatos que utiliza StorageGRID 
 
 Puede establecer el control de coherencia de un bloque o una operación API en uno de los siguientes valores:
 
-|===
-| Control de consistencia | Descripción 
+* *Todos*: Todos los nodos reciben los datos inmediatamente, o la solicitud fallará.
+* *Strong-global*: Garantiza la coherencia de lectura tras escritura para todas las solicitudes de clientes en todos los sitios.
+* *Strong-site*: Garantiza la coherencia de lectura después de escritura para todas las solicitudes de cliente dentro de un sitio.
+* *Read-after-new-write*: (Predeterminado) proporciona consistencia de lectura después de escritura para nuevos objetos y consistencia eventual para actualizaciones de objetos. Ofrece garantías de alta disponibilidad y protección de datos. Recomendado para la mayoría de los casos.
+* *Disponible*: Proporciona consistencia eventual tanto para nuevos objetos como para actualizaciones de objetos. Para los depósitos S3, utilice sólo según sea necesario (por ejemplo, para un depósito que contiene valores de log que rara vez se leen, o para operaciones HEAD u GET en claves que no existen). No se admite para bloques de FabricPool S3.
 
 
- a| 
-todo
- a| 
-Todos los nodos reciben los datos inmediatamente o se produce un error en la solicitud.
-
-
-
- a| 
-fuerte en todo el mundo
- a| 
-Garantiza la coherencia de lectura tras escritura para todas las solicitudes del cliente en todos los sitios.
-
-
-
- a| 
-sitio seguro
- a| 
-Garantiza la coherencia de lectura tras escritura para todas las solicitudes del cliente dentro de un sitio.
-
-
-
- a| 
-lectura-después-nueva-escritura
- a| 
-(Predeterminado) proporciona coherencia de lectura tras escritura para los nuevos objetos y coherencia final para las actualizaciones de objetos. Ofrece garantías de alta disponibilidad y protección de datos. La mayoría concuerda estrechamente con las garantías de coherencia de Amazon S3.
-
-*Nota:* Si su aplicación utiliza SOLICITUDES HEAD u GET en objetos que no existen, puede recibir un número elevado de 500 errores internos de servidor si uno o más nodos de almacenamiento no están disponibles. Para evitar estos errores, establezca el control de coherencia en "'Available'" a menos que necesite garantías de coherencia similares a las de Amazon S3.
-
-
-
- a| 
-Disponible (eventual consistencia para LA CABEZA o OPERACIONES GET)
- a| 
-Se comporta del mismo modo que el nivel de consistencia "read-after-new-write", pero proporciona eventual consistencia para LAS operaciones DE CABEZA y OBTENER. Ofrece una mayor disponibilidad para LAS OPERACIONES DE HEAD Y GET que «relativamente nuevo» si los nodos de almacenamiento no están disponibles. Se diferencia de las garantías de coherencia de Amazon S3 para HEAD y GET.
-
-|===
 
 
 == Utilizar controles de coherencia «reescritura tras escritura» y «disponibles»
@@ -72,12 +39,12 @@ Se comporta del mismo modo que el nivel de consistencia "read-after-new-write", 
 Cuando una OPERACIÓN HEAD u GET utiliza el control de consistencia «relativamente una vez que una nueva escritura», StorageGRID realiza la búsqueda en varios pasos, como se indica a continuación:
 
 * Primero busca el objeto con una baja consistencia.
-* Si esa búsqueda falla, repite la búsqueda en el siguiente nivel de consistencia hasta alcanzar el nivel de consistencia más alto, "'all,'", lo que requiere que todas las copias de los metadatos del objeto estén disponibles.
+* Si esa búsqueda falla, repite la búsqueda en el siguiente nivel de coherencia hasta que alcanza un nivel de coherencia equivalente al comportamiento de la búsqueda global.
 
 
-Si una operación HEAD o GET utiliza el control de consistencia «read-after-new-write» pero el objeto no existe, la búsqueda de objetos siempre alcanzará el nivel de consistencia «'all'». Debido a que este nivel de consistencia requiere que todas las copias de los metadatos del objeto estén disponibles, puede recibir un número elevado de 500 errores de servidor interno si uno o más nodos de almacenamiento no están disponibles.
+Si una operación HEAD u GET utiliza el control de consistencia “READ-after-new-write”, pero el objeto no existe, la búsqueda de objetos siempre alcanzará un nivel de consistencia equivalente al comportamiento de strong-global. Debido a que este nivel de coherencia requiere que haya varias copias de los metadatos del objeto disponibles en cada sitio, puede recibir un número elevado de errores del servidor interno 500 si no están disponibles dos o más nodos de almacenamiento en el mismo sitio.
 
-A menos que necesite garantías de coherencia similares a las de Amazon S3, podrá evitar estos errores en LAS operaciones DE CABEZA y OBTENER al establecer el control de coherencia en "'Available'". Cuando un CABEZAL o UNA operación DE OBTENER utiliza el control de consistencia "'disponible'", StorageGRID sólo proporciona consistencia eventual. No vuelve a intentar una operación fallida hasta que alcanza el nivel de consistencia "'all'", por lo que no requiere que todas las copias de los metadatos del objeto estén disponibles.
+A menos que necesite garantías de coherencia similares a las de Amazon S3, podrá evitar estos errores en LAS operaciones DE CABEZA y OBTENER al establecer el control de coherencia en "'Available'". Cuando un CABEZAL o UNA operación DE OBTENER utiliza el control de consistencia "'disponible'", StorageGRID sólo proporciona consistencia eventual. No vuelve a intentar una operación fallida en los niveles de coherencia crecientes, por lo que no es necesario que haya disponibles varias copias de los metadatos de objeto.
 
 
 
@@ -125,7 +92,7 @@ Para las reglas de ILM hay disponibles los siguientes comportamientos de consumo
 
 
 
-NOTE: Antes de seleccionar el comportamiento de procesamiento de una regla de ILM, lea la descripción completa de estos ajustes en las instrucciones para gestionar objetos con gestión del ciclo de vida de la información.
+NOTE: Antes de seleccionar el comportamiento de ingesta para una regla de ILM, lea la descripción completa de estas opciones de configuración en xref:../ilm/index.adoc[Gestión de objetos con ILM].
 
 
 
@@ -146,8 +113,6 @@ Si en su lugar usa la misma regla de ILM y el nivel de consistencia de «otrong-
 La interrelación entre los niveles de coherencia y las reglas del ILM puede ser compleja. Póngase en contacto con NetApp si necesita ayuda.
 
 .Información relacionada
-xref:../ilm/index.adoc[Gestión de objetos con ILM]
-
 xref:get-bucket-consistency-request.adoc[OBTENGA la solicitud de consistencia de bloque]
 
 xref:put-bucket-consistency-request.adoc[PONER solicitud de consistencia de bloque]
