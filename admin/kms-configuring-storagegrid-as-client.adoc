@@ -16,7 +16,7 @@ Debe configurar StorageGRID como cliente para cada servidor de gestión de clave
 .Acerca de esta tarea
 Estas instrucciones se aplican a Thales CipherTrust Manager k170v, versiones 2.0, 2.1 y 2.2. Si tiene preguntas sobre el uso de un servidor de gestión de claves diferente con StorageGRID, póngase en contacto con el soporte técnico.
 
-https://thalesdocs.com/ctp/cm/latest/["Thales CipherTrust Manager"^]
+https://["Thales CipherTrust Manager"^]
 
 .Pasos
 . Desde el software KMS, cree un cliente StorageGRID para cada clúster KMS o KMS que vaya a utilizar.

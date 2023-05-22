@@ -217,10 +217,6 @@ La barra de progreso y la columna Stage de la página Recovery proporcionan un e
 +
 image::../media/recovering_cassandra.png[Captura de pantalla que muestra el progreso de la recuperación en la interfaz de gestión de grid]
 
-. Vuelva a la página instalación del monitor del instalador de dispositivos StorageGRID introduciendo `https://Controller_IP:8443`, Utilizando la dirección IP del controlador de computación.
-+
-La página Monitor Install muestra el progreso de la instalación mientras el script se está ejecutando.
-
 
 
 Después del `sn-recovery-postinstall.sh` el script ha iniciado servicios en el nodo, puede restaurar datos de objeto en cualquier volumen de almacenamiento que haya formateado el script, tal y como se describe en el siguiente procedimiento.

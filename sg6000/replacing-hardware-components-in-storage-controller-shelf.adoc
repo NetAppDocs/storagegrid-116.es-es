@@ -73,6 +73,6 @@ E-Series: Sustitución del cajón de unidades (60 unidades)
 
 |===
 .Información relacionada
-http://mysupport.netapp.com/info/web/ECMP1658252.html["Sitio de documentación para sistemas E-Series y EF-Series de NetApp"^]
+http://["Sitio de documentación para sistemas E-Series y EF-Series de NetApp"^]
 
 xref:replacing-storage-controller-sg6000.adoc[Sustituya la controladora de almacenamiento]

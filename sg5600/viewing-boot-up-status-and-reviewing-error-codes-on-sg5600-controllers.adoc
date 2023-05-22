@@ -25,4 +25,4 @@ Los códigos de estado y de error de la controladora E5600SG no son los mismos q
 .Información relacionada
 xref:e5600sg-controller-seven-segment-display-codes.adoc[códigos de visualización de siete segmentos de la controladora E5600SG]
 
-http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61765["Documentación de NetApp: Serie E2700"^]
+http://["Documentación de NetApp: Serie E2700"^]

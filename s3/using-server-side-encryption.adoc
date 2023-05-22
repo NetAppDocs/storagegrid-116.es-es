@@ -123,4 +123,4 @@ xref:upload-part.adoc[Cargar artículo]
 
 xref:upload-part-copy.adoc[Cargar pieza: Copiar]
 
-https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html["Guía para desarrolladores de Amazon S3: Protección de datos mediante cifrado en el lado del servidor con claves de cifrado proporcionadas por el cliente (SSE-C)"^]
+https://["Guía para desarrolladores de Amazon S3: Protección de datos mediante cifrado en el lado del servidor con claves de cifrado proporcionadas por el cliente (SSE-C)"^]

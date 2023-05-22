@@ -30,5 +30,5 @@ Mensajes del xref:../audit/index.adoc[registro de auditoría] indica el tiempo t
 
 Al analizar los resultados, observe el tiempo medio necesario para satisfacer una solicitud, así como el rendimiento general que puede obtener. Repita las mismas pruebas con regularidad y registre los resultados, para que pueda identificar tendencias que puedan requerir investigación.
 
-* Puede hacerlo https://github.com/s3tester["Descargue el probador S3del github"^].
+* Puede hacerlo https://["Descargue el probador S3del github"^].
 

@@ -57,4 +57,4 @@ xref:status-indicators-on-e5700sg-controller.adoc[Indicadores de estado en el co
 
 xref:he-error-error-synchronizing-with-santricity-os-software.adoc[Error: Error al sincronizar con el software de sistema operativo SANtricity]
 
-http://mysupport.netapp.com/info/web/ECMP1658252.html["Sitio de documentación para sistemas E-Series y EF-Series de NetApp"^]
+http://["Sitio de documentación para sistemas E-Series y EF-Series de NetApp"^]

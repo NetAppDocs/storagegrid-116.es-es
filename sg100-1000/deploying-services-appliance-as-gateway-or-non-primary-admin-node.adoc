@@ -92,7 +92,7 @@ El nombre del nodo está asignado a este nodo del dispositivo en el sistema Stor
 
 . Opcionalmente, para instalar una versión diferente del software StorageGRID, siga estos pasos:
 +
-.. Descargue el archivo de instalación:https://mysupport.netapp.com/site/products/all/details/storagegrid-appliance/downloads-tab["Descargas de NetApp: Dispositivo de StorageGRID"^].
+.. Descargue el archivo de instalación:https://["Descargas de NetApp: Dispositivo de StorageGRID"^].
 .. Extraiga el archivo.
 .. En el instalador del dispositivo StorageGRID, seleccione *Avanzado* *cargar software StorageGRID*.
 .. Haga clic en *Eliminar* para eliminar el paquete de software actual.

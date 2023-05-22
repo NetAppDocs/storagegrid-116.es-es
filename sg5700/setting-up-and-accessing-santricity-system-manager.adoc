@@ -58,7 +58,7 @@ Puede usar System Manager de SANtricity para configurar las siguientes opciones:
 Para obtener más información sobre AutoSupport de E-Series, consulte el centro de documentación de E-Series.
 
 +
-http://mysupport.netapp.com/info/web/ECMP1658252.html["Sitio de documentación para sistemas E-Series y EF-Series de NetApp"^]
+http://["Sitio de documentación para sistemas E-Series y EF-Series de NetApp"^]
 
 * Claves Drive Security, que se necesitan para desbloquear unidades seguras (este paso es necesario si la función Drive Security está habilitada)
 * Contraseña de administrador para acceder a System Manager de SANtricity

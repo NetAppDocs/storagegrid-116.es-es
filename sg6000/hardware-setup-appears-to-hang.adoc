@@ -25,7 +25,7 @@ Mientras el hardware se está inicializando durante el encendido, las dos pantal
 .Información relacionada
 xref:viewing-boot-up-status-codes-for-sg6000-storage-controllers.adoc[Ver los códigos de estado de arranque para los controladores de almacenamiento SG6000]
 
-https://library.netapp.com/ecmdocs/ECMLP2588751/html/frameset.html["Guía de supervisión del sistema E5700 y E2800"^]
+https://["Guía de supervisión del sistema E5700 y E2800"^]
 
 xref:viewing-status-indicators-and-buttons-on-sg6000-cn-controller.adoc[Ver los indicadores de estado y los botones del controlador SG6000-CN]
 

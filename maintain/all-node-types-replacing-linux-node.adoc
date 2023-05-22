@@ -20,4 +20,4 @@ Este procedimiento solo se realiza como un paso en el proceso de recuperación d
 Si hay más de un nodo de grid alojado en un host físico o virtual Linux, es posible recuperar los nodos de grid en cualquier orden. Sin embargo, si se recupera primero un nodo de administración principal, si existe, impide que se cale el resto de nodos de grid, ya que intentan ponerse en contacto con el nodo de administración principal para registrarse para la recuperación.
 
 .Información relacionada
-https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"]
+https://["Herramienta de matriz de interoperabilidad de NetApp"]

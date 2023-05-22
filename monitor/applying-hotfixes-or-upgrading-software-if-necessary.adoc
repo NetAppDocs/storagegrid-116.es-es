@@ -19,7 +19,7 @@ Las correcciones urgentes de StorageGRID contienen cambios de software que se pu
 .Pasos
 . Vaya a la página de descargas de NetApp para StorageGRID.
 +
-https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Descargas de NetApp: StorageGRID"^]
+https://["Descargas de NetApp: StorageGRID"^]
 
 . Seleccione la flecha hacia abajo para el campo *Tipo/Seleccionar versión* para ver una lista de las actualizaciones disponibles para descargar:
 +

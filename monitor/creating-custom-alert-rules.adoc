@@ -17,10 +17,10 @@ Puede crear reglas de alerta personalizadas para definir sus propias condiciones
 * Ha iniciado sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible]
 * Tiene el permiso Administrar alertas o acceso raíz
 * Usted está familiarizado con el xref:commonly-used-prometheus-metrics.adoc[Métricas de Prometheus que se usan habitualmente]
-* Usted entiende la https://prometheus.io/docs/querying/basics/["Sintaxis de las consultas Prometheus"^]
-* Opcionalmente, ha visto el vídeo: https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b35ac3f2-957b-4e79-b82b-acc5013c98d0["Vídeo: Uso de métricas para crear alertas personalizadas"^]
+* Usted entiende la https://["Sintaxis de las consultas Prometheus"^]
+* Opcionalmente, ha visto el vídeo: https://["Vídeo: Uso de métricas para crear alertas personalizadas"^]
 +
-image::../media/video-screenshot-alert-create-custom.png[enlace-"https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b35ac3f2-957b-4e79-b82b-acc5013c98d0"[] alt="Vídeo: Uso de métricas para crear alertas personalizadas"]
+image::../media/video-screenshot-alert-create-custom.png[enlace-"https://[] alt="Vídeo: Uso de métricas para crear alertas personalizadas"]
 
 
 

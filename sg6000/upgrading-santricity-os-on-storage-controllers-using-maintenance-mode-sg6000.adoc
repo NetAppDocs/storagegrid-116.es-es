@@ -59,6 +59,6 @@ image::../media/node_rejoin_grid_confirmation.png[El nodo del dispositivo se ha 
 
 
 .Información relacionada
-https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^]
+https://["Herramienta de matriz de interoperabilidad de NetApp"^]
 
 xref:upgrading-santricity-os-on-storage-controllers-using-grid-manager-sg6000.adoc[Actualizar el sistema operativo SANtricity en controladoras de almacenamiento mediante Grid Manager]

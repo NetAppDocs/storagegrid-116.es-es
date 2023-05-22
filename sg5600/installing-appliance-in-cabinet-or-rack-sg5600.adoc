@@ -77,6 +77,6 @@ image::../media/appliance_drive_insertion.gif[Inserción de la unidad]
 
 
 .Información relacionada
-https://library.netapp.com/ecm/ecm_download_file/ECMLP2344477["Guía de instalación de soporte de unidades de controladora E2700 y soportes de unidades relacionadas"^]
+https://["Guía de instalación de soporte de unidades de controladora E2700 y soportes de unidades relacionadas"^]
 
-https://library.netapp.com/ecm/ecm_download_file/ECMP1532527["Guía de instalación de soporte de unidades de controladora E5600 y soportes de unidades relacionadas"^]
+https://["Guía de instalación de soporte de unidades de controladora E5600 y soportes de unidades relacionadas"^]

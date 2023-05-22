@@ -80,4 +80,4 @@ En la secuencia, el primer conjunto de números es la dirección IP asignada por
 .Información relacionada
 xref:status-indicators-on-e5700sg-controller.adoc[Indicadores de estado en el controlador E5700SG]
 
-https://library.netapp.com/ecmdocs/ECMLP2588751/html/frameset.html["Guía de supervisión del sistema E5700 y E2800"^]
+https://["Guía de supervisión del sistema E5700 y E2800"^]

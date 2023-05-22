@@ -226,7 +226,7 @@ Puede usar la interfaz de línea de comandos de Swift para probar la conexión c
 .Lo que necesitará
 * Debe haber descargado e instalado python-swiftclient, el cliente de línea de comandos de Swift.
 +
-https://platform.swiftstack.com/docs/integration/python-swiftclient.html["SwiftStack: python-swiftclient"^]
+https://["SwiftStack: python-swiftclient"^]
 
 * Debe tener una cuenta de inquilino de Swift en el sistema StorageGRID.
 

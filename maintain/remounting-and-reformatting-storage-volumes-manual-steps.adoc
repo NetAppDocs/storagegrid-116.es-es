@@ -228,7 +228,7 @@ NOTE: El servicio RSM está presente en los nodos de almacenamiento que incluyen
 
 NOTE: Algunos procedimientos de recuperación de StorageGRID usan Reaper para gestionar las reparaciones de Cassandra. Las reparaciones se realizan automáticamente tan pronto como se hayan iniciado los servicios relacionados o necesarios. Puede que note un resultado de script que menciona "relativamente" o ""reparación de Cassandra"". Si aparece un mensaje de error que indica que la reparación ha fallado, ejecute el comando indicado en el mensaje de error.
 
-. [[post-install-script-step]]]. Como la `sn-recovery-postinstall.sh` Se ejecuta Script, supervise la página Recovery en Grid Manager.
+. [[post-install-script-step]] como el `sn-recovery-postinstall.sh` Se ejecuta Script, supervise la página Recovery en Grid Manager.
 +
 La barra de progreso y la columna Stage de la página Recovery proporcionan un estado de alto nivel de `sn-recovery-postinstall.sh` guión.
 

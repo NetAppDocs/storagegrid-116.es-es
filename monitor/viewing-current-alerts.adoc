@@ -15,7 +15,7 @@ Cuando se activa una alerta, se muestra un icono de alerta en la Consola. Tambi�
 
 .Lo que necesitará
 * Debe iniciar sesión en Grid Manager mediante un xref:../admin/web-browser-requirements.adoc[navegador web compatible].
-* Opcionalmente, ha visto el vídeo: https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2680a74f-070c-41c2-bcd3-acc5013c9cdd["Vídeo: Descripción general de las alertas"^].
+* Opcionalmente, ha visto el vídeo: https://["Vídeo: Descripción general de las alertas"^].
 +
 [link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2680a74f-070c-41c2-bcd3-acc5013c9cdd]
 image::../media/video-screenshot-alert-overview.png[Vídeo: Descripción general de las alertas]

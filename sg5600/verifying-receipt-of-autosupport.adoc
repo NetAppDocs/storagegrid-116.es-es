@@ -33,7 +33,7 @@ Un estado DE RECHAZO significa que ha notificado al soporte técnico que no habi
 Una vez que el soporte técnico recibe un registro semanal del sistema, el estado de AutoSupport cambia a ON.
 
 .Pasos
-. Vaya al sitio de soporte de NetApp en http://mysupport.netapp.com/["mysupport.netapp.com"^], E inicie sesión en el portal de Active IQ.
+. Vaya al sitio de soporte de NetApp en http://["mysupport.netapp.com"^], E inicie sesión en el portal de Active IQ.
 . Si el estado de AutoSupport es DESACTIVADO y cree que es incorrecto, complete lo siguiente:
 +
 .. Revise la configuración del sistema para asegurarse de que ha activado AutoSupport.

@@ -38,7 +38,7 @@ NOTE: Este procedimiento actualizará automáticamente la NVSRAM a la versión m
 Asegúrese de elegir la versión de sistema operativo SANtricity para las controladoras de almacenamiento.
 
 +
-https://mysupport.netapp.com/site/products/all/details/storagegrid-appliance/downloads-tab["Descargas de NetApp: Dispositivo de StorageGRID"^]
+https://["Descargas de NetApp: Dispositivo de StorageGRID"^]
 
 . Seleccione *MANTENIMIENTO* > *sistema* > *actualización de software*.
 +
@@ -189,6 +189,6 @@ NOTE: Cuando repita el procedimiento de actualización, deberá aprobar los nodo
 
 
 .Información relacionada
-https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^]
+https://["Herramienta de matriz de interoperabilidad de NetApp"^]
 
 xref:upgrading-santricity-os-on-e2800-controller-using-maintenance-mode.adoc[Actualice el sistema operativo SANtricity en la controladora E2800 mediante modo de mantenimiento]

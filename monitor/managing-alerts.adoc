@@ -36,13 +36,13 @@ El sistema de alertas proporciona una interfaz fácil de usar para detectar, eva
 
 Para obtener más información, consulte estos vídeos:
 
-* https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2680a74f-070c-41c2-bcd3-acc5013c9cdd["Vídeo: Descripción general de las alertas"^]
+* https://["Vídeo: Descripción general de las alertas"^]
 +
 [link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2680a74f-070c-41c2-bcd3-acc5013c9cdd]
 image::../media/video-screenshot-alert-overview.png[Vídeo: Descripción general de las alertas]
 
-* https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b35ac3f2-957b-4e79-b82b-acc5013c98d0["Vídeo: Uso de métricas para crear alertas personalizadas"^]
+* https://["Vídeo: Uso de métricas para crear alertas personalizadas"^]
 +
-image::../media/video-screenshot-alert-create-custom.png[enlace-"https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b35ac3f2-957b-4e79-b82b-acc5013c98d0"[] alt="Vídeo: Uso de métricas para crear alertas personalizadas"]
+image::../media/video-screenshot-alert-create-custom.png[enlace-"https://[] alt="Vídeo: Uso de métricas para crear alertas personalizadas"]
 
 

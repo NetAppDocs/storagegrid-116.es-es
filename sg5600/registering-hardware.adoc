@@ -21,7 +21,7 @@ Puede encontrar el número en el recibo de embalaje, en el correo electrónico d
 +
 image::../media/appliance_label.gif[Etiqueta que incluye el número de serie]
 
-. Vaya al sitio de soporte de NetApp en http://mysupport.netapp.com/["mysupport.netapp.com"^].
+. Vaya al sitio de soporte de NetApp en http://["mysupport.netapp.com"^].
 . Determine si necesita registrar el hardware:
 +
 |===

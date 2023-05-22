@@ -45,4 +45,4 @@ Para ver las versiones compatibles del hipervisor VMware vSphere y el software V
 Para conocer los pasos necesarios para instalar estos productos de VMware, consulte la documentación de VMware.
 
 .Información relacionada
-https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^]
+https://["Herramienta de matriz de interoperabilidad de NetApp"^]

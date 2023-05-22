@@ -29,7 +29,7 @@ xref:../sg5700/index.adoc[Dispositivos de almacenamiento SG5700]
 
 xref:../sg5600/index.adoc[Dispositivos de almacenamiento SG5600]
 
-https://mysupport.netapp.com/site/global/dashboard["Soporte de NetApp"^]
+https://["Soporte de NetApp"^]
 
 
 

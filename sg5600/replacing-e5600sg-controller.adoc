@@ -16,7 +16,7 @@ Es posible que deba sustituir la controladora E5600SG.
 .Lo que necesitará
 Debe tener acceso a los siguientes recursos:
 
-* Información para la sustitución del hardware E-Series en el sitio de soporte de NetApp en +http://mysupport.netapp.com/["mysupport.netapp.com"^]
+* Información para la sustitución del hardware E-Series en el sitio de soporte de NetApp en +http://["mysupport.netapp.com"^]
 * Documentación de E5600 en el sitio de soporte
 * El aparato se ha estado xref:placing-appliance-into-maintenance-mode.adoc[se colocó en modo de mantenimiento].
 
@@ -76,6 +76,6 @@ Compruebe que los nodos de almacenamiento del dispositivo vuelven al estado espe
 
 
 .Información relacionada
-https://mysupport.netapp.com/info/web/ECMP11751516.html["Procedimientos para reemplazar hardware E-Series y EF-Series de NetApp"^]
+https://["Procedimientos para reemplazar hardware E-Series y EF-Series de NetApp"^]
 
-http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61893["Documentación de NetApp: Serie E5600"^]
+http://["Documentación de NetApp: Serie E5600"^]

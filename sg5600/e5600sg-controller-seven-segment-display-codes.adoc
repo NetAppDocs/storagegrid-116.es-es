@@ -296,4 +296,4 @@ El código "ManageSGA" indica que ocurrió un error en la comunicación de la pr
 .Información relacionada
 xref:troubleshooting-hardware-installation.adoc[Solucionar problemas de instalación de hardware (SG5600)]
 
-https://mysupport.netapp.com/site/global/dashboard["Soporte de NetApp"^]
+https://["Soporte de NetApp"^]
