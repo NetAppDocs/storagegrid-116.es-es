@@ -85,8 +85,8 @@ Siga los pasos de xref:replacing-e2700-controller.adoc[Sustituya la controladora
 
 |===
 .Información relacionada
-https://["Procedimientos para reemplazar hardware E-Series y EF-Series de NetApp"^]
+https://mysupport.netapp.com/info/web/ECMP11751516.html["Procedimientos para reemplazar hardware E-Series y EF-Series de NetApp"^]
 
-http://["Documentación de NetApp: Serie E2700"^]
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61765["Documentación de NetApp: Serie E2700"^]
 
-http://["Documentación de NetApp: Serie E5600"^]
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61893["Documentación de NetApp: Serie E5600"^]

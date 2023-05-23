@@ -104,7 +104,7 @@ En la siguiente sección, se ofrece más información:
 * xref:../ubuntu/index.adoc[Instalar Ubuntu o Debian]
 
 
-Utilice la https://["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener una lista de las versiones compatibles.
+Utilice la https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener una lista de las versiones compatibles.
 
 
 
@@ -137,7 +137,7 @@ Hay cuatro tipos de dispositivos StorageGRID disponibles:
 
 En la siguiente sección, se ofrece más información:
 
-* https://["Hardware Universe de NetApp"^]
+* https://hwu.netapp.com["Hardware Universe de NetApp"^]
 * xref:../sg100-1000/index.adoc[Servicios de aplicaciones SG100 y SG1000]
 * xref:../sg6000/index.adoc[Dispositivos de almacenamiento SG6000]
 * xref:../sg5700/index.adoc[Dispositivos de almacenamiento SG5700]

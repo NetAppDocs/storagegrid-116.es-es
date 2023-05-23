@@ -27,7 +27,7 @@ NOTE: Este procedimiento actualizará automáticamente la NVSRAM a la versión m
 Asegúrese de elegir la versión de sistema operativo SANtricity para las controladoras de almacenamiento.
 
 +
-https://["Descargas de NetApp: Dispositivo de StorageGRID"^]
+https://mysupport.netapp.com/site/products/all/details/storagegrid-appliance/downloads-tab["Descargas de NetApp: Dispositivo de StorageGRID"^]
 
 . Seleccione *MANTENIMIENTO* > *sistema* > *actualización de software*.
 +

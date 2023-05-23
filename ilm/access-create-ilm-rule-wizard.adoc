@@ -25,7 +25,7 @@ NOTE: Si crea la regla de ILM predeterminada para una política, utilice este pr
 * Si crea copias con código de borrado, configuró un perfil de código de borrado. Consulte xref:creating-erasure-coding-profile.adoc[Cree un perfil de código de borrado].
 * Usted está familiarizado con el xref:data-protection-options-for-ingest.adoc[opciones de protección de datos para consumo].
 * Si necesita crear una regla conforme para usarla con el bloqueo de objetos S3, ya está familiarizado con la xref:requirements-for-s3-object-lock.adoc[Requisitos para el bloqueo de objetos de S3].
-* Opcionalmente, ha visto el vídeo: https://["Vídeo: Reglas de ILM para StorageGRID: Introducción"^].
+* Opcionalmente, ha visto el vídeo: https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=beffbe9b-e95e-4a90-9560-acc5013c93d8["Vídeo: Reglas de ILM para StorageGRID: Introducción"^].
 +
 [link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=beffbe9b-e95e-4a90-9560-acc5013c93d8]
 image::../media/video-screenshot-ilm-rules.png[Vídeo: Reglas de ILM para StorageGRID: Introducción]

@@ -98,6 +98,6 @@ image::../media/node_rejoin_grid_confirmation.png[El nodo del dispositivo se ha 
 
 
 .Información relacionada
-https://["Procedimientos para reemplazar hardware E-Series y EF-Series de NetApp"^]
+https://mysupport.netapp.com/info/web/ECMP11751516.html["Procedimientos para reemplazar hardware E-Series y EF-Series de NetApp"^]
 
-http://["Documentación de NetApp: Serie E2700"^]
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61765["Documentación de NetApp: Serie E2700"^]

@@ -16,7 +16,7 @@ summary: Obtenga información sobre cómo probar y habilitar las aplicaciones en
 [role="lead"]
 Obtenga información sobre cómo probar y habilitar las aplicaciones en su entorno de StorageGRID.
 
-Vaya a la https://["storagegrid-enable"^] sitio de documentos para encontrar ejemplos y libros de cocina que se amplían en la documentación del producto en este sitio. El sitio *storagegrid-enable* también describe algunos pasos siguientes para evaluar e integrar con StorageGRID.
+Vaya a la https://docs.netapp.com/us-en/storagegrid-enable/index.html["storagegrid-enable"^] sitio de documentos para encontrar ejemplos y libros de cocina que se amplían en la documentación del producto en este sitio. El sitio *storagegrid-enable* también describe algunos pasos siguientes para evaluar e integrar con StorageGRID.
 
 Se incluye la siguiente información:
 

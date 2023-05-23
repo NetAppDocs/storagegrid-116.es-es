@@ -21,7 +21,7 @@ NOTE: Si se habilitó el ajuste global de bloqueo de objetos S3, utilice este pr
 * Tiene permisos de acceso específicos.
 * Ha creado las reglas de ILM que desea añadir a la política propuesta. Según sea necesario, puede guardar una directiva propuesta, crear reglas adicionales y, a continuación, editar la directiva propuesta para agregar las nuevas reglas.
 * Ya tienes xref:creating-default-ilm-rule.adoc[Se ha creado una regla de ILM predeterminada] para la directiva que no contiene ningún filtro.
-* Opcionalmente, ha visto el vídeo: https://["Vídeo: Políticas de ILM de StorageGRID"^]
+* Opcionalmente, ha visto el vídeo: https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c929e94e-353a-4375-b112-acc5013c81c7["Vídeo: Políticas de ILM de StorageGRID"^]
 +
 [link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c929e94e-353a-4375-b112-acc5013c81c7]
 image::../media/video-screenshot-ilm-policies.png[Vídeo: Políticas de ILM de StorageGRID]

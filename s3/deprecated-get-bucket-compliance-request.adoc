@@ -20,7 +20,7 @@ xref:using-s3-object-lock.adoc[Utilice el bloqueo de objetos de S3]
 
 xref:../ilm/index.adoc[Gestión de objetos con ILM]
 
-https://["Base de conocimientos de NetApp: Cómo gestionar bloques heredados que cumplen con la normativa StorageGRID 11.5"^]
+https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["Base de conocimientos de NetApp: Cómo gestionar bloques heredados que cumplen con la normativa StorageGRID 11.5"^]
 
 Tiene el permiso s3:GetBucketCompliance o ser la raíz de la cuenta para completar esta operación.
 

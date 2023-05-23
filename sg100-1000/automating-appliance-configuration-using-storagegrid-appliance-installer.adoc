@@ -40,7 +40,7 @@ NOTE: Los usuarios con experiencia que desean automatizar tanto la instalación 
 .Pasos
 . Genere el archivo JSON mediante uno de los siguientes métodos:
 +
-** La https://["Aplicación ConfigBuilder"^].
+** La https://configbuilder.netapp.com/["Aplicación ConfigBuilder"^].
 ** La xref:automating-installation-configuration-appliance-nodes-configure-sga-py-script.adoc[configure-sga.py secuencia de comandos de configuración del dispositivo]. Puede descargar la secuencia de comandos desde el instalador del dispositivo StorageGRID (*Ayuda* *secuencia de comandos de configuración del dispositivo*).
 +
 Los nombres de nodos en el archivo JSON deben seguir estos requisitos:

@@ -35,7 +35,7 @@ Para implementaciones de producción, no debe ejecutar varios nodos de almacenam
 Consulte también la información sobre los requisitos de almacenamiento.
 
 .Información relacionada
-https://["Herramienta de matriz de interoperabilidad de NetApp"^]
+https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^]
 
 xref:storage-and-performance-requirements.adoc[Los requisitos de almacenamiento y rendimiento]
 

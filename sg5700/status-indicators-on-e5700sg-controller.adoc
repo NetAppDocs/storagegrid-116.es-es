@@ -287,4 +287,4 @@ Se produjo un error en la instalación o la comunicación con la controladora E2
 .Información relacionada
 xref:troubleshooting-hardware-installation.adoc[Solucionar problemas de instalación de hardware (SG5700)]
 
-https://["Soporte de NetApp"^]
+https://mysupport.netapp.com/site/global/dashboard["Soporte de NetApp"^]

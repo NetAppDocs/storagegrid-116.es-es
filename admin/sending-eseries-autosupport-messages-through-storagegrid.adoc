@@ -29,7 +29,7 @@ Configurar una dirección de servidor proxy especial en System Manager de SANtri
 Si desea configurar el servidor proxy de administración en Grid Manager, consulte xref:configuring-admin-proxy-settings.adoc[Configure los ajustes del proxy de administración].
 
 
-NOTE: Este procedimiento solo se utiliza para configurar un servidor proxy StorageGRID para los mensajes de AutoSupport E-Series. Si quiere más información sobre la configuración de la serie AutoSupport de E-Series, consulte https://["Documentación de SANtricity y E-Series de NetApp"^].
+NOTE: Este procedimiento solo se utiliza para configurar un servidor proxy StorageGRID para los mensajes de AutoSupport E-Series. Si quiere más información sobre la configuración de la serie AutoSupport de E-Series, consulte https://mysupport.netapp.com/info/web/ECMP1658252.html["Documentación de SANtricity y E-Series de NetApp"^].
 
 .Pasos
 . En Grid Manager, seleccione *NODES*.

@@ -110,4 +110,4 @@ xref:initiate-multipart-upload.adoc[Inicie la carga de varias partes]
 
 xref:object-versioning.adoc[Control de versiones de objetos]
 
-https://["Guía del usuario de Amazon simple Storage Service: Uso del bloqueo de objetos de S3"^]
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html["Guía del usuario de Amazon simple Storage Service: Uso del bloqueo de objetos de S3"^]

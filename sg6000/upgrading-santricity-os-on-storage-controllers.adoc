@@ -29,8 +29,8 @@ xref:upgrading-santricity-os-on-storage-controllers-using-maintenance-mode-sg600
 IMPORTANT: Al actualizar el sistema operativo SANtricity para el dispositivo de almacenamiento, debe seguir las instrucciones de la documentación de StorageGRID. Si usa otras instrucciones, el aparato podría quedar inoperativo.
 
 .Información relacionada
-https://["Herramienta de matriz de interoperabilidad de NetApp"^]
+https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^]
 
-https://["Descargas de NetApp: Dispositivo de StorageGRID"^]
+https://mysupport.netapp.com/site/products/all/details/storagegrid-appliance/downloads-tab["Descargas de NetApp: Dispositivo de StorageGRID"^]
 
 xref:../monitor/index.adoc[Supervisión y solución de problemas]

@@ -40,7 +40,7 @@ Para Management_Port_IP, introduzca la dirección IP para el puerto de gestión 
 .. Si recibe una respuesta del ping, compruebe que el puerto 8443 está abierto en los firewalls.
 .. Reinicie el dispositivo.
 .. Actualice la página web de instalación.
-.. Si esto no resuelve el problema de conexión, póngase en contacto con el soporte técnico del sitio de soporte de NetApp en http://["mysupport.netapp.com"^].
+.. Si esto no resuelve el problema de conexión, póngase en contacto con el soporte técnico del sitio de soporte de NetApp en http://mysupport.netapp.com/["mysupport.netapp.com"^].
 
 
 

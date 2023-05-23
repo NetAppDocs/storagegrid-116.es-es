@@ -6,4 +6,4 @@ Active IQ es un asesor digital basado en cloud que aprovecha el análisis predic
 
 Debe habilitar AutoSupport si desea usar las consolas y la funcionalidad de Active IQ del sitio de soporte de NetApp.
 
-https://["Documentación del asesor digital de Active IQ"^]
+https://docs.netapp.com/us-en/active-iq/index.html["Documentación del asesor digital de Active IQ"^]

@@ -23,7 +23,7 @@ NOTE: Si la opción de bloqueo de objetos global de S3 no se ha habilitado, util
 
 * Ha creado las reglas de ILM que cumplen y no cumplen con las normativas que desea agregar a la política propuesta. Según sea necesario, puede guardar una directiva propuesta, crear reglas adicionales y, a continuación, editar la directiva propuesta para agregar las nuevas reglas. Consultexref:example-7-compliant-ilm-policy-for-s3-object-lock.adoc[Ejemplo 7: Política de ILM conforme con la normativa para el bloqueo de objetos S3].
 * Ya tienes xref:creating-default-ilm-rule.adoc[Se ha creado una regla de ILM predeterminada] para la directiva que cumple con las normativas.
-* Opcionalmente, ha visto el vídeo: https://["Vídeo: Políticas de ILM de StorageGRID"^]
+* Opcionalmente, ha visto el vídeo: https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c929e94e-353a-4375-b112-acc5013c81c7["Vídeo: Políticas de ILM de StorageGRID"^]
 +
 [link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c929e94e-353a-4375-b112-acc5013c81c7]
 image::../media/video-screenshot-ilm-policies.png[Vídeo: Políticas de ILM de StorageGRID]

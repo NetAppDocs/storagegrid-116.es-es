@@ -117,6 +117,6 @@ IMPORTANT: Antes de realizar la instalación, compruebe que los cables ópticos 
 
 
 .Información relacionada
-https://["Hardware Universe de NetApp"^]
+https://hwu.netapp.com["Hardware Universe de NetApp"^]
 
-https://["Herramienta de matriz de interoperabilidad de NetApp"^]
+https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^]

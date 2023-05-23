@@ -125,7 +125,7 @@ IMPORTANT: La consola de S3 de experimental no se ha probado completamente y no 
 * Una nueva casilla de verificación *Buscar actualizaciones de software* en la página AutoSupport (*SUPPORT* > *Tools* > *AutoSupport*) permite controlar esta funcionalidad. Puede desactivar la búsqueda de actualizaciones de software disponibles si el sistema no tiene acceso WAN. Consulte xref:../admin/configure-autosupport-grid-manager.adoc#disable-checks-for-software-updates[Configurar las comprobaciones de  de AutoSupport para actualizaciones de software].
 +
 
-NOTE: Para la actualización a StorageGRID 11.6, puede utilizar opcionalmente una secuencia de comandos para actualizar y aplicar una revisión al mismo tiempo. Consulte https://["Base de conocimientos de NetApp: Cómo ejecutar scripts combinados de actualizaciones importantes y revisiones para StorageGRID"^].
+NOTE: Para la actualización a StorageGRID 11.6, puede utilizar opcionalmente una secuencia de comandos para actualizar y aplicar una revisión al mismo tiempo. Consulte https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_run_combined_major_upgrade_and_hotfix_script_for_StorageGRID["Base de conocimientos de NetApp: Cómo ejecutar scripts combinados de actualizaciones importantes y revisiones para StorageGRID"^].
 
 * Ahora puede pausar una actualización del sistema operativo de SANtricity y omitir la actualización de algunos nodos si necesita finalizar la actualización en el futuro. Consulte las instrucciones para su dispositivo de almacenamiento:
 +

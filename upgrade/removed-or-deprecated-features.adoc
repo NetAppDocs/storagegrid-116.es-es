@@ -43,6 +43,6 @@ Para ayudarle a realizar la transición de clientes a utilizar tamaños de objet
 
 La función de puente NAS introdujo anteriormente acceso limitado con la versión StorageGRID 11.4. La función de puente NAS permanece con acceso limitado y está en desuso a partir de StorageGRID 11.6.
 
-El puente NAS 11.4 sigue siendo la versión final y seguirá siendo compatible con StorageGRID 11.6. Revise la https://["Herramienta de matriz de interoperabilidad de NetApp"^] Para obtener compatibilidad continua entre las versiones NAS Bridge 11.4 y StorageGRID.
+El puente NAS 11.4 sigue siendo la versión final y seguirá siendo compatible con StorageGRID 11.6. Revise la https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^] Para obtener compatibilidad continua entre las versiones NAS Bridge 11.4 y StorageGRID.
 
-Consulte el sitio de soporte de NetApp para ver el https://["Calendario de soporte del puente NAS"^].
+Consulte el sitio de soporte de NetApp para ver el https://mysupport.netapp.com/site/info/version-support["Calendario de soporte del puente NAS"^].

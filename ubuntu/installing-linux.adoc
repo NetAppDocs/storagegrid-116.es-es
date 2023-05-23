@@ -11,7 +11,7 @@ summary: Debe instalar Ubuntu o Debian en todos los hosts de grid. Utilice la he
 
 
 [role="lead"]
-Debe instalar Linux en todos los hosts Grid. Utilice la https://["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener una lista de las versiones compatibles.
+Debe instalar Linux en todos los hosts Grid. Utilice la https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^] para obtener una lista de las versiones compatibles.
 
 .Pasos
 . Instalar Linux en todos los hosts de grid físicos o virtuales de acuerdo con las instrucciones del mayorista o del procedimiento estándar.

@@ -46,7 +46,7 @@ Este ejemplo muestra el XML utilizado para habilitar CORS para un bloque de S3. 
 </CORSConfiguration>
 ----
 +
-Para obtener más información acerca del XML de configuración de CORS, consulte http://["Documentación de Amazon Web Services (AWS): Guía para desarrolladores de Amazon simple Storage Service"^].
+Para obtener más información acerca del XML de configuración de CORS, consulte http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html["Documentación de Amazon Web Services (AWS): Guía para desarrolladores de Amazon simple Storage Service"^].
 
 . En el Administrador de inquilinos, seleccione *ALMACENAMIENTO (S3)* > *Cuchos*.
 . Seleccione el nombre del bloque de la lista.

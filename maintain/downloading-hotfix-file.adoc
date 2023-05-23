@@ -16,7 +16,7 @@ Debe descargar el archivo de revisión antes de poder aplicar la revisión.
 .Pasos
 . Vaya a la página de descargas de NetApp para StorageGRID.
 +
-https://["Descargas de NetApp: StorageGRID"]
+https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Descargas de NetApp: StorageGRID"]
 
 . Seleccione la flecha abajo en *Software disponible* para ver una lista de revisiones disponibles para descargar.
 +

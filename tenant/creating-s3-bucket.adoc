@@ -50,7 +50,7 @@ Los nombres de los bloques deben cumplir con las siguientes reglas:
 
 +
 
-NOTE: Para obtener más información, consulte https://["Documentación de Amazon Web Services (AWS) sobre reglas de nomenclatura de bloques"^].
+NOTE: Para obtener más información, consulte https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html["Documentación de Amazon Web Services (AWS) sobre reglas de nomenclatura de bloques"^].
 
 . Seleccione la región para este segmento.
 +

@@ -57,6 +57,6 @@ xref:e5600sg-controller-seven-segment-display-codes.adoc[códigos de visualizaci
 
 xref:he-error-error-synchronizing-with-santricity-os-software.adoc[Error: Error al sincronizar con el software de sistema operativo SANtricity]
 
-https://["Guía de instalación de soporte de unidades de controladora E2700 y soportes de unidades relacionadas"^]
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2344477["Guía de instalación de soporte de unidades de controladora E2700 y soportes de unidades relacionadas"^]
 
-http://["Documentación de NetApp: Serie E2700"^]
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=61765["Documentación de NetApp: Serie E2700"^]

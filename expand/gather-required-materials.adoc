@@ -74,7 +74,7 @@ Documentación de StorageGRID
  a| 
 La documentación actual de su plataforma
  a| 
-Para conocer las versiones compatibles, consulte https://["Matriz de interoperabilidad"^].
+Para conocer las versiones compatibles, consulte https://mysupport.netapp.com/matrix["Matriz de interoperabilidad"^].
 
 |===
 
@@ -90,7 +90,7 @@ Es necesario realizar operaciones de ampliación con la versión de StorageGRID 
 .Pasos
 . Vaya a la página de descargas de NetApp para StorageGRID.
 +
-https://["Descargas de NetApp: StorageGRID"^]
+https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Descargas de NetApp: StorageGRID"^]
 
 . Seleccione la versión de StorageGRID que se está ejecutando actualmente en la cuadrícula.
 . Inicie sesión con el nombre de usuario y la contraseña de su cuenta de NetApp.

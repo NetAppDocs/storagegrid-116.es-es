@@ -71,7 +71,7 @@ Seleccione *Ver unidades asociadas* para mostrar dónde están instaladas estas 
 +
 .. Abra el explorador web, desplácese hasta el sitio web de soporte de NetApp e inicie sesión con su ID y contraseña.
 +
-https://["Soporte de NetApp"^]
+https://mysupport.netapp.com/site/["Soporte de NetApp"^]
 
 .. En el sitio de soporte de NetApp, seleccione la pestaña *Descargas* y, a continuación, seleccione *firmware de las unidades de disco E-Series*.
 +

@@ -48,10 +48,10 @@ Si los nodos de StorageGRID utilizan plataformas host Linux, debe asegurarse de 
 Utilice la herramienta matriz de interoperabilidad de NetApp para obtener una lista de las versiones compatibles.
 
 .Información relacionada
-https://["Descargas de NetApp: StorageGRID"^]
+https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Descargas de NetApp: StorageGRID"^]
 
 xref:../upgrade/index.adoc[Actualizar el software de]
 
 xref:../maintain/index.adoc[Recuperación y mantenimiento]
 
-https://["Herramienta de matriz de interoperabilidad de NetApp"^]
+https://mysupport.netapp.com/matrix["Herramienta de matriz de interoperabilidad de NetApp"^]
