@@ -77,10 +77,10 @@ entries:
       url: "/sg6000/verifying-network-connections.html"
     - title: Verifique las conexiones de red a nivel de puerto
       url: "/sg6000/verifying-port-level-network-connections.html"
-  - title: Acceder y configurar SANtricity System Manager (SG6000)
+  - title: Acceso y configuración del administrador del sistema de SANtricity (SG6000)
     url: "/sg6000/accessing-and-configuring-santricity-system-manager.html"
     entries:
-    - title: Configure y acceda a SANtricity System Manager
+    - title: Configuración y acceso a System Manager de SANtricity
       url: "/sg6000/setting-up-and-accessing-santricity-system-manager.html"
     - title: Revisar el estado del hardware en System Manager de SANtricity
       url: "/sg6000/reviewing-hardware-status-in-santricity-system-manager.html"

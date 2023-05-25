@@ -17,7 +17,7 @@ Use esta introducción para obtener información general del sistema StorageGRID
 
 == ¿Qué es StorageGRID?
 
-StorageGRID de NetApp es una solución de almacenamiento basada en cloud definida por software compatible con las API de objetos estándares del sector, incluidas la API de Amazon simple Storage Service (S3) y la API de OpenStack Swift.
+NetApp® StorageGRID® es una suite de almacenamiento de objetos definido por software que admite una amplia gama de casos de uso en entornos multicloud públicos, privados e híbridos. StorageGRID ofrece compatibilidad nativa con la API de Amazon S3 y proporciona innovaciones líderes en el sector, como la gestión automatizada del ciclo de vida, para almacenar, proteger y conservar datos no estructurados de forma rentable durante largos periodos.
 
 StorageGRID proporciona almacenamiento seguro y duradero para datos no estructurados a escala. Las políticas integradas de gestión del ciclo de vida basadas en metadatos optimizan la ubicación de los datos a lo largo de toda su vida. El contenido se sitúa en la ubicación adecuada, en el momento justo y en el nivel de almacenamiento adecuado para reducir los costes.
 

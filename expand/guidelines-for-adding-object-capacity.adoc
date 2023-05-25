@@ -22,7 +22,7 @@ Antes de añadir volúmenes de almacenamiento a los nodos de almacenamiento exis
 * Debe examinar las reglas actuales de ILM para determinar dónde y cuándo añadir volúmenes de almacenamiento con el fin de aumentar el almacenamiento disponible para los objetos replicados o codificados de borrado. Consulte las instrucciones para xref:../ilm/index.adoc[gestionar objetos con gestión del ciclo de vida de la información].
 * No es posible aumentar la capacidad de metadatos del sistema con la adición de volúmenes de almacenamiento, ya que los metadatos del objeto se almacenan solo en el volumen 0.
 * Cada nodo de almacenamiento basado en software puede admitir un máximo de 16 volúmenes de almacenamiento. Si necesita añadir capacidad más allá de eso, debe añadir nuevos nodos de almacenamiento.
-* Se pueden añadir una o dos bandejas de expansión a cada dispositivo SG6060 o SG6060X. Cada bandeja de expansión añade 16 volúmenes de almacenamiento. Con las dos bandejas de expansión instaladas, el SG6060 y SG606060 pueden admitir g un total de 48 volúmenes de almacenamiento.
+* Se pueden añadir una o dos bandejas de expansión a cada dispositivo SG6060 o SG6060X. Cada bandeja de expansión añade 16 volúmenes de almacenamiento. Con las dos bandejas de ampliación instaladas, SG6060 y SG6060X pueden admitir un total de 48 volúmenes de almacenamiento.
 * No es posible añadir volúmenes de almacenamiento a ningún otro dispositivo de almacenamiento.
 * No es posible aumentar el tamaño de un volumen de almacenamiento existente.
 * No es posible añadir volúmenes de almacenamiento a un nodo de almacenamiento a la vez que se realiza una actualización del sistema, una operación de recuperación u otra ampliación.

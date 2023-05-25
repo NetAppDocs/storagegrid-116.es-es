@@ -1,16 +1,13 @@
 ---
-sidebar: sidebar 
 permalink: legal-notices.html 
+sidebar: sidebar 
 keywords: copyrights, notice, trademarks, patents, privacy, open source 
 summary: Los avisos legales proporcionan acceso a las declaraciones de copyright, marcas comerciales, patentes y mucho más. 
 ---
 = Avisos legales
-:hardbreaks:
 :allow-uri-read: 
-:nofooter: 
 :icons: font
-:linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -46,6 +43,8 @@ https://www.netapp.com/us/legal/privacypolicy/index.aspx[]
 
 
 
-== Código abierto para StorageGRID 11.6
+== Código abierto
+
+Los archivos de notificación proporcionan información sobre los derechos de autor y las licencias de terceros que se utilizan en software de NetApp.
 
 https://library.netapp.com/ecm/ecm_download_file/ECMLP2879263[]

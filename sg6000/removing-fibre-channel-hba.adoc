@@ -27,7 +27,7 @@ IMPORTANT: Es necesario realizar un apagado controlado antes de retirar la contr
 
 
 .Acerca de esta tarea
-Para evitar interrupciones del servicio, confirme que todos los demás nodos de almacenamiento están conectados al grid antes de iniciar la sustitución de un HBA Fibre Channel o sustituya el adaptador durante un periodo de mantenimiento programado cuando normalmente se esperan periodos de interrupción del servicio. Consulte la información acerca de link:../monitor/monitor-node-connection-states.html["supervisar los estados de conexión de los nodos"].
+Para evitar interrupciones del servicio, confirme que todos los demás nodos de almacenamiento están conectados al grid antes de iniciar la sustitución de un HBA Fibre Channel o sustituya el adaptador durante un periodo de mantenimiento programado cuando normalmente se esperan periodos de interrupción del servicio. Consulte la información acerca de link:../monitor/monitoring-node-connection-states.html["supervisar los estados de conexión de los nodos"].
 
 
 IMPORTANT: Si alguna vez ha utilizado una regla de ILM que crea solamente una copia de un objeto, debe reemplazar el HBA de Fibre Channel durante una ventana de mantenimiento programada. De lo contrario, es posible que pierda temporalmente el acceso a esos objetos durante este procedimiento. Consulte la información acerca de link:../ilm/why-you-should-not-use-single-copy-replication.html["por qué no debe utilizar replicación de copia única"].

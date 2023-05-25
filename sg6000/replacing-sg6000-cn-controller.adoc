@@ -29,6 +29,22 @@ No se podrá acceder al nodo de almacenamiento del dispositivo cuando sustituya 
 NOTE: Si va a sustituir la controladora antes de instalar el software StorageGRID, es posible que no pueda acceder al instalador de dispositivos de StorageGRID inmediatamente después de completar este procedimiento. Aunque puede acceder al instalador del dispositivo StorageGRID desde otros hosts de la misma subred que el dispositivo, no puede acceder al mismo desde hosts de otras subredes. Esta condición debe resolverse dentro de los 15 minutos (cuando se agota cualquier entrada de caché ARP para el tiempo de espera original de la controladora); asimismo, puede borrar la condición de inmediato mediante la purga manual de todas las entradas antiguas de la caché ARP desde el enrutador o la puerta de enlace local.
 
 .Pasos
+. Muestre las configuraciones actuales del aparato y regístrelas.
++
+.. Inicie sesión en el dispositivo que se va a sustituir:
++
+... Introduzca el siguiente comando: `ssh admin@_grid_node_IP_`
+... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+... Introduzca el siguiente comando para cambiar a la raíz: `su -`
+... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
++
+Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para `#`.
+
+
+
+.. Introduzca: `*run-host-command ipmitool lan print*` Para mostrar las configuraciones actuales de BMC del dispositivo.
+
+
 . Si el controlador SG6000-CN funciona lo suficiente como para permitir un apagado controlado, apague el controlador SG6000-CN.
 +
 xref:shutting-down-sg6000-cn-controller.adoc[Apague el controlador SG6000-CN]
@@ -39,13 +55,17 @@ xref:shutting-down-sg6000-cn-controller.adoc[Apague el controlador SG6000-CN]
 ** La página Power Control de la interfaz del BMC indica que el controlador está apagado.
 
 
-. Si las redes StorageGRID conectadas a la controladora utilizan servidores DHCP, actualice la configuración de red/DNS y dirección IP.
+. Si alguna de las interfaces de red de este dispositivo StorageGRID está configurada para DHCP, es posible que deba actualizar las asignaciones de permisos DHCP permanentes en los servidores DHCP para hacer referencia a las direcciones MAC del dispositivo de reemplazo. La actualización garantiza que el dispositivo tenga asignadas las direcciones IP esperadas.
 +
 .. Busque la etiqueta de dirección MAC en la parte frontal del controlador SG6000-CN y determine la dirección MAC del puerto de red de administración.
 +
+[NOTE]
+====
+La etiqueta de dirección MAC incluye la dirección MAC para el puerto de gestión del BMC.
 
-NOTE: La etiqueta de dirección MAC incluye la dirección MAC para el puerto de gestión del BMC. + para determinar la dirección MAC del puerto de red de administración, debe agregar *2* al número hexadecimal de la etiqueta. Por ejemplo, si la dirección MAC de la etiqueta termina en *09*, la dirección MAC del puerto de administración finalizará en *0B*. Si la dirección MAC de la etiqueta termina en *(_y_)FF*, la dirección MAC del puerto de administración finalizará en *(_y_+1)01*. Puede realizar este cálculo fácilmente abriendo Calculadora en Windows, establecerlo en modo Programador, seleccionando hex, escribiendo la dirección MAC y, a continuación, escribiendo *+ 2 =*.
+Para determinar la dirección MAC del puerto de red de administración, debe agregar *2* al número hexadecimal de la etiqueta. Por ejemplo, si la dirección MAC de la etiqueta termina en *09*, la dirección MAC del puerto de administración finalizará en *0B*. Si la dirección MAC de la etiqueta termina en *(_y_)FF*, la dirección MAC del puerto de administración finalizará en *(_y_+1)01*. Puede realizar este cálculo fácilmente abriendo Calculadora en Windows, establecerlo en modo Programador, seleccionando hex, escribiendo la dirección MAC y, a continuación, escribiendo *+ 2 =*.
 
+====
 .. Solicite al administrador de red que asocie la red DNS y la dirección IP de la controladora que quitó con la dirección MAC de la controladora de reemplazo.
 +
 
@@ -70,18 +90,45 @@ IMPORTANT: Para evitar un rendimiento degradado, no gire, pliegue, pellizque ni 
 .. Encienda la controladora y supervise los LED y los códigos de arranque de la controladora.
 
 
-. Confirme que el nodo de almacenamiento del dispositivo aparece en Grid Manager y que no aparece ninguna alarma.
-. En Grid Manager, seleccione *NODES* y compruebe que la dirección IP del BMC para el controlador del nodo es correcta.
+. Si el dispositivo donde sustituyó la controladora usaba un servidor de gestión de claves (KMS) para cifrar los datos, es posible que se necesite una configuración adicional para que el nodo pueda unirse al grid. Si el nodo no se une automáticamente a la cuadrícula, asegúrese de que estas opciones de configuración se hayan transferido a la nueva controladora y configure manualmente todos los ajustes que no tengan la configuración esperada:
 +
-Si la dirección IP de la controladora del nodo no es válida o no está en el rango esperado, vuelva a configurar la dirección IP como se describe en las instrucciones de recuperación y mantenimiento.
+** link:../sg6000/configuring-storagegrid-connections.html["Configure las conexiones StorageGRID"]
+** link:../admin/kms-overview-of-kms-and-appliance-configuration.html#set-up-the-appliance["Configure el cifrado de nodo para el dispositivo"]
+
+
+. Inicie sesión en el dispositivo con la controladora reemplazada:
++
+.. Introduzca el siguiente comando: `ssh admin@_grid_node_IP_`
+.. Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+.. Introduzca el siguiente comando para cambiar a la raíz: `su -`
+.. Introduzca la contraseña que aparece en `Passwords.txt` archivo.
+
+
+. Restaure la conectividad de red de BMC para el dispositivo. Existen dos opciones:
++
+** Utilice IP estáticas, máscara de red y puerta de enlace
+** Utilice DHCP para obtener una IP, una máscara de red y una puerta de enlace
++
+... Para restaurar la configuración de BMC para utilizar una IP estática, una máscara de red y una puerta de enlace, escriba los siguientes comandos:
++
+`*run-host-command ipmitool lan set 1 ipaddr _Appliance_IP_*`
 
 +
-
-NOTE: Si aplicó personalización adicional durante la instalación original, como configurar destinos de capturas SNMP o notificaciones por correo electrónico, debería registrar y validar la configuración y volver a aplicarla, si fuera necesario.
+`*run-host-command ipmitool lan set 1 netmask _Netmask_IP_*`
 
 +
-xref:../maintain/index.adoc[Recuperación y mantenimiento]
+`*run-host-command ipmitool lan set 1 defgw ipaddr _Default_gateway_*`
 
+... Para restaurar la configuración de BMC a fin de utilizar DHCP a fin de obtener una IP, una máscara de red y una puerta de enlace, introduzca el siguiente comando:
++
+`*run-host-command ipmitool lan set 1 ipsrc dhcp*`
+
+
+
+
+
+. Después de restaurar la conectividad de red de BMC, conéctese a la interfaz de BMC para auditar y restaurar cualquier configuración de BMC personalizada adicional que pueda haber aplicado. Por ejemplo, se debe confirmar la configuración de los destinos de capturas SNMP y las notificaciones por correo electrónico. Consulte link:configuring-bmc-interface-sg6000.html["Configurar la interfaz de BMC"].
+. Confirme que el nodo del dispositivo aparece en Grid Manager y que no aparece ninguna alerta.
 
 
 .Información relacionada

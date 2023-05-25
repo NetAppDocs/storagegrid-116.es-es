@@ -25,9 +25,7 @@ xref:locating-controller-in-data-center.adoc[Ubique la controladora en el centro
 Para evitar interrupciones del servicio, confirme que todos los demás nodos de almacenamiento están conectados al grid antes de apagar la controladora o apagar la controladora durante una ventana de mantenimiento programada cuando sea posible periodos de interrupción del servicio. Consulte la información sobre cómo determinar estados de conexión de nodos en las instrucciones para gestionar objetos con la gestión del ciclo de vida de la información.
 
 
-IMPORTANT: Si alguna vez ha utilizado una regla de ILM que crea solamente una copia de un objeto, debe apagar la controladora durante una ventana de mantenimiento programada. De lo contrario, es posible que pierda temporalmente el acceso a esos objetos durante este procedimiento.
-
-+ Consulte información sobre la administración de objetos con administración del ciclo de vida de la información.
+IMPORTANT: Si alguna vez ha utilizado una regla de ILM que crea solamente una copia de un objeto, debe apagar la controladora durante una ventana de mantenimiento programada. De lo contrario, es posible que pierda temporalmente el acceso a esos objetos durante este procedimiento. Consulte link:../ilm/index.html["Gestión de objetos con la gestión del ciclo de vida de la información"].
 
 .Pasos
 . Una vez colocado el aparato en modo de mantenimiento, apague el controlador SG6000-CN:
