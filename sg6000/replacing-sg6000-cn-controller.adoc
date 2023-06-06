@@ -49,12 +49,6 @@ Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para
 +
 xref:shutting-down-sg6000-cn-controller.adoc[Apague el controlador SG6000-CN]
 
-. Utilice uno de estos dos métodos para verificar que la alimentación del controlador SG6000-CN está desactivada:
-+
-** El LED del indicador de alimentación de la parte frontal de la controladora está apagado.
-** La página Power Control de la interfaz del BMC indica que el controlador está apagado.
-
-
 . Si alguna de las interfaces de red de este dispositivo StorageGRID está configurada para DHCP, es posible que deba actualizar las asignaciones de permisos DHCP permanentes en los servidores DHCP para hacer referencia a las direcciones MAC del dispositivo de reemplazo. La actualización garantiza que el dispositivo tenga asignadas las direcciones IP esperadas.
 +
 .. Busque la etiqueta de dirección MAC en la parte frontal del controlador SG6000-CN y determine la dirección MAC del puerto de red de administración.

@@ -14,27 +14,22 @@ summary: Apague el controlador SG6000-CN para realizar el mantenimiento de hardw
 Apague el controlador SG6000-CN para realizar el mantenimiento de hardware.
 
 .Lo que necesitará
-* Ha localizado físicamente el controlador SG6000-CN que requiere mantenimiento en el centro de datos.
-+
-xref:locating-controller-in-data-center.adoc[Ubique la controladora en el centro de datos]
-
-* El aparato se ha estado xref:placing-appliance-into-maintenance-mode.adoc[se pone en modo de mantenimiento].
-
+Ha localizado físicamente el controlador SG6000-CN que requiere mantenimiento en el centro de datos. Consulte xref:locating-controller-in-data-center.adoc[Ubique la controladora en el centro de datos].
 
 .Acerca de esta tarea
-Para evitar interrupciones del servicio, confirme que todos los demás nodos de almacenamiento están conectados al grid antes de apagar la controladora o apagar la controladora durante una ventana de mantenimiento programada cuando sea posible periodos de interrupción del servicio. Consulte la información sobre cómo determinar estados de conexión de nodos en las instrucciones para gestionar objetos con la gestión del ciclo de vida de la información.
+Para evitar interrupciones del servicio, confirme que todos los demás nodos de almacenamiento están conectados al grid antes de apagar la controladora o apagar la controladora durante una ventana de mantenimiento programada cuando sea posible periodos de interrupción del servicio. Consulte la información acerca de xref:monitoring-node-connection-states.adoc[supervisar los estados de conexión de los nodos].
 
 
 IMPORTANT: Si alguna vez ha utilizado una regla de ILM que crea solamente una copia de un objeto, debe apagar la controladora durante una ventana de mantenimiento programada. De lo contrario, es posible que pierda temporalmente el acceso a esos objetos durante este procedimiento. Consulte link:../ilm/index.html["Gestión de objetos con la gestión del ciclo de vida de la información"].
 
 .Pasos
-. Una vez colocado el aparato en modo de mantenimiento, apague el controlador SG6000-CN:
+. Apague el controlador SG6000-CN:
 +
 
-CAUTION: Debe realizar un apagado controlado de la controladora introduciendo los comandos especificados a continuación. Si se apaga la controladora con el switch de alimentación, se producirá la pérdida de datos.
+CAUTION: Debe realizar un apagado controlado de la controladora introduciendo los comandos especificados a continuación. Se recomienda realizar un apagado controlado cuando sea posible para evitar alertas innecesarias, garantizar que haya logs completos disponibles y evitar interrupciones del servicio.
 
 +
-.. Inicie sesión en el nodo de la cuadrícula mediante PuTTY u otro cliente ssh:
+.. Si aún no ha iniciado sesión en el nodo de grid, inicie sesión con PuTTY u otro cliente ssh:
 +
 ... Introduzca el siguiente comando: `ssh admin@_grid_node_IP_`
 ... Introduzca la contraseña que aparece en `Passwords.txt` archivo.
@@ -45,8 +40,10 @@ Cuando ha iniciado sesión como root, el símbolo del sistema cambia de `$` para
 
 
 
-.. Apague el controlador SG6000-CN: +
+.. Apague el controlador SG6000-CN:
++
 `*shutdown -h now*`
+
 +
 Este comando puede tardar hasta 10 minutos en completarse.
 
