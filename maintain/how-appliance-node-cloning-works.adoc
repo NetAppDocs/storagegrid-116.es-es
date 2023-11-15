@@ -53,7 +53,7 @@ Por ejemplo, si un dispositivo de nodo de origen SG1000 se está utilizando como
 
 * Un dispositivo de almacenamiento de reemplazo debe tener una capacidad igual o mayor que el nodo de almacenamiento al que desea reemplazar.
 +
-** Si el dispositivo de almacenamiento objetivo tiene la misma cantidad de unidades que el nodo de origen, las unidades del dispositivo de destino deben tener la misma capacidad (en TB) o más.
+** Si el dispositivo de almacenamiento objetivo tiene la misma cantidad de unidades que el nodo de origen, las unidades del dispositivo objetivo deben tener mayor capacidad (en TB).
 ** Si planea utilizar el mismo modo RAID en el nodo de destino que se utilizó en el nodo de origen, O un modo RAID menos eficiente del almacenamiento (por ejemplo, al cambiar de RAID6 a DDP), las unidades del dispositivo de destino deben ser mayores (en TB) que las unidades del dispositivo de origen.
 ** Si la cantidad de unidades estándar instaladas en un dispositivo de almacenamiento de destino es menor que la cantidad de unidades en el nodo de origen, debido a la instalación de unidades de estado sólido (SSD), la capacidad de almacenamiento general de las unidades estándar en el dispositivo de destino (en TB). Debe satisfacer o superar la capacidad total de las unidades funcionales de todas las unidades del nodo de almacenamiento de origen.
 +
