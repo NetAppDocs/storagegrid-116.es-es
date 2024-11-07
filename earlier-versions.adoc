@@ -16,9 +16,11 @@ summary: Aquí encontrará documentación para otras versiones del software Stor
 [role="lead"]
 Encontrará documentación para otras versiones del software StorageGRID de NetApp aquí:
 
+* https://docs.netapp.com/us-en/storagegrid/index.html["Documentación de StorageGRID 11,9"^]
+* https://docs.netapp.com/us-en/storagegrid-118/index.html["Documentación de StorageGRID 11,8"^]
 * https://docs.netapp.com/us-en/storagegrid-117/index.html["Documentación de StorageGRID 11,7"^]
 * https://docs.netapp.com/us-en/storagegrid-115/index.html["Documentación de StorageGRID 11.5"^]
-* https://docs.netapp.com/sgws-114/index.jsp["Documentación de StorageGRID 11.4"^]
-* https://docs.netapp.com/sgws-113/index.jsp["Documentación de StorageGRID 11.3"^]
-* https://docs.netapp.com/sgws-112/index.jsp["Documentación de StorageGRID 11.2"^]
+* https://docs.netapp.com/sgws-114/index.jsp["Centro de documentación de StorageGRID 11,4"^]
+* https://docs.netapp.com/sgws-113/index.jsp["Centro de documentación de StorageGRID 11,3"^]
+* https://docs.netapp.com/sgws-112/index.jsp["Centro de documentación de StorageGRID 11,2"^]
 
