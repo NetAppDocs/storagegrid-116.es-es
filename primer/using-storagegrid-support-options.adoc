@@ -1,7 +1,7 @@
 ---
 permalink: primer/using-storagegrid-support-options.html 
 sidebar: sidebar 
-keywords: autosupport, active IQ, logs, audit.log, metrics, diagnostics 
+keywords: autosupport, Digital Advisor, logs, audit.log, metrics, diagnostics 
 summary: Grid Manager ofrece opciones para ayudarle a trabajar con el soporte técnico en caso de que surja un problema con el sistema StorageGRID. 
 ---
 = Use las opciones de soporte de StorageGRID
@@ -51,13 +51,13 @@ Si cierra el mensaje, no volverá a aparecer hasta que se borre la caché del ex
 
 
 
-=== Utilice Active IQ
+=== Utilice el Asesor digital
 
-Active IQ es un asesor digital basado en cloud que aprovecha el análisis predictivo y los conocimientos de la comunidad de la base instalada de NetApp. Sus evaluaciones de riesgos continuas, las alertas predictivas, las directrices prescriptivas y las acciones automatizadas le ayudan a evitar problemas antes de que se produzcan, lo que mejora el estado del sistema y aumenta la disponibilidad del sistema.
+El asesor digital de Active IQ está basado en la nube y aprovecha el análisis predictivo y los conocimientos de la comunidad de la base instalada de NetApp. Sus evaluaciones de riesgos continuas, las alertas predictivas, las directrices prescriptivas y las acciones automatizadas le ayudan a evitar problemas antes de que se produzcan, lo que mejora el estado del sistema y aumenta la disponibilidad del sistema.
 
-Debe habilitar AutoSupport si desea usar las consolas y la funcionalidad de Active IQ del sitio de soporte de NetApp.
+Debe habilitar AutoSupport si desea usar las consolas y la funcionalidad del asesor digital en el sitio de soporte de NetApp.
 
-https://docs.netapp.com/us-en/active-iq/index.html["Documentación del asesor digital de Active IQ"^]
+https://docs.netapp.com/us-en/active-iq/index.html["Documentación del asesor digital"^]
 
 
 

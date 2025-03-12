@@ -186,13 +186,13 @@ Durante esta fase, ocurre uno de los siguientes procesos:
 +
 ** En el caso de un dispositivo de almacenamiento, el instalador se conecta al controlador de almacenamiento, borra la configuración existente, se comunica con el software SANtricity para configurar los volúmenes y configura los ajustes del host.
 ** En un dispositivo de servicios, el instalador borra toda la configuración existente de las unidades en la controladora de computación y configura la configuración del host.
-
-
 +
 *2. Instalar OS*
 
 +
 Durante esta fase, el instalador copia la imagen del sistema operativo base para StorageGRID en el dispositivo.
+
+
 
 . Continúe supervisando el progreso de la instalación hasta que aparezca un mensaje en la ventana de la consola, pidiéndole que utilice el Administrador de cuadrícula para aprobar el nodo.
 +
